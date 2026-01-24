@@ -5,6 +5,7 @@ Two-Layer Intent Classification System for Academic Question Validation
 ## Project Structure
 - `data/` - Dataset files (raw and processed)
 - `src/` - Source code modules
+- `models/` - Trained model artifacts
 - `notebooks/` - Jupyter notebooks for analysis
 - `reports/` - Generated reports and documentation
 
@@ -14,8 +15,15 @@ pip install -r requirements.txt
 ```
 
 ## Usage
+
+### Phase 1: Dataset Preprocessing
 1. ~~Place dataset in `data/raw/question_dataset_full.json`~~ **DATASET FROZEN**
 2. Run preprocessing: `python src/data_preprocessing/split_dataset.py`
+
+### Phase 2: Layer 1 - DistilBERT Classifier
+1. Train model: `python src/layer1_classifier/train.py`
+2. Evaluate model: `python src/layer1_classifier/evaluate.py`
+3. Run inference demo: `python src/layer1_classifier/inference.py`
 
 ## Dataset Status
 **FINAL LABELED DATASET - DO NOT MODIFY**
@@ -23,3 +31,6 @@ pip install -r requirements.txt
 - Status: Frozen for academic experiment
 - Entries: 300 questions (Q001-Q300)
 - Labels: 150 in-syllabus (1), 150 out-of-syllabus (0)
+
+## Model Performance Targets
+- **Layer 1**: Accuracy ≥85%, Inference <100ms
