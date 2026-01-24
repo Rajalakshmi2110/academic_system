@@ -1,0 +1,227 @@
+[
+  {
+    "id": "Q186",
+    "question": "Explain the concept of 'Piggybacking' in the context of data link control.",
+    "label": 1
+  },
+  {
+    "id": "Q151",
+    "question": "Explain the difference between flow control and congestion control.",
+    "label": 1
+  },
+  {
+    "id": "Q041",
+    "question": "What certifications are most valuable for a professional transitioning from networking to AI development?",
+    "label": 0
+  },
+  {
+    "id": "Q194",
+    "question": "Differentiate between 'Direct Routing' and 'Indirect Routing' to a mobile host.",
+    "label": 1
+  },
+  {
+    "id": "Q064",
+    "question": "Compare cyclic redundancy check (CRC) with simple parity for error detection.",
+    "label": 1
+  },
+  {
+    "id": "Q236",
+    "question": "How do I install and configure a Pi-hole on a network to block advertisements at the DNS level?",
+    "label": 0
+  },
+  {
+    "id": "Q023",
+    "question": "Compare the per-router control plane and the logically centralized control plane in SDN architectures.",
+    "label": 1
+  },
+  {
+    "id": "Q136",
+    "question": "How does the Snowflake data platform handle large-scale network analytics?",
+    "label": 0
+  },
+  {
+    "id": "Q177",
+    "question": "Compare the 'Go-Back-N' and 'Selective-Reject' ARQ retransmission strategies.",
+    "label": 1
+  },
+  {
+    "id": "Q184",
+    "question": "Define the 'Triangle Routing' problem in mobile device networking.",
+    "label": 1
+  },
+  {
+    "id": "Q050",
+    "question": "Which enterprise switch provides the best integration with Microsoft Azure for hybrid cloud setups?",
+    "label": 0
+  },
+  {
+    "id": "Q195",
+    "question": "Explain the purpose of the 'Time to Live' (TTL) field in an IP datagram.",
+    "label": 1
+  },
+  {
+    "id": "Q288",
+    "question": "Explain how to set up an AWS S3 bucket with public-read permissions to host static image assets for a blog.",
+    "label": 0
+  },
+  {
+    "id": "Q294",
+    "question": "Explain the difference between Proof of Work and Proof of Authority consensus mechanisms in enterprise blockchain systems.",
+    "label": 0
+  },
+  {
+    "id": "Q173",
+    "question": "Differentiate between internal and external virtual circuits in packet switching.",
+    "label": 1
+  },
+  {
+    "id": "Q111",
+    "question": "What are the recommended security settings for a Netgear Nighthawk router?",
+    "label": 0
+  },
+  {
+    "id": "Q080",
+    "question": "Explain how Selective Reject ARQ improves performance in high-latency links.",
+    "label": 1
+  },
+  {
+    "id": "Q278",
+    "question": "How does a cold storage hardware wallet protect cryptocurrency assets from advanced remote hacking techniques?",
+    "label": 0
+  },
+  {
+    "id": "Q175",
+    "question": "Define the role of a Management Information Base (MIB) in an SNMP-managed network.",
+    "label": 1
+  },
+  {
+    "id": "Q291",
+    "question": "Explain the binary exponential backoff algorithm used to resolve collisions in Ethernet networks.",
+    "label": 1
+  },
+  {
+    "id": "Q082",
+    "question": "Explain the function of a Media Gateway Controller in softswitch architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q004",
+    "question": "Differentiate between guided and unguided transmission media.",
+    "label": 1
+  },
+  {
+    "id": "Q143",
+    "question": "Compare the Serverless architectures of AWS, Azure, and Google Cloud.",
+    "label": 0
+  },
+  {
+    "id": "Q230",
+    "question": "How do I set up Port Forwarding on a home router to host a Minecraft server?",
+    "label": 0
+  },
+  {
+    "id": "Q113",
+    "question": "Write a Bash script to monitor disk usage and send an email alert.",
+    "label": 0
+  },
+  {
+    "id": "Q215",
+    "question": "What are the main differences between Kubernetes and Docker Swarm for container orchestration?",
+    "label": 0
+  },
+  {
+    "id": "Q293",
+    "question": "Differentiate between IPv4 Classful addressing and Classless Interdomain Routing (CIDR).",
+    "label": 1
+  },
+  {
+    "id": "Q102",
+    "question": "What are the best home mesh Wi-Fi systems for a large house?",
+    "label": 0
+  },
+  {
+    "id": "Q014",
+    "question": "Differentiate between IPv4 and IPv6 packet formats.",
+    "label": 1
+  },
+  {
+    "id": "Q259",
+    "question": "Compare the Link-State (LS) and Distance-Vector (DV) routing algorithms in terms of information exchange requirements.",
+    "label": 1
+  },
+  {
+    "id": "Q120",
+    "question": "Which ISP offers the best fiber-to-the-home speeds in the United Kingdom?",
+    "label": 0
+  },
+  {
+    "id": "Q112",
+    "question": "How is artificial intelligence being used to optimize 6G network protocols?",
+    "label": 0
+  },
+  {
+    "id": "Q048",
+    "question": "How can I use a Raspberry Pi to build a custom hardware firewall for my home?",
+    "label": 0
+  },
+  {
+    "id": "Q016",
+    "question": "Define the three-way handshake procedure used to establish a TCP connection.",
+    "label": 1
+  },
+  {
+    "id": "Q017",
+    "question": "Compare the service models provided by TCP and UDP transport protocols.",
+    "label": 1
+  },
+  {
+    "id": "Q217",
+    "question": "How do I set up a guest Wi-Fi network to isolate smart home devices from my primary computer?",
+    "label": 0
+  },
+  {
+    "id": "Q045",
+    "question": "Recommend an open-source software for monitoring my home network bandwidth usage.",
+    "label": 0
+  },
+  {
+    "id": "Q280",
+    "question": "Review the performance benchmarks of the Intel Core i9-14900K processor for high-speed scientific computing tasks.",
+    "label": 0
+  },
+  {
+    "id": "Q053",
+    "question": "Define the role of the 802.1Q tag in virtual local area networks.",
+    "label": 1
+  },
+  {
+    "id": "Q072",
+    "question": "Explain the role of the Southbound API in a Software-Defined Networking architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q115",
+    "question": "How do I set up a Raspberry Pi as a Pi-hole for network-wide ad blocking?",
+    "label": 0
+  },
+  {
+    "id": "Q126",
+    "question": "How do I resolve a Double NAT error on my Xbox Series X?",
+    "label": 0
+  },
+  {
+    "id": "Q141",
+    "question": "What are the essential skills needed for a career in Cloud Security?",
+    "label": 0
+  },
+  {
+    "id": "Q013",
+    "question": "Compare the distance-vector and link-state routing algorithms.",
+    "label": 1
+  },
+  {
+    "id": "Q058",
+    "question": "Explain the four-step process of the DHCP protocol during client discovery.",
+    "label": 1
+  }
+]
