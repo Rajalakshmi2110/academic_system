@@ -20,7 +20,9 @@ def split_dataset():
     
     for i, part in enumerate(array_parts):
         # Add brackets back to make valid JSON
-        if i == 0:
+        if len(array_parts) == 1:
+             json_str = part
+        elif i == 0:
             json_str = part + ']'
         elif i == len(array_parts) - 1:
             json_str = '[' + part

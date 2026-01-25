@@ -43,6 +43,7 @@ def train_model():
     model = DistilBertForSequenceClassification.from_pretrained(model_name, num_labels=2)
     model.to(device)
     
+    train_file = Path('data/processed/train.json')
     train_dataset = QuestionDataset(train_file, tokenizer)
     val_dataset = QuestionDataset('data/processed/val.json', tokenizer)
     

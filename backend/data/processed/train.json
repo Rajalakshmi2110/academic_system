@@ -1,942 +1,12 @@
 [
   {
-    "id": "Q407",
-    "question": "Write a Python script to calculate the sentiment of a given text using a pre-trained model.",
+    "id": "Q1028",
+    "question": "How do I transition from a manual tester to a QA Automation Engineer?",
     "label": 0
-  },
-  {
-    "id": "Q540",
-    "question": "What are the advantages of using Terraform for infrastructure as code in Azure?",
-    "label": 0
-  },
-  {
-    "id": "Q338",
-    "question": "Differentiate between Intra-AS and Inter-AS routing protocols.",
-    "label": 1
-  },
-  {
-    "id": "Q390",
-    "question": "What are the most important certifications for a career in cloud security?",
-    "label": 0
-  },
-  {
-    "id": "Q333",
-    "question": "Differentiate between a physical address and a logical address.",
-    "label": 1
-  },
-  {
-    "id": "Q551",
-    "question": "Explain the concept of 'Reinforcement Learning' using a simple gaming example.",
-    "label": 0
-  },
-  {
-    "id": "Q493",
-    "question": "Explain the working of the TCP three-way handshake for connection establishment.",
-    "label": 1
-  },
-  {
-    "id": "Q421",
-    "question": "What is the best way to learn Python for a beginner in data science?",
-    "label": 0
-  },
-  {
-    "id": "Q320",
-    "question": "Define the concept of frequency reuse in cellular network design.",
-    "label": 1
-  },
-  {
-    "id": "Q526",
-    "question": "Write a Python script to automate the backup of a database to a remote server.",
-    "label": 0
-  },
-  {
-    "id": "Q325",
-    "question": "Define the role of the Network Address Translation (NAT) protocol in a SOHO network.",
-    "label": 1
-  },
-  {
-    "id": "Q596",
-    "question": "Write a Python script that uses the Pandas library to merge two CSV files based on a common column.",
-    "label": 0
-  },
-  {
-    "id": "Q404",
-    "question": "How do I set up a multi-node Kubernetes cluster using Kubeadm?",
-    "label": 0
-  },
-  {
-    "id": "Q521",
-    "question": "Define the term 'Bit Error Rate' and explain its relation to the signal-to-noise ratio.",
-    "label": 1
-  },
-  {
-    "id": "Q506",
-    "question": "Define the role of Authoritative Name Servers in the DNS resolution hierarchy.",
-    "label": 1
-  },
-  {
-    "id": "Q598",
-    "question": "What are the most valuable certifications for a professional in the field of Big Data?",
-    "label": 0
-  },
-  {
-    "id": "Q592",
-    "question": "How do I set up a private cloud using OpenStack on my own local servers?",
-    "label": 0
-  },
-  {
-    "id": "Q339",
-    "question": "Explain the purpose of the 'Marker' field in the BGP message header.",
-    "label": 1
-  },
-  {
-    "id": "Q459",
-    "question": "Define the 'count-to-infinity' problem and explain how poisoned reverse helps mitigate it in distance-vector routing.",
-    "label": 1
-  },
-  {
-    "id": "Q474",
-    "question": "Define the concept of frequency reuse in the design of cellular wireless networks.",
-    "label": 1
-  },
-  {
-    "id": "Q546",
-    "question": "Write a Bash script to monitor disk space usage and send an email alert if it exceeds 90%.",
-    "label": 0
-  },
-  {
-    "id": "Q302",
-    "question": "Define the concept of bit-interleaved parity as used in SONET frames.",
-    "label": 1
-  },
-  {
-    "id": "Q525",
-    "question": "Differentiate between 'Piconet' and 'Scatternet' in the context of Bluetooth technology.",
-    "label": 1
-  },
-  {
-    "id": "Q552",
-    "question": "Provide a Python function that uses the BeautifulSoup library to scrape titles from a news website.",
-    "label": 0
-  },
-  {
-    "id": "Q445",
-    "question": "What are the best practices for securing a multi-tenant cloud environment?",
-    "label": 0
-  },
-  {
-    "id": "Q434",
-    "question": "What are the most common challenges in implementing a microservices architecture?",
-    "label": 0
-  },
-  {
-    "id": "Q547",
-    "question": "How does the 'Proof of Stake' consensus mechanism differ from 'Proof of Work' in crypto?",
-    "label": 0
-  },
-  {
-    "id": "Q507",
-    "question": "Differentiate between the three categories of service provided by the Integrated Services Architecture.",
-    "label": 1
-  },
-  {
-    "id": "Q387",
-    "question": "How can machine learning be used to predict hardware failures in a data center?",
-    "label": 0
-  },
-  {
-    "id": "Q306",
-    "question": "Define the role of the Virtual Path Identifier (VPI) in an ATM cell header.",
-    "label": 1
-  },
-  {
-    "id": "Q584",
-    "question": "What are the best practices for writing clean and maintainable code in Python?",
-    "label": 0
-  },
-  {
-    "id": "Q424",
-    "question": "How can I improve the performance of my home Wi-Fi network using a range extender?",
-    "label": 0
-  },
-  {
-    "id": "Q491",
-    "question": "Define the various ICMP message types used for error reporting in IPv4.",
-    "label": 1
-  },
-  {
-    "id": "Q335",
-    "question": "Define the concept of 'Soft State' in the Resource Reservation Protocol (RSVP).",
-    "label": 1
-  },
-  {
-    "id": "Q532",
-    "question": "How do I troubleshoot a recurring 'DNS Probe Finished No Internet' error on my laptop?",
-    "label": 0
-  },
-  {
-    "id": "Q482",
-    "question": "Define the 802.1Q Tag Protocol Identifier and its hexadecimal value.",
-    "label": 1
-  },
-  {
-    "id": "Q553",
-    "question": "What is the typical career path for an entry-level Network Security Analyst?",
-    "label": 0
-  },
-  {
-    "id": "Q408",
-    "question": "What is the impact of quantum computing on modern cryptographic algorithms?",
-    "label": 0
-  },
-  {
-    "id": "Q416",
-    "question": "What is the typical career path for a software engineer looking to move into management?",
-    "label": 0
-  },
-  {
-    "id": "Q349",
-    "question": "Explain the purpose of the 'Priority' subfield in the IPv4 Precedence field.",
-    "label": 1
-  },
-  {
-    "id": "Q554",
-    "question": "How do I configure a static IP address on a Mac running the latest version of macOS?",
-    "label": 0
-  },
-  {
-    "id": "Q543",
-    "question": "How can I set up a private VPN server on my local computer for remote access?",
-    "label": 0
-  },
-  {
-    "id": "Q577",
-    "question": "What are the best job opportunities for a Data Scientist specializing in Natural Language Processing?",
-    "label": 0
-  },
-  {
-    "id": "Q374",
-    "question": "Explain the purpose of the 'Disparity Control' function in 8B/10B encoding.",
-    "label": 1
-  },
-  {
-    "id": "Q569",
-    "question": "What are the essential certifications for a professional transitioning into a Cloud Architect role?",
-    "label": 0
-  },
-  {
-    "id": "Q401",
-    "question": "Write a SQL query to find the top 10 customers by total purchase volume.",
-    "label": 0
-  },
-  {
-    "id": "Q562",
-    "question": "How do I set up a Pi-hole on my network to block advertisements at the DNS level?",
-    "label": 0
-  },
-  {
-    "id": "Q460",
-    "question": "Explain the concept of cumulative acknowledgment in the Transmission Control Protocol.",
-    "label": 1
-  },
-  {
-    "id": "Q509",
-    "question": "Define the 'Source Quench' message type in the ICMP protocol.",
-    "label": 1
-  },
-  {
-    "id": "Q356",
-    "question": "Explain the function of the 'CSRC Count' field in the RTP header.",
-    "label": 1
-  },
-  {
-    "id": "Q307",
-    "question": "Compare the frequency-division multiplexing (FDM) and time-division multiplexing (TDM) techniques.",
-    "label": 1
-  },
-  {
-    "id": "Q570",
-    "question": "Explain the concept of 'sharding' in the context of a distributed NoSQL database.",
-    "label": 0
-  },
-  {
-    "id": "Q327",
-    "question": "Compare the services provided by the User Datagram Protocol (UDP) and the Transmission Control Protocol (TCP).",
-    "label": 1
-  },
-  {
-    "id": "Q534",
-    "question": "What certifications are most valuable for an aspiring AI developer in 2024?",
-    "label": 0
-  },
-  {
-    "id": "Q414",
-    "question": "What are the pros and cons of using a serverless architecture for a web application?",
-    "label": 0
-  },
-  {
-    "id": "Q440",
-    "question": "How do I set up a private VPN server on an AWS EC2 instance?",
-    "label": 0
-  },
-  {
-    "id": "Q454",
-    "question": "Compare the functions of a Media Gateway and a Media Gateway Controller in a softswitch architecture.",
-    "label": 1
-  },
-  {
-    "id": "Q406",
-    "question": "How can I improve the security of my home Wi-Fi network using WPA3?",
-    "label": 0
-  },
-  {
-    "id": "Q585",
-    "question": "Explain the role of a 'Scrum Master' in an Agile software development project.",
-    "label": 0
-  },
-  {
-    "id": "Q490",
-    "question": "Explain the concept of 'Soft State' in the context of the Resource Reservation Protocol.",
-    "label": 1
-  },
-  {
-    "id": "Q533",
-    "question": "Recommend a high-speed Wi-Fi router for a three-story home with 20 connected devices.",
-    "label": 0
-  },
-  {
-    "id": "Q544",
-    "question": "Compare the performance of MongoDB and PostgreSQL for large-scale data analytics.",
-    "label": 0
-  },
-  {
-    "id": "Q347",
-    "question": "Compare the 'Unacknowledged Connectionless' and 'Connection-Mode' services in LLC.",
-    "label": 1
-  },
-  {
-    "id": "Q557",
-    "question": "Provide a C# code snippet that performs a reverse DNS lookup using the System.Net namespace.",
-    "label": 0
-  },
-  {
-    "id": "Q529",
-    "question": "Compare the features of AWS Lambda and Google Cloud Functions for serverless computing.",
-    "label": 0
-  },
-  {
-    "id": "Q518",
-    "question": "Define the 'Traffic Conditioning' function within a Differentiated Services domain.",
-    "label": 1
-  },
-  {
-    "id": "Q537",
-    "question": "How does sharding improve the scalability of an Ethereum-based blockchain network?",
-    "label": 0
-  },
-  {
-    "id": "Q433",
-    "question": "How can I improve the security of my home network using a firewall?",
-    "label": 0
-  },
-  {
-    "id": "Q366",
-    "question": "Explain the purpose of 'Interlacing' in video scanning processes.",
-    "label": 1
   },
   {
     "id": "Q508",
     "question": "Explain how the 'Poisson sampling' method is applied to IP performance metrics.",
-    "label": 1
-  },
-  {
-    "id": "Q343",
-    "question": "Differentiate between a Virtual Channel Connection (VCC) and a Virtual Path Connection (VPC).",
-    "label": 1
-  },
-  {
-    "id": "Q432",
-    "question": "What are the key features of the latest version of the Rust programming language?",
-    "label": 0
-  },
-  {
-    "id": "Q571",
-    "question": "Provide a Python script to calculate the sentiment of a given text using a pre-trained NLTK model.",
-    "label": 0
-  },
-  {
-    "id": "Q572",
-    "question": "How do I configure Port Forwarding on my home router to host a private gaming server?",
-    "label": 0
-  },
-  {
-    "id": "Q528",
-    "question": "What are the current salary trends for Machine Learning Engineers in India?",
-    "label": 0
-  },
-  {
-    "id": "Q310",
-    "question": "Define the term 'Antenna Gain' and its relationship to effective area.",
-    "label": 1
-  },
-  {
-    "id": "Q435",
-    "question": "How do I configure an Azure Virtual Network to connect to an on-premises network?",
-    "label": 0
-  },
-  {
-    "id": "Q400",
-    "question": "What are the common interview questions for a Cloud Network Engineer position?",
-    "label": 0
-  },
-  {
-    "id": "Q576",
-    "question": "How do I resolve a 'No Internet, Secured' error on my Windows 11 PC?",
-    "label": 0
-  },
-  {
-    "id": "Q457",
-    "question": "Explain the role of the BGP Next_Hop attribute in inter-autonomous system routing.",
-    "label": 1
-  },
-  {
-    "id": "Q567",
-    "question": "What are the benefits of using a mesh Wi-Fi system over a traditional range extender?",
-    "label": 0
-  },
-  {
-    "id": "Q452",
-    "question": "Define the four-step handshake process used by the DHCP protocol to assign IP addresses.",
-    "label": 1
-  },
-  {
-    "id": "Q458",
-    "question": "Differentiate between a logical link-layer bridge and a layer 2 switch.",
-    "label": 1
-  },
-  {
-    "id": "Q523",
-    "question": "Explain how the 'Token Bucket' scheme is used for traffic shaping in a network.",
-    "label": 1
-  },
-  {
-    "id": "Q449",
-    "question": "How do I configure a Google Cloud VPC to connect to another VPC using VPC peering?",
-    "label": 0
-  },
-  {
-    "id": "Q511",
-    "question": "Explain the working of the Hamming distance in the context of error correction.",
-    "label": 1
-  },
-  {
-    "id": "Q332",
-    "question": "Compare the 'Stop-and-Wait' and 'Sliding-Window' flow control techniques.",
-    "label": 1
-  },
-  {
-    "id": "Q589",
-    "question": "What are the most recognized certifications for a career in entry-level data analytics?",
-    "label": 0
-  },
-  {
-    "id": "Q600",
-    "question": "Explain how a blockchain ensuring the immutability of historical transaction records.",
-    "label": 0
-  },
-  {
-    "id": "Q367",
-    "question": "Compare 'Single-Mode' and 'Multi-Mode' optical fiber propagation.",
-    "label": 1
-  },
-  {
-    "id": "Q478",
-    "question": "Explain the working principle of the token bucket algorithm for traffic shaping.",
-    "label": 1
-  },
-  {
-    "id": "Q568",
-    "question": "How do I recover a deleted file from an external hard drive using free recovery software?",
-    "label": 0
-  },
-  {
-    "id": "Q510",
-    "question": "Compare the OSPF and BGP routing protocols in terms of their administrative scope.",
-    "label": 1
-  },
-  {
-    "id": "Q386",
-    "question": "What are the key differences between the Google Cloud and Microsoft Azure pricing models?",
-    "label": 0
-  },
-  {
-    "id": "Q352",
-    "question": "Compare the 'Short-Wavelength' (1000BASE-SX) and 'Long-Wavelength' (1000BASE-LX) physical layer options for Gigabit Ethernet.",
-    "label": 1
-  },
-  {
-    "id": "Q439",
-    "question": "Write a Python script to scrape data from a public website and save it as a CSV file.",
-    "label": 0
-  },
-  {
-    "id": "Q392",
-    "question": "Write a Bash script to monitor the health of a fleet of Linux servers.",
-    "label": 0
-  },
-  {
-    "id": "Q542",
-    "question": "Provide a SQL query to extract the top five highest-selling products from a retail database.",
-    "label": 0
-  },
-  {
-    "id": "Q389",
-    "question": "How do I resolve a 'double NAT' issue on my home Wi-Fi network?",
-    "label": 0
-  },
-  {
-    "id": "Q462",
-    "question": "Compare the per-router control plane with the logically centralized control plane used in SDN.",
-    "label": 1
-  },
-  {
-    "id": "Q397",
-    "question": "How can I optimize a React application to improve its Lighthouse performance score?",
-    "label": 0
-  },
-  {
-    "id": "Q516",
-    "question": "Compare the 'Go-Back-N' and 'Selective-Reject' retransmission strategies.",
-    "label": 1
-  },
-  {
-    "id": "Q513",
-    "question": "Differentiate between 'Elastic' and 'Inelastic' network traffic types.",
-    "label": 1
-  },
-  {
-    "id": "Q496",
-    "question": "Explain the purpose of the 'Time to Live' field in an IP datagram header.",
-    "label": 1
-  },
-  {
-    "id": "Q378",
-    "question": "Write a Python script to automate the deployment of virtual machines on VMware ESXi.",
-    "label": 0
-  },
-  {
-    "id": "Q447",
-    "question": "What is the typical career path for a network administrator looking to transition into a security role?",
-    "label": 0
-  },
-  {
-    "id": "Q334",
-    "question": "Explain the role of the 'Next Header' field in the IPv6 packet format.",
-    "label": 1
-  },
-  {
-    "id": "Q322",
-    "question": "Compare the IPv4 and IPv6 header formats.",
-    "label": 1
-  },
-  {
-    "id": "Q371",
-    "question": "Explain the mechanism of 'Echo Cancellation' in full-duplex communication links.",
-    "label": 1
-  },
-  {
-    "id": "Q361",
-    "question": "Explain how the 'Poisson sampling' method is used for IP performance metrics.",
-    "label": 1
-  },
-  {
-    "id": "Q385",
-    "question": "How do I set up a Jenkins pipeline for continuous integration of a Java project?",
-    "label": 0
-  },
-  {
-    "id": "Q425",
-    "question": "What are the most valuable certifications for a professional in the field of AI?",
-    "label": 0
-  },
-  {
-    "id": "Q527",
-    "question": "How can I set up a Raspberry Pi as a home media center using Kodi?",
-    "label": 0
-  },
-  {
-    "id": "Q492",
-    "question": "Compare the functions of a Top of Rack (TOR) switch and a border router in a data center.",
-    "label": 1
-  },
-  {
-    "id": "Q455",
-    "question": "Explain the purpose of the 11-chip Barker sequence in Direct Sequence Spread Spectrum.",
-    "label": 1
-  },
-  {
-    "id": "Q581",
-    "question": "What are the advantages of using a CDN for a small business website with global users?",
-    "label": 0
-  },
-  {
-    "id": "Q505",
-    "question": "Explain the function of the 'Header Checksum' field in an IPv4 packet header.",
-    "label": 1
-  },
-  {
-    "id": "Q405",
-    "question": "What are the best practices for implementing a zero-trust network architecture?",
-    "label": 0
-  },
-  {
-    "id": "Q520",
-    "question": "Explain the purpose of the 'F-GCRA' scheduler in GFR traffic management.",
-    "label": 1
-  },
-  {
-    "id": "Q561",
-    "question": "Write a Python script that uses the requests library to check if a list of URLs is active.",
-    "label": 0
-  },
-  {
-    "id": "Q423",
-    "question": "What are the key differences between a data lake and a data warehouse?",
-    "label": 0
-  },
-  {
-    "id": "Q311",
-    "question": "Explain the mechanism of slow start in TCP congestion control.",
-    "label": 1
-  },
-  {
-    "id": "Q422",
-    "question": "How do I set up a private cloud using OpenStack on my own servers?",
-    "label": 0
-  },
-  {
-    "id": "Q373",
-    "question": "Differentiate between 'Bit-Interleaved Parity' and a standard checksum for error detection.",
-    "label": 1
-  },
-  {
-    "id": "Q582",
-    "question": "How can I protect my smart home devices from being hacked and recruited into a botnet?",
-    "label": 0
-  },
-  {
-    "id": "Q331",
-    "question": "Explain the function of a RAKE receiver in a CDMA system.",
-    "label": 1
-  },
-  {
-    "id": "Q308",
-    "question": "Differentiate between the control plane and the data plane in a Software-Defined Network (SDN).",
-    "label": 1
-  },
-  {
-    "id": "Q362",
-    "question": "Compare 'Active' and 'Passive' network measurement techniques.",
-    "label": 1
-  },
-  {
-    "id": "Q379",
-    "question": "What is the best way to prepare for the AWS Certified Solutions Architect - Associate exam?",
-    "label": 0
-  },
-  {
-    "id": "Q479",
-    "question": "Compare the per-hop behaviors of expedited forwarding and assured forwarding in differentiated services.",
-    "label": 1
-  },
-  {
-    "id": "Q524",
-    "question": "Define the role of the 'Payload Type' field in the fixed header of an RTP packet.",
-    "label": 1
-  },
-  {
-    "id": "Q305",
-    "question": "Explain the working principle of the HDB3 scrambling technique for long sequences of zeros.",
-    "label": 1
-  },
-  {
-    "id": "Q597",
-    "question": "How do I troubleshoot a persistent blinking orange light on my Comcast Xfinity router?",
-    "label": 0
-  },
-  {
-    "id": "Q383",
-    "question": "What is the typical salary for a Blockchain Developer with three years of experience?",
-    "label": 0
-  },
-  {
-    "id": "Q555",
-    "question": "What are the key differences between a container and a virtual machine from a DevOps perspective?",
-    "label": 0
-  },
-  {
-    "id": "Q550",
-    "question": "Recommend an open-source tool for monitoring network traffic on a small home office network.",
-    "label": 0
-  },
-  {
-    "id": "Q545",
-    "question": "What are the common interview questions for a Senior Cloud Solutions Architect position?",
-    "label": 0
-  },
-  {
-    "id": "Q396",
-    "question": "What are the advantages of using Kubernetes over Nomad for container orchestration?",
-    "label": 0
-  },
-  {
-    "id": "Q471",
-    "question": "Differentiate between recursive and iterative queries in the Domain Name System.",
-    "label": 1
-  },
-  {
-    "id": "Q351",
-    "question": "Explain the function of the 'Start Frame Delimiter' (SFD) in an Ethernet frame.",
-    "label": 1
-  },
-  {
-    "id": "Q556",
-    "question": "Explain the role of smart contracts in ensuring transparency in a supply chain blockchain.",
-    "label": 0
-  },
-  {
-    "id": "Q377",
-    "question": "How do I configure a Raspberry Pi to act as a NAS for my home network?",
-    "label": 0
-  },
-  {
-    "id": "Q328",
-    "question": "Differentiate between recursive and iterative DNS queries.",
-    "label": 1
-  },
-  {
-    "id": "Q430",
-    "question": "What is the typical salary for a data engineer in New York City?",
-    "label": 0
-  },
-  {
-    "id": "Q346",
-    "question": "Explain the role of the 'Check Bits' in a forward error correction scheme.",
-    "label": 1
-  },
-  {
-    "id": "Q429",
-    "question": "How can I secure my personal computer against ransomware attacks?",
-    "label": 0
-  },
-  {
-    "id": "Q548",
-    "question": "What are the essential skills required for a career in Big Data engineering?",
-    "label": 0
-  },
-  {
-    "id": "Q301",
-    "question": "Explain the difference between baseband and broadband signaling.",
-    "label": 1
-  },
-  {
-    "id": "Q539",
-    "question": "How do I configure a guest network on my TP-Link Archer router to improve security?",
-    "label": 0
-  },
-  {
-    "id": "Q469",
-    "question": "Explain the role of the Address Resolution Protocol (ARP) in mapping IP addresses to MAC addresses.",
-    "label": 1
-  },
-  {
-    "id": "Q587",
-    "question": "How do I update the firmware on my Netgear Nighthawk router manually?",
-    "label": 0
-  },
-  {
-    "id": "Q376",
-    "question": "What are the current job prospects for a Network Automation Engineer in the financial sector?",
-    "label": 0
-  },
-  {
-    "id": "Q531",
-    "question": "What is the impact of quantum computing on modern blockchain encryption algorithms?",
-    "label": 0
-  },
-  {
-    "id": "Q388",
-    "question": "What is the best budget-friendly mechanical keyboard for a software developer?",
-    "label": 0
-  },
-  {
-    "id": "Q502",
-    "question": "Explain the role of the 'Marker' field in a BGP message header.",
-    "label": 1
-  },
-  {
-    "id": "Q485",
-    "question": "Define the term 'Antenna Gain' and explain its significance in wireless transmission.",
-    "label": 1
-  },
-  {
-    "id": "Q330",
-    "question": "Define the 'hidden station problem' in the context of IEEE 802.11 WLANs.",
-    "label": 1
-  },
-  {
-    "id": "Q303",
-    "question": "Compare the frame structure of a standard Ethernet frame and an 802.1Q tagged frame.",
-    "label": 1
-  },
-  {
-    "id": "Q442",
-    "question": "How can I improve the reliability of my home network using a redundant ISP connection?",
-    "label": 0
-  },
-  {
-    "id": "Q365",
-    "question": "Define the term 'Jitter' and its significance in real-time multimedia traffic.",
-    "label": 1
-  },
-  {
-    "id": "Q563",
-    "question": "What are the most popular programming languages for a career in data science in 2024?",
-    "label": 0
-  },
-  {
-    "id": "Q586",
-    "question": "Provide a JavaScript example of how to use WebSockets for creating a real-time chat application.",
-    "label": 0
-  },
-  {
-    "id": "Q467",
-    "question": "Define the term 'Jitter' and its impact on real-time multimedia traffic.",
-    "label": 1
-  },
-  {
-    "id": "Q575",
-    "question": "Write a PowerShell script to list all active TCP connections on a Windows server.",
-    "label": 0
-  },
-  {
-    "id": "Q399",
-    "question": "How do I configure a VPN tunnel between my home and my office using OpenVPN?",
-    "label": 0
-  },
-  {
-    "id": "Q501",
-    "question": "Differentiate between cyclic redundancy check and simple parity for error detection.",
-    "label": 1
-  },
-  {
-    "id": "Q453",
-    "question": "Differentiate between the Go-Back-N and Selective-Repeat ARQ protocols in terms of buffer requirements.",
-    "label": 1
-  },
-  {
-    "id": "Q409",
-    "question": "How do I configure an AWS Lambda function to trigger on an S3 bucket event?",
-    "label": 0
-  },
-  {
-    "id": "Q558",
-    "question": "What are the best practices for securing a multi-tenant cloud environment on AWS?",
-    "label": 0
-  },
-  {
-    "id": "Q461",
-    "question": "Define the 3-bit priority field in the 802.1Q VLAN tag and its role in quality of service.",
-    "label": 1
-  },
-  {
-    "id": "Q340",
-    "question": "Define the term 'Bit Error Rate' (BER) and its relationship to SNR.",
-    "label": 1
-  },
-  {
-    "id": "Q329",
-    "question": "Explain the purpose of the 11-chip Barker sequence in Direct Sequence Spread Spectrum (DSSS).",
-    "label": 1
-  },
-  {
-    "id": "Q599",
-    "question": "Compare the serverless architectures provided by Google Cloud, AWS, and Microsoft Azure.",
-    "label": 0
-  },
-  {
-    "id": "Q324",
-    "question": "Explain the function of the 'Time to Live' (TTL) field in an IP datagram.",
-    "label": 1
-  },
-  {
-    "id": "Q427",
-    "question": "How does a content delivery network (CDN) improve the speed of a global website?",
-    "label": 0
-  },
-  {
-    "id": "Q431",
-    "question": "How do I set up a multi-cloud environment using HashiCorp Terraform?",
-    "label": 0
-  },
-  {
-    "id": "Q488",
-    "question": "Define the role of the Preamble field in an Ethernet frame.",
-    "label": 1
-  },
-  {
-    "id": "Q512",
-    "question": "Define the role of the 'Service Access Point' in the Open Systems Interconnection model.",
-    "label": 1
-  },
-  {
-    "id": "Q393",
-    "question": "How does the Bitcoin protocol ensure the immutability of its transaction ledger?",
-    "label": 0
-  },
-  {
-    "id": "Q503",
-    "question": "Define the four-step handshake used by the DHCP protocol during the client discovery phase.",
-    "label": 1
-  },
-  {
-    "id": "Q483",
-    "question": "Differentiate between the North American and International TDM carrier standards for digital data.",
-    "label": 1
-  },
-  {
-    "id": "Q410",
-    "question": "What are the most popular programming languages for a career in artificial intelligence?",
-    "label": 0
-  },
-  {
-    "id": "Q450",
-    "question": "What are the key differences between a container and a virtual machine?",
-    "label": 0
-  },
-  {
-    "id": "Q489",
-    "question": "Differentiate between the control plane and data plane in Software-Defined Networking architecture.",
-    "label": 1
-  },
-  {
-    "id": "Q438",
-    "question": "What is the best way to get started with a career in the field of blockchain?",
-    "label": 0
-  },
-  {
-    "id": "Q444",
-    "question": "How do I set up a continuous deployment pipeline using GitLab CI/CD?",
-    "label": 0
-  },
-  {
-    "id": "Q560",
-    "question": "What is the average duration to obtain a CISSP certification for an IT professional?",
-    "label": 0
-  },
-  {
-    "id": "Q336",
-    "question": "Explain how a bridge uses a spanning tree to prevent loops in a bridged LAN.",
     "label": 1
   },
   {
@@ -945,83 +15,268 @@
     "label": 1
   },
   {
-    "id": "Q337",
-    "question": "Compare the throughput performance of pure ALOHA and slotted ALOHA.",
+    "id": "Q230",
+    "question": "How do I set up Port Forwarding on a home router to host a Minecraft server?",
+    "label": 0
+  },
+  {
+    "id": "Q420",
+    "question": "How can machine learning be applied to improve the efficiency of a supply chain?",
+    "label": 0
+  },
+  {
+    "id": "Q099",
+    "question": "Explain the use of Wireshark for network traffic analysis and fault detection.",
     "label": 1
   },
   {
-    "id": "Q418",
-    "question": "How do I configure a static website on Google Cloud Storage?",
-    "label": 0
-  },
-  {
-    "id": "Q465",
-    "question": "Differentiate between the three tiers of server clusters in Google's CDN infrastructure.",
+    "id": "Q283",
+    "question": "Differentiate between the CSMA/CD and CSMA/CA multiple access protocols.",
     "label": 1
   },
   {
-    "id": "Q583",
-    "question": "What is the average salary of a Cybersecurity Specialist in the United Kingdom?",
-    "label": 0
-  },
-  {
-    "id": "Q428",
-    "question": "What are the best open-source tools for monitoring the performance of a web server?",
-    "label": 0
-  },
-  {
-    "id": "Q468",
-    "question": "Compare the framing techniques of character count and starting/ending flags.",
+    "id": "Q955",
+    "question": "Selective repeat ARQ",
     "label": 1
   },
   {
-    "id": "Q500",
-    "question": "Define the 'Triangle Routing' problem as it applies to mobile device networking.",
+    "id": "Q716",
+    "question": "How do I troubleshoot a persistent blinking orange light on a Netgear Nighthawk router?",
+    "label": 0
+  },
+  {
+    "id": "Q047",
+    "question": "What are the top three trends in artificial intelligence that will impact network management next year?",
+    "label": 0
+  },
+  {
+    "id": "Q013",
+    "question": "Compare the distance-vector and link-state routing algorithms.",
     "label": 1
   },
   {
-    "id": "Q504",
-    "question": "Compare the TCP slow start and congestion avoidance algorithms.",
+    "id": "Q156",
+    "question": "Define the various ICMP message types used for error reporting.",
     "label": 1
   },
   {
-    "id": "Q565",
-    "question": "Explain how a Convolutional Neural Network can be used for automated image classification.",
-    "label": 0
-  },
-  {
-    "id": "Q446",
-    "question": "How can I improve the performance of my home Wi-Fi network using a powerline adapter?",
-    "label": 0
-  },
-  {
-    "id": "Q355",
-    "question": "Define the role of the 'Domain Name Pointer' (PTR) resource record in DNS.",
+    "id": "Q187",
+    "question": "Define the 'Hidden Station Problem' and its impact on CSMA/CA efficiency.",
     "label": 1
   },
   {
-    "id": "Q590",
-    "question": "Explain the difference between supervised and reinforcement learning in AI.",
+    "id": "Q080",
+    "question": "Explain how Selective Reject ARQ improves performance in high-latency links.",
+    "label": 1
+  },
+  {
+    "id": "Q461",
+    "question": "Define the 3-bit priority field in the 802.1Q VLAN tag and its role in quality of service.",
+    "label": 1
+  },
+  {
+    "id": "Q539",
+    "question": "How do I configure a guest network on my TP-Link Archer router to improve security?",
     "label": 0
   },
   {
-    "id": "Q579",
-    "question": "Explain the concept of 'Deep Learning' in the context of autonomous vehicle navigation.",
+    "id": "Q681",
+    "question": "Provide a C++ code example for implementing a binary search algorithm on a sorted array.",
     "label": 0
   },
   {
-    "id": "Q403",
-    "question": "What is the average salary of a Cybersecurity Analyst in London?",
+    "id": "Q961",
+    "question": "Bellman-Ford equation",
+    "label": 1
+  },
+  {
+    "id": "Q894",
+    "question": "How do I set up an AWS Lambda function to trigger automatically when an image is uploaded to an S3 bucket?",
     "label": 0
   },
   {
-    "id": "Q381",
-    "question": "Review the top five mesh Wi-Fi systems for small businesses in 2024.",
+    "id": "Q1073",
+    "question": "Define the concept of Microsegmentation in network security.",
+    "label": 1
+  },
+  {
+    "id": "Q927",
+    "question": "Cyclic Redundancy Check (CRC)",
+    "label": 1
+  },
+  {
+    "id": "Q844",
+    "question": "What is the average duration to earn a CISSP certification for an IT professional with 5 years of experience?",
     "label": 0
   },
   {
-    "id": "Q309",
-    "question": "Explain the function of the Address Resolution Protocol (ARP) in a local area network.",
+    "id": "Q074",
+    "question": "Explain the working of a RAKE receiver in a CDMA cellular system.",
+    "label": 1
+  },
+  {
+    "id": "Q194",
+    "question": "Differentiate between 'Direct Routing' and 'Indirect Routing' to a mobile host.",
+    "label": 1
+  },
+  {
+    "id": "Q051",
+    "question": "Explain the working of VLAN tagging in Ethernet networks.",
+    "label": 1
+  },
+  {
+    "id": "Q569",
+    "question": "What are the essential certifications for a professional transitioning into a Cloud Architect role?",
+    "label": 0
+  },
+  {
+    "id": "Q562",
+    "question": "How do I set up a Pi-hole on my network to block advertisements at the DNS level?",
+    "label": 0
+  },
+  {
+    "id": "Q604",
+    "question": "Differentiate between the control plane and the data plane in a Software-Defined Networking architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q018",
+    "question": "Explain the function and hierarchical structure of the Domain Name System (DNS).",
+    "label": 1
+  },
+  {
+    "id": "Q201",
+    "question": "Write a Python function using the sockets library to perform a reverse DNS lookup.",
+    "label": 0
+  },
+  {
+    "id": "Q967",
+    "question": "OpenFlow protocol",
+    "label": 1
+  },
+  {
+    "id": "Q673",
+    "question": "Compare 'Piconet' and 'Scatternet' in the context of Bluetooth networking.",
+    "label": 1
+  },
+  {
+    "id": "Q120",
+    "question": "Which ISP offers the best fiber-to-the-home speeds in the United Kingdom?",
+    "label": 0
+  },
+  {
+    "id": "Q869",
+    "question": "Explain the function of a 'RAKE Receiver' in mitigating multipath effects in CDMA systems.",
+    "label": 1
+  },
+  {
+    "id": "Q161",
+    "question": "Explain the significance of the SOA (Start of Authority) record type.",
+    "label": 1
+  },
+  {
+    "id": "Q1021",
+    "question": "How do I resolve an IP address conflict on my office network?",
+    "label": 0
+  },
+  {
+    "id": "Q165",
+    "question": "Compare the security mechanisms provided by WPA and WPA2.",
+    "label": 1
+  },
+  {
+    "id": "Q824",
+    "question": "What are the job prospects for an entry-level Cloud Security Architect in the current tech market?",
+    "label": 0
+  },
+  {
+    "id": "Q150",
+    "question": "How is Reinforcement Learning used to manage traffic in SD-WANs?",
+    "label": 0
+  },
+  {
+    "id": "Q651",
+    "question": "Define 'Packet Data Convergence Protocol' (PDCP) in the 4G LTE link layer.",
+    "label": 1
+  },
+  {
+    "id": "Q879",
+    "question": "Explain the mechanism of the 'Binary Exponential Backoff' algorithm in resolving Ethernet collisions.",
+    "label": 1
+  },
+  {
+    "id": "Q263",
+    "question": "Explain the function of the Time to Live (TTL) field in an IPv4 datagram header.",
+    "label": 1
+  },
+  {
+    "id": "Q108",
+    "question": "What is the average salary for a Network Data Scientist in Silicon Valley?",
+    "label": 0
+  },
+  {
+    "id": "Q532",
+    "question": "How do I troubleshoot a recurring 'DNS Probe Finished No Internet' error on my laptop?",
+    "label": 0
+  },
+  {
+    "id": "Q819",
+    "question": "What are the common security vulnerabilities found in modern web applications according to the OWASP Top 10?",
+    "label": 0
+  },
+  {
+    "id": "Q432",
+    "question": "What are the key features of the latest version of the Rust programming language?",
+    "label": 0
+  },
+  {
+    "id": "Q689",
+    "question": "Compare the performance of the latest Netgear Nighthawk vs the ASUS ROG Rapture gaming routers.",
+    "label": 0
+  },
+  {
+    "id": "Q896",
+    "question": "What are the top-rated mechanical keyboards for software developers in terms of ergonomics and tactile feedback?",
+    "label": 0
+  },
+  {
+    "id": "Q451",
+    "question": "Explain the difference between persistent and non-persistent HTTP connections.",
+    "label": 1
+  },
+  {
+    "id": "Q904",
+    "question": "IPv4 addressing and subnetting",
+    "label": 1
+  },
+  {
+    "id": "Q298",
+    "question": "What are the recommended hardware components for building a custom high-performance gaming PC on a $2000 budget in 2024?",
+    "label": 0
+  },
+  {
+    "id": "Q900",
+    "question": "How is deep learning used to automate the detection of fraudulent credit card transactions in real-time?",
+    "label": 0
+  },
+  {
+    "id": "Q329",
+    "question": "Explain the purpose of the 11-chip Barker sequence in Direct Sequence Spread Spectrum (DSSS).",
+    "label": 1
+  },
+  {
+    "id": "Q820",
+    "question": "How is deep learning used to improve the accuracy of speech recognition in virtual assistants?",
+    "label": 0
+  },
+  {
+    "id": "Q382",
+    "question": "How can I secure my home router against the latest DNS hijacking attacks?",
+    "label": 0
+  },
+  {
+    "id": "Q484",
+    "question": "Explain the use of the 'Duration' field in an IEEE 802.11 MAC frame.",
     "label": 1
   },
   {
@@ -1030,8 +285,3508 @@
     "label": 0
   },
   {
-    "id": "Q315",
-    "question": "Define the three-way handshake used for TCP connection establishment.",
+    "id": "Q706",
+    "question": "Compare the features of Docker Swarm vs Kubernetes for managing containerized applications.",
+    "label": 0
+  },
+  {
+    "id": "Q752",
+    "question": "Define the term 'bit stuffing' and explain its importance in HDLC framing.",
+    "label": 1
+  },
+  {
+    "id": "Q326",
+    "question": "Explain the working of the binary exponential backoff algorithm in Ethernet.",
+    "label": 1
+  },
+  {
+    "id": "Q384",
+    "question": "Provide a C++ implementation of a self-balancing binary search tree.",
+    "label": 0
+  },
+  {
+    "id": "Q028",
+    "question": "Where is the best place to position a Wi-Fi router in a two-story home to minimize dead zones?",
+    "label": 0
+  },
+  {
+    "id": "Q481",
+    "question": "Explain the function of the ICMP Source Quench message in managing network congestion.",
+    "label": 1
+  },
+  {
+    "id": "Q459",
+    "question": "Define the 'count-to-infinity' problem and explain how poisoned reverse helps mitigate it in distance-vector routing.",
+    "label": 1
+  },
+  {
+    "id": "Q935",
+    "question": "Unguided wireless media",
+    "label": 1
+  },
+  {
+    "id": "Q462",
+    "question": "Compare the per-router control plane with the logically centralized control plane used in SDN.",
+    "label": 1
+  },
+  {
+    "id": "Q067",
+    "question": "Describe the operation of the Three-way Handshake in TCP connection establishment.",
+    "label": 1
+  },
+  {
+    "id": "Q773",
+    "question": "Differentiate between the three tiers of server clusters in Google's CDN architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q023",
+    "question": "Compare the per-router control plane and the logically centralized control plane in SDN architectures.",
+    "label": 1
+  },
+  {
+    "id": "Q636",
+    "question": "Define 'Classless Interdomain Routing' (CIDR) and its use in address aggregation.",
+    "label": 1
+  },
+  {
+    "id": "Q328",
+    "question": "Differentiate between recursive and iterative DNS queries.",
+    "label": 1
+  },
+  {
+    "id": "Q926",
+    "question": "Stop-and-wait ARQ",
+    "label": 1
+  },
+  {
+    "id": "Q883",
+    "question": "How do I properly install a Nest Learning Thermostat and connect it to my home WiFi network?",
+    "label": 0
+  },
+  {
+    "id": "Q632",
+    "question": "Explain the purpose of the 'Binary Exponential Backoff' algorithm in Ethernet collisions.",
+    "label": 1
+  },
+  {
+    "id": "Q211",
+    "question": "How do I upgrade the firmware on a TP-Link Archer router using the web interface?",
+    "label": 0
+  },
+  {
+    "id": "Q712",
+    "question": "How do I secure my smart home's IoT devices from being recruited into a botnet?",
+    "label": 0
+  },
+  {
+    "id": "Q721",
+    "question": "Provide a Python implementation of a Depth-First Search (DFS) on a graph.",
+    "label": 0
+  },
+  {
+    "id": "Q456",
+    "question": "Define 'Head-of-the-Line (HOL) Blocking' within the context of a packet switch's input port queuing.",
+    "label": 1
+  },
+  {
+    "id": "Q572",
+    "question": "How do I configure Port Forwarding on my home router to host a private gaming server?",
+    "label": 0
+  },
+  {
+    "id": "Q1010",
+    "question": "How do I recover deleted data from a formatted external hard drive?",
+    "label": 0
+  },
+  {
+    "id": "Q631",
+    "question": "Define the 'Service Access Point' (SAP) in the OSI reference model.",
+    "label": 1
+  },
+  {
+    "id": "Q092",
+    "question": "Explain the purpose of Generic Flow Control (GFC) in ATM cells.",
+    "label": 1
+  },
+  {
+    "id": "Q154",
+    "question": "Differentiate between forward error correction (FEC) and error detection with retransmission.",
+    "label": 1
+  },
+  {
+    "id": "Q355",
+    "question": "Define the role of the 'Domain Name Pointer' (PTR) resource record in DNS.",
+    "label": 1
+  },
+  {
+    "id": "Q592",
+    "question": "How do I set up a private cloud using OpenStack on my own local servers?",
+    "label": 0
+  },
+  {
+    "id": "Q146",
+    "question": "Which networking equipment brands are most reliable for high-performance computing?",
+    "label": 0
+  },
+  {
+    "id": "Q870",
+    "question": "Define 'Jitter' and its relevance to the Quality of Service (QoS) of real-time traffic.",
+    "label": 1
+  },
+  {
+    "id": "Q158",
+    "question": "Differentiate between an ICMP Echo Request and an Echo Reply.",
+    "label": 1
+  },
+  {
+    "id": "Q1029",
+    "question": "What are the top three trends in edge computing for the next decade?",
+    "label": 0
+  },
+  {
+    "id": "Q831",
+    "question": "Which Wi-Fi 7 router should I buy for a multi-story home with over 40 IoT devices?",
+    "label": 0
+  },
+  {
+    "id": "Q616",
+    "question": "Define the 802.1Q 'Tag Protocol Identifier' and its significance in VLANs.",
+    "label": 1
+  },
+  {
+    "id": "Q242",
+    "question": "Explain the use of 'Auto-Scaling Groups' in a highly available web application on AWS.",
+    "label": 0
+  },
+  {
+    "id": "Q534",
+    "question": "What certifications are most valuable for an aspiring AI developer in 2024?",
+    "label": 0
+  },
+  {
+    "id": "Q264",
+    "question": "Explain the concept of sharding in the context of a distributed blockchain ledger used for decentralized finance.",
+    "label": 0
+  },
+  {
+    "id": "Q913",
+    "question": "UDP connectionless transport",
+    "label": 1
+  },
+  {
+    "id": "Q443",
+    "question": "What are the most important trends in the field of data science for the next five years?",
+    "label": 0
+  },
+  {
+    "id": "Q685",
+    "question": "How can I use machine learning to detect fraud in real-time credit card transactions?",
+    "label": 0
+  },
+  {
+    "id": "Q847",
+    "question": "Provide a Python code example for training a basic linear regression model using scikit-learn.",
+    "label": 0
+  },
+  {
+    "id": "Q945",
+    "question": "Fault detection and isolation",
+    "label": 1
+  },
+  {
+    "id": "Q710",
+    "question": "Explain the difference between supervised, unsupervised, and reinforcement learning in AI.",
+    "label": 0
+  },
+  {
+    "id": "Q035",
+    "question": "How does Google Cloud's Global VPC differ from traditional VPC implementations?",
+    "label": 0
+  },
+  {
+    "id": "Q265",
+    "question": "Differentiate between recursive and iterative name resolution techniques in the Domain Name System (DNS).",
+    "label": 1
+  },
+  {
+    "id": "Q930",
+    "question": "VLSM subnetting",
+    "label": 1
+  },
+  {
+    "id": "Q587",
+    "question": "How do I update the firmware on my Netgear Nighthawk router manually?",
+    "label": 0
+  },
+  {
+    "id": "Q679",
+    "question": "How do I reset my AT&T Fiber gateway to factory settings if the internet is dropping?",
+    "label": 0
+  },
+  {
+    "id": "Q953",
+    "question": "Multiplexing techniques (TDM/FDM)",
+    "label": 1
+  },
+  {
+    "id": "Q813",
+    "question": "Show me a Java implementation of the Dijkstra algorithm using a priority queue and adjacency list.",
+    "label": 0
+  },
+  {
+    "id": "Q606",
+    "question": "Define the role of a 'Designated Router' in the OSPF protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q973",
+    "question": "Hamming distance for error correction",
+    "label": 1
+  },
+  {
+    "id": "Q792",
+    "question": "Compare 'Frequency-Hopping Spread Spectrum' (FHSS) and 'Direct Sequence Spread Spectrum' (DSSS).",
+    "label": 1
+  },
+  {
+    "id": "Q212",
+    "question": "What is the difference between a Data Scientist and an AI Research Engineer in terms of daily tasks?",
+    "label": 0
+  },
+  {
+    "id": "Q762",
+    "question": "Compare the 'Stop-and-Wait' and 'Sliding-Window' flow control mechanisms.",
+    "label": 1
+  },
+  {
+    "id": "Q1037",
+    "question": "What is the role of a 'Validator' in a Proof of Stake blockchain?",
+    "label": 0
+  },
+  {
+    "id": "Q1023",
+    "question": "How can machine learning predict hardware failures in a data center?",
+    "label": 0
+  },
+  {
+    "id": "Q034",
+    "question": "What are the main benefits of using AWS Lambda for serverless networking tasks?",
+    "label": 0
+  },
+  {
+    "id": "Q490",
+    "question": "Explain the concept of 'Soft State' in the context of the Resource Reservation Protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q886",
+    "question": "Explain the function of 'Smart Contracts' in verifying the authenticity of digital assets like NFTs.",
+    "label": 0
+  },
+  {
+    "id": "Q667",
+    "question": "Explain the use of 'Wireshark' for capturing and analyzing network protocol PDUs.",
+    "label": 1
+  },
+  {
+    "id": "Q450",
+    "question": "What are the key differences between a container and a virtual machine?",
+    "label": 0
+  },
+  {
+    "id": "Q928",
+    "question": "IPv6 header format",
+    "label": 1
+  },
+  {
+    "id": "Q090",
+    "question": "Explain the role of the Address Resolution Protocol (ARP).",
+    "label": 1
+  },
+  {
+    "id": "Q868",
+    "question": "Differentiate between 'Stop-and-Wait ARQ' and 'Go-Back-N ARQ' efficiency.",
+    "label": 1
+  },
+  {
+    "id": "Q444",
+    "question": "How do I set up a continuous deployment pipeline using GitLab CI/CD?",
+    "label": 0
+  },
+  {
+    "id": "Q640",
+    "question": "Explain the role of the 'Southbound API' in a Software-Defined Networking architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q288",
+    "question": "Explain how to set up an AWS S3 bucket with public-read permissions to host static image assets for a blog.",
+    "label": 0
+  },
+  {
+    "id": "Q1074",
+    "question": "Compare the usage of SCP and SFTP for file transfer.",
+    "label": 1
+  },
+  {
+    "id": "Q038",
+    "question": "Which Wi-Fi 6E router do you recommend for a high-density apartment complex?",
+    "label": 0
+  },
+  {
+    "id": "Q680",
+    "question": "Write a Python script using the pandas library to clean a CSV file of network logs.",
+    "label": 0
+  },
+  {
+    "id": "Q176",
+    "question": "Explain the working of a RAKE receiver in a CDMA system.",
+    "label": 1
+  },
+  {
+    "id": "Q105",
+    "question": "Explain the difference between supervised and unsupervised machine learning.",
+    "label": 0
+  },
+  {
+    "id": "Q545",
+    "question": "What are the common interview questions for a Senior Cloud Solutions Architect position?",
+    "label": 0
+  },
+  {
+    "id": "Q232",
+    "question": "Review the build quality and performance of the ASUS ZenWiFi XT8 Mesh system.",
+    "label": 0
+  },
+  {
+    "id": "Q902",
+    "question": "TCP three-way handshake",
+    "label": 1
+  },
+  {
+    "id": "Q671",
+    "question": "Define the 'Autonomous System Number' (ASN) and its role in BGP routing.",
+    "label": 1
+  },
+  {
+    "id": "Q730",
+    "question": "What is the impact of quantum computing on the future of traditional RSA encryption?",
+    "label": 0
+  },
+  {
+    "id": "Q630",
+    "question": "Explain the working of 'B8ZS' scrambling technique used in digital carrier systems.",
+    "label": 1
+  },
+  {
+    "id": "Q529",
+    "question": "Compare the features of AWS Lambda and Google Cloud Functions for serverless computing.",
+    "label": 0
+  },
+  {
+    "id": "Q1004",
+    "question": "Which programming language is best for developing decentralized applications (DApps)?",
+    "label": 0
+  },
+  {
+    "id": "Q526",
+    "question": "Write a Python script to automate the backup of a database to a remote server.",
+    "label": 0
+  },
+  {
+    "id": "Q054",
+    "question": "Explain the working principle of the token bucket for traffic shaping.",
+    "label": 1
+  },
+  {
+    "id": "Q722",
+    "question": "How is Large Language Model (LLM) fine-tuning performed on domain-specific datasets?",
+    "label": 0
+  },
+  {
+    "id": "Q476",
+    "question": "Define the role of the 'Next Header' field in an IPv6 packet header.",
+    "label": 1
+  },
+  {
+    "id": "Q543",
+    "question": "How can I set up a private VPN server on my local computer for remote access?",
+    "label": 0
+  },
+  {
+    "id": "Q427",
+    "question": "How does a content delivery network (CDN) improve the speed of a global website?",
+    "label": 0
+  },
+  {
+    "id": "Q077",
+    "question": "Differentiate between Stop-and-Wait ARQ and Go-Back-N ARQ.",
+    "label": 1
+  },
+  {
+    "id": "Q114",
+    "question": "Which certifications are better for entry-level jobs: CompTIA Network+ or CCNA?",
+    "label": 0
+  },
+  {
+    "id": "Q116",
+    "question": "What are the pros and cons of using Google Cloud Platform vs AWS for startups?",
+    "label": 0
+  },
+  {
+    "id": "Q733",
+    "question": "What are the key differences between a Data Lake and a Data Warehouse in an enterprise setting?",
+    "label": 0
+  },
+  {
+    "id": "Q365",
+    "question": "Define the term 'Jitter' and its significance in real-time multimedia traffic.",
+    "label": 1
+  },
+  {
+    "id": "Q1012",
+    "question": "How can I extend the range of my home WiFi to a detached garage?",
+    "label": 0
+  },
+  {
+    "id": "Q761",
+    "question": "Explain how the 'Wait-for-ACK' state function operates in the RDT 2.0 protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q613",
+    "question": "Compare 'Circuit Switching' and 'Packet Switching' in terms of resource reservation and sharing.",
+    "label": 1
+  },
+  {
+    "id": "Q402",
+    "question": "How does the 'Proof of Stake' consensus mechanism work in the Ethereum network?",
+    "label": 0
+  },
+  {
+    "id": "Q064",
+    "question": "Compare cyclic redundancy check (CRC) with simple parity for error detection.",
+    "label": 1
+  },
+  {
+    "id": "Q919",
+    "question": "SNMP Trap operation",
+    "label": 1
+  },
+  {
+    "id": "Q1079",
+    "question": "Define the concept of Anycast addressing in IPv6.",
+    "label": 1
+  },
+  {
+    "id": "Q145",
+    "question": "What is the difference between a Cold Wallet and a Hot Wallet in crypto?",
+    "label": 0
+  },
+  {
+    "id": "Q875",
+    "question": "Explain the four generic architectural components of a public telecommunications network.",
+    "label": 1
+  },
+  {
+    "id": "Q473",
+    "question": "Compare the service models provided by the User Datagram Protocol and the Transmission Control Protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q911",
+    "question": "Network Address Translation (NAT)",
+    "label": 1
+  },
+  {
+    "id": "Q148",
+    "question": "What is the roadmap for becoming a Lead Solutions Architect at Amazon?",
+    "label": 0
+  },
+  {
+    "id": "Q019",
+    "question": "Differentiate between persistent and non-persistent HTTP connections.",
+    "label": 1
+  },
+  {
+    "id": "Q1040",
+    "question": "Write a Python script to scrape product prices from an e-commerce site.",
+    "label": 0
+  },
+  {
+    "id": "Q615",
+    "question": "Explain the function of the ICMP 'Source Quench' message type.",
+    "label": 1
+  },
+  {
+    "id": "Q017",
+    "question": "Compare the service models provided by TCP and UDP transport protocols.",
+    "label": 1
+  },
+  {
+    "id": "Q030",
+    "question": "Write a Python script using the sockets library to create a basic echo server.",
+    "label": 0
+  },
+  {
+    "id": "Q602",
+    "question": "Explain the concept of 'soft state' in the context of the Resource ReSerVation Protocol (RSVP).",
+    "label": 1
+  },
+  {
+    "id": "Q221",
+    "question": "How do I use Terraform to manage network infrastructure as code on the Google Cloud Platform?",
+    "label": 0
+  },
+  {
+    "id": "Q1034",
+    "question": "What are the best open-source tools for monitoring personal website uptime?",
+    "label": 0
+  },
+  {
+    "id": "Q717",
+    "question": "Explain the concept of 'Sharding' as a scalability solution for large-scale databases.",
+    "label": 0
+  },
+  {
+    "id": "Q891",
+    "question": "How do I upgrade the internal storage of a PlayStation 5 using a compatible M.2 SSD?",
+    "label": 0
+  },
+  {
+    "id": "Q514",
+    "question": "Explain the function of a media packetization delay in Voice-over-IP applications.",
+    "label": 1
+  },
+  {
+    "id": "Q596",
+    "question": "Write a Python script that uses the Pandas library to merge two CSV files based on a common column.",
+    "label": 0
+  },
+  {
+    "id": "Q440",
+    "question": "How do I set up a private VPN server on an AWS EC2 instance?",
+    "label": 0
+  },
+  {
+    "id": "Q1058",
+    "question": "My DNS lookup is failing but I don't know why.",
+    "label": 1
+  },
+  {
+    "id": "Q504",
+    "question": "Compare the TCP slow start and congestion avoidance algorithms.",
+    "label": 1
+  },
+  {
+    "id": "Q214",
+    "question": "How can I optimize my home Wi-Fi network to reduce lag while playing competitive online games?",
+    "label": 0
+  },
+  {
+    "id": "Q350",
+    "question": "Define the term 'Propagation Delay' and its calculation based on distance and velocity.",
+    "label": 1
+  },
+  {
+    "id": "Q285",
+    "question": "Explain the function of the ICMP Source Quench message in managing network congestion.",
+    "label": 1
+  },
+  {
+    "id": "Q437",
+    "question": "How can I use machine learning to detect anomalies in network traffic?",
+    "label": 0
+  },
+  {
+    "id": "Q794",
+    "question": "Explain the role of 'Network Address Translation' (NAT) in residential gateways.",
+    "label": 1
+  },
+  {
+    "id": "Q548",
+    "question": "What are the essential skills required for a career in Big Data engineering?",
+    "label": 0
+  },
+  {
+    "id": "Q663",
+    "question": "Compare 'Static Routing' and 'Dynamic Routing' strategies.",
+    "label": 1
+  },
+  {
+    "id": "Q361",
+    "question": "Explain how the 'Poisson sampling' method is used for IP performance metrics.",
+    "label": 1
+  },
+  {
+    "id": "Q1067",
+    "question": "Define the economic impact of the 2008 financial crisis on global markets.",
+    "label": 0
+  },
+  {
+    "id": "Q1022",
+    "question": "What is the role of a Product Manager at a major SaaS company?",
+    "label": 0
+  },
+  {
+    "id": "Q605",
+    "question": "Explain the function of the 'Duration' field in an IEEE 802.11 MAC frame.",
+    "label": 1
+  },
+  {
+    "id": "Q517",
+    "question": "Explain the role of the 'Next Header' field in the IPv6 packet format.",
+    "label": 1
+  },
+  {
+    "id": "Q137",
+    "question": "Explain the Generative AI models like GPT-4 from a data science perspective.",
+    "label": 0
+  },
+  {
+    "id": "Q1051",
+    "question": "How the heck does the TCP handshake actually work?",
+    "label": 1
+  },
+  {
+    "id": "Q407",
+    "question": "Write a Python script to calculate the sentiment of a given text using a pre-trained model.",
+    "label": 0
+  },
+  {
+    "id": "Q1013",
+    "question": "What are the key differences between Docker and Kubernetes?",
+    "label": 0
+  },
+  {
+    "id": "Q1019",
+    "question": "What certifications are most valuable for an AWS Cloud Architect?",
+    "label": 0
+  },
+  {
+    "id": "Q093",
+    "question": "Define Subnet Masking and its application in CIDR.",
+    "label": 1
+  },
+  {
+    "id": "Q325",
+    "question": "Define the role of the Network Address Translation (NAT) protocol in a SOHO network.",
+    "label": 1
+  },
+  {
+    "id": "Q555",
+    "question": "What are the key differences between a container and a virtual machine from a DevOps perspective?",
+    "label": 0
+  },
+  {
+    "id": "Q257",
+    "question": "Explain the working principle of the rarest first technique used by BitTorrent for file distribution.",
+    "label": 1
+  },
+  {
+    "id": "Q859",
+    "question": "Explain the function of the 'CSeq' or Command Sequence header in an SIP request.",
+    "label": 1
+  },
+  {
+    "id": "Q838",
+    "question": "How do I troubleshoot a laptop that shows 'Connected, No Internet' on my home Wi-Fi network?",
+    "label": 0
+  },
+  {
+    "id": "Q405",
+    "question": "What are the best practices for implementing a zero-trust network architecture?",
+    "label": 0
+  },
+  {
+    "id": "Q711",
+    "question": "What are the top-rated open-source tools for monitoring a home network's bandwidth usage?",
+    "label": 0
+  },
+  {
+    "id": "Q664",
+    "question": "Differentiate between 'In-order' and 'In-window' packet acceptance policies.",
+    "label": 1
+  },
+  {
+    "id": "Q523",
+    "question": "Explain how the 'Token Bucket' scheme is used for traffic shaping in a network.",
+    "label": 1
+  },
+  {
+    "id": "Q766",
+    "question": "Explain the purpose of the ICMP 'Source Quench' message in congestion control.",
+    "label": 1
+  },
+  {
+    "id": "Q938",
+    "question": "SMTP email protocol",
+    "label": 1
+  },
+  {
+    "id": "Q709",
+    "question": "How do I set up a local development environment for building decentralized apps (DApps)?",
+    "label": 0
+  },
+  {
+    "id": "Q302",
+    "question": "Define the concept of bit-interleaved parity as used in SONET frames.",
+    "label": 1
+  },
+  {
+    "id": "Q561",
+    "question": "Write a Python script that uses the requests library to check if a list of URLs is active.",
+    "label": 0
+  },
+  {
+    "id": "Q873",
+    "question": "Compare the 'Enter Deep' and 'Bring Home' strategies used by Content Distribution Networks (CDNs).",
+    "label": 1
+  },
+  {
+    "id": "Q829",
+    "question": "What are the key differences between a container-based architecture and a traditional virtual machine setup?",
+    "label": 0
+  },
+  {
+    "id": "Q252",
+    "question": "How do I configure a private VPC on Google Cloud Platform to support a high-availability database cluster?",
+    "label": 0
+  },
+  {
+    "id": "Q196",
+    "question": "Compare the 'Pure ALOHA' and 'Slotted ALOHA' multiple access protocols.",
+    "label": 1
+  },
+  {
+    "id": "Q282",
+    "question": "How can I optimize my home ISP bandwidth to minimize latency for Zoom video calls during peak usage hours?",
+    "label": 0
+  },
+  {
+    "id": "Q464",
+    "question": "Define the role of the Management Information Base (MIB) in the Simple Network Management Protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q468",
+    "question": "Compare the framing techniques of character count and starting/ending flags.",
+    "label": 1
+  },
+  {
+    "id": "Q921",
+    "question": "SDN control plane",
+    "label": 1
+  },
+  {
+    "id": "Q050",
+    "question": "Which enterprise switch provides the best integration with Microsoft Azure for hybrid cloud setups?",
+    "label": 0
+  },
+  {
+    "id": "Q185",
+    "question": "Differentiate between recursive and iterative DNS name resolution.",
+    "label": 1
+  },
+  {
+    "id": "Q031",
+    "question": "Provide a Java code snippet for sending a UDP packet to a specific IP address.",
+    "label": 0
+  },
+  {
+    "id": "Q754",
+    "question": "Differentiate between the control plane and data plane in Software-Defined Networking (SDN).",
+    "label": 1
+  },
+  {
+    "id": "Q509",
+    "question": "Define the 'Source Quench' message type in the ICMP protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q1005",
+    "question": "What is the impact of quantum computing on modern RSA encryption?",
+    "label": 0
+  },
+  {
+    "id": "Q471",
+    "question": "Differentiate between recursive and iterative queries in the Domain Name System.",
+    "label": 1
+  },
+  {
+    "id": "Q117",
+    "question": "How can machine learning predict hardware failures in large data centers?",
+    "label": 0
+  },
+  {
+    "id": "Q991",
+    "question": "What is the best way to clean a mechanical keyboard without damaging it?",
+    "label": 0
+  },
+  {
+    "id": "Q854",
+    "question": "Differentiate between the three subtypes of IGMP Membership Query messages.",
+    "label": 1
+  },
+  {
+    "id": "Q1053",
+    "question": "Why is my OSPF routing table empty?",
+    "label": 1
+  },
+  {
+    "id": "Q580",
+    "question": "Provide a C++ code snippet for implementing a basic hashing algorithm using an adjacency list.",
+    "label": 0
+  },
+  {
+    "id": "Q946",
+    "question": "Token Ring network",
+    "label": 1
+  },
+  {
+    "id": "Q687",
+    "question": "How do smart contracts on the Solana blockchain ensure high transaction throughput?",
+    "label": 0
+  },
+  {
+    "id": "Q1054",
+    "question": "What's the deal with IPv6 address matching?",
+    "label": 1
+  },
+  {
+    "id": "Q694",
+    "question": "Explain how a Convolutional Neural Network (CNN) identifies edges in an input image.",
+    "label": 0
+  },
+  {
+    "id": "Q262",
+    "question": "What are the primary benefits of implementing a ServiceMesh for microservices communication in a Kubernetes environment?",
+    "label": 0
+  },
+  {
+    "id": "Q684",
+    "question": "Explain the concept of 'Self-Attention' in the context of Transformer-based AI models.",
+    "label": 0
+  },
+  {
+    "id": "Q990",
+    "question": "How can I set up a private VPN server on a Raspberry Pi?",
+    "label": 0
+  },
+  {
+    "id": "Q149",
+    "question": "Provide a Java implementation of a Linked List data structure.",
+    "label": 0
+  },
+  {
+    "id": "Q618",
+    "question": "Compare the 'Go-Back-N' and 'Selective-Repeat' ARQ protocols regarding receiver buffer requirements.",
+    "label": 1
+  },
+  {
+    "id": "Q531",
+    "question": "What is the impact of quantum computing on modern blockchain encryption algorithms?",
+    "label": 0
+  },
+  {
+    "id": "Q486",
+    "question": "Compare the framing of an original Ethernet frame and an 802.1Q-tagged Ethernet VLAN frame.",
+    "label": 1
+  },
+  {
+    "id": "Q478",
+    "question": "Explain the working principle of the token bucket algorithm for traffic shaping.",
+    "label": 1
+  },
+  {
+    "id": "Q104",
+    "question": "How does AWS Lambda handle VPC networking for serverless functions?",
+    "label": 0
+  },
+  {
+    "id": "Q057",
+    "question": "Differentiate between IPv4 and IPv6 header structures.",
+    "label": 1
+  },
+  {
+    "id": "Q510",
+    "question": "Compare the OSPF and BGP routing protocols in terms of their administrative scope.",
+    "label": 1
+  },
+  {
+    "id": "Q024",
+    "question": "Differentiate between singleton and sample metrics in IP performance measurement.",
+    "label": 1
+  },
+  {
+    "id": "Q005",
+    "question": "Explain the function of a network adapter in a host system.",
+    "label": 1
+  },
+  {
+    "id": "Q203",
+    "question": "How can I set up a Raspberry Pi to act as a private VPN server for my home network?",
+    "label": 0
+  },
+  {
+    "id": "Q404",
+    "question": "How do I set up a multi-node Kubernetes cluster using Kubeadm?",
+    "label": 0
+  },
+  {
+    "id": "Q398",
+    "question": "What is the best laptop for a student starting a degree in data science?",
+    "label": 0
+  },
+  {
+    "id": "Q867",
+    "question": "Compare 'Single-Mode' and 'Multi-Mode' fiber optic transmission media characteristics.",
+    "label": 1
+  },
+  {
+    "id": "Q767",
+    "question": "Compare the frame structure of a standard Ethernet frame with an 802.11 WiFi frame.",
+    "label": 1
+  },
+  {
+    "id": "Q122",
+    "question": "What are the career path options for a specialist in Big Data networking?",
+    "label": 0
+  },
+  {
+    "id": "Q177",
+    "question": "Compare the 'Go-Back-N' and 'Selective-Reject' ARQ retransmission strategies.",
+    "label": 1
+  },
+  {
+    "id": "Q397",
+    "question": "How can I optimize a React application to improve its Lighthouse performance score?",
+    "label": 0
+  },
+  {
+    "id": "Q639",
+    "question": "Differentiate between 'Persistent' and 'Non-persistent' HTTP connections.",
+    "label": 1
+  },
+  {
+    "id": "Q905",
+    "question": "Distance vector routing algorithm",
+    "label": 1
+  },
+  {
+    "id": "Q296",
+    "question": "Provide a SQL query to join a users table with a transactions table and calculate the total lifetime value per user.",
+    "label": 0
+  },
+  {
+    "id": "Q424",
+    "question": "How can I improve the performance of my home Wi-Fi network using a range extender?",
+    "label": 0
+  },
+  {
+    "id": "Q858",
+    "question": "Differentiate between 'Traffic Policing' and 'Traffic Shaping' in the context of ATM GFR.",
+    "label": 1
+  },
+  {
+    "id": "Q044",
+    "question": "Which cloud provider offers the best free tier for students to learn network configuration?",
+    "label": 0
+  },
+  {
+    "id": "Q098",
+    "question": "Differentiate between B8ZS and HDB3 scrambling techniques.",
+    "label": 1
+  },
+  {
+    "id": "Q006",
+    "question": "Define the term bit error rate in the context of signal transmission.",
+    "label": 1
+  },
+  {
+    "id": "Q1072",
+    "question": "Explain the function of a Repeater in the OSI model.",
+    "label": 1
+  },
+  {
+    "id": "Q796",
+    "question": "Explain the 'Slow Start' phase of the TCP congestion control algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q299",
+    "question": "Describe the use of VLAN tagging and the function of the 802.1Q tag in switched LANs.",
+    "label": 1
+  },
+  {
+    "id": "Q488",
+    "question": "Define the role of the Preamble field in an Ethernet frame.",
+    "label": 1
+  },
+  {
+    "id": "Q619",
+    "question": "Differentiate between 'Infrastructure Mode' and 'Ad Hoc Mode' in wireless network architectures.",
+    "label": 1
+  },
+  {
+    "id": "Q428",
+    "question": "What are the best open-source tools for monitoring the performance of a web server?",
+    "label": 0
+  },
+  {
+    "id": "Q415",
+    "question": "How can I protect my smart home devices from being hacked?",
+    "label": 0
+  },
+  {
+    "id": "Q629",
+    "question": "Differentiate between 'Guided' and 'Unguided' transmission media with examples.",
+    "label": 1
+  },
+  {
+    "id": "Q669",
+    "question": "Differentiate between 'Forward Error Correction' (FEC) and 'Error Detection with Retransmission'.",
+    "label": 1
+  },
+  {
+    "id": "Q857",
+    "question": "Compare the 'Section', 'Line', and 'Path' overhead octets in a SONET STS-1 frame.",
+    "label": 1
+  },
+  {
+    "id": "Q390",
+    "question": "What are the most important certifications for a career in cloud security?",
+    "label": 0
+  },
+  {
+    "id": "Q849",
+    "question": "What are the most popular open-source datasets currently used for training autonomous vehicle navigation models?",
+    "label": 0
+  },
+  {
+    "id": "Q693",
+    "question": "How does Google Cloud Platform's BigQuery handle petabyte-scale data analytics?",
+    "label": 0
+  },
+  {
+    "id": "Q607",
+    "question": "Explain the working principle of the Hamming distance for error correction in blocks of data.",
+    "label": 1
+  },
+  {
+    "id": "Q744",
+    "question": "How do I use Snowflake to perform large-scale data analysis on historical sales data?",
+    "label": 0
+  },
+  {
+    "id": "Q970",
+    "question": "TCP segment structure",
+    "label": 1
+  },
+  {
+    "id": "Q784",
+    "question": "Explain the role of the 'Address Resolution Protocol' (ARP) in a local subnet.",
+    "label": 1
+  },
+  {
+    "id": "Q045",
+    "question": "Recommend an open-source software for monitoring my home network bandwidth usage.",
+    "label": 0
+  },
+  {
+    "id": "Q126",
+    "question": "How do I resolve a Double NAT error on my Xbox Series X?",
+    "label": 0
+  },
+  {
+    "id": "Q658",
+    "question": "Compare 'Weighted Fair Queuing' (WFQ) and 'Round Robin' packet scheduling.",
+    "label": 1
+  },
+  {
+    "id": "Q677",
+    "question": "What is the average annual salary for a Principal Cloud Architect in London?",
+    "label": 0
+  },
+  {
+    "id": "Q483",
+    "question": "Differentiate between the North American and International TDM carrier standards for digital data.",
+    "label": 1
+  },
+  {
+    "id": "Q331",
+    "question": "Explain the function of a RAKE receiver in a CDMA system.",
+    "label": 1
+  },
+  {
+    "id": "Q248",
+    "question": "Explain the concept of 'Reinforcement Learning' using a simple gaming analogy.",
+    "label": 0
+  },
+  {
+    "id": "Q401",
+    "question": "Write a SQL query to find the top 10 customers by total purchase volume.",
+    "label": 0
+  },
+  {
+    "id": "Q139",
+    "question": "How do I update the firmware on my TP-Link router manually?",
+    "label": 0
+  },
+  {
+    "id": "Q828",
+    "question": "How do I resolve a persistent blinking orange light on my Netgear Nighthawk router?",
+    "label": 0
+  },
+  {
+    "id": "Q497",
+    "question": "Define the role of the SNMP Trap operation for asynchronous notifications.",
+    "label": 1
+  },
+  {
+    "id": "Q755",
+    "question": "Explain the concept of 'soft state' as utilized in the Resource ReSerVation Protocol (RSVP).",
+    "label": 1
+  },
+  {
+    "id": "Q338",
+    "question": "Differentiate between Intra-AS and Inter-AS routing protocols.",
+    "label": 1
+  },
+  {
+    "id": "Q850",
+    "question": "How does 'Reinforcement Learning' differ from 'Supervised Learning' in the context of AI agent training?",
+    "label": 0
+  },
+  {
+    "id": "Q186",
+    "question": "Explain the concept of 'Piggybacking' in the context of data link control.",
+    "label": 1
+  },
+  {
+    "id": "Q222",
+    "question": "What are the essential programming languages one must learn for a career in Data Science?",
+    "label": 0
+  },
+  {
+    "id": "Q808",
+    "question": "How do I troubleshoot a 'Double NAT' error on my home network for online gaming console connectivity?",
+    "label": 0
+  },
+  {
+    "id": "Q558",
+    "question": "What are the best practices for securing a multi-tenant cloud environment on AWS?",
+    "label": 0
+  },
+  {
+    "id": "Q724",
+    "question": "How do I set up a guest Wi-Fi network to isolate my personal devices from houseguests?",
+    "label": 0
+  },
+  {
+    "id": "Q007",
+    "question": "Explain the operation of CSMA/CD in Ethernet networks.",
+    "label": 1
+  },
+  {
+    "id": "Q175",
+    "question": "Define the role of a Management Information Base (MIB) in an SNMP-managed network.",
+    "label": 1
+  },
+  {
+    "id": "Q260",
+    "question": "How is machine learning used to predict stock market fluctuations based on historical network traffic patterns?",
+    "label": 0
+  },
+  {
+    "id": "Q346",
+    "question": "Explain the role of the 'Check Bits' in a forward error correction scheme.",
+    "label": 1
+  },
+  {
+    "id": "Q1060",
+    "question": "Why do we need VLANs anyway?",
+    "label": 1
+  },
+  {
+    "id": "Q370",
+    "question": "Define the role of the 'Authority Section' in a DNS message response.",
+    "label": 1
+  },
+  {
+    "id": "Q273",
+    "question": "Differentiate between the functions of a Hub, a Bridge, and a Layer 2 Switch in a local network.",
+    "label": 1
+  },
+  {
+    "id": "Q178",
+    "question": "Differentiate between stop-and-wait flow control and credit-based flow control.",
+    "label": 1
+  },
+  {
+    "id": "Q853",
+    "question": "Compare 'Active' and 'Passive' network measurement techniques as defined by the IPPM working group.",
+    "label": 1
+  },
+  {
+    "id": "Q290",
+    "question": "What are the top five security features I should prioritize when purchasing a new Wi-Fi 7 router for my home?",
+    "label": 0
+  },
+  {
+    "id": "Q1080",
+    "question": "Explain the significance of the MTU (Maximum Transmission Unit).",
+    "label": 1
+  },
+  {
+    "id": "Q977",
+    "question": "Write a Python script to automate server backups to AWS S3.",
+    "label": 0
+  },
+  {
+    "id": "Q155",
+    "question": "Explain the working principle of the Hamming distance in error correction.",
+    "label": 1
+  },
+  {
+    "id": "Q660",
+    "question": "Explain the role of 'Network Address Translation' (NAT) in SOHO networks.",
+    "label": 1
+  },
+  {
+    "id": "Q511",
+    "question": "Explain the working of the Hamming distance in the context of error correction.",
+    "label": 1
+  },
+  {
+    "id": "Q376",
+    "question": "What are the current job prospects for a Network Automation Engineer in the financial sector?",
+    "label": 0
+  },
+  {
+    "id": "Q039",
+    "question": "What is the best low-cost network-attached storage (NAS) device for a home office in 2024?",
+    "label": 0
+  },
+  {
+    "id": "Q102",
+    "question": "What are the best home mesh Wi-Fi systems for a large house?",
+    "label": 0
+  },
+  {
+    "id": "Q535",
+    "question": "Explain the differences between supervised and unsupervised learning in data science.",
+    "label": 0
+  },
+  {
+    "id": "Q193",
+    "question": "Explain the process of 'NAT Translation' in a SOHO router environment.",
+    "label": 1
+  },
+  {
+    "id": "Q994",
+    "question": "What are the benefits of migrating from a monolithic architecture to microservices?",
+    "label": 0
+  },
+  {
+    "id": "Q997",
+    "question": "How can I optimize my home ISP bandwidth for 8K video streaming?",
+    "label": 0
+  },
+  {
+    "id": "Q648",
+    "question": "Compare 'VLAN Tagging' using 802.1Q and 'Port-based VLANs'.",
+    "label": 1
+  },
+  {
+    "id": "Q297",
+    "question": "Explain the difference between flow control and congestion control from a transport layer perspective.",
+    "label": 1
+  },
+  {
+    "id": "Q811",
+    "question": "How do I perform a complete factory reset on the latest model of the TP-Link Archer router?",
+    "label": 0
+  },
+  {
+    "id": "Q995",
+    "question": "How do I configure an Azure Virtual Network for hybrid cloud connectivity?",
+    "label": 0
+  },
+  {
+    "id": "Q845",
+    "question": "How can I optimize my home network settings to minimize ping spikes during competitive online gaming?",
+    "label": 0
+  },
+  {
+    "id": "Q345",
+    "question": "Define the role of a 'Gateway' in an HTTP network architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q537",
+    "question": "How does sharding improve the scalability of an Ethereum-based blockchain network?",
+    "label": 0
+  },
+  {
+    "id": "Q311",
+    "question": "Explain the mechanism of slow start in TCP congestion control.",
+    "label": 1
+  },
+  {
+    "id": "Q086",
+    "question": "Define Forwarding versus Routing from the network layer perspective.",
+    "label": 1
+  },
+  {
+    "id": "Q189",
+    "question": "Compare 'Circuit Switching' and 'Packet Switching' regarding bandwidth utilization.",
+    "label": 1
+  },
+  {
+    "id": "Q949",
+    "question": "End-to-end semantics",
+    "label": 1
+  },
+  {
+    "id": "Q814",
+    "question": "How can machine learning be used to predict stock market trends based on historical financial data?",
+    "label": 0
+  },
+  {
+    "id": "Q893",
+    "question": "Write a Python script to automate the extraction and cleaning of data from a remote MySQL database.",
+    "label": 0
+  },
+  {
+    "id": "Q375",
+    "question": "Define the 'Source Quench' message type in the ICMP protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q742",
+    "question": "Show me a C++ implementation of the Quicksort algorithm.",
+    "label": 0
+  },
+  {
+    "id": "Q621",
+    "question": "Define the term 'Jitter' and its impact on the quality of real-time multimedia traffic.",
+    "label": 1
+  },
+  {
+    "id": "Q065",
+    "question": "Define the concept of Soft State in the RSVP protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q934",
+    "question": "Guided transmission media",
+    "label": 1
+  },
+  {
+    "id": "Q429",
+    "question": "How can I secure my personal computer against ransomware attacks?",
+    "label": 0
+  },
+  {
+    "id": "Q380",
+    "question": "How does deep learning improve the accuracy of facial recognition systems?",
+    "label": 0
+  },
+  {
+    "id": "Q496",
+    "question": "Explain the purpose of the 'Time to Live' field in an IP datagram header.",
+    "label": 1
+  },
+  {
+    "id": "Q700",
+    "question": "Which cloud provider offers the most competitive pricing for GPU-based AI training?",
+    "label": 0
+  },
+  {
+    "id": "Q455",
+    "question": "Explain the purpose of the 11-chip Barker sequence in Direct Sequence Spread Spectrum.",
+    "label": 1
+  },
+  {
+    "id": "Q783",
+    "question": "Differentiate between 'Distance-Vector' and 'Link-State' routing algorithms.",
+    "label": 1
+  },
+  {
+    "id": "Q021",
+    "question": "Define the Simple Network Management Protocol (SNMP) and its basic components.",
+    "label": 1
+  },
+  {
+    "id": "Q1076",
+    "question": "What is the purpose of the loopback address 127.0.0.1?",
+    "label": 1
+  },
+  {
+    "id": "Q036",
+    "question": "Define the role of smart contracts in ensuring transparency in a supply chain blockchain.",
+    "label": 0
+  },
+  {
+    "id": "Q1016",
+    "question": "How do I set up a guest WiFi network to isolate IoT devices?",
+    "label": 0
+  },
+  {
+    "id": "Q644",
+    "question": "Differentiate between 'Distance-Vector' and 'Link-State' routing algorithms.",
+    "label": 1
+  },
+  {
+    "id": "Q180",
+    "question": "Define the role of the 'Next Header' field in the IPv6 packet format.",
+    "label": 1
+  },
+  {
+    "id": "Q027",
+    "question": "What is the typical salary range for an entry-level Cloud Engineer in the United States?",
+    "label": 0
+  },
+  {
+    "id": "Q436",
+    "question": "What are the best open-source tools for network traffic analysis in 2024?",
+    "label": 0
+  },
+  {
+    "id": "Q645",
+    "question": "Explain the mechanism of 'Fast Retransmit' in the TCP protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q837",
+    "question": "Provide a C# code snippet for implementing a basic generic stack data structure.",
+    "label": 0
+  },
+  {
+    "id": "Q696",
+    "question": "How can I set up a private VPN server on a Raspberry Pi using WireGuard?",
+    "label": 0
+  },
+  {
+    "id": "Q130",
+    "question": "Which Wi-Fi 7 router is currently the fastest on the consumer market?",
+    "label": 0
+  },
+  {
+    "id": "Q623",
+    "question": "Compare 'Unicast', 'Multicast', and 'Anycast' addressing modes in IPv6.",
+    "label": 1
+  },
+  {
+    "id": "Q986",
+    "question": "What certifications should I get for a career in Cloud Security?",
+    "label": 0
+  },
+  {
+    "id": "Q364",
+    "question": "Explain the role of the 'Service Access Point' (SAP) in the OSI model.",
+    "label": 1
+  },
+  {
+    "id": "Q388",
+    "question": "What is the best budget-friendly mechanical keyboard for a software developer?",
+    "label": 0
+  },
+  {
+    "id": "Q625",
+    "question": "Explain the function of a 'RAKE Receiver' in a CDMA-based cellular system.",
+    "label": 1
+  },
+  {
+    "id": "Q233",
+    "question": "How do I recover a hacked Instagram account if my email address has been changed?",
+    "label": 0
+  },
+  {
+    "id": "Q922",
+    "question": "SDN data plane",
+    "label": 1
+  },
+  {
+    "id": "Q168",
+    "question": "Differentiate between the control plane and data plane in Software-Defined Networking (SDN).",
+    "label": 1
+  },
+  {
+    "id": "Q638",
+    "question": "Compare 'FDM' and 'TDM' multiplexing techniques in terms of bandwidth and time allocation.",
+    "label": 1
+  },
+  {
+    "id": "Q652",
+    "question": "Explain the 'Three-Way Handshake' procedure for establishing a TCP connection.",
+    "label": 1
+  },
+  {
+    "id": "Q495",
+    "question": "Differentiate between single-mode and multimode optical fiber propagation.",
+    "label": 1
+  },
+  {
+    "id": "Q969",
+    "question": "Go-Back-N ARQ mechanism",
+    "label": 1
+  },
+  {
+    "id": "Q237",
+    "question": "Explain the concept of 'Serverless Computing' and its impact on backend development.",
+    "label": 0
+  },
+  {
+    "id": "Q760",
+    "question": "Define the purpose of the 'Next Header' field in an IPv6 packet header.",
+    "label": 1
+  },
+  {
+    "id": "Q832",
+    "question": "How do I update the firmware on my Philips Hue bridge if the automatic update fails?",
+    "label": 0
+  },
+  {
+    "id": "Q540",
+    "question": "What are the advantages of using Terraform for infrastructure as code in Azure?",
+    "label": 0
+  },
+  {
+    "id": "Q633",
+    "question": "Compare the 'Stop-and-Wait' and 'Sliding-Window' flow control techniques.",
+    "label": 1
+  },
+  {
+    "id": "Q378",
+    "question": "Write a Python script to automate the deployment of virtual machines on VMware ESXi.",
+    "label": 0
+  },
+  {
+    "id": "Q588",
+    "question": "What is the impact of quantum computing on modern RSA and ECC encryption standards?",
+    "label": 0
+  },
+  {
+    "id": "Q683",
+    "question": "What are the advantages of using Azure DevOps for continuous integration and delivery (CI/CD)?",
+    "label": 0
+  },
+  {
+    "id": "Q756",
+    "question": "Define the role of a 'Designated Router' within the OSPF routing protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q1017",
+    "question": "What are the best-selling enterprise firewall brands in 2024?",
+    "label": 0
+  },
+  {
+    "id": "Q1069",
+    "question": "Explain the aerodynamic properties of a curveball in professional baseball.",
+    "label": 0
+  },
+  {
+    "id": "Q612",
+    "question": "Explain the operation of the 'Token Bucket' algorithm for traffic shaping.",
+    "label": 1
+  },
+  {
+    "id": "Q1064",
+    "question": "Compare and contrast the flavor profiles of Arabica and Robusta coffee.",
+    "label": 0
+  },
+  {
+    "id": "Q855",
+    "question": "Explain the role of the 'Identifier' and 'Sequence Number' fields in ICMP Echo Request messages.",
+    "label": 1
+  },
+  {
+    "id": "Q240",
+    "question": "How can I extend the range of my home Wi-Fi to reach a detached garage 50 feet away?",
+    "label": 0
+  },
+  {
+    "id": "Q085",
+    "question": "Explain the working of Variable Length Subnet Masking (VLSM).",
+    "label": 1
+  },
+  {
+    "id": "Q974",
+    "question": "VLAN trunking 802.1Q",
+    "label": 1
+  },
+  {
+    "id": "Q208",
+    "question": "How do I troubleshoot a 'No Internet, Secured' error on a Windows 11 desktop computer?",
+    "label": 0
+  },
+  {
+    "id": "Q803",
+    "question": "Write a Python script using the pandas library to merge three large CSV files into a single dataframe.",
+    "label": 0
+  },
+  {
+    "id": "Q343",
+    "question": "Differentiate between a Virtual Channel Connection (VCC) and a Virtual Path Connection (VPC).",
+    "label": 1
+  },
+  {
+    "id": "Q173",
+    "question": "Differentiate between internal and external virtual circuits in packet switching.",
+    "label": 1
+  },
+  {
+    "id": "Q403",
+    "question": "What is the average salary of a Cybersecurity Analyst in London?",
+    "label": 0
+  },
+  {
+    "id": "Q015",
+    "question": "Explain how Network Address Translation (NAT) manages private IP addresses.",
+    "label": 1
+  },
+  {
+    "id": "Q1078",
+    "question": "How does a proxy server improve network security?",
+    "label": 1
+  },
+  {
+    "id": "Q224",
+    "question": "How do I configure a static IP address on a Mac running the latest version of macOS?",
+    "label": 0
+  },
+  {
+    "id": "Q978",
+    "question": "How do I become a Senior AI Researcher at Google?",
+    "label": 0
+  },
+  {
+    "id": "Q396",
+    "question": "What are the advantages of using Kubernetes over Nomad for container orchestration?",
+    "label": 0
+  },
+  {
+    "id": "Q250",
+    "question": "Provide a Rust code snippet that demonstrates ownership and borrowing concepts.",
+    "label": 0
+  },
+  {
+    "id": "Q777",
+    "question": "Compare 'Single-Mode' and 'Multi-Mode' optical fiber propagation.",
+    "label": 1
+  },
+  {
+    "id": "Q1031",
+    "question": "Explain the importance of Feature Engineering in building accurate ML models.",
+    "label": 0
+  },
+  {
+    "id": "Q280",
+    "question": "Review the performance benchmarks of the Intel Core i9-14900K processor for high-speed scientific computing tasks.",
+    "label": 0
+  },
+  {
+    "id": "Q377",
+    "question": "How do I configure a Raspberry Pi to act as a NAS for my home network?",
+    "label": 0
+  },
+  {
+    "id": "Q918",
+    "question": "Bluetooth piconet architecture",
+    "label": 1
+  },
+  {
+    "id": "Q276",
+    "question": "What is the potential impact of generative AI models on the future of automated software testing and development?",
+    "label": 0
+  },
+  {
+    "id": "Q215",
+    "question": "What are the main differences between Kubernetes and Docker Swarm for container orchestration?",
+    "label": 0
+  },
+  {
+    "id": "Q885",
+    "question": "What are the primary differences between the AWS and Azure certification paths for cloud engineers?",
+    "label": 0
+  },
+  {
+    "id": "Q386",
+    "question": "What are the key differences between the Google Cloud and Microsoft Azure pricing models?",
+    "label": 0
+  },
+  {
+    "id": "Q642",
+    "question": "Explain the purpose of the 'Preamble' field in an Ethernet frame.",
+    "label": 1
+  },
+  {
+    "id": "Q181",
+    "question": "Explain the purpose of VLAN tagging using the 802.1Q standard.",
+    "label": 1
+  },
+  {
+    "id": "Q654",
+    "question": "Differentiate between 'Hubs', 'Bridges', and 'Layer 2 Switches'.",
+    "label": 1
+  },
+  {
+    "id": "Q764",
+    "question": "Explain the role of the SNMP TRAP operation in asynchronous network management.",
+    "label": 1
+  },
+  {
+    "id": "Q573",
+    "question": "What is the difference between a 'Cold Wallet' and a 'Hot Wallet' in cryptocurrency storage?",
+    "label": 0
+  },
+  {
+    "id": "Q295",
+    "question": "Define the Next_Hop attribute and its significance in BGP routing information exchange.",
+    "label": 1
+  },
+  {
+    "id": "Q1033",
+    "question": "How can I block ads at the network level using a Pi-hole?",
+    "label": 0
+  },
+  {
+    "id": "Q011",
+    "question": "Define Classless Interdomain Routing (CIDR) and its significance in address allocation.",
+    "label": 1
+  },
+  {
+    "id": "Q494",
+    "question": "Define the term 'Spectral Efficiency' and its importance in 5G cellular systems.",
+    "label": 1
+  },
+  {
+    "id": "Q300",
+    "question": "How do I perform a complete factory reset and clear all cached data on the latest version of the Google Chrome mobile browser?",
+    "label": 0
+  },
+  {
+    "id": "Q503",
+    "question": "Define the four-step handshake used by the DHCP protocol during the client discovery phase.",
+    "label": 1
+  },
+  {
+    "id": "Q745",
+    "question": "Explain the role of 'Smart Contracts' in enabling Decentralized Autonomous Organizations (DAOs).",
+    "label": 0
+  },
+  {
+    "id": "Q682",
+    "question": "How do I configure an AWS Lambda function to trigger when a file is uploaded to an S3 bucket?",
+    "label": 0
+  },
+  {
+    "id": "Q626",
+    "question": "Define 'Head-of-the-Line (HOL) Blocking' in the context of an input-queued packet switch.",
+    "label": 1
+  },
+  {
+    "id": "Q032",
+    "question": "How is machine learning used to predict network traffic surges in data centers?",
+    "label": 0
+  },
+  {
+    "id": "Q516",
+    "question": "Compare the 'Go-Back-N' and 'Selective-Reject' retransmission strategies.",
+    "label": 1
+  },
+  {
+    "id": "Q239",
+    "question": "Provide a Java example of how to handle exceptions in a file reading operation.",
+    "label": 0
+  },
+  {
+    "id": "Q278",
+    "question": "How does a cold storage hardware wallet protect cryptocurrency assets from advanced remote hacking techniques?",
+    "label": 0
+  },
+  {
+    "id": "Q878",
+    "question": "Differentiate between the 'Control Plane' and 'Data Plane' in an SDN framework.",
+    "label": 1
+  },
+  {
+    "id": "Q863",
+    "question": "Compare 'Distance-Vector' and 'Path-Vector' routing approaches with respect to metric usage.",
+    "label": 1
+  },
+  {
+    "id": "Q213",
+    "question": "Provide a C++ example of how to implement a doubly linked list using pointers.",
+    "label": 0
+  },
+  {
+    "id": "Q840",
+    "question": "How is Natural Language Processing (NLP) used to perform sentiment analysis on social media posts?",
+    "label": 0
+  },
+  {
+    "id": "Q723",
+    "question": "What are the most recognized certifications for becoming a professional Ethical Hacker?",
+    "label": 0
+  },
+  {
+    "id": "Q362",
+    "question": "Compare 'Active' and 'Passive' network measurement techniques.",
+    "label": 1
+  },
+  {
+    "id": "Q079",
+    "question": "Define the role of Authoritative Name Servers in the DNS hierarchy.",
+    "label": 1
+  },
+  {
+    "id": "Q356",
+    "question": "Explain the function of the 'CSRC Count' field in the RTP header.",
+    "label": 1
+  },
+  {
+    "id": "Q698",
+    "question": "Write a SQL query to find the top three customers by total spending in the last quarter.",
+    "label": 0
+  },
+  {
+    "id": "Q646",
+    "question": "Define the 'Hidden Terminal Problem' in IEEE 802.11 wireless networks.",
+    "label": 1
+  },
+  {
+    "id": "Q963",
+    "question": "DNS resource records",
+    "label": 1
+  },
+  {
+    "id": "Q735",
+    "question": "Provide a Python script using the Scrapy framework to crawl a specific news website.",
+    "label": 0
+  },
+  {
+    "id": "Q042",
+    "question": "Show me a C++ code example for implementing a Dijkstra's algorithm using an adjacency list.",
+    "label": 0
+  },
+  {
+    "id": "Q277",
+    "question": "Define the term Piconet and its organizational structure within a Bluetooth network.",
+    "label": 1
+  },
+  {
+    "id": "Q954",
+    "question": "Bit stuffing in HDLC",
+    "label": 1
+  },
+  {
+    "id": "Q172",
+    "question": "Define the four-step handshake used by the DHCP protocol to allocate IP addresses.",
+    "label": 1
+  },
+  {
+    "id": "Q140",
+    "question": "Write a PowerShell script to list all active TCP connections on a server.",
+    "label": 0
+  },
+  {
+    "id": "Q121",
+    "question": "How do smart contracts work on the Ethereum network?",
+    "label": 0
+  },
+  {
+    "id": "Q988",
+    "question": "Explain the role of Smart Contracts in Decentralized Finance (DeFi).",
+    "label": 0
+  },
+  {
+    "id": "Q366",
+    "question": "Explain the purpose of 'Interlacing' in video scanning processes.",
+    "label": 1
+  },
+  {
+    "id": "Q582",
+    "question": "How can I protect my smart home devices from being hacked and recruited into a botnet?",
+    "label": 0
+  },
+  {
+    "id": "Q848",
+    "question": "How do I configure a static IP address on a Mac running the latest macOS Sequoia version?",
+    "label": 0
+  },
+  {
+    "id": "Q141",
+    "question": "What are the essential skills needed for a career in Cloud Security?",
+    "label": 0
+  },
+  {
+    "id": "Q732",
+    "question": "How do I configure an Azure Virtual Network to connect with an on-premises data center?",
+    "label": 0
+  },
+  {
+    "id": "Q321",
+    "question": "Explain the operation of the token bucket algorithm for traffic shaping.",
+    "label": 1
+  },
+  {
+    "id": "Q1008",
+    "question": "Write a Python function to check for palindromes using recursion.",
+    "label": 0
+  },
+  {
+    "id": "Q267",
+    "question": "Explain the purpose of the Marker field in the Border Gateway Protocol (BGP) message header.",
+    "label": 1
+  },
+  {
+    "id": "Q500",
+    "question": "Define the 'Triangle Routing' problem as it applies to mobile device networking.",
+    "label": 1
+  },
+  {
+    "id": "Q393",
+    "question": "How does the Bitcoin protocol ensure the immutability of its transaction ledger?",
+    "label": 0
+  },
+  {
+    "id": "Q972",
+    "question": "CSMA/CD jamming signal",
+    "label": 1
+  },
+  {
+    "id": "Q1068",
+    "question": "Describe the historical significance of the Roman Empire's infrastructure.",
+    "label": 0
+  },
+  {
+    "id": "Q589",
+    "question": "What are the most recognized certifications for a career in entry-level data analytics?",
+    "label": 0
+  },
+  {
+    "id": "Q127",
+    "question": "What are the benefits of pursuing a Master's degree in Artificial Intelligence?",
+    "label": 0
+  },
+  {
+    "id": "Q505",
+    "question": "Explain the function of the 'Header Checksum' field in an IPv4 packet header.",
+    "label": 1
+  },
+  {
+    "id": "Q133",
+    "question": "What is the role of Mining in the Bitcoin blockchain network?",
+    "label": 0
+  },
+  {
+    "id": "Q525",
+    "question": "Differentiate between 'Piconet' and 'Scatternet' in the context of Bluetooth technology.",
+    "label": 1
+  },
+  {
+    "id": "Q888",
+    "question": "How can I troubleshoot a laptop showing a 'Limited Connectivity' error on a public airport WiFi network?",
+    "label": 0
+  },
+  {
+    "id": "Q939",
+    "question": "FTP file transfer",
+    "label": 1
+  },
+  {
+    "id": "Q381",
+    "question": "Review the top five mesh Wi-Fi systems for small businesses in 2024.",
+    "label": 0
+  },
+  {
+    "id": "Q082",
+    "question": "Explain the function of a Media Gateway Controller in softswitch architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q797",
+    "question": "Compare the 'Go-Back-N' and 'Selective-Reject' ARQ retransmission strategies.",
+    "label": 1
+  },
+  {
+    "id": "Q600",
+    "question": "Explain how a blockchain ensures the immutability of historical transaction records.",
+    "label": 0
+  },
+  {
+    "id": "Q281",
+    "question": "Explain the steps involved in the three-way handshake procedure for establishing a TCP connection.",
+    "label": 1
+  },
+  {
+    "id": "Q932",
+    "question": "Logical link control (LLC) sublayer",
+    "label": 1
+  },
+  {
+    "id": "Q426",
+    "question": "Write a Bash script to automate the backup of a MySQL database.",
+    "label": 0
+  },
+  {
+    "id": "Q720",
+    "question": "What is the best way to clean and maintain a mechanical keyboard for longevity?",
+    "label": 0
+  },
+  {
+    "id": "Q259",
+    "question": "Compare the Link-State (LS) and Distance-Vector (DV) routing algorithms in terms of information exchange requirements.",
+    "label": 1
+  },
+  {
+    "id": "Q475",
+    "question": "Explain the difference between flow control and congestion control from a transport layer perspective.",
+    "label": 1
+  },
+  {
+    "id": "Q369",
+    "question": "Explain the function of the 'Header Checksum' field in an IPv4 packet.",
+    "label": 1
+  },
+  {
+    "id": "Q418",
+    "question": "How do I configure a static website on Google Cloud Storage?",
+    "label": 0
+  },
+  {
+    "id": "Q314",
+    "question": "Explain the role of the ICMP 'Destination Unreachable' message type.",
+    "label": 1
+  },
+  {
+    "id": "Q227",
+    "question": "How do I change the DNS settings on a Netgear Nighthawk router to use Cloudflare's DNS?",
+    "label": 0
+  },
+  {
+    "id": "Q457",
+    "question": "Explain the role of the BGP Next_Hop attribute in inter-autonomous system routing.",
+    "label": 1
+  },
+  {
+    "id": "Q387",
+    "question": "How can machine learning be used to predict hardware failures in a data center?",
+    "label": 0
+  },
+  {
+    "id": "Q163",
+    "question": "Explain how the 'push' operation in SMTP differs from 'pull' operations in post-office protocols.",
+    "label": 1
+  },
+  {
+    "id": "Q305",
+    "question": "Explain the working principle of the HDB3 scrambling technique for long sequences of zeros.",
+    "label": 1
+  },
+  {
+    "id": "Q287",
+    "question": "Define the role and importance of the Management Information Base (MIB) in the SNMP framework.",
+    "label": 1
+  },
+  {
+    "id": "Q583",
+    "question": "What is the average salary of a Cybersecurity Specialist in the United Kingdom?",
+    "label": 0
+  },
+  {
+    "id": "Q653",
+    "question": "Compare 'Stop-and-Wait ARQ' and 'Go-Back-N ARQ' in terms of channel utilization.",
+    "label": 1
+  },
+  {
+    "id": "Q492",
+    "question": "Compare the functions of a Top of Rack (TOR) switch and a border router in a data center.",
+    "label": 1
+  },
+  {
+    "id": "Q871",
+    "question": "Explain the role of the 'Next Header' field in IPv6 extension headers.",
+    "label": 1
+  },
+  {
+    "id": "Q069",
+    "question": "Explain the advantages of transitioning from IPv4 to IPv6.",
+    "label": 1
+  },
+  {
+    "id": "Q1049",
+    "question": "How is reinforcement learning applied to optimize traffic in a smart city?",
+    "label": 0
+  },
+  {
+    "id": "Q751",
+    "question": "Explain the difference between baseband and broadband signaling in data transmission.",
+    "label": 1
+  },
+  {
+    "id": "Q435",
+    "question": "How do I configure an Azure Virtual Network to connect to an on-premises network?",
+    "label": 0
+  },
+  {
+    "id": "Q703",
+    "question": "Provide a Bash script to automate the backup of a web server's public_html directory.",
+    "label": 0
+  },
+  {
+    "id": "Q560",
+    "question": "What is the average duration to obtain a CISSP certification for an IT professional?",
+    "label": 0
+  },
+  {
+    "id": "Q729",
+    "question": "How can I use a Raspberry Pi to block all ads on my home network at the DNS level?",
+    "label": 0
+  },
+  {
+    "id": "Q999",
+    "question": "What is the typical career path for a Data Scientist at a tech giant?",
+    "label": 0
+  },
+  {
+    "id": "Q238",
+    "question": "What are the common interview questions for a Senior Cybersecurity Analyst position?",
+    "label": 0
+  },
+  {
+    "id": "Q266",
+    "question": "How can I troubleshoot a persistent blinking red internet light on my Netgear Nighthawk home router?",
+    "label": 0
+  },
+  {
+    "id": "Q357",
+    "question": "Compare the 'Expedited Forwarding' (EF) and 'Assured Forwarding' (AF) per-hop behaviors.",
+    "label": 1
+  },
+  {
+    "id": "Q491",
+    "question": "Define the various ICMP message types used for error reporting in IPv4.",
+    "label": 1
+  },
+  {
+    "id": "Q412",
+    "question": "What are the key features of the latest version of the Go programming language?",
+    "label": 0
+  },
+  {
+    "id": "Q091",
+    "question": "Differentiate between Recursive and Iterative DNS name resolution.",
+    "label": 1
+  },
+  {
+    "id": "Q965",
+    "question": "WLAN beacon frames",
+    "label": 1
+  },
+  {
+    "id": "Q996",
+    "question": "What are the common interview questions for a DevOps Engineer position?",
+    "label": 0
+  },
+  {
+    "id": "Q399",
+    "question": "How do I configure a VPN tunnel between my home and my office using OpenVPN?",
+    "label": 0
+  },
+  {
+    "id": "Q1075",
+    "question": "Explain the role of the Session Layer in the OSI model.",
+    "label": 1
+  },
+  {
+    "id": "Q789",
+    "question": "Explain the significance of 'Cumulative Acknowledgment' in the TCP protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q915",
+    "question": "HTTP request-response cycle",
+    "label": 1
+  },
+  {
+    "id": "Q876",
+    "question": "Define 'Classless Interdomain Routing' (CIDR) and its role in route aggregation.",
+    "label": 1
+  },
+  {
+    "id": "Q385",
+    "question": "How do I set up a Jenkins pipeline for continuous integration of a Java project?",
+    "label": 0
+  },
+  {
+    "id": "Q1086",
+    "question": "What is the history of the Eiffel Tower?",
+    "label": 0
+  },
+  {
+    "id": "Q770",
+    "question": "Define the role of the Management Information Base (MIB) in the SNMP framework.",
+    "label": 1
+  },
+  {
+    "id": "Q353",
+    "question": "Differentiate between the 'In-Phase' and 'Quadrature' components of a QPSK signal.",
+    "label": 1
+  },
+  {
+    "id": "Q336",
+    "question": "Explain how a bridge uses a spanning tree to prevent loops in a bridged LAN.",
+    "label": 1
+  },
+  {
+    "id": "Q944",
+    "question": "Network provisioning",
+    "label": 1
+  },
+  {
+    "id": "Q125",
+    "question": "What is the best open-source AI framework for network traffic classification?",
+    "label": 0
+  },
+  {
+    "id": "Q590",
+    "question": "Explain the difference between supervised and reinforcement learning in AI.",
+    "label": 0
+  },
+  {
+    "id": "Q507",
+    "question": "Differentiate between the three categories of service provided by the Integrated Services Architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q1047",
+    "question": "How do I set up a local development environment for Ethereum smart contracts?",
+    "label": 0
+  },
+  {
+    "id": "Q200",
+    "question": "Explain the 'Three-Way Handshake' procedure for TCP connection establishment.",
+    "label": 1
+  },
+  {
+    "id": "Q425",
+    "question": "What are the most valuable certifications for a professional in the field of AI?",
+    "label": 0
+  },
+  {
+    "id": "Q1044",
+    "question": "How do I configure a static IP on a Mac running the latest macOS version?",
+    "label": 0
+  },
+  {
+    "id": "Q1020",
+    "question": "Provide a Bash script to monitor CPU usage and log it to a text file.",
+    "label": 0
+  },
+  {
+    "id": "Q880",
+    "question": "Define 'Weighted Fair Queuing' (WFQ) and its significance in providing QoS guarantees.",
+    "label": 1
+  },
+  {
+    "id": "Q691",
+    "question": "What is the roadmap for becoming a Certified Kubernetes Administrator (CKA)?",
+    "label": 0
+  },
+  {
+    "id": "Q048",
+    "question": "How can I use a Raspberry Pi to build a custom hardware firewall for my home?",
+    "label": 0
+  },
+  {
+    "id": "Q617",
+    "question": "Explain the mechanism of 'Bit Stuffing' used in HDLC framing to achieve data transparency.",
+    "label": 1
+  },
+  {
+    "id": "Q151",
+    "question": "Explain the difference between flow control and congestion control.",
+    "label": 1
+  },
+  {
+    "id": "Q914",
+    "question": "DNS name resolution",
+    "label": 1
+  },
+  {
+    "id": "Q856",
+    "question": "Define 'Soft State' as it applies to the Resource Reservation Protocol (RSVP).",
+    "label": 1
+  },
+  {
+    "id": "Q318",
+    "question": "Differentiate between the Distance-Vector and Link-State routing algorithms.",
+    "label": 1
+  },
+  {
+    "id": "Q734",
+    "question": "How do I transition from a Network Administrator role to a Site Reliability Engineer (SRE)?",
+    "label": 0
+  },
+  {
+    "id": "Q782",
+    "question": "Compare the 'Enter Deep' and 'Bring Home' server placement philosophies in CDNs.",
+    "label": 1
+  },
+  {
+    "id": "Q344",
+    "question": "Explain the function of the 'Header Error Control' (HEC) field in an ATM cell.",
+    "label": 1
+  },
+  {
+    "id": "Q528",
+    "question": "What are the current salary trends for Machine Learning Engineers in India?",
+    "label": 0
+  },
+  {
+    "id": "Q291",
+    "question": "Explain the binary exponential backoff algorithm used to resolve collisions in Ethernet networks.",
+    "label": 1
+  },
+  {
+    "id": "Q087",
+    "question": "Explain the Binary Exponential Backoff algorithm used in Ethernet.",
+    "label": 1
+  },
+  {
+    "id": "Q174",
+    "question": "Explain the concept of 'Soft State' in the context of the RSVP protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q823",
+    "question": "Write a Bash script to automate the backup of a Linux directory to a remote server via SSH.",
+    "label": 0
+  },
+  {
+    "id": "Q576",
+    "question": "How do I resolve a 'No Internet, Secured' error on my Windows 11 PC?",
+    "label": 0
+  },
+  {
+    "id": "Q1026",
+    "question": "What are the common challenges in implementing a zero-trust security model?",
+    "label": 0
+  },
+  {
+    "id": "Q538",
+    "question": "Provide a roadmap for transitioning from a Network Admin to a DevOps Engineer.",
+    "label": 0
+  },
+  {
+    "id": "Q649",
+    "question": "Differentiate between 'Recursive' and 'Iterative' DNS name resolution processes.",
+    "label": 1
+  },
+  {
+    "id": "Q1041",
+    "question": "How can I optimize the battery life of a MacBook Pro for software development?",
+    "label": 0
+  },
+  {
+    "id": "Q330",
+    "question": "Define the 'hidden station problem' in the context of IEEE 802.11 WLANs.",
+    "label": 1
+  },
+  {
+    "id": "Q726",
+    "question": "How do I use Kubernetes 'Ingress' to manage external access to services in a cluster?",
+    "label": 0
+  },
+  {
+    "id": "Q628",
+    "question": "Compare 'Single-Mode' and 'Multi-Mode' optical fiber in terms of signal propagation and range.",
+    "label": 1
+  },
+  {
+    "id": "Q294",
+    "question": "Explain the difference between Proof of Work and Proof of Authority consensus mechanisms in enterprise blockchain systems.",
+    "label": 0
+  },
+  {
+    "id": "Q312",
+    "question": "Compare the OSI reference model with the TCP/IP protocol architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q992",
+    "question": "How is deep learning used for automated fraud detection in credit cards?",
+    "label": 0
+  },
+  {
+    "id": "Q416",
+    "question": "What is the typical career path for a software engineer looking to move into management?",
+    "label": 0
+  },
+  {
+    "id": "Q309",
+    "question": "Explain the function of the Address Resolution Protocol (ARP) in a local area network.",
+    "label": 1
+  },
+  {
+    "id": "Q1083",
+    "question": "How to make authentic Japanese ramen at home?",
+    "label": 0
+  },
+  {
+    "id": "Q771",
+    "question": "Explain the function of the 'Duration' field in an IEEE 802.11 MAC frame.",
+    "label": 1
+  },
+  {
+    "id": "Q431",
+    "question": "How do I set up a multi-cloud environment using HashiCorp Terraform?",
+    "label": 0
+  },
+  {
+    "id": "Q800",
+    "question": "Define 'Piggybacking' and its use in bidirectional data link control protocols.",
+    "label": 1
+  },
+  {
+    "id": "Q634",
+    "question": "Differentiate between 'BGP' and 'OSPF' in terms of their administrative scope and routing type.",
+    "label": 1
+  },
+  {
+    "id": "Q303",
+    "question": "Compare the frame structure of a standard Ethernet frame and an 802.1Q tagged frame.",
+    "label": 1
+  },
+  {
+    "id": "Q805",
+    "question": "How can I set up a private VPN on my home router to access my local files remotely?",
+    "label": 0
+  },
+  {
+    "id": "Q1027",
+    "question": "Write a JavaScript code snippet to create a debounced search bar.",
+    "label": 0
+  },
+  {
+    "id": "Q419",
+    "question": "What are the most common security vulnerabilities in modern web applications?",
+    "label": 0
+  },
+  {
+    "id": "Q317",
+    "question": "Compare persistent and non-persistent HTTP connections.",
+    "label": 1
+  },
+  {
+    "id": "Q916",
+    "question": "VLAN 802.1Q tagging",
+    "label": 1
+  },
+  {
+    "id": "Q708",
+    "question": "What is the typical career progression for a Junior Network Security Analyst?",
+    "label": 0
+  },
+  {
+    "id": "Q128",
+    "question": "How does Terraform manage network infrastructure as code in AWS?",
+    "label": 0
+  },
+  {
+    "id": "Q578",
+    "question": "Compare the features of Docker Swarm and Kubernetes for container orchestration.",
+    "label": 0
+  },
+  {
+    "id": "Q839",
+    "question": "What are the pros and cons of using a serverless architecture like AWS Lambda for small-scale applications?",
+    "label": 0
+  },
+  {
+    "id": "Q753",
+    "question": "Compare the functions of a Media Gateway and a Media Gateway Controller in a softswitch architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q817",
+    "question": "How do I set up a Raspberry Pi as a home-wide ad blocker using the Pi-hole software?",
+    "label": 0
+  },
+  {
+    "id": "Q373",
+    "question": "Differentiate between 'Bit-Interleaved Parity' and a standard checksum for error detection.",
+    "label": 1
+  },
+  {
+    "id": "Q202",
+    "question": "What is the expected salary growth for a Cloud Architect in the United States over the next five years?",
+    "label": 0
+  },
+  {
+    "id": "Q982",
+    "question": "Explain the difference between supervised and unsupervised machine learning.",
+    "label": 0
+  },
+  {
+    "id": "Q533",
+    "question": "Recommend a high-speed Wi-Fi router for a three-story home with 20 connected devices.",
+    "label": 0
+  },
+  {
+    "id": "Q002",
+    "question": "Define the components of a data communication system and their specific functions.",
+    "label": 1
+  },
+  {
+    "id": "Q701",
+    "question": "How do I resolve a 'No Internet, Secured' error on a Windows 10 laptop connecting to a home router?",
+    "label": 0
+  },
+  {
+    "id": "Q917",
+    "question": "IEEE 802.11 CSMA/CA",
+    "label": 1
+  },
+  {
+    "id": "Q261",
+    "question": "Define the role and functioning of the Address Resolution Protocol (ARP) in a local area network.",
+    "label": 1
+  },
+  {
+    "id": "Q757",
+    "question": "Compare the 4-step DHCP handshake process with the TCP three-way handshake.",
+    "label": 1
+  },
+  {
+    "id": "Q956",
+    "question": "IPv6 anycast addressing",
+    "label": 1
+  },
+  {
+    "id": "Q586",
+    "question": "Provide a JavaScript example of how to use WebSockets for creating a real-time chat application.",
+    "label": 0
+  },
+  {
+    "id": "Q524",
+    "question": "Define the role of the 'Payload Type' field in the fixed header of an RTP packet.",
+    "label": 1
+  },
+  {
+    "id": "Q447",
+    "question": "What is the typical career path for a network administrator looking to transition into a security role?",
+    "label": 0
+  },
+  {
+    "id": "Q715",
+    "question": "What are the benefits of pursuing a Master's degree in Data Science for a career in tech?",
+    "label": 0
+  },
+  {
+    "id": "Q354",
+    "question": "Explain the mechanism of 'Pulse Stuffing' in synchronous TDM.",
+    "label": 1
+  },
+  {
+    "id": "Q445",
+    "question": "What are the best practices for securing a multi-tenant cloud environment?",
+    "label": 0
+  },
+  {
+    "id": "Q802",
+    "question": "How do I configure an AWS S3 bucket to host a static website with a custom domain?",
+    "label": 0
+  },
+  {
+    "id": "Q608",
+    "question": "Compare the frame structure of a standard Ethernet frame with an IEEE 802.1Q tagged frame.",
+    "label": 1
+  },
+  {
+    "id": "Q695",
+    "question": "What are the common interview questions for an entry-level Data Science position at Amazon?",
+    "label": 0
+  },
+  {
+    "id": "Q924",
+    "question": "Ethernet frame format",
+    "label": 1
+  },
+  {
+    "id": "Q718",
+    "question": "What are the key differences between the Bitcoin and Litecoin blockchain networks?",
+    "label": 0
+  },
+  {
+    "id": "Q818",
+    "question": "Provide a SQL query to join a 'Users' table and an 'Orders' table to find the top 5 spending customers.",
+    "label": 0
+  },
+  {
+    "id": "Q029",
+    "question": "How can I set up a guest Wi-Fi network to keep my home smart devices isolated from my personal data?",
+    "label": 0
+  },
+  {
+    "id": "Q340",
+    "question": "Define the term 'Bit Error Rate' (BER) and its relationship to SNR.",
+    "label": 1
+  },
+  {
+    "id": "Q908",
+    "question": "OSPF protocol",
+    "label": 1
+  },
+  {
+    "id": "Q410",
+    "question": "What are the most popular programming languages for a career in artificial intelligence?",
+    "label": 0
+  },
+  {
+    "id": "Q971",
+    "question": "Ethernet collision domain",
+    "label": 1
+  },
+  {
+    "id": "Q360",
+    "question": "Define the 'Nodal Delay' components at a packet-switching router.",
+    "label": 1
+  },
+  {
+    "id": "Q595",
+    "question": "What are the core responsibilities of a DevOps Engineer at a major tech company?",
+    "label": 0
+  },
+  {
+    "id": "Q072",
+    "question": "Explain the role of the Southbound API in a Software-Defined Networking architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q793",
+    "question": "Differentiate between 'Forward Error Correction' (FEC) and 'Error Detection with Retransmission'.",
+    "label": 1
+  },
+  {
+    "id": "Q337",
+    "question": "Compare the throughput performance of pure ALOHA and slotted ALOHA.",
+    "label": 1
+  },
+  {
+    "id": "Q1082",
+    "question": "Review of the latest electric vehicle models in 2024.",
+    "label": 0
+  },
+  {
+    "id": "Q198",
+    "question": "Explain the working principle of 'Weighted Fair Queuing' (WFQ).",
+    "label": 1
+  },
+  {
+    "id": "Q025",
+    "question": "Explain the purpose and message types of the ICMP protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q1090",
+    "question": "The impact of social media on modern communication skills.",
+    "label": 0
+  },
+  {
+    "id": "Q234",
+    "question": "What are the best open-source tools for monitoring personal server performance in 2024?",
+    "label": 0
+  },
+  {
+    "id": "Q313",
+    "question": "Differentiate between guided and unguided transmission media.",
+    "label": 1
+  },
+  {
+    "id": "Q359",
+    "question": "Explain the purpose of the 'Max-Forwards' header in a SIP request.",
+    "label": 1
+  },
+  {
+    "id": "Q472",
+    "question": "Explain the purpose of the 2MSL timer in a TCP connection termination sequence.",
+    "label": 1
+  },
+  {
+    "id": "Q205",
+    "question": "What are the most recognized certifications for a career in entry-level network security?",
+    "label": 0
+  },
+  {
+    "id": "Q228",
+    "question": "What is the typical career path for someone starting as a Junior Network Administrator?",
+    "label": 0
+  },
+  {
+    "id": "Q482",
+    "question": "Define the 802.1Q Tag Protocol Identifier and its hexadecimal value.",
+    "label": 1
+  },
+  {
+    "id": "Q040",
+    "question": "How do I update the firmware on my TP-Link router to fix security vulnerabilities?",
+    "label": 0
+  },
+  {
+    "id": "Q392",
+    "question": "Write a Bash script to monitor the health of a fleet of Linux servers.",
+    "label": 0
+  },
+  {
+    "id": "Q111",
+    "question": "What are the recommended security settings for a Netgear Nighthawk router?",
+    "label": 0
+  },
+  {
+    "id": "Q962",
+    "question": "SNMP GET and SET commands",
+    "label": 1
+  },
+  {
+    "id": "Q940",
+    "question": "TCP/IP protocol suite",
+    "label": 1
+  },
+  {
+    "id": "Q801",
+    "question": "What are the common coding interview questions for a Senior Backend Developer role at Netflix?",
+    "label": 0
+  },
+  {
+    "id": "Q422",
+    "question": "How do I set up a private cloud using OpenStack on my own servers?",
+    "label": 0
+  },
+  {
+    "id": "Q341",
+    "question": "Explain the working of the 'Selective Reject' ARQ mechanism.",
+    "label": 1
+  },
+  {
+    "id": "Q184",
+    "question": "Define the 'Triangle Routing' problem in mobile device networking.",
+    "label": 1
+  },
+  {
+    "id": "Q026",
+    "question": "How do I prepare for a career as a Network Security Architect at a major tech company?",
+    "label": 0
+  },
+  {
+    "id": "Q423",
+    "question": "What are the key differences between a data lake and a data warehouse?",
+    "label": 0
+  },
+  {
+    "id": "Q182",
+    "question": "Compare the services provided by TCP and UDP transport protocols.",
+    "label": 1
+  },
+  {
+    "id": "Q167",
+    "question": "Define the SNMP TRAP operation and its role in asynchronous notification.",
+    "label": 1
+  },
+  {
+    "id": "Q780",
+    "question": "Define the 'hidden station problem' and its effect on wireless network efficiency.",
+    "label": 1
+  },
+  {
+    "id": "Q758",
+    "question": "Differentiate between recursive and iterative queries in the Domain Name System (DNS).",
+    "label": 1
+  },
+  {
+    "id": "Q1025",
+    "question": "How do I configure an S3 bucket for public website hosting on AWS?",
+    "label": 0
+  },
+  {
+    "id": "Q574",
+    "question": "What are the top three trends in Generative AI that will impact software development next year?",
+    "label": 0
+  },
+  {
+    "id": "Q816",
+    "question": "Explain the role of 'Proof of Stake' in reducing the energy consumption of cryptocurrency mining.",
+    "label": 0
+  },
+  {
+    "id": "Q106",
+    "question": "What are the top-rated gaming routers for low latency in 2024?",
+    "label": 0
+  },
+  {
+    "id": "Q791",
+    "question": "Explain the function of a 'RAKE Receiver' in a CDMA wireless system.",
+    "label": 1
+  },
+  {
+    "id": "Q884",
+    "question": "Write a Java program that sorts an array of objects using a custom comparator interface.",
+    "label": 0
+  },
+  {
+    "id": "Q367",
+    "question": "Compare 'Single-Mode' and 'Multi-Mode' optical fiber propagation.",
+    "label": 1
+  },
+  {
+    "id": "Q727",
+    "question": "Explain the concept of 'Transfer Learning' in the context of deep learning models.",
+    "label": 0
+  },
+  {
+    "id": "Q374",
+    "question": "Explain the purpose of the 'Disparity Control' function in 8B/10B encoding.",
+    "label": 1
+  },
+  {
+    "id": "Q316",
+    "question": "Explain how the CSMA/CD protocol handles collisions on a shared medium.",
+    "label": 1
+  },
+  {
+    "id": "Q043",
+    "question": "How does a decentralized finance (DeFi) application use blockchain to manage peer-to-peer lending?",
+    "label": 0
+  },
+  {
+    "id": "Q131",
+    "question": "How can I protect my smart home devices from being recruited into a botnet?",
+    "label": 0
+  },
+  {
+    "id": "Q1063",
+    "question": "Define the rules of Cricket as played in international tournaments.",
+    "label": 0
+  },
+  {
+    "id": "Q152",
+    "question": "Define the concept of bit stuffing in the context of HDLC framing.",
+    "label": 1
+  },
+  {
+    "id": "Q566",
+    "question": "Provide a Java implementation of the Dijkstra's shortest path algorithm for a weighted graph.",
+    "label": 0
+  },
+  {
+    "id": "Q597",
+    "question": "How do I troubleshoot a persistent blinking orange light on my Comcast Xfinity router?",
+    "label": 0
+  },
+  {
+    "id": "Q810",
+    "question": "Explain the concept of 'Self-Attention' in the architecture of Transformer-based AI models.",
+    "label": 0
+  },
+  {
+    "id": "Q037",
+    "question": "What is the difference between Proof of Work and Proof of Stake consensus mechanisms?",
+    "label": 0
+  },
+  {
+    "id": "Q559",
+    "question": "How can machine learning be used to predict stock market trends based on historical data?",
+    "label": 0
+  },
+  {
+    "id": "Q153",
+    "question": "Compare the framing techniques of character count and starting/ending flags.",
+    "label": 1
+  },
+  {
+    "id": "Q790",
+    "question": "Define the 'Piconet' and 'Scatternet' concepts in Bluetooth technology.",
+    "label": 1
+  },
+  {
+    "id": "Q901",
+    "question": "OSI reference model",
+    "label": 1
+  },
+  {
+    "id": "Q704",
+    "question": "How do I implement a custom loss function in PyTorch for a regression problem?",
+    "label": 0
+  },
+  {
+    "id": "Q983",
+    "question": "What are the top-rated gaming routers for 2024?",
+    "label": 0
+  },
+  {
+    "id": "Q438",
+    "question": "What is the best way to get started with a career in the field of blockchain?",
+    "label": 0
+  },
+  {
+    "id": "Q565",
+    "question": "Explain how a Convolutional Neural Network can be used for automated image classification.",
+    "label": 0
+  },
+  {
+    "id": "Q453",
+    "question": "Differentiate between the Go-Back-N and Selective-Repeat ARQ protocols in terms of buffer requirements.",
+    "label": 1
+  },
+  {
+    "id": "Q910",
+    "question": "DHCP address allocation",
+    "label": 1
+  },
+  {
+    "id": "Q269",
+    "question": "Define the role of the Next Header field in the IPv6 packet format.",
+    "label": 1
+  },
+  {
+    "id": "Q134",
+    "question": "How do I transition from a Network Administrator role to a DevOps Engineer?",
+    "label": 0
+  },
+  {
+    "id": "Q342",
+    "question": "Compare the 'Store-and-Forward' and 'Cut-Through' switch architectures.",
+    "label": 1
+  },
+  {
+    "id": "Q931",
+    "question": "Packet switching principles",
+    "label": 1
+  },
+  {
+    "id": "Q046",
+    "question": "Is it better to use a wired Ethernet connection or a 5GHz Wi-Fi link for 4K video editing?",
+    "label": 0
+  },
+  {
+    "id": "Q284",
+    "question": "Write a Java function to determine whether a given string is an anagram of another string.",
+    "label": 0
+  },
+  {
+    "id": "Q980",
+    "question": "Where is the best place to position a WiFi mesh node in a large house?",
+    "label": 0
+  },
+  {
+    "id": "Q665",
+    "question": "Explain the role of 'Flow Labels' in the IPv6 header.",
+    "label": 1
+  },
+  {
+    "id": "Q095",
+    "question": "Compare TCP and UDP transport layer services.",
+    "label": 1
+  },
+  {
+    "id": "Q053",
+    "question": "Define the role of the 802.1Q tag in virtual local area networks.",
+    "label": 1
+  },
+  {
+    "id": "Q951",
+    "question": "TCP retransmission strategy",
+    "label": 1
+  },
+  {
+    "id": "Q903",
+    "question": "CSMA/CD protocol",
+    "label": 1
+  },
+  {
+    "id": "Q518",
+    "question": "Define the 'Traffic Conditioning' function within a Differentiated Services domain.",
+    "label": 1
+  },
+  {
+    "id": "Q881",
+    "question": "How is machine learning applied to detect network intrusions and anomalous behavior patterns?",
+    "label": 0
+  },
+  {
+    "id": "Q650",
+    "question": "Explain the role of 'Authoritative Name Servers' in the DNS hierarchy.",
+    "label": 1
+  },
+  {
+    "id": "Q209",
+    "question": "What are the key benefits of migrating an on-premises database to AWS RDS?",
+    "label": 0
+  },
+  {
+    "id": "Q352",
+    "question": "Compare the 'Short-Wavelength' (1000BASE-SX) and 'Long-Wavelength' (1000BASE-LX) physical layer options for Gigabit Ethernet.",
+    "label": 1
+  },
+  {
+    "id": "Q216",
+    "question": "Explain the concept of 'Supervised Learning' in the context of predictive analytics.",
+    "label": 0
+  },
+  {
+    "id": "Q620",
+    "question": "Explain the purpose of the '2MSL' timer in a TCP connection termination sequence.",
+    "label": 1
+  },
+  {
+    "id": "Q289",
+    "question": "Compare the control plane and the data plane within a Software-Defined Networking (SDN) architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q279",
+    "question": "Compare the transport service models provided by TCP and UDP in an internetwork architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q160",
+    "question": "Compare the functions of CNAME records and A records in DNS.",
+    "label": 1
+  },
+  {
+    "id": "Q950",
+    "question": "Transmission errors and correction",
+    "label": 1
+  },
+  {
+    "id": "Q110",
+    "question": "How does a blockchain ledger ensure immutability in decentralized finance?",
+    "label": 0
+  },
+  {
+    "id": "Q119",
+    "question": "What is the impact of quantum computing on modern RSA encryption standards?",
+    "label": 0
+  },
+  {
+    "id": "Q271",
+    "question": "Compare Stop-and-Wait flow control with Sliding-Window flow control in terms of line utilization.",
+    "label": 1
+  },
+  {
+    "id": "Q138",
+    "question": "What are the best-selling enterprise firewalls for mid-sized corporations?",
+    "label": 0
+  },
+  {
+    "id": "Q107",
+    "question": "How can I troubleshoot my Comcast Xfinity router's blinking orange light?",
+    "label": 0
+  },
+  {
+    "id": "Q307",
+    "question": "Compare the frequency-division multiplexing (FDM) and time-division multiplexing (TDM) techniques.",
+    "label": 1
+  },
+  {
+    "id": "Q851",
+    "question": "Explain the difference between 'Flow-based Forwarding' in SDN and traditional destination-based IP forwarding.",
+    "label": 1
+  },
+  {
+    "id": "Q009",
+    "question": "Differentiate between asynchronous and synchronous transmission techniques.",
+    "label": 1
+  },
+  {
+    "id": "Q952",
+    "question": "Data communication system components",
+    "label": 1
+  },
+  {
+    "id": "Q809",
+    "question": "What are the primary benefits of using Terraform for Infrastructure as Code in a multi-cloud environment?",
+    "label": 0
+  },
+  {
+    "id": "Q627",
+    "question": "Explain the role of the 'Management Information Base' (MIB) in the SNMP framework.",
+    "label": 1
+  },
+  {
+    "id": "Q310",
+    "question": "Define the term 'Antenna Gain' and its relationship to effective area.",
+    "label": 1
+  },
+  {
+    "id": "Q557",
+    "question": "Provide a C# code snippet that performs a reverse DNS lookup using the System.Net namespace.",
+    "label": 0
+  },
+  {
+    "id": "Q861",
+    "question": "Explain the concept of 'Soft State' within the RSVP protocol mechanism.",
+    "label": 1
+  },
+  {
+    "id": "Q743",
+    "question": "What are the benefits of using a 'Serverless' architecture for building small web applications?",
+    "label": 0
+  },
+  {
+    "id": "Q292",
+    "question": "How can natural language processing algorithms be applied to automate the classification of customer support tickets for an ISP?",
+    "label": 0
+  },
+  {
+    "id": "Q379",
+    "question": "What is the best way to prepare for the AWS Certified Solutions Architect - Associate exam?",
+    "label": 0
+  },
+  {
+    "id": "Q251",
+    "question": "Explain the purpose of the 2MSL timer in a TCP connection termination sequence.",
+    "label": 1
+  },
+  {
+    "id": "Q738",
+    "question": "How do I fix a 'Double NAT' error when using two routers in my home network?",
+    "label": 0
+  },
+  {
+    "id": "Q358",
+    "question": "Differentiate between 'Lossless' and 'Lossy' audio compression techniques.",
+    "label": 1
+  },
+  {
+    "id": "Q830",
+    "question": "Explain how a Convolutional Neural Network (CNN) identifies edges and textures in digital images.",
+    "label": 0
+  },
+  {
+    "id": "Q713",
+    "question": "Write a JavaScript code snippet to create a basic real-time chat application using WebSockets.",
+    "label": 0
+  },
+  {
+    "id": "Q519",
+    "question": "Differentiate between symmetric and public-key encryption in terms of key management.",
+    "label": 1
+  },
+  {
+    "id": "Q775",
+    "question": "Define 'Autonomous System Number (ASN)' and its significance in BGP routing.",
+    "label": 1
+  },
+  {
+    "id": "Q551",
+    "question": "Explain the concept of 'Reinforcement Learning' using a simple gaming example.",
+    "label": 0
+  },
+  {
+    "id": "Q076",
+    "question": "Explain the operation of the Bluetooth neighbor discovery problem.",
+    "label": 1
+  },
+  {
+    "id": "Q103",
+    "question": "Write a Python function to check if a website is up using the requests library.",
+    "label": 0
+  },
+  {
+    "id": "Q577",
+    "question": "What are the best job opportunities for a Data Scientist specializing in Natural Language Processing?",
+    "label": 0
+  },
+  {
+    "id": "Q637",
+    "question": "Explain the role of 'SNMP Traps' in asynchronous network management notifications.",
+    "label": 1
+  },
+  {
+    "id": "Q989",
+    "question": "What is the roadmap for a full-stack developer in 2024?",
+    "label": 0
+  },
+  {
+    "id": "Q010",
+    "question": "Explain the role of the Address Resolution Protocol (ARP) in a local area network.",
+    "label": 1
+  },
+  {
+    "id": "Q075",
+    "question": "Define the purpose of the Preamble field in an Ethernet frame.",
+    "label": 1
+  },
+  {
+    "id": "Q719",
+    "question": "How do I configure a static IP address on a Mac running the latest macOS version?",
+    "label": 0
+  },
+  {
+    "id": "Q469",
+    "question": "Explain the role of the Address Resolution Protocol (ARP) in mapping IP addresses to MAC addresses.",
+    "label": 1
+  },
+  {
+    "id": "Q308",
+    "question": "Differentiate between the control plane and the data plane in a Software-Defined Network (SDN).",
+    "label": 1
+  },
+  {
+    "id": "Q661",
+    "question": "Define the 'Beacon Frame' and its role in 802.11 AP discovery.",
+    "label": 1
+  },
+  {
+    "id": "Q1015",
+    "question": "What is the difference between a Cold Wallet and a Hot Wallet in crypto?",
+    "label": 0
+  },
+  {
+    "id": "Q135",
+    "question": "What is the best way to secure a guest Wi-Fi network for a small business?",
+    "label": 0
+  },
+  {
+    "id": "Q993",
+    "question": "Write a C++ program to find the shortest path in a graph using A* search.",
+    "label": 0
+  },
+  {
+    "id": "Q768",
+    "question": "Differentiate between guided and unguided transmission media with examples.",
+    "label": 1
+  },
+  {
+    "id": "Q245",
+    "question": "What is the role of a 'Scrum Master' in a software development team using Agile methodology?",
+    "label": 0
+  },
+  {
+    "id": "Q890",
+    "question": "Explain how a Transformer-based model like GPT-4 processes and predicts the next token in a sequence.",
+    "label": 0
+  },
+  {
+    "id": "Q834",
+    "question": "What is the typical career progression for a Junior Data Analyst at a large fintech company?",
+    "label": 0
+  },
+  {
+    "id": "Q1061",
+    "question": "Describe the optimal culinary techniques for pizza preparation.",
+    "label": 0
+  },
+  {
+    "id": "Q268",
+    "question": "Provide a C++ code implementation for a Red-Black tree to optimize search operations in a database.",
+    "label": 0
+  },
+  {
+    "id": "Q1007",
+    "question": "What are the advantages of using Terraform for Infrastructure as Code?",
+    "label": 0
+  },
+  {
+    "id": "Q536",
+    "question": "Write a Java program that implements a generic queue using a linked list.",
+    "label": 0
+  },
+  {
+    "id": "Q579",
+    "question": "Explain the concept of 'Deep Learning' in the context of autonomous vehicle navigation.",
+    "label": 0
+  },
+  {
+    "id": "Q976",
+    "question": "What is the best cloud platform for a small startup on a budget?",
+    "label": 0
+  },
+  {
+    "id": "Q674",
+    "question": "Differentiate between 'Active' and 'Passive' network performance measurement metrics.",
+    "label": 1
+  },
+  {
+    "id": "Q1032",
+    "question": "What is the average salary for a Junior Python Developer in Toronto?",
+    "label": 0
+  },
+  {
+    "id": "Q084",
+    "question": "Differentiate between Guided and Unguided transmission media.",
+    "label": 1
+  },
+  {
+    "id": "Q635",
+    "question": "Explain the function of the 'Time to Live' (TTL) field in an IP datagram header.",
+    "label": 1
+  },
+  {
+    "id": "Q041",
+    "question": "What certifications are most valuable for a professional transitioning from networking to AI development?",
+    "label": 0
+  },
+  {
+    "id": "Q609",
+    "question": "Differentiate between 'recursive' and 'iterative' queries in the Domain Name System.",
+    "label": 1
+  },
+  {
+    "id": "Q1043",
+    "question": "Explain the concept of 'Sharding' in a distributed database system.",
+    "label": 0
+  },
+  {
+    "id": "Q985",
+    "question": "How does Proof of Stake differ from Proof of Work in Ethereum?",
+    "label": 0
+  },
+  {
+    "id": "Q584",
+    "question": "What are the best practices for writing clean and maintainable code in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q123",
+    "question": "How do I change the DNS settings on my Windows 11 PC for faster browsing?",
+    "label": 0
+  },
+  {
+    "id": "Q414",
+    "question": "What are the pros and cons of using a serverless architecture for a web application?",
+    "label": 0
+  },
+  {
+    "id": "Q241",
+    "question": "What is the difference between a 'Cold Wallet' and a 'Hot Wallet' in cryptocurrency storage?",
+    "label": 0
+  },
+  {
+    "id": "Q692",
+    "question": "Show me a Java implementation of a thread-safe singleton design pattern.",
+    "label": 0
+  },
+  {
+    "id": "Q841",
+    "question": "Review the build quality and wireless performance of the latest ASUS ROG Rapture gaming router.",
+    "label": 0
+  },
+  {
+    "id": "Q610",
+    "question": "Explain the role of the 'Next Header' field in an IPv6 header.",
+    "label": 1
+  },
+  {
+    "id": "Q887",
+    "question": "Provide a C++ example of implementing a thread-safe singleton design pattern.",
+    "label": 0
+  },
+  {
+    "id": "Q191",
+    "question": "Explain how 'Frequency-Hopping Spread Spectrum' improves resistance to interference.",
+    "label": 1
+  },
+  {
+    "id": "Q083",
+    "question": "Define the Wait-for-ACK state in the RDT 2.0 reliable data transfer protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q521",
+    "question": "Define the term 'Bit Error Rate' and explain its relation to the signal-to-noise ratio.",
+    "label": 1
+  },
+  {
+    "id": "Q984",
+    "question": "Show me a Java code example for a balanced binary search tree.",
+    "label": 0
+  },
+  {
+    "id": "Q933",
+    "question": "Medium access control (MAC) sublayer",
+    "label": 1
+  },
+  {
+    "id": "Q943",
+    "question": "Ad hoc networks",
+    "label": 1
+  },
+  {
+    "id": "Q515",
+    "question": "Define the 'Wait-for-ACK' state in the RDT 2.0 reliable data transfer protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q489",
+    "question": "Differentiate between the control plane and data plane in Software-Defined Networking architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q979",
+    "question": "What is the average salary for a Blockchain Developer in New York?",
+    "label": 0
+  },
+  {
+    "id": "Q786",
+    "question": "Explain the function of the 'Time to Live' (TTL) field in an IP datagram.",
+    "label": 1
+  },
+  {
+    "id": "Q059",
+    "question": "Describe the working principles of Network Address Translation (NAT).",
+    "label": 1
+  },
+  {
+    "id": "Q322",
+    "question": "Compare the IPv4 and IPv6 header formats.",
+    "label": 1
+  },
+  {
+    "id": "Q806",
+    "question": "Explain the difference between a Hard Fork and a Soft Fork in the context of blockchain updates.",
+    "label": 0
+  },
+  {
+    "id": "Q556",
+    "question": "Explain the role of smart contracts in ensuring transparency in a supply chain blockchain.",
+    "label": 0
+  },
+  {
+    "id": "Q594",
+    "question": "How can I extend the range of my home Wi-Fi to a detached garage 100 feet away?",
+    "label": 0
+  },
+  {
+    "id": "Q895",
+    "question": "Explain the concept of 'Sharding' as a method for improving the scalability of distributed databases.",
+    "label": 0
+  },
+  {
+    "id": "Q223",
+    "question": "Provide a Python script that uses the 'requests' library to monitor a website's uptime.",
+    "label": 0
+  },
+  {
+    "id": "Q304",
+    "question": "Differentiate between the Go-Back-N and Selective-Repeat ARQ protocols in terms of receiver buffer requirements.",
+    "label": 1
+  },
+  {
+    "id": "Q799",
+    "question": "Explain the function of the 'Header Checksum' in an IPv4 datagram header.",
+    "label": 1
+  },
+  {
+    "id": "Q159",
+    "question": "Define the role of the MX (Mail Exchange) record in the Domain Name System.",
     "label": 1
   },
   {
@@ -1040,13 +3795,23 @@
     "label": 1
   },
   {
-    "id": "Q497",
-    "question": "Define the role of the SNMP Trap operation for asynchronous notifications.",
-    "label": 1
+    "id": "Q998",
+    "question": "Explain the concept of NFT and its impact on the digital art market.",
+    "label": 0
   },
   {
-    "id": "Q384",
-    "question": "Provide a C++ implementation of a self-balancing binary search tree.",
+    "id": "Q678",
+    "question": "Where should I place a Wi-Fi range extender in a L-shaped apartment to get the best signal?",
+    "label": 0
+  },
+  {
+    "id": "Q1038",
+    "question": "How is Natural Language Processing used to classify customer support tickets?",
+    "label": 0
+  },
+  {
+    "id": "Q749",
+    "question": "How does 'Feature Engineering' impact the performance of a machine learning model?",
     "label": 0
   }
 ]

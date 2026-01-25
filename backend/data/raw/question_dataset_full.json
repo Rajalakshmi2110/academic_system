@@ -5248,5 +5248,205 @@
     "id": "Q1050",
     "question": "Write a C++ function to check if a number is prime using the Sieve of Eratosthenes.",
     "label": 0
+  },
+  {
+    "id": "Q1051",
+    "question": "How the heck does the TCP handshake actually work?",
+    "label": 1
+  },
+  {
+    "id": "Q1052",
+    "question": "I keep confusing switch and hub, can you explain?",
+    "label": 1
+  },
+  {
+    "id": "Q1053",
+    "question": "Why is my OSPF routing table empty?",
+    "label": 1
+  },
+  {
+    "id": "Q1054",
+    "question": "What's the deal with IPv6 address matching?",
+    "label": 1
+  },
+  {
+    "id": "Q1055",
+    "question": "Can someone explain subnet masks simply?",
+    "label": 1
+  },
+  {
+    "id": "Q1056",
+    "question": "How do I calculate a CRC for this packet?",
+    "label": 1
+  },
+  {
+    "id": "Q1057",
+    "question": "Is UDP actually faster than TCP or is that a myth?",
+    "label": 1
+  },
+  {
+    "id": "Q1058",
+    "question": "My DNS lookup is failing but I don't know why.",
+    "label": 1
+  },
+  {
+    "id": "Q1059",
+    "question": "What is a sliding window in simple terms?",
+    "label": 1
+  },
+  {
+    "id": "Q1060",
+    "question": "Why do we need VLANs anyway?",
+    "label": 1
+  },
+  {
+    "id": "Q1061",
+    "question": "Describe the optimal culinary techniques for pizza preparation.",
+    "label": 0
+  },
+  {
+    "id": "Q1062",
+    "question": "Explain the narrative structure of the Marvel Cinematic Universe.",
+    "label": 0
+  },
+  {
+    "id": "Q1063",
+    "question": "Define the rules of Cricket as played in international tournaments.",
+    "label": 0
+  },
+  {
+    "id": "Q1064",
+    "question": "Compare and contrast the flavor profiles of Arabica and Robusta coffee.",
+    "label": 0
+  },
+  {
+    "id": "Q1065",
+    "question": "Differentiate between the gameplay mechanics of First-Person Shooters and Role-Playing Games.",
+    "label": 0
+  },
+  {
+    "id": "Q1066",
+    "question": "Explain the physiological process of muscle hypertrophy during resistance training.",
+    "label": 0
+  },
+  {
+    "id": "Q1067",
+    "question": "Define the economic impact of the 2008 financial crisis on global markets.",
+    "label": 0
+  },
+  {
+    "id": "Q1068",
+    "question": "Describe the historical significance of the Roman Empire's infrastructure.",
+    "label": 0
+  },
+  {
+    "id": "Q1069",
+    "question": "Explain the aerodynamic properties of a curveball in professional baseball.",
+    "label": 0
+  },
+  {
+    "id": "Q1070",
+    "question": "Compare the preparation methods of French and Italian cuisine.",
+    "label": 0
+  },
+  {
+    "id": "Q1071",
+    "question": "Differentiate between half-duplex and full-duplex transmission.",
+    "label": 1
+  },
+  {
+    "id": "Q1072",
+    "question": "Explain the function of a Repeater in the OSI model.",
+    "label": 1
+  },
+  {
+    "id": "Q1073",
+    "question": "Define the concept of Microsegmentation in network security.",
+    "label": 1
+  },
+  {
+    "id": "Q1074",
+    "question": "Compare the usage of SCP and SFTP for file transfer.",
+    "label": 1
+  },
+  {
+    "id": "Q1075",
+    "question": "Explain the role of the Session Layer in the OSI model.",
+    "label": 1
+  },
+  {
+    "id": "Q1076",
+    "question": "What is the purpose of the loopback address 127.0.0.1?",
+    "label": 1
+  },
+  {
+    "id": "Q1077",
+    "question": "Describe the operation of a Distance Vector Routing Protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q1078",
+    "question": "How does a proxy server improve network security?",
+    "label": 1
+  },
+  {
+    "id": "Q1079",
+    "question": "Define the concept of Anycast addressing in IPv6.",
+    "label": 1
+  },
+  {
+    "id": "Q1080",
+    "question": "Explain the significance of the MTU (Maximum Transmission Unit).",
+    "label": 1
+  },
+  {
+    "id": "Q1081",
+    "question": "What are the best strategies for marathon training?",
+    "label": 0
+  },
+  {
+    "id": "Q1082",
+    "question": "Review of the latest electric vehicle models in 2024.",
+    "label": 0
+  },
+  {
+    "id": "Q1083",
+    "question": "How to make authentic Japanese ramen at home?",
+    "label": 0
+  },
+  {
+    "id": "Q1084",
+    "question": "Explain the plot twist in the movie 'The Sixth Sense'.",
+    "label": 0
+  },
+  {
+    "id": "Q1085",
+    "question": "Top 10 tips for effective public speaking.",
+    "label": 0
+  },
+  {
+    "id": "Q1086",
+    "question": "What is the history of the Eiffel Tower?",
+    "label": 0
+  },
+  {
+    "id": "Q1087",
+    "question": "Best practices for organic vegetable gardening.",
+    "label": 0
+  },
+  {
+    "id": "Q1088",
+    "question": "How to learn to play the acoustic guitar for beginners.",
+    "label": 0
+  },
+  {
+    "id": "Q1089",
+    "question": "Comparison of IOS vs Android operating systems for seniors.",
+    "label": 0
+  },
+  {
+    "id": "Q1090",
+    "question": "The impact of social media on modern communication skills.",
+    "label": 0
   }
 ]

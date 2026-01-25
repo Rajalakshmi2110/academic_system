@@ -1,16 +1,25 @@
+import sys
+import os
+from pathlib import Path
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import sys
-from pathlib import Path
-sys.path.append(str(Path(__file__).parent))
+
+# Add academic_system/ to path
+sys.path.append(str(Path(__file__).parent.parent))  
+
+# Ensure backend directory is in sys.path
+backend_dir = Path(__file__).parent
+if str(backend_dir) not in sys.path:
+    sys.path.append(str(backend_dir))
+
 from src.layer2_validator.inference import TwoLayerPipeline
-import os
 
 app = Flask(__name__)
 CORS(app)
 
-# Change working directory to backend folder
-os.chdir(Path(__file__).parent)
+# Set CWD to backend/
+if os.getcwd() != str(backend_dir):
+    os.chdir(backend_dir)
 
 # Initialize pipeline once at startup
 print("Initializing Two-Layer Pipeline...")
