@@ -43,20 +43,24 @@ def train_model():
     model = DistilBertForSequenceClassification.from_pretrained(model_name, num_labels=2)
     model.to(device)
     
-    # Load datasets
-    train_dataset = QuestionDataset('data/processed/train.json', tokenizer)
+    train_dataset = QuestionDataset(train_file, tokenizer)
     val_dataset = QuestionDataset('data/processed/val.json', tokenizer)
     
     train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=16)
     
     # Training setup
-    optimizer = AdamW(model.parameters(), lr=2e-5)
-    epochs = 3
+    optimizer = AdamW(model.parameters(), lr=3e-5)  # Slightly higher LR
+    epochs = 8  # Optimal for small dataset
     best_accuracy = 0
+    patience = 3
+    patience_counter = 0
     
     print(f"Training on {device}")
     print(f"Train samples: {len(train_dataset)}, Val samples: {len(val_dataset)}")
+    
+    train_losses = []
+    val_accuracies = []
     
     for epoch in range(epochs):
         # Training
@@ -77,10 +81,14 @@ def train_model():
             
             total_loss += loss.item()
         
+        avg_train_loss = total_loss/len(train_loader)
+        train_losses.append(avg_train_loss)
+        
         # Validation
         model.eval()
         predictions = []
         true_labels = []
+        val_loss = 0
         
         with torch.no_grad():
             for batch in val_loader:
@@ -88,7 +96,8 @@ def train_model():
                 attention_mask = batch['attention_mask'].to(device)
                 labels = batch['labels'].to(device)
                 
-                outputs = model(input_ids=input_ids, attention_mask=attention_mask)
+                outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=labels)
+                val_loss += outputs.loss.item()
                 preds = torch.argmax(outputs.logits, dim=-1)
                 
                 predictions.extend(preds.cpu().numpy())
@@ -96,20 +105,54 @@ def train_model():
         
         # Metrics
         accuracy = accuracy_score(true_labels, predictions)
+        val_accuracies.append(accuracy)
         precision, recall, f1, _ = precision_recall_fscore_support(true_labels, predictions, average='binary')
         
         print(f"Epoch {epoch+1}/{epochs}")
-        print(f"Loss: {total_loss/len(train_loader):.4f}")
+        print(f"Train Loss: {avg_train_loss:.4f}, Val Loss: {val_loss/len(val_loader):.4f}")
         print(f"Accuracy: {accuracy:.4f}, Precision: {precision:.4f}, Recall: {recall:.4f}, F1: {f1:.4f}")
         
-        # Save best model
+        # Early stopping and overfitting detection
         if accuracy > best_accuracy:
             best_accuracy = accuracy
+            patience_counter = 0
             model_path = Path('models/layer1_distilbert')
             model_path.mkdir(parents=True, exist_ok=True)
-            model.save_pretrained(model_path)
-            tokenizer.save_pretrained(model_path)
-            print(f"Best model saved with accuracy: {best_accuracy:.4f}")
+            
+            # Fix Windows file locking issue
+            try:
+                model.save_pretrained(model_path, safe_serialization=False)
+                tokenizer.save_pretrained(model_path)
+                print(f"Best model saved with accuracy: {best_accuracy:.4f}")
+            except Exception as e:
+                print(f"Warning: Could not save model - {e}")
+                # Save state dict as backup
+                torch.save(model.state_dict(), model_path / 'pytorch_model.bin')
+        else:
+            patience_counter += 1
+            
+        # Check for overfitting
+        if len(train_losses) > 1 and len(val_accuracies) > 1:
+            if train_losses[-1] < train_losses[-2] and val_accuracies[-1] < val_accuracies[-2]:
+                print("⚠️  Potential overfitting detected: train loss decreasing but val accuracy decreasing")
+                
+        if patience_counter >= patience:
+            print(f"Early stopping triggered after {patience} epochs without improvement")
+            break
+    
+    # Final diagnosis
+    print(f"\n=== TRAINING DIAGNOSIS ===")
+    print(f"Final train loss: {train_losses[-1]:.4f}")
+    print(f"Best validation accuracy: {best_accuracy:.4f}")
+    
+    if best_accuracy < 0.7:
+        print("🔴 UNDERFITTING: Low validation accuracy. Try:")
+        print("   - More epochs, lower learning rate, larger model")
+    elif len(train_losses) > 2 and train_losses[-1] < 0.1 and best_accuracy < 0.85:
+        print("🟡 OVERFITTING: Low train loss but poor validation. Try:")
+        print("   - Dropout, regularization, more data, early stopping")
+    else:
+        print("🟢 GOOD FIT: Model appears to be learning well")
     
     print(f"Training completed. Best accuracy: {best_accuracy:.4f}")
     return best_accuracy >= 0.85

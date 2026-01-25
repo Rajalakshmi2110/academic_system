@@ -16,11 +16,13 @@ function App() {
   const [question, setQuestion] = useState('');
   const [result, setResult] = useState<ValidationResult | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const validateQuestion = async () => {
     if (!question.trim()) return;
     
     setLoading(true);
+    setError('');
     try {
       const response = await fetch('http://localhost:5000/validate', {
         method: 'POST',
@@ -30,90 +32,183 @@ function App() {
       const data = await response.json();
       setResult(data);
     } catch (error) {
+      setError('Failed to connect to validation service');
       console.error('Error:', error);
     }
     setLoading(false);
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'VALID': return '#4CAF50';
-      case 'WARNING': return '#FF9800';
-      case 'OUT_OF_SYLLABUS': return '#f44336';
-      default: return '#757575';
+      case 'VALID': return '✓';
+      case 'WARNING': return '⚠';
+      case 'OUT_OF_SYLLABUS': return '✗';
+      default: return '?';
     }
   };
 
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'VALID': return '#10b981';
+      case 'WARNING': return '#f59e0b';
+      case 'OUT_OF_SYLLABUS': return '#ef4444';
+      default: return '#6b7280';
+    }
+  };
+
+  const clearResult = () => {
+    setResult(null);
+    setError('');
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>CA3104 Academic Doubt Clarification System</h1>
-        <p>Two-Layer AI Validation for Computer Networks Questions</p>
-      </header>
-
-      <main className="main-content">
-        <div className="input-section">
-          <textarea
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Enter your Computer Networks question here..."
-            rows={4}
-            className="question-input"
-          />
-          <button 
-            onClick={validateQuestion}
-            disabled={loading || !question.trim()}
-            className="validate-btn"
-          >
-            {loading ? 'Validating...' : 'Validate Question'}
-          </button>
-        </div>
-
-        {result && (
-          <div className="result-section">
-            <div className="result-header">
-              <h3>Validation Result</h3>
-              <span 
-                className="status-badge"
-                style={{ backgroundColor: getStatusColor(result.final_status) }}
-              >
-                {result.final_status}
-              </span>
+    <div className="app">
+      <div className="container">
+        <header className="header">
+          <div className="header-content">
+            <div className="logo">
+              <div className="logo-icon">🎓</div>
+              <div>
+                <h1>CA3104 Academic Validator</h1>
+                <p>AI-Powered Computer Networks Question Validation</p>
+              </div>
             </div>
+            <div className="header-badge">Two-Layer AI System</div>
+          </div>
+        </header>
 
-            <div className="result-details">
-              <div className="layer-results">
-                <div className="layer-result">
-                  <h4>Layer 1 (Syllabus Check)</h4>
-                  <p>{result.layer1_result}</p>
-                </div>
-                {result.layer2_result && (
-                  <div className="layer-result">
-                    <h4>Layer 2 (Academic Quality)</h4>
-                    <p>{result.layer2_result}</p>
-                  </div>
-                )}
-              </div>
-
-              <div className="explanation">
-                <h4>Explanation</h4>
-                <p>{result.explanation || result.message}</p>
-              </div>
-
-              <div className="metrics">
-                <div className="metric">
-                  <span>Confidence:</span>
-                  <span>{(result.confidence * 100).toFixed(1)}%</span>
-                </div>
-                <div className="metric">
-                  <span>Processing Time:</span>
-                  <span>{result.total_latency_ms.toFixed(0)}ms</span>
+        <main className="main">
+          <div className="input-card">
+            <div className="input-header">
+              <h2>Submit Your Question</h2>
+              <p>Enter your Computer Networks question for academic validation</p>
+            </div>
+            
+            <div className="input-group">
+              <textarea
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                placeholder="e.g., Explain the TCP three-way handshake process..."
+                rows={4}
+                className="question-input"
+                maxLength={500}
+              />
+              <div className="input-footer">
+                <span className="char-count">{question.length}/500</span>
+                <div className="button-group">
+                  {result && (
+                    <button onClick={clearResult} className="btn-secondary">
+                      Clear
+                    </button>
+                  )}
+                  <button 
+                    onClick={validateQuestion}
+                    disabled={loading || !question.trim()}
+                    className="btn-primary"
+                  >
+                    {loading ? (
+                      <><span className="spinner"></span> Validating...</>
+                    ) : (
+                      <>🔍 Validate Question</>
+                    )}
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-        )}
-      </main>
+
+          {error && (
+            <div className="error-card">
+              <div className="error-icon">⚠️</div>
+              <div>
+                <h3>Connection Error</h3>
+                <p>{error}</p>
+              </div>
+            </div>
+          )}
+
+          {result && (
+            <div className="result-card">
+              <div className="result-header">
+                <div className="result-title">
+                  <h2>Validation Result</h2>
+                  <div className="result-timestamp">
+                    {new Date().toLocaleTimeString()}
+                  </div>
+                </div>
+                <div 
+                  className="status-badge"
+                  style={{ backgroundColor: getStatusColor(result.final_status) }}
+                >
+                  <span className="status-icon">{getStatusIcon(result.final_status)}</span>
+                  {result.final_status.replace('_', ' ')}
+                </div>
+              </div>
+
+              <div className="question-display">
+                <h4>Question Analyzed:</h4>
+                <p>"{result.question}"</p>
+              </div>
+
+              <div className="layers-grid">
+                <div className="layer-card layer1">
+                  <div className="layer-header">
+                    <div className="layer-icon">🎯</div>
+                    <div>
+                      <h3>Layer 1</h3>
+                      <p>Syllabus Relevance</p>
+                    </div>
+                  </div>
+                  <div className="layer-result">
+                    {result.layer1_result}
+                  </div>
+                </div>
+
+                {result.layer2_result && (
+                  <div className="layer-card layer2">
+                    <div className="layer-header">
+                      <div className="layer-icon">🧠</div>
+                      <div>
+                        <h3>Layer 2</h3>
+                        <p>Academic Quality</p>
+                      </div>
+                    </div>
+                    <div className="layer-result">
+                      {result.layer2_result}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="explanation-card">
+                <h3>📝 Detailed Explanation</h3>
+                <p>{result.explanation || result.message}</p>
+              </div>
+
+              <div className="metrics-grid">
+                <div className="metric-card">
+                  <div className="metric-icon">📊</div>
+                  <div className="metric-content">
+                    <div className="metric-value">{(result.confidence * 100).toFixed(1)}%</div>
+                    <div className="metric-label">Confidence Score</div>
+                  </div>
+                </div>
+                <div className="metric-card">
+                  <div className="metric-icon">⚡</div>
+                  <div className="metric-content">
+                    <div className="metric-value">{result.total_latency_ms.toFixed(0)}ms</div>
+                    <div className="metric-label">Processing Time</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </main>
+
+        <footer className="footer">
+          <p>© 2024 CA3104 Academic System • Powered by DistilBERT & FLAN-T5</p>
+        </footer>
+      </div>
     </div>
   );
 }
