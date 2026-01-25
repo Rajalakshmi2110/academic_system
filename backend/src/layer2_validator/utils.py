@@ -8,19 +8,25 @@ def parse_validation_response(response):
     confidence = 0.5
 
     response = response.strip()
-
-    # Single-word fallback
-    if response.upper() in ["VALID", "WARNING", "REJECTED"]:
-        status = response.upper()
-        explanation = f"The question was classified as {status.lower()}."
-        confidence = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}[status]
-        return {
-            "status": status,
-            "explanation": explanation,
-            "confidence": confidence
-        }
-
-    # Status
+    
+    # Handle various response formats
+    response_upper = response.upper()
+    
+    # Check for simple status words
+    if "VALID" in response_upper and "INVALID" not in response_upper:
+        status = "VALID"
+        explanation = "The question is academically valid and well-formed."
+        confidence = 0.85
+    elif "WARNING" in response_upper or "WARN" in response_upper:
+        status = "WARNING"
+        explanation = "The question needs clarification or improvement."
+        confidence = 0.65
+    elif "REJECT" in response_upper or "INVALID" in response_upper:
+        status = "REJECTED"
+        explanation = "The question contains errors or is inappropriate."
+        confidence = 0.95
+    
+    # Try to extract structured format
     status_match = re.search(
         r'STATUS\s*:\s*(VALID|WARNING|REJECTED)',
         response,
@@ -29,16 +35,16 @@ def parse_validation_response(response):
     if status_match:
         status = status_match.group(1).upper()
 
-    # Explanation (multiline safe)
+    # Extract explanation if available
     explanation_match = re.search(
-        r'EXPLANATION\s*:\s*(.*?)(CONFIDENCE|$)',
+        r'EXPLANATION\s*:\s*(.*?)(?:CONFIDENCE|$)',
         response,
         re.IGNORECASE | re.DOTALL
     )
     if explanation_match:
         explanation = explanation_match.group(1).strip()
 
-    # Confidence
+    # Extract confidence if available
     confidence_match = re.search(
         r'CONFIDENCE\s*:\s*([0-9]*\.?[0-9]+)',
         response
@@ -47,6 +53,7 @@ def parse_validation_response(response):
         confidence = float(confidence_match.group(1))
         confidence = max(0.0, min(1.0, confidence))
     else:
+        # Default confidence based on status
         confidence = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}[status]
 
     return {

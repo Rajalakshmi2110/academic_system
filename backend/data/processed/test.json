@@ -1,0 +1,227 @@
+[
+  {
+    "id": "Q486",
+    "question": "Compare the framing of an original Ethernet frame and an 802.1Q-tagged Ethernet VLAN frame.",
+    "label": 1
+  },
+  {
+    "id": "Q451",
+    "question": "Explain the difference between persistent and non-persistent HTTP connections.",
+    "label": 1
+  },
+  {
+    "id": "Q341",
+    "question": "Explain the working of the 'Selective Reject' ARQ mechanism.",
+    "label": 1
+  },
+  {
+    "id": "Q494",
+    "question": "Define the term 'Spectral Efficiency' and its importance in 5G cellular systems.",
+    "label": 1
+  },
+  {
+    "id": "Q364",
+    "question": "Explain the role of the 'Service Access Point' (SAP) in the OSI model.",
+    "label": 1
+  },
+  {
+    "id": "Q536",
+    "question": "Write a Java program that implements a generic queue using a linked list.",
+    "label": 0
+  },
+  {
+    "id": "Q323",
+    "question": "Differentiate between a hub, a bridge, and a layer 2 switch.",
+    "label": 1
+  },
+  {
+    "id": "Q436",
+    "question": "What are the best open-source tools for network traffic analysis in 2024?",
+    "label": 0
+  },
+  {
+    "id": "Q477",
+    "question": "Differentiate between guided and unguided transmission media with specific examples of each.",
+    "label": 1
+  },
+  {
+    "id": "Q484",
+    "question": "Explain the use of the 'Duration' field in an IEEE 802.11 MAC frame.",
+    "label": 1
+  },
+  {
+    "id": "Q350",
+    "question": "Define the term 'Propagation Delay' and its calculation based on distance and velocity.",
+    "label": 1
+  },
+  {
+    "id": "Q495",
+    "question": "Differentiate between single-mode and multimode optical fiber propagation.",
+    "label": 1
+  },
+  {
+    "id": "Q588",
+    "question": "What is the impact of quantum computing on modern RSA and ECC encryption standards?",
+    "label": 0
+  },
+  {
+    "id": "Q594",
+    "question": "How can I extend the range of my home Wi-Fi to a detached garage 100 feet away?",
+    "label": 0
+  },
+  {
+    "id": "Q473",
+    "question": "Compare the service models provided by the User Datagram Protocol and the Transmission Control Protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q411",
+    "question": "How can I optimize my home ISP connection to reduce latency for online gaming?",
+    "label": 0
+  },
+  {
+    "id": "Q380",
+    "question": "How does deep learning improve the accuracy of facial recognition systems?",
+    "label": 0
+  },
+  {
+    "id": "Q578",
+    "question": "Compare the features of Docker Swarm and Kubernetes for container orchestration.",
+    "label": 0
+  },
+  {
+    "id": "Q475",
+    "question": "Explain the difference between flow control and congestion control from a transport layer perspective.",
+    "label": 1
+  },
+  {
+    "id": "Q591",
+    "question": "Provide a Java code snippet for sending a UDP packet to a specified IP address and port.",
+    "label": 0
+  },
+  {
+    "id": "Q382",
+    "question": "How can I secure my home router against the latest DNS hijacking attacks?",
+    "label": 0
+  },
+  {
+    "id": "Q304",
+    "question": "Differentiate between the Go-Back-N and Selective-Repeat ARQ protocols in terms of receiver buffer requirements.",
+    "label": 1
+  },
+  {
+    "id": "Q443",
+    "question": "What are the most important trends in the field of data science for the next five years?",
+    "label": 0
+  },
+  {
+    "id": "Q530",
+    "question": "Provide a C++ implementation of a self-balancing binary search tree.",
+    "label": 0
+  },
+  {
+    "id": "Q413",
+    "question": "How do I set up a CI/CD pipeline using GitHub Actions for a Node.js project?",
+    "label": 0
+  },
+  {
+    "id": "Q515",
+    "question": "Define the 'Wait-for-ACK' state in the RDT 2.0 reliable data transfer protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q593",
+    "question": "What are the best-selling enterprise firewall brands for large-scale corporations in 2024?",
+    "label": 0
+  },
+  {
+    "id": "Q402",
+    "question": "How does the 'Proof of Stake' consensus mechanism work in the Ethereum network?",
+    "label": 0
+  },
+  {
+    "id": "Q314",
+    "question": "Explain the role of the ICMP 'Destination Unreachable' message type.",
+    "label": 1
+  },
+  {
+    "id": "Q559",
+    "question": "How can machine learning be used to predict stock market trends based on historical data?",
+    "label": 0
+  },
+  {
+    "id": "Q420",
+    "question": "How can machine learning be applied to improve the efficiency of a supply chain?",
+    "label": 0
+  },
+  {
+    "id": "Q412",
+    "question": "What are the key features of the latest version of the Go programming language?",
+    "label": 0
+  },
+  {
+    "id": "Q348",
+    "question": "Differentiate between the 'Forward' and 'Backward' explicit congestion notification signals.",
+    "label": 1
+  },
+  {
+    "id": "Q316",
+    "question": "Explain how the CSMA/CD protocol handles collisions on a shared medium.",
+    "label": 1
+  },
+  {
+    "id": "Q317",
+    "question": "Compare persistent and non-persistent HTTP connections.",
+    "label": 1
+  },
+  {
+    "id": "Q517",
+    "question": "Explain the role of the 'Next Header' field in the IPv6 packet format.",
+    "label": 1
+  },
+  {
+    "id": "Q345",
+    "question": "Define the role of a 'Gateway' in an HTTP network architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q580",
+    "question": "Provide a C++ code snippet for implementing a basic hashing algorithm using an adjacency list.",
+    "label": 0
+  },
+  {
+    "id": "Q353",
+    "question": "Differentiate between the 'In-Phase' and 'Quadrature' components of a QPSK signal.",
+    "label": 1
+  },
+  {
+    "id": "Q372",
+    "question": "Compare 'Fast FHSS' and 'Slow FHSS' in terms of the relationship between hop rate and bit rate.",
+    "label": 1
+  },
+  {
+    "id": "Q415",
+    "question": "How can I protect my smart home devices from being hacked?",
+    "label": 0
+  },
+  {
+    "id": "Q426",
+    "question": "Write a Bash script to automate the backup of a MySQL database.",
+    "label": 0
+  },
+  {
+    "id": "Q441",
+    "question": "What are the key differences between a public cloud and a private cloud?",
+    "label": 0
+  },
+  {
+    "id": "Q313",
+    "question": "Differentiate between guided and unguided transmission media.",
+    "label": 1
+  },
+  {
+    "id": "Q358",
+    "question": "Differentiate between 'Lossless' and 'Lossy' audio compression techniques.",
+    "label": 1
+  }
+]

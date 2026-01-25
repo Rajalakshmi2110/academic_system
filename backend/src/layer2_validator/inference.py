@@ -13,7 +13,7 @@ class TwoLayerPipeline:
         
         # Initialize Layer 1 (DistilBERT)
         try:
-            self.layer1 = Layer1Classifier()
+            self.layer1 = Layer1Classifier('models/layer1_distilbert')
             print("[OK] Layer 1 (DistilBERT) loaded successfully")
         except Exception as e:
             print(f"[ERROR] Layer 1 failed to load: {e}")

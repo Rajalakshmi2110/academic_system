@@ -1,0 +1,227 @@
+[
+  {
+    "id": "Q476",
+    "question": "Define the role of the 'Next Header' field in an IPv6 packet header.",
+    "label": 1
+  },
+  {
+    "id": "Q357",
+    "question": "Compare the 'Expedited Forwarding' (EF) and 'Assured Forwarding' (AF) per-hop behaviors.",
+    "label": 1
+  },
+  {
+    "id": "Q573",
+    "question": "What is the difference between a 'Cold Wallet' and a 'Hot Wallet' in cryptocurrency storage?",
+    "label": 0
+  },
+  {
+    "id": "Q564",
+    "question": "Compare the pricing of Azure and AWS for hosting a large-scale enterprise application.",
+    "label": 0
+  },
+  {
+    "id": "Q464",
+    "question": "Define the role of the Management Information Base (MIB) in the Simple Network Management Protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q370",
+    "question": "Define the role of the 'Authority Section' in a DNS message response.",
+    "label": 1
+  },
+  {
+    "id": "Q541",
+    "question": "Explain the concept of 'Prompt Engineering' in the context of Large Language Models like GPT-4.",
+    "label": 0
+  },
+  {
+    "id": "Q419",
+    "question": "What are the most common security vulnerabilities in modern web applications?",
+    "label": 0
+  },
+  {
+    "id": "Q535",
+    "question": "Explain the differences between supervised and unsupervised learning in data science.",
+    "label": 0
+  },
+  {
+    "id": "Q363",
+    "question": "Differentiate between 'Unicast' and 'Multicast' IP addressing modes.",
+    "label": 1
+  },
+  {
+    "id": "Q487",
+    "question": "Explain how the CSMA/CD protocol detects and responds to collisions on a shared medium.",
+    "label": 1
+  },
+  {
+    "id": "Q437",
+    "question": "How can I use machine learning to detect anomalies in network traffic?",
+    "label": 0
+  },
+  {
+    "id": "Q344",
+    "question": "Explain the function of the 'Header Error Control' (HEC) field in an ATM cell.",
+    "label": 1
+  },
+  {
+    "id": "Q538",
+    "question": "Provide a roadmap for transitioning from a Network Admin to a DevOps Engineer.",
+    "label": 0
+  },
+  {
+    "id": "Q456",
+    "question": "Define 'Head-of-the-Line (HOL) Blocking' within the context of a packet switch's input port queuing.",
+    "label": 1
+  },
+  {
+    "id": "Q319",
+    "question": "Explain the purpose of a Management Information Base (MIB) in the SNMP framework.",
+    "label": 1
+  },
+  {
+    "id": "Q466",
+    "question": "Explain how the binary exponential backoff algorithm resolves collisions in Ethernet networks.",
+    "label": 1
+  },
+  {
+    "id": "Q574",
+    "question": "What are the top three trends in Generative AI that will impact software development next year?",
+    "label": 0
+  },
+  {
+    "id": "Q480",
+    "question": "Define the 'hidden station problem' and its effect on CSMA/CA protocol efficiency.",
+    "label": 1
+  },
+  {
+    "id": "Q369",
+    "question": "Explain the function of the 'Header Checksum' field in an IPv4 packet.",
+    "label": 1
+  },
+  {
+    "id": "Q472",
+    "question": "Explain the purpose of the 2MSL timer in a TCP connection termination sequence.",
+    "label": 1
+  },
+  {
+    "id": "Q354",
+    "question": "Explain the mechanism of 'Pulse Stuffing' in synchronous TDM.",
+    "label": 1
+  },
+  {
+    "id": "Q391",
+    "question": "Explain the concept of 'sharding' in the context of a distributed database.",
+    "label": 0
+  },
+  {
+    "id": "Q395",
+    "question": "How do I set up a private Docker registry on a local server?",
+    "label": 0
+  },
+  {
+    "id": "Q342",
+    "question": "Compare the 'Store-and-Forward' and 'Cut-Through' switch architectures.",
+    "label": 1
+  },
+  {
+    "id": "Q394",
+    "question": "What is the difference between a Junior DevOps Engineer and a Senior Site Reliability Engineer?",
+    "label": 0
+  },
+  {
+    "id": "Q514",
+    "question": "Explain the function of a media packetization delay in Voice-over-IP applications.",
+    "label": 1
+  },
+  {
+    "id": "Q463",
+    "question": "Explain the mechanism of bit stuffing used in HDLC to achieve data transparency.",
+    "label": 1
+  },
+  {
+    "id": "Q417",
+    "question": "Write a Java implementation of the Dijkstra's shortest path algorithm.",
+    "label": 0
+  },
+  {
+    "id": "Q595",
+    "question": "What are the core responsibilities of a DevOps Engineer at a major tech company?",
+    "label": 0
+  },
+  {
+    "id": "Q398",
+    "question": "What is the best laptop for a student starting a degree in data science?",
+    "label": 0
+  },
+  {
+    "id": "Q326",
+    "question": "Explain the working of the binary exponential backoff algorithm in Ethernet.",
+    "label": 1
+  },
+  {
+    "id": "Q522",
+    "question": "Compare the 'Stop-and-Wait' and 'Sliding-Window' flow control techniques.",
+    "label": 1
+  },
+  {
+    "id": "Q360",
+    "question": "Define the 'Nodal Delay' components at a packet-switching router.",
+    "label": 1
+  },
+  {
+    "id": "Q519",
+    "question": "Differentiate between symmetric and public-key encryption in terms of key management.",
+    "label": 1
+  },
+  {
+    "id": "Q321",
+    "question": "Explain the operation of the token bucket algorithm for traffic shaping.",
+    "label": 1
+  },
+  {
+    "id": "Q375",
+    "question": "Define the 'Source Quench' message type in the ICMP protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q498",
+    "question": "Compare the 'Enter Deep' and 'Bring Home' server placement philosophies in CDNs.",
+    "label": 1
+  },
+  {
+    "id": "Q359",
+    "question": "Explain the purpose of the 'Max-Forwards' header in a SIP request.",
+    "label": 1
+  },
+  {
+    "id": "Q470",
+    "question": "Define the function of a RAKE receiver in a CDMA cellular system.",
+    "label": 1
+  },
+  {
+    "id": "Q312",
+    "question": "Compare the OSI reference model with the TCP/IP protocol architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q318",
+    "question": "Differentiate between the Distance-Vector and Link-State routing algorithms.",
+    "label": 1
+  },
+  {
+    "id": "Q481",
+    "question": "Explain the function of the ICMP Source Quench message in managing network congestion.",
+    "label": 1
+  },
+  {
+    "id": "Q566",
+    "question": "Provide a Java implementation of the Dijkstra's shortest path algorithm for a weighted graph.",
+    "label": 0
+  },
+  {
+    "id": "Q448",
+    "question": "Write a C# implementation of the A* search algorithm for a 2D grid.",
+    "label": 0
+  }
+]

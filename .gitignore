@@ -7,6 +7,10 @@ models/
 # Test scripts
 test_full_dataset.py
 
+# Frontend build
+frontend/build/
+frontend/node_modules/
+
 # Python cache
 __pycache__/
 *.pyc
