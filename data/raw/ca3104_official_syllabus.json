@@ -1,0 +1,137 @@
+{
+  "course_details": {
+    "course_code": "CA3104",
+    "course_title": "COMPUTER NETWORKS AND MANAGEMENT",
+    "credits": {
+      "lecture": 3,
+      "tutorial": 0,
+      "practical": 2,
+      "total_credits": 4
+    }
+  },
+  "syllabus_units": {
+    "unit_1": {
+      "title": "DATA COMMUNICATION AND NETWORKING",
+      "hours": 9,
+      "topics": [
+        "Data communication systems",
+        "Components and their functions",
+        "Building networks",
+        "Hosts and Networking devices",
+        "Switched Networks and Broadcast Networks",
+        "Transmission medium",
+        "Networking Devices: Hubs, Bridges, Switches, Routers, and Gateways",
+        "Edge, Access and Core networks",
+        "Role of software and hardware in networking",
+        "Layered Architecture",
+        "OSI and TCP/IP Reference Models"
+      ]
+    },
+    "unit_2": {
+      "title": "PHYSICAL AND DATA LINK LAYERS",
+      "hours": 9,
+      "topics": [
+        "Wired and wireless media",
+        "Functions of physical layer",
+        "Modems",
+        "Transmission errors",
+        "Error detection and correction",
+        "Framing",
+        "Flow control",
+        "Sublayers of DLL",
+        "Broadcast networks",
+        "Collision Domain",
+        "Ethernet",
+        "CSMA/CD",
+        "Token Ring",
+        "VLAN",
+        "LAN Analyzer",
+        "IEEE 802.11 WLAN",
+        "CSMA/CA",
+        "Bluetooth",
+        "Ad hoc networks"
+      ]
+    },
+    "unit_3": {
+      "title": "NETWORK LAYER",
+      "hours": 9,
+      "topics": [
+        "Packet switching",
+        "Routing",
+        "Distance Vector and Link State Algorithms",
+        "RIP, OSPF and BGP",
+        "IPV4 Packet Format and Addressing",
+        "Effective IP address management techniques",
+        "Subnetting",
+        "CIDR",
+        "VLSM",
+        "DHCP",
+        "NAT",
+        "ICMP",
+        "Need for IPv6",
+        "Addressing methods and types in IPv6",
+        "IPv6 header",
+        "Advantages of IPv6",
+        "Transition from IPv4 to IPv6"
+      ]
+    },
+    "unit_4": {
+      "title": "TRANSPORT AND APPLICATION LAYERS",
+      "hours": 9,
+      "topics": [
+        "Transport Layer functions",
+        "End to end semantics",
+        "Functions of transport layer",
+        "User Datagram Protocol",
+        "UDP Applications",
+        "Transmission Control Protocol",
+        "Connection establishment and release",
+        "Flow Control",
+        "Retransmission Strategies",
+        "Congestion Control",
+        "Application layer",
+        "Sockets",
+        "Protocols",
+        "HTTP",
+        "FTP",
+        "Email Protocols",
+        "DNS"
+      ]
+    },
+    "unit_5": {
+      "title": "NETWORK MONITORING AND MANAGEMENT",
+      "hours": 9,
+      "topics": [
+        "Network centric operations",
+        "Network monitoring",
+        "Open-source network monitoring tools",
+        "Network management model",
+        "Abstract Syntax Notation",
+        "Overview of MIB and SNMP",
+        "Wireshark tool",
+        "Network provisioning",
+        "Fault detection, location and isolation",
+        "Data plane and control plane management using SDN concepts"
+      ]
+    }
+  },
+  "total_contact_hours": 45,
+  "dataset_mapping": {
+    "total_questions": 300,
+    "in_syllabus_questions": 150,
+    "out_of_syllabus_questions": 150,
+    "coverage_per_unit": {
+      "unit_1": "~30 questions covering data communication and networking fundamentals",
+      "unit_2": "~30 questions covering physical and data link layer concepts",
+      "unit_3": "~30 questions covering network layer protocols and addressing",
+      "unit_4": "~30 questions covering transport and application layer protocols",
+      "unit_5": "~30 questions covering network monitoring and management"
+    }
+  },
+  "academic_validation": {
+    "source": "Official CA3104 syllabus",
+    "extraction_method": "Manual curation from prescribed textbook chapters",
+    "quality_assurance": "Textbook-derived answers for accuracy",
+    "scope_restriction": "Strictly limited to syllabus topics only"
+  }
+}

@@ -14,8 +14,8 @@ def split_dataset():
     with open(raw_data_path, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Split content by ']\n\n[' to separate multiple arrays
-    array_parts = content.split(']\n\n[')
+    # Split content by ']\n[' to separate multiple arrays
+    array_parts = content.split(']\n[')
     data = []
     
     for i, part in enumerate(array_parts):
@@ -27,8 +27,21 @@ def split_dataset():
         else:
             json_str = '[' + part + ']'
         
-        # Parse and extend data
-        data.extend(json.loads(json_str))
+        # Clean up any extra whitespace or newlines
+        json_str = json_str.strip()
+        
+        # Skip empty parts
+        if not json_str or json_str in ['[]', '[', ']']:
+            continue
+            
+        try:
+            # Parse and extend data
+            parsed_data = json.loads(json_str)
+            data.extend(parsed_data)
+        except json.JSONDecodeError as e:
+            print(f"Error parsing JSON part {i}: {e}")
+            print(f"Problematic JSON: {json_str[:100]}...")
+            continue
     
     # Shuffle the data randomly
     random.shuffle(data)

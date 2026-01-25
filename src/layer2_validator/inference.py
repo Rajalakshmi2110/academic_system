@@ -1,6 +1,8 @@
 import json
 import time
+import sys
 from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent.parent))
 from src.layer1_classifier.inference import Layer1Classifier
 from src.layer2_validator.flan_t5_validator import FLANT5Validator
 
