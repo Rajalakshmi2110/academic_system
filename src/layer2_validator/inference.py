@@ -12,20 +12,20 @@ class TwoLayerPipeline:
         # Initialize Layer 1 (DistilBERT)
         try:
             self.layer1 = Layer1Classifier()
-            print("✓ Layer 1 (DistilBERT) loaded successfully")
+            print("[OK] Layer 1 (DistilBERT) loaded successfully")
         except Exception as e:
-            print(f"✗ Layer 1 failed to load: {e}")
+            print(f"[ERROR] Layer 1 failed to load: {e}")
             raise
         
         # Initialize Layer 2 (FLAN-T5)
         try:
             self.layer2 = FLANT5Validator()
-            print("✓ Layer 2 (FLAN-T5) loaded successfully")
+            print("[OK] Layer 2 (FLAN-T5) loaded successfully")
         except Exception as e:
-            print(f"✗ Layer 2 failed to load: {e}")
+            print(f"[ERROR] Layer 2 failed to load: {e}")
             raise
         
-        print("🚀 Two-Layer Pipeline ready!")
+        print("[READY] Two-Layer Pipeline ready!")
     
     def process_question(self, question):
         """

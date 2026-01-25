@@ -4,6 +4,7 @@ from pathlib import Path
 import re
 import json
 import time
+from .utils import parse_validation_response
 
 class FLANT5Validator:
     def __init__(self, model_name='google/flan-t5-base'):
@@ -61,57 +62,21 @@ class FLANT5Validator:
         # Decode response
         response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
         
+        # DEBUG: Print raw response to see what FLAN-T5 generates
+        print(f"DEBUG - Raw FLAN-T5 Response: '{response}'")
+        
         # Parse structured output
-        result = self._parse_response(response, question)
+        parsed_result = parse_validation_response(response)
+        result = {
+            'question': question,
+            'status': parsed_result['status'],
+            'explanation': parsed_result['explanation'],
+            'confidence': parsed_result['confidence'],
+            'raw_response': response
+        }
         result['inference_time_ms'] = (time.time() - start_time) * 1000
         
         return result
-    
-    def _parse_response(self, response, question):
-        """Parse FLAN-T5 response into structured format"""
-        
-        # Default values
-        status = "WARNING"
-        explanation = "Unable to parse model response"
-        confidence = 0.5
-        
-        try:
-            # Extract status
-            status_match = re.search(r'Status:\s*(VALID|WARNING|REJECTED)', response, re.IGNORECASE)
-            if status_match:
-                status = status_match.group(1).upper()
-            
-            # Extract explanation
-            explanation_match = re.search(r'Explanation:\s*([^\n]+)', response, re.IGNORECASE)
-            if explanation_match:
-                explanation = explanation_match.group(1).strip()
-            
-            # Extract confidence
-            confidence_match = re.search(r'Confidence:\s*([0-9]*\.?[0-9]+)', response)
-            if confidence_match:
-                confidence = float(confidence_match.group(1))
-                confidence = max(0.0, min(1.0, confidence))  # Clamp to [0,1]
-            
-        except Exception as e:
-            print(f"Error parsing response: {e}")
-            # Fallback parsing
-            if any(word in response.lower() for word in ['valid', 'correct', 'appropriate']):
-                status = "VALID"
-                confidence = 0.8
-            elif any(word in response.lower() for word in ['reject', 'incorrect', 'wrong', 'invalid']):
-                status = "REJECTED"
-                confidence = 0.8
-            else:
-                status = "WARNING"
-                confidence = 0.6
-        
-        return {
-            'question': question,
-            'status': status,
-            'explanation': explanation,
-            'confidence': confidence,
-            'raw_response': response
-        }
     
     def batch_validate(self, questions):
         """Validate multiple questions"""

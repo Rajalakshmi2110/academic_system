@@ -3,55 +3,56 @@ import json
 from pathlib import Path
 
 def parse_validation_response(response):
-    """
-    Parse FLAN-T5 response into structured format
-    
-    Args:
-        response (str): Raw model response
-        
-    Returns:
-        dict: Parsed status, explanation, confidence
-    """
-    # Default values
     status = "WARNING"
     explanation = "Unable to parse model response"
     confidence = 0.5
-    
-    try:
-        # Extract status
-        status_match = re.search(r'Status:\s*(VALID|WARNING|REJECTED)', response, re.IGNORECASE)
-        if status_match:
-            status = status_match.group(1).upper()
-        
-        # Extract explanation
-        explanation_match = re.search(r'Explanation:\s*([^\n]+)', response, re.IGNORECASE)
-        if explanation_match:
-            explanation = explanation_match.group(1).strip()
-        
-        # Extract confidence
-        confidence_match = re.search(r'Confidence:\s*([0-9]*\.?[0-9]+)', response)
-        if confidence_match:
-            confidence = float(confidence_match.group(1))
-            confidence = max(0.0, min(1.0, confidence))  # Clamp to [0,1]
-        
-    except Exception as e:
-        print(f"Error parsing response: {e}")
-        # Fallback parsing based on keywords
-        response_lower = response.lower()
-        if any(word in response_lower for word in ['valid', 'correct', 'appropriate', 'good']):
-            status = "VALID"
-            confidence = 0.8
-        elif any(word in response_lower for word in ['reject', 'incorrect', 'wrong', 'invalid', 'false']):
-            status = "REJECTED"
-            confidence = 0.8
-        else:
-            status = "WARNING"
-            confidence = 0.6
-    
+
+    response = response.strip()
+
+    # Single-word fallback
+    if response.upper() in ["VALID", "WARNING", "REJECTED"]:
+        status = response.upper()
+        explanation = f"The question was classified as {status.lower()}."
+        confidence = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}[status]
+        return {
+            "status": status,
+            "explanation": explanation,
+            "confidence": confidence
+        }
+
+    # Status
+    status_match = re.search(
+        r'STATUS\s*:\s*(VALID|WARNING|REJECTED)',
+        response,
+        re.IGNORECASE
+    )
+    if status_match:
+        status = status_match.group(1).upper()
+
+    # Explanation (multiline safe)
+    explanation_match = re.search(
+        r'EXPLANATION\s*:\s*(.*?)(CONFIDENCE|$)',
+        response,
+        re.IGNORECASE | re.DOTALL
+    )
+    if explanation_match:
+        explanation = explanation_match.group(1).strip()
+
+    # Confidence
+    confidence_match = re.search(
+        r'CONFIDENCE\s*:\s*([0-9]*\.?[0-9]+)',
+        response
+    )
+    if confidence_match:
+        confidence = float(confidence_match.group(1))
+        confidence = max(0.0, min(1.0, confidence))
+    else:
+        confidence = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}[status]
+
     return {
-        'status': status,
-        'explanation': explanation,
-        'confidence': confidence
+        "status": status,
+        "explanation": explanation,
+        "confidence": confidence
     }
 
 def format_final_response(layer1_result, layer2_result=None, question=""):
