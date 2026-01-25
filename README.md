@@ -25,6 +25,11 @@ pip install -r requirements.txt
 2. Evaluate model: `python src/layer1_classifier/evaluate.py`
 3. Run inference demo: `python src/layer1_classifier/inference.py`
 
+### Phase 3: Layer 2 - FLAN-T5 Deep Validator
+1. Test Layer 2: `python src/layer2_validator/flan_t5_validator.py`
+2. Run complete pipeline: `python src/layer2_validator/inference.py`
+3. Integration demo: Shows both layers working together
+
 ## Dataset Status
 **FINAL LABELED DATASET - DO NOT MODIFY**
 - File: `data/raw/question_dataset_full.json`
