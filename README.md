@@ -5,14 +5,44 @@ Two-Layer Intent Classification System for Academic Question Validation
 ## Project Structure
 - `data/` - Dataset files (raw and processed)
 - `src/` - Source code modules
-- `models/` - Trained model artifacts
+- `models/` - Trained model artifacts (auto-generated)
 - `notebooks/` - Jupyter notebooks for analysis
 - `reports/` - Generated reports and documentation
+- `scripts/` - Setup and utility scripts
 
-## Setup
+## Setup Instructions
+
+1. **Clone repository:**
+```bash
+git clone <repo-url>
+cd academic_doubt_clarification_system
+```
+
+2. **Install dependencies:**
 ```bash
 pip install -r requirements.txt
 ```
+
+3. **Download/Train models:**
+```bash
+python scripts/download_models.py
+```
+OR manually:
+```bash
+# Train Layer 1 model
+python src/layer1_classifier/train.py
+
+# Layer 2 auto-downloads from Hugging Face
+```
+
+4. **Run the system:**
+```bash
+python src/layer2_validator/inference.py
+```
+
+**Notes:**
+- Layer 2 (FLAN-T5) auto-downloads from Hugging Face Hub
+- Layer 1 (DistilBERT) can be trained using the provided script
 
 ## Usage
 
