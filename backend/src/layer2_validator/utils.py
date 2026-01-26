@@ -10,7 +10,6 @@ def parse_validation_response(response):
     response = response.strip()
     print(f"DEBUG - Raw FLAN-T5 Response: '{response}'")
     
-    # Try new simplified format first: "VALID - explanation"
     simple_match = re.search(r'(VALID|WARNING|REJECTED)\s*-\s*(.+)', response, re.IGNORECASE)
     if simple_match:
         status = simple_match.group(1).upper()
@@ -22,17 +21,14 @@ def parse_validation_response(response):
             "confidence": confidence
         }
     
-    # Try structured format: "STATUS: VALID"
     status_match = re.search(r'STATUS\s*:\s*(VALID|WARNING|REJECTED)', response, re.IGNORECASE)
     if status_match:
         status = status_match.group(1).upper()
         
-        # Extract explanation
         explanation_match = re.search(r'EXPLANATION\s*:\s*(.+?)(?:CONFIDENCE|$)', response, re.IGNORECASE | re.DOTALL)
         if explanation_match:
             explanation = explanation_match.group(1).strip()
         
-        # Extract confidence
         confidence_match = re.search(r'CONFIDENCE\s*:\s*([0-9]*\.?[0-9]+)', response)
         if confidence_match:
             confidence = float(confidence_match.group(1))
@@ -46,7 +42,6 @@ def parse_validation_response(response):
             "confidence": confidence
         }
     
-    # Fallback: keyword detection
     response_upper = response.upper()
     if "VALID" in response_upper and "INVALID" not in response_upper:
         status = "VALID"
@@ -61,7 +56,6 @@ def parse_validation_response(response):
         explanation = "The question needs clarification or improvement."
         confidence = 0.65
     else:
-        # Default to WARNING for unparseable responses
         status = "WARNING"
         explanation = f"Unable to parse response: {response[:100]}..."
         confidence = 0.5
@@ -73,19 +67,7 @@ def parse_validation_response(response):
     }
 
 def format_final_response(layer1_result, layer2_result=None, question=""):
-    """
-    Format the final response from both layers
-    
-    Args:
-        layer1_result (dict): Result from Layer 1 DistilBERT
-        layer2_result (dict): Result from Layer 2 FLAN-T5 (optional)
-        question (str): Original question
-        
-    Returns:
-        dict: Formatted final response
-    """
     if not layer1_result['relevant']:
-        # Out-of-syllabus response
         return {
             'question': question,
             'layer1_result': 'OUT_OF_SYLLABUS',
@@ -96,7 +78,6 @@ def format_final_response(layer1_result, layer2_result=None, question=""):
             'confidence': layer1_result['confidence']
         }
     
-    # In-syllabus response with Layer 2 validation
     return {
         'question': question,
         'layer1_result': 'IN_SYLLABUS',
@@ -107,7 +88,6 @@ def format_final_response(layer1_result, layer2_result=None, question=""):
     }
 
 def load_syllabus_context():
-    """Load CA3104 syllabus context for validation"""
     return {
         'unit_1': {
             'title': 'Introduction to Computer Networks',
@@ -157,15 +137,6 @@ def load_syllabus_context():
     }
 
 def validate_question_format(question):
-    """
-    Basic validation of question format
-    
-    Args:
-        question (str): Question to validate
-        
-    Returns:
-        dict: Validation result
-    """
     if not question or not question.strip():
         return {
             'valid': False,
@@ -187,7 +158,6 @@ def validate_question_format(question):
     return {'valid': True}
 
 def get_response_templates():
-    """Get standard response templates for different scenarios"""
     return {
         'out_of_syllabus': {
             'message': 'This question is not related to the CA3104 Computer Networks syllabus.',
@@ -207,24 +177,12 @@ def get_response_templates():
     }
 
 def calculate_confidence_score(layer1_confidence, layer2_confidence=None):
-    """
-    Calculate combined confidence score from both layers
-    
-    Args:
-        layer1_confidence (float): Confidence from Layer 1
-        layer2_confidence (float): Confidence from Layer 2 (optional)
-        
-    Returns:
-        float: Combined confidence score
-    """
     if layer2_confidence is None:
         return layer1_confidence
     
-    # Weighted average: Layer 1 (30%) + Layer 2 (70%)
     return (0.3 * layer1_confidence) + (0.7 * layer2_confidence)
 
 def save_validation_log(results, log_file='validation_log.json'):
-    """Save validation results to log file"""
     log_path = Path('reports') / log_file
     log_path.parent.mkdir(exist_ok=True)
     

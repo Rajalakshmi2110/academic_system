@@ -13,14 +13,12 @@ def create_augmented_dataset():
         question = item['question']
         label = item['label']
         
-        # Keep original
         augmented_data.append({
             "id": f"AUG_{len(augmented_data) + 1:04d}",
             "question": question,
             "label": label
         })
-        
-        # Add format variations for networking questions (label 1)
+
         if label == 1:
             if question.lower().startswith(('define', 'describe')):
                 # Add casual versions

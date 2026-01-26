@@ -8,10 +8,8 @@ from src.layer2_validator.flan_t5_validator import FLANT5Validator
 
 class TwoLayerPipeline:
     def __init__(self):
-        """Initialize both Layer 1 and Layer 2 models"""
         print("Initializing Two-Layer Academic Doubt Clarification System...")
         
-        # Initialize Layer 1 (DistilBERT)
         try:
             self.layer1 = Layer1Classifier('models/layer1_distilbert')
             print("[OK] Layer 1 (DistilBERT) loaded successfully")
@@ -19,7 +17,6 @@ class TwoLayerPipeline:
             print(f"[ERROR] Layer 1 failed to load: {e}")
             raise
         
-        # Initialize Layer 2 (FLAN-T5)
         try:
             self.layer2 = FLANT5Validator()
             print("[OK] Layer 2 (FLAN-T5) loaded successfully")
@@ -30,23 +27,12 @@ class TwoLayerPipeline:
         print("[READY] Two-Layer Pipeline ready!")
     
     def process_question(self, question):
-        """
-        Process a student question through the complete two-layer pipeline
-        
-        Args:
-            question (str): Student question to validate
-            
-        Returns:
-            dict: Complete validation result with intermediate steps
-        """
         start_time = time.time()
         
-        # Layer 1: Syllabus Relevance Check
         layer1_start = time.time()
         layer1_result = self.layer1.predict(question, return_confidence=True)
         layer1_time = (time.time() - layer1_start) * 1000
         
-        # Prepare intermediate steps
         intermediate_steps = [
             {
                 "step": 1,
@@ -65,7 +51,6 @@ class TwoLayerPipeline:
         ]
         
         if not layer1_result['relevant']:
-            # Question is out-of-syllabus - return immediately
             return {
                 'question': question,
                 'layer1_result': 'OUT_OF_SYLLABUS',
@@ -80,12 +65,10 @@ class TwoLayerPipeline:
                 'intermediate_steps': intermediate_steps
             }
         
-        # Layer 2: Deep Academic Validation
         layer2_start = time.time()
         layer2_result = self.layer2.validate_question(question)
         layer2_time = (time.time() - layer2_start) * 1000
         
-        # Add Layer 2 step
         intermediate_steps.append({
             "step": 2,
             "name": "Layer 2 - FLAN-T5 Validator",
@@ -101,7 +84,6 @@ class TwoLayerPipeline:
             "status": layer2_result['status']
         })
         
-        # Format final response
         total_time = (time.time() - start_time) * 1000
         
         return {
@@ -118,7 +100,6 @@ class TwoLayerPipeline:
         }
     
     def batch_process(self, questions):
-        """Process multiple questions through the pipeline"""
         results = []
         for question in questions:
             result = self.process_question(question)
@@ -126,7 +107,6 @@ class TwoLayerPipeline:
         return results
     
     def get_statistics(self, results):
-        """Generate statistics from batch processing results"""
         total_questions = len(results)
         out_of_syllabus = sum(1 for r in results if r['final_status'] == 'OUT_OF_SYLLABUS')
         valid = sum(1 for r in results if r['final_status'] == 'VALID')
@@ -163,25 +143,19 @@ class TwoLayerPipeline:
         }
 
 def demo_pipeline():
-    """Comprehensive demo of the two-layer pipeline"""
     try:
         pipeline = TwoLayerPipeline()
         
-        # Test questions covering all scenarios
         test_questions = [
-            # Should be OUT_OF_SYLLABUS (Layer 1 rejects)
             "What's the best programming language for AI?",
             "How do I fix my printer connection?",
             
-            # Should be VALID (Layer 1 accepts, Layer 2 validates)
             "Explain the TCP three-way handshake process",
             "Compare CSMA/CD and CSMA/CA protocols",
             
-            # Should be WARNING (Layer 1 accepts, Layer 2 finds issues)
             "Explain network protocols and security",
             "How does TCP work with everything?",
             
-            # Should be REJECTED (Layer 1 accepts, Layer 2 finds errors)
             "TCP uses 5-way handshake for security",
             "Ethernet prevents all network collisions"
         ]
@@ -210,7 +184,6 @@ def demo_pipeline():
             print(f"Total Time: {result['total_latency_ms']:.2f} ms")
             print("-" * 70)
         
-        # Generate statistics
         stats = pipeline.get_statistics(results)
         
         print("\n=== PIPELINE STATISTICS ===")

@@ -42,13 +42,11 @@ def evaluate_model():
         print("Error: Model not found. Run training first.")
         return False
     
-    # Load model and tokenizer
     tokenizer = DistilBertTokenizer.from_pretrained(model_path)
     model = DistilBertForSequenceClassification.from_pretrained(model_path)
     model.to(device)
     model.eval()
     
-    # Load test dataset
     test_dataset = QuestionDataset('data/processed/test.json', tokenizer)
     test_loader = DataLoader(test_dataset, batch_size=16)
     
@@ -64,17 +62,15 @@ def evaluate_model():
             attention_mask = batch['attention_mask'].to(device)
             labels = batch['labels'].to(device)
             
-            # Measure inference time
             start_time = time.time()
             outputs = model(input_ids=input_ids, attention_mask=attention_mask)
-            inference_time = (time.time() - start_time) * 1000 / len(input_ids)  # ms per sample
+            inference_time = (time.time() - start_time) * 1000 / len(input_ids)
             inference_times.append(inference_time)
             
             preds = torch.argmax(outputs.logits, dim=-1)
             predictions.extend(preds.cpu().numpy())
             true_labels.extend(labels.cpu().numpy())
     
-    # Calculate metrics
     accuracy = accuracy_score(true_labels, predictions)
     precision, recall, f1, _ = precision_recall_fscore_support(true_labels, predictions, average='binary')
     avg_inference_time = np.mean(inference_times)

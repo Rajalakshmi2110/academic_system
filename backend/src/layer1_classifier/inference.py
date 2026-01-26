@@ -12,7 +12,6 @@ class Layer1Classifier:
         if not self.model_path.exists():
             raise FileNotFoundError(f"Model not found at {model_path}. Run training first.")
         
-        # Load model and tokenizer
         self.tokenizer = DistilBertTokenizer.from_pretrained(self.model_path)
         self.model = DistilBertForSequenceClassification.from_pretrained(self.model_path)
         self.model.to(self.device)
@@ -21,19 +20,8 @@ class Layer1Classifier:
         print(f"Layer 1 classifier loaded on {self.device}")
     
     def predict(self, question, return_confidence=False):
-        """
-        Predict if a question is relevant to the syllabus.
-        
-        Args:
-            question (str): The question text to classify
-            return_confidence (bool): Whether to return confidence scores
-            
-        Returns:
-            dict: Prediction result with label, confidence, and timing
-        """
         start_time = time.time()
         
-        # Tokenize input
         encoding = self.tokenizer(
             question,
             truncation=True,
@@ -45,7 +33,6 @@ class Layer1Classifier:
         input_ids = encoding['input_ids'].to(self.device)
         attention_mask = encoding['attention_mask'].to(self.device)
         
-        # Inference
         with torch.no_grad():
             outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
             logits = outputs.logits
@@ -53,7 +40,7 @@ class Layer1Classifier:
             predicted_label = torch.argmax(logits, dim=-1).item()
             confidence = probabilities[0][predicted_label].item()
         
-        inference_time = (time.time() - start_time) * 1000  # Convert to milliseconds
+        inference_time = (time.time() - start_time) * 1000
         
         result = {
             'question': question,
@@ -72,18 +59,8 @@ class Layer1Classifier:
         return result
     
     def batch_predict(self, questions):
-        """
-        Predict multiple questions at once for better efficiency.
-        
-        Args:
-            questions (list): List of question strings
-            
-        Returns:
-            list: List of prediction results
-        """
         start_time = time.time()
         
-        # Tokenize all questions
         encodings = self.tokenizer(
             questions,
             truncation=True,
@@ -95,7 +72,6 @@ class Layer1Classifier:
         input_ids = encodings['input_ids'].to(self.device)
         attention_mask = encodings['attention_mask'].to(self.device)
         
-        # Batch inference
         with torch.no_grad():
             outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
             logits = outputs.logits
@@ -119,11 +95,9 @@ class Layer1Classifier:
         return results
 
 def demo_inference():
-    """Demo function showing how to use the classifier"""
     try:
         classifier = Layer1Classifier()
         
-        # Test questions
         test_questions = [
             "Explain the TCP three-way handshake process",
             "What is the best programming language for web development?",
@@ -133,7 +107,6 @@ def demo_inference():
         
         print("=== LAYER 1 INFERENCE DEMO ===")
         
-        # Single predictions
         for question in test_questions:
             result = classifier.predict(question, return_confidence=True)
             status = "IN-SYLLABUS" if result['relevant'] else "OUT-OF-SYLLABUS"
@@ -142,7 +115,6 @@ def demo_inference():
             print(f"Inference time: {result['inference_time_ms']:.2f} ms")
             print("-" * 50)
         
-        # Batch prediction
         print("\nBatch prediction:")
         batch_results = classifier.batch_predict(test_questions)
         for result in batch_results:
