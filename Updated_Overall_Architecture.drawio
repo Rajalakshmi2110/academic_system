@@ -1,0 +1,150 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.4">
+  <diagram name="QP Evaluation Architecture" id="0">
+    <mxGraphModel dx="2059" dy="1794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="18" edge="1" parent="1" source="7" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" target="10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="105" />
+              <mxPoint x="520" y="360" />
+              <mxPoint x="340" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="submit_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;" value="Submit" vertex="1">
+          <mxGeometry height="20" width="50" x="420" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;" value="" vertex="1">
+          <mxGeometry height="550" width="300" x="-40" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;font-size: 15px&quot;&gt;&lt;b&gt;React-based Question Input&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 15px&quot;&gt;(Course selection &amp;amp; evaluation)&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="230" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Question Preprocessing&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;(Python regex normalization)&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="230" x="-0.5" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="_GFRNtaL6ZHN1_rXOyC8-34" edge="1" parent="1" source="5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="_GFRNtaL6ZHN1_rXOyC8-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;font-size: 15px&quot;&gt;Authentication&amp;nbsp;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="230" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="800" width="470" x="310" y="-40" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Central Agent Orchestrator&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;(FastAPI + Request Routing)&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="360" x="357.5" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Module 2: Question Input &amp; CO-Unit ID&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;- SentenceTransformers (e5-small-v2)&lt;br&gt;- Scope decision &amp; CO prediction&lt;br&gt;- Similarity scoring&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="360" x="357.5" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Module 3 &amp; 4: Academic Evaluation&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;font style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;-&lt;/span&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt; Bloom &amp; CO Evaluation (flan-t5-small)&lt;br&gt;- FAISS cosine similarity&lt;br&gt;- Difficulty &amp; Strength Scoring&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="360" x="357.5" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Module 5 &amp; 6: RAG &amp; Generation&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b style=&quot;&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;- FAISS retrieval-only&lt;br&gt;- Structured rubric generation&lt;br&gt;- Syllabus-constrained questions&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="360" x="357.5" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" value="" vertex="1">
+          <mxGeometry height="580" width="360" x="865" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;b style=&quot;font-size: 14px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b style=&quot;font-size: 14px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 15px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- Bloom Level&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;- CO Mapping&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;- Difficulty Score&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 15px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- Evaluation Template&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="220" width="280" x="915" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="shape=cylinder;whiteSpace=wrap;html=1;shadow=0;sketch=1;curveFitting=1;jiggle=2;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;b&gt;&lt;font&gt;&lt;div style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 16px&quot;&gt;Course-Isolated FAISS Indices&lt;/font&gt;&lt;/font&gt;&lt;/b&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;div&gt;&lt;font style=&quot;font-size: 15px&quot;&gt;Densified Knowledge Vectors&lt;br&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 15px&quot;&gt;JSON &amp;amp; File-system Metadata&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="155" width="320" x="330" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="15" edge="1" parent="1" source="_GFRNtaL6ZHN1_rXOyC8-38" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="10" y="270" />
+              <mxPoint x="-80" y="270" />
+              <mxPoint x="-80" y="919" />
+            </Array>
+            <mxPoint x="10" y="181" as="sourcePoint" />
+            <mxPoint x="330" y="918.590909090909" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="save_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;strokeWidth=2;" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Store in FAISS Index&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="140" x="170" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="16" edge="1" parent="1" source="7" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" target="8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="19" edge="1" parent="1" source="10" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;dashed=1;" target="14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="510" />
+              <mxPoint x="800" y="935" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" edge="1" parent="1" source="10" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" target="12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="470" />
+              <mxPoint x="970" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="scoiEK9NhfIAx-3x0IhR-23" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1;fontSize=13;" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;Frontend Layer&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="150" x="30" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scoiEK9NhfIAx-3x0IhR-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 17px&quot;&gt;&lt;b&gt;Evaluation Output Template&lt;/b&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="240" x="940" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="scoiEK9NhfIAx-3x0IhR-27" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;Backend API &amp; Agent-Orchestrated Processing Layer&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="440" x="320" as="geometry" />
+        </mxCell>
+        <mxCell id="scoiEK9NhfIAx-3x0IhR-36" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" target="4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="norm_to_agent" edge="1" parent="1" source="4" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="290" y="460" />
+              <mxPoint x="290" y="50" />
+              <mxPoint x="400" y="50" />
+            </Array>
+            <mxPoint x="250" y="259.94" as="sourcePoint" />
+            <mxPoint x="400.0588235294117" y="69.94" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="scoiEK9NhfIAx-3x0IhR-37" edge="1" parent="1" source="11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_GFRNtaL6ZHN1_rXOyC8-40" edge="1" parent="1" source="_GFRNtaL6ZHN1_rXOyC8-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="_GFRNtaL6ZHN1_rXOyC8-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_GFRNtaL6ZHN1_rXOyC8-32" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;font-size: 15px&quot;&gt;&lt;b&gt;Module 1: Course Knowledge Setup&lt;br&gt;&lt;/b&gt;(Syllabus, COs, Reference Books)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="230" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="_GFRNtaL6ZHN1_rXOyC8-38" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;font-size: 15px&quot;&gt;&lt;b&gt;Knowledge Densification&lt;br&gt;&lt;/b&gt;(e5-small-v2 + NumPy Fusion)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="230" x="-0.5" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="_GFRNtaL6ZHN1_rXOyC8-42" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Retrieve&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="60" x="790" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="_GFRNtaL6ZHN1_rXOyC8-45" edge="1" parent="1" source="9" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="10" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="440" y="600" as="sourcePoint" />
+            <mxPoint x="490" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_GFRNtaL6ZHN1_rXOyC8-48" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 15px&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px&quot;&gt;&lt;b&gt;Live Evaluation Results&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px&quot;&gt;- Scope Decision&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span style=&quot;font-size: 15px&quot;&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#x9;&lt;/span&gt;- Matched Unit&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span style=&quot;font-size: 15px&quot;&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#x9;&lt;/span&gt;- Predicted CO&lt;/span&gt;&lt;/div&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="305" x="902.5" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="_GFRNtaL6ZHN1_rXOyC8-52" edge="1" parent="1" source="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="_GFRNtaL6ZHN1_rXOyC8-48">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_GFRNtaL6ZHN1_rXOyC8-69" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=default;fontSize=14;" value="&lt;span&gt;&lt;b&gt;&lt;font&gt;Question-Level Output&lt;/font&gt;&lt;br class=&quot;Apple-interchange-newline&quot;&gt;&lt;/b&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="170" x="960" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="CAD-HMayrYP2gjHjsffJ-21" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;br&gt;&lt;font style=&quot;&quot;&gt;&lt;span style=&quot;font-weight: 600;&quot; data-token-index=&quot;0&quot; class=&quot;notion-enable-hover&quot;&gt;&lt;font style=&quot;font-size: 22px;&quot;&gt;Agent-Orchestrated Automated Question Paper Validation Using FAISS RAG &amp; Transformer Models&lt;/font&gt;&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="977.5" x="80" y="-200" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

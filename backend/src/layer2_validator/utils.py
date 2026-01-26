@@ -8,53 +8,63 @@ def parse_validation_response(response):
     confidence = 0.5
 
     response = response.strip()
+    print(f"DEBUG - Raw FLAN-T5 Response: '{response}'")
     
-    # Handle various response formats
+    # Try new simplified format first: "VALID - explanation"
+    simple_match = re.search(r'(VALID|WARNING|REJECTED)\s*-\s*(.+)', response, re.IGNORECASE)
+    if simple_match:
+        status = simple_match.group(1).upper()
+        explanation = simple_match.group(2).strip()
+        confidence = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}[status]
+        return {
+            "status": status,
+            "explanation": explanation,
+            "confidence": confidence
+        }
+    
+    # Try structured format: "STATUS: VALID"
+    status_match = re.search(r'STATUS\s*:\s*(VALID|WARNING|REJECTED)', response, re.IGNORECASE)
+    if status_match:
+        status = status_match.group(1).upper()
+        
+        # Extract explanation
+        explanation_match = re.search(r'EXPLANATION\s*:\s*(.+?)(?:CONFIDENCE|$)', response, re.IGNORECASE | re.DOTALL)
+        if explanation_match:
+            explanation = explanation_match.group(1).strip()
+        
+        # Extract confidence
+        confidence_match = re.search(r'CONFIDENCE\s*:\s*([0-9]*\.?[0-9]+)', response)
+        if confidence_match:
+            confidence = float(confidence_match.group(1))
+            confidence = max(0.0, min(1.0, confidence))
+        else:
+            confidence = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}[status]
+        
+        return {
+            "status": status,
+            "explanation": explanation,
+            "confidence": confidence
+        }
+    
+    # Fallback: keyword detection
     response_upper = response.upper()
-    
-    # Check for simple status words
     if "VALID" in response_upper and "INVALID" not in response_upper:
         status = "VALID"
         explanation = "The question is academically valid and well-formed."
         confidence = 0.85
+    elif "REJECT" in response_upper:
+        status = "REJECTED"
+        explanation = "The question contains errors or is inappropriate."
+        confidence = 0.95
     elif "WARNING" in response_upper or "WARN" in response_upper:
         status = "WARNING"
         explanation = "The question needs clarification or improvement."
         confidence = 0.65
-    elif "REJECT" in response_upper or "INVALID" in response_upper:
-        status = "REJECTED"
-        explanation = "The question contains errors or is inappropriate."
-        confidence = 0.95
-    
-    # Try to extract structured format
-    status_match = re.search(
-        r'STATUS\s*:\s*(VALID|WARNING|REJECTED)',
-        response,
-        re.IGNORECASE
-    )
-    if status_match:
-        status = status_match.group(1).upper()
-
-    # Extract explanation if available
-    explanation_match = re.search(
-        r'EXPLANATION\s*:\s*(.*?)(?:CONFIDENCE|$)',
-        response,
-        re.IGNORECASE | re.DOTALL
-    )
-    if explanation_match:
-        explanation = explanation_match.group(1).strip()
-
-    # Extract confidence if available
-    confidence_match = re.search(
-        r'CONFIDENCE\s*:\s*([0-9]*\.?[0-9]+)',
-        response
-    )
-    if confidence_match:
-        confidence = float(confidence_match.group(1))
-        confidence = max(0.0, min(1.0, confidence))
     else:
-        # Default confidence based on status
-        confidence = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}[status]
+        # Default to WARNING for unparseable responses
+        status = "WARNING"
+        explanation = f"Unable to parse response: {response[:100]}..."
+        confidence = 0.5
 
     return {
         "status": status,

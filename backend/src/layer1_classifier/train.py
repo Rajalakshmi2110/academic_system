@@ -44,6 +44,27 @@ def train_model():
     model.to(device)
     
     train_file = Path('data/processed/train.json')
+    
+    # Use augmented data if available
+    augmented_path = Path('data/processed/augmented_dataset.json')
+    if augmented_path.exists():
+        print("Using augmented dataset to fix format bias")
+        # Split augmented data
+        with open(augmented_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        # 80-20 split
+        split_idx = int(0.8 * len(data))
+        train_data = data[:split_idx]
+        val_data = data[split_idx:]
+        
+        # Save splits
+        train_file.parent.mkdir(exist_ok=True)
+        with open(train_file, 'w', encoding='utf-8') as f:
+            json.dump(train_data, f, indent=2)
+        with open('data/processed/val.json', 'w', encoding='utf-8') as f:
+            json.dump(val_data, f, indent=2)
+    
     train_dataset = QuestionDataset(train_file, tokenizer)
     val_dataset = QuestionDataset('data/processed/val.json', tokenizer)
     

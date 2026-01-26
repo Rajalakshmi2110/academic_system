@@ -37,12 +37,32 @@ class TwoLayerPipeline:
             question (str): Student question to validate
             
         Returns:
-            dict: Complete validation result
+            dict: Complete validation result with intermediate steps
         """
         start_time = time.time()
         
         # Layer 1: Syllabus Relevance Check
+        layer1_start = time.time()
         layer1_result = self.layer1.predict(question, return_confidence=True)
+        layer1_time = (time.time() - layer1_start) * 1000
+        
+        # Prepare intermediate steps
+        intermediate_steps = [
+            {
+                "step": 1,
+                "name": "Layer 1 - DistilBERT Classifier",
+                "description": "Checking syllabus relevance",
+                "input": question,
+                "output": {
+                    "label": layer1_result['label'],
+                    "relevant": layer1_result['relevant'],
+                    "confidence": layer1_result['confidence'],
+                    "probabilities": layer1_result['probabilities']
+                },
+                "time_ms": layer1_time,
+                "status": "IN_SYLLABUS" if layer1_result['relevant'] else "OUT_OF_SYLLABUS"
+            }
+        ]
         
         if not layer1_result['relevant']:
             # Question is out-of-syllabus - return immediately
@@ -55,12 +75,31 @@ class TwoLayerPipeline:
                 'suggestion': 'Please ask questions about network protocols, architectures, or concepts covered in Units I-V.',
                 'confidence': layer1_result['confidence'],
                 'total_latency_ms': (time.time() - start_time) * 1000,
-                'layer1_time_ms': layer1_result['inference_time_ms'],
-                'layer2_time_ms': 0
+                'layer1_time_ms': layer1_time,
+                'layer2_time_ms': 0,
+                'intermediate_steps': intermediate_steps
             }
         
         # Layer 2: Deep Academic Validation
+        layer2_start = time.time()
         layer2_result = self.layer2.validate_question(question)
+        layer2_time = (time.time() - layer2_start) * 1000
+        
+        # Add Layer 2 step
+        intermediate_steps.append({
+            "step": 2,
+            "name": "Layer 2 - FLAN-T5 Validator",
+            "description": "Academic quality validation",
+            "input": question,
+            "output": {
+                "status": layer2_result['status'],
+                "explanation": layer2_result['explanation'],
+                "confidence": layer2_result['confidence'],
+                "raw_response": layer2_result.get('raw_response', '')
+            },
+            "time_ms": layer2_time,
+            "status": layer2_result['status']
+        })
         
         # Format final response
         total_time = (time.time() - start_time) * 1000
@@ -73,8 +112,9 @@ class TwoLayerPipeline:
             'explanation': layer2_result['explanation'],
             'confidence': layer2_result['confidence'],
             'total_latency_ms': total_time,
-            'layer1_time_ms': layer1_result['inference_time_ms'],
-            'layer2_time_ms': layer2_result['inference_time_ms']
+            'layer1_time_ms': layer1_time,
+            'layer2_time_ms': layer2_time,
+            'intermediate_steps': intermediate_steps
         }
     
     def batch_process(self, questions):

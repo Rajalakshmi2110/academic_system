@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import './App.css';
 
+interface IntermediateStep {
+  step: number;
+  name: string;
+  description: string;
+  input: string;
+  output: any;
+  time_ms: number;
+  status: string;
+}
+
 interface ValidationResult {
   question: string;
   layer1_result: string;
@@ -10,6 +20,7 @@ interface ValidationResult {
   message?: string;
   confidence: number;
   total_latency_ms: number;
+  intermediate_steps?: IntermediateStep[];
 }
 
 function App() {
@@ -67,10 +78,10 @@ function App() {
         <header className="header">
           <div className="header-content">
             <div className="logo">
-              <div className="logo-icon">🎓</div>
+              <div className="logo-icon">CA</div>
               <div>
-                <h1>CA3104 Academic Validator</h1>
-                <p>AI-Powered Computer Networks Question Validation</p>
+                <h1>CA3104 Academic Question Validator</h1>
+                <p>Computer Networks</p>
               </div>
             </div>
             <div className="header-badge">Two-Layer AI System</div>
@@ -109,7 +120,7 @@ function App() {
                     {loading ? (
                       <><span className="spinner"></span> Validating...</>
                     ) : (
-                      <>🔍 Validate Question</>
+                      <>Validate Question</>
                     )}
                   </button>
                 </div>
@@ -119,7 +130,7 @@ function App() {
 
           {error && (
             <div className="error-card">
-              <div className="error-icon">⚠️</div>
+              <div className="error-icon">!</div>
               <div>
                 <h3>Connection Error</h3>
                 <p>{error}</p>
@@ -153,7 +164,7 @@ function App() {
               <div className="layers-grid">
                 <div className="layer-card layer1">
                   <div className="layer-header">
-                    <div className="layer-icon">🎯</div>
+                    <div className="layer-icon">L1</div>
                     <div>
                       <h3>Layer 1</h3>
                       <p>Syllabus Relevance</p>
@@ -167,7 +178,7 @@ function App() {
                 {result.layer2_result && (
                   <div className="layer-card layer2">
                     <div className="layer-header">
-                      <div className="layer-icon">🧠</div>
+                      <div className="layer-icon">L2</div>
                       <div>
                         <h3>Layer 2</h3>
                         <p>Academic Quality</p>
@@ -181,20 +192,49 @@ function App() {
               </div>
 
               <div className="explanation-card">
-                <h3>📝 Detailed Explanation</h3>
+                <h3>Detailed Explanation</h3>
                 <p>{result.explanation || result.message}</p>
               </div>
 
+              {result.intermediate_steps && (
+                <div className="steps-card">
+                  <h3>Processing Steps</h3>
+                  <div className="steps-list">
+                    {result.intermediate_steps.map((step, index) => (
+                      <div key={index} className="step-item">
+                        <div className="step-header">
+                          <div className="step-number">Step {step.step}</div>
+                          <div className="step-info">
+                            <h4>{step.name}</h4>
+                            <p>{step.description}</p>
+                          </div>
+                          <div className="step-time">{step.time_ms.toFixed(1)}ms</div>
+                        </div>
+                        <div className="step-status" style={{ color: getStatusColor(step.status) }}>
+                          {step.status}
+                        </div>
+                        <div className="step-output">
+                          <details>
+                            <summary>View Details</summary>
+                            <pre>{JSON.stringify(step.output, null, 2)}</pre>
+                          </details>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="metrics-grid">
                 <div className="metric-card">
-                  <div className="metric-icon">📊</div>
+                  <div className="metric-icon">%</div>
                   <div className="metric-content">
                     <div className="metric-value">{(result.confidence * 100).toFixed(1)}%</div>
                     <div className="metric-label">Confidence Score</div>
                   </div>
                 </div>
                 <div className="metric-card">
-                  <div className="metric-icon">⚡</div>
+                  <div className="metric-icon">ms</div>
                   <div className="metric-content">
                     <div className="metric-value">{result.total_latency_ms.toFixed(0)}ms</div>
                     <div className="metric-label">Processing Time</div>
