@@ -81,8 +81,8 @@ def evaluate_model():
     print(f"Recall: {recall:.4f}")
     print(f"F1-Score: {f1:.4f}")
     print(f"Average inference time: {avg_inference_time:.2f} ms")
-    print(f"Target accuracy (≥85%): {'✓ PASS' if accuracy >= 0.85 else '✗ FAIL'}")
-    print(f"Target inference (<100ms): {'✓ PASS' if avg_inference_time < 100 else '✗ FAIL'}")
+    print(f"Target accuracy (>=85%): {'PASS' if accuracy >= 0.85 else 'FAIL'}")
+    print(f"Target inference (<100ms): {'PASS' if avg_inference_time < 100 else 'FAIL'}")
     
     print("\nConfusion Matrix:")
     cm = confusion_matrix(true_labels, predictions)

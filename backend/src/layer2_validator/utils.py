@@ -18,10 +18,11 @@ def parse_validation_response(response):
             "WARNING": "Question needs clarification or is too broad for proper evaluation.",
             "REJECTED": "Question contains technical errors or incorrect assumptions."
         }
+        confidence_scores = {"VALID": 0.90, "WARNING": 0.65, "REJECTED": 0.95}
         return {
             "status": response.strip().upper(),
             "explanation": status_explanations[response.strip().upper()],
-            "confidence": 0.85
+            "confidence": confidence_scores[response.strip().upper()]
         }
     
     status = "WARNING"
@@ -40,7 +41,7 @@ def parse_validation_response(response):
         explanation = response[:120] if len(response) > 50 else "Contains incorrect technical information."
     elif "valid" in response_lower and "invalid" not in response_lower:
         status = "VALID"
-        confidence = 0.85
+        confidence = 0.88 if len(response) > 30 else 0.75
         explanation = response[:120] if len(response) > 50 else "Question is technically correct and syllabus-relevant."
     elif any(w in response_lower for w in ["vague", "broad", "unclear", "warning"]):
         status = "WARNING"
@@ -63,7 +64,7 @@ def parse_validation_response(response):
         else:
             # Dynamic confidence based on status
             confidence_map = {
-                "VALID": 0.85,
+                "VALID": 0.90,
                 "WARNING": 0.65,
                 "REJECTED": 0.95
             }
@@ -83,7 +84,7 @@ def parse_validation_response(response):
     if simple_match:
         status = simple_match.group(1).upper()
         explanation = simple_match.group(2).strip()
-        confidence_map = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}
+        confidence_map = {"VALID": 0.88, "WARNING": 0.65, "REJECTED": 0.95}
         confidence = confidence_map[status]
         return {
             "status": status,
@@ -98,7 +99,7 @@ def parse_validation_response(response):
             confidence = 0.95
         elif "valid" in response_lower:
             status = "VALID"
-            confidence = 0.85
+            confidence = 0.82
         else:
             status = "WARNING"
             confidence = 0.6

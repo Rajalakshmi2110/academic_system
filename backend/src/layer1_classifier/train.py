@@ -41,9 +41,12 @@ def train_model():
     model = DistilBertForSequenceClassification.from_pretrained(model_name, num_labels=2)
     model.to(device)
     
-    train_file = Path('data/processed/train.json')
+    # Fix all paths
+    base_path = Path(__file__).parent.parent.parent / 'data' / 'processed'
+    train_file = base_path / 'train.json'
+    val_file = base_path / 'val.json'
+    augmented_path = base_path / 'augmented_dataset.json'
     
-    augmented_path = Path('data/processed/augmented_dataset.json')
     if augmented_path.exists():
         print("Using augmented dataset to fix format bias")
         with open(augmented_path, 'r', encoding='utf-8') as f:
@@ -56,11 +59,11 @@ def train_model():
         train_file.parent.mkdir(exist_ok=True)
         with open(train_file, 'w', encoding='utf-8') as f:
             json.dump(train_data, f, indent=2)
-        with open('data/processed/val.json', 'w', encoding='utf-8') as f:
+        with open(val_file, 'w', encoding='utf-8') as f:
             json.dump(val_data, f, indent=2)
     
     train_dataset = QuestionDataset(train_file, tokenizer)
-    val_dataset = QuestionDataset('data/processed/val.json', tokenizer)
+    val_dataset = QuestionDataset(val_file, tokenizer)
     
     train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=16)
