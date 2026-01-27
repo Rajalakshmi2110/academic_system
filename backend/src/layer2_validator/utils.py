@@ -3,6 +3,27 @@ import json
 from pathlib import Path
 
 def parse_validation_response(response):
+    # Hard stop rule to prevent template echo
+    if "VALID | WARNING | REJECTED" in response:
+        return {
+            "status": "WARNING",
+            "explanation": "Model returned template text instead of decision.",
+            "confidence": 0.50
+        }
+    
+    # Fallback for single-word responses
+    if response.strip().upper() in ["VALID", "WARNING", "REJECTED"]:
+        status_explanations = {
+            "VALID": "Question is related to the CA3104 syllabus and is technically correct.",
+            "WARNING": "Question needs clarification or is too broad for proper evaluation.",
+            "REJECTED": "Question contains technical errors or incorrect assumptions."
+        }
+        return {
+            "status": response.strip().upper(),
+            "explanation": status_explanations[response.strip().upper()],
+            "confidence": 0.85
+        }
+    
     status = "WARNING"
     explanation = "Unable to parse model response"
     confidence = 0.5
@@ -10,17 +31,23 @@ def parse_validation_response(response):
     response = response.strip()
     print(f"DEBUG - Raw FLAN-T5 Response: '{response}'")
     
-    simple_match = re.search(r'(VALID|WARNING|REJECTED)\s*-\s*(.+)', response, re.IGNORECASE)
-    if simple_match:
-        status = simple_match.group(1).upper()
-        explanation = simple_match.group(2).strip()
-        confidence = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}[status]
-        return {
-            "status": status,
-            "explanation": explanation,
-            "confidence": confidence
-        }
+    # Keyword-based safety net for better fallback handling
+    response_lower = response.lower()
     
+    if any(w in response_lower for w in ["incorrect", "wrong", "false", "not correct", "error"]):
+        status = "REJECTED"
+        confidence = 0.95
+        explanation = response[:120] if len(response) > 50 else "Contains incorrect technical information."
+    elif "valid" in response_lower and "invalid" not in response_lower:
+        status = "VALID"
+        confidence = 0.85
+        explanation = response[:120] if len(response) > 50 else "Question is technically correct and syllabus-relevant."
+    elif any(w in response_lower for w in ["vague", "broad", "unclear", "warning"]):
+        status = "WARNING"
+        confidence = 0.65
+        explanation = response[:120] if len(response) > 50 else "Question needs clarification or is too broad."
+    
+    # Try structured parsing first
     status_match = re.search(r'STATUS\s*:\s*(VALID|WARNING|REJECTED)', response, re.IGNORECASE)
     if status_match:
         status = status_match.group(1).upper()
@@ -34,7 +61,16 @@ def parse_validation_response(response):
             confidence = float(confidence_match.group(1))
             confidence = max(0.0, min(1.0, confidence))
         else:
-            confidence = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}[status]
+            # Dynamic confidence based on status
+            confidence_map = {
+                "VALID": 0.85,
+                "WARNING": 0.65,
+                "REJECTED": 0.95
+            }
+            confidence = confidence_map.get(status, 0.6)
+            # Boost confidence if explanation is detailed
+            if len(explanation) > 50:
+                confidence = min(1.0, confidence + 0.05)
         
         return {
             "status": status,
@@ -42,23 +78,32 @@ def parse_validation_response(response):
             "confidence": confidence
         }
     
-    response_upper = response.upper()
-    if "VALID" in response_upper and "INVALID" not in response_upper:
-        status = "VALID"
-        explanation = "The question is academically valid and well-formed."
-        confidence = 0.85
-    elif "REJECT" in response_upper:
-        status = "REJECTED"
-        explanation = "The question contains errors or is inappropriate."
-        confidence = 0.95
-    elif "WARNING" in response_upper or "WARN" in response_upper:
-        status = "WARNING"
-        explanation = "The question needs clarification or improvement."
-        confidence = 0.65
-    else:
-        status = "WARNING"
-        explanation = f"Unable to parse response: {response[:100]}..."
-        confidence = 0.5
+    # Simple pattern matching fallback
+    simple_match = re.search(r'(VALID|WARNING|REJECTED)\s*-\s*(.+)', response, re.IGNORECASE)
+    if simple_match:
+        status = simple_match.group(1).upper()
+        explanation = simple_match.group(2).strip()
+        confidence_map = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}
+        confidence = confidence_map[status]
+        return {
+            "status": status,
+            "explanation": explanation,
+            "confidence": confidence
+        }
+    
+    # Final fallback with keyword detection
+    if not status_match:
+        if "reject" in response_lower:
+            status = "REJECTED"
+            confidence = 0.95
+        elif "valid" in response_lower:
+            status = "VALID"
+            confidence = 0.85
+        else:
+            status = "WARNING"
+            confidence = 0.6
+        
+        explanation = response[:120] if response else "Unable to parse response properly."
 
     return {
         "status": status,

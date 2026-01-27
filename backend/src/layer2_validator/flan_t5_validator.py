@@ -26,7 +26,7 @@ class FLANT5Validator:
     def validate_question(self, question):
         start_time = time.time()
         
-        prompt = self.prompt_template.format(question=question)
+        prompt = self.prompt_template.replace("{question}", question)
         
         inputs = self.tokenizer(
             prompt,
@@ -38,10 +38,11 @@ class FLANT5Validator:
         with torch.no_grad():
             outputs = self.model.generate(
                 **inputs,
-                max_length=150,
-                num_beams=3,
-                temperature=0.7,
-                do_sample=True,
+                max_new_tokens=150,
+                num_beams=1,
+                do_sample=False,
+                temperature=0.0,
+                early_stopping=True,
                 pad_token_id=self.tokenizer.eos_token_id
             )
         
