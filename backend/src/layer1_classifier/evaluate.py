@@ -1,7 +1,7 @@
 import json
 import torch
 from torch.utils.data import DataLoader
-from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+from transformers import AutoTokenizer, DistilBertForSequenceClassification
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support, classification_report, confusion_matrix
 import numpy as np
 from pathlib import Path
@@ -42,12 +42,12 @@ def evaluate_model():
         print("Error: Model not found. Run training first.")
         return False
     
-    tokenizer = DistilBertTokenizer.from_pretrained(model_path)
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
     model = DistilBertForSequenceClassification.from_pretrained(model_path)
     model.to(device)
     model.eval()
     
-    test_dataset = QuestionDataset('data/processed/test.json', tokenizer)
+    test_dataset = QuestionDataset('../../data/processed/test.json', tokenizer)
     test_loader = DataLoader(test_dataset, batch_size=16)
     
     predictions = []

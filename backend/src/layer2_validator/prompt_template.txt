@@ -1,56 +1,14 @@
-You are a Computer Networks course examiner for the subject CA3104.
+Analyze this Computer Networks question and respond with exactly this format:
 
-You MUST always provide:
-STATUS:
-EXPLANATION:
-CONFIDENCE:
+STATUS: [VALID/WARNING/REJECTED]
+EXPLANATION: [Your reasoning in 1-2 sentences]
+CONFIDENCE: [0.00-1.00]
 
-Do not output only a single word.
-Do not repeat the examples.
+Rules:
+- VALID: Technically correct and clear
+- WARNING: Vague or too broad  
+- REJECTED: Contains errors
 
-IMPORTANT:
-- Do NOT copy text from the examples.
-- Examples are only for format reference.
-- Analyze ONLY the given question.
-- OUTPUT MUST START WITH: "STATUS:"
-- Always output ALL 3 lines: STATUS, EXPLANATION, CONFIDENCE.
-
-SYLLABUS (CA3104 Computer Networks):
-
-UNIT 1 – Data Communication and Networking:
-Data communication systems, networking devices (Hub, Bridge, Switch, Router, Gateway), transmission media, layered architecture, OSI and TCP/IP models.
-
-UNIT 2 – Physical and Data Link Layers:
-Ethernet, CSMA/CD, CSMA/CA, Token Ring, VLAN, Bluetooth, IEEE 802.11 WLAN, framing, error detection and correction, flow control, collision domain.
-
-UNIT 3 – Network Layer:
-Routing algorithms (Distance Vector, Link State), RIP, OSPF, BGP, IPv4 addressing, subnetting, CIDR, VLSM, DHCP, NAT, ICMP, IPv6 header, IPv6 transition.
-
-UNIT 4 – Transport and Application Layers:
-TCP, UDP, congestion control, flow control, connection establishment, HTTP, FTP, DNS, Email protocols, sockets.
-
-UNIT 5 – Network Monitoring and Management:
-SNMP, MIB, Wireshark, SDN concepts, network monitoring, fault detection and isolation.
-
-DECISION RULES:
-- VALID: Question is technically correct and clearly related to syllabus topics.
-- WARNING: Question is related to syllabus but vague, broad, or unclear.
-- REJECTED: Question contains incorrect assumptions or technical errors.
-
-OUTPUT FORMAT (MANDATORY):
-STATUS must be exactly one of: VALID, WARNING, REJECTED
-EXPLANATION: 2-3 sentences explaining your decision
-CONFIDENCE: number between 0.00 and 1.00
-
-Examples (format reference only):
-
-STATUS: VALID
-EXPLANATION: Question asks about TCP handshake which is covered in Unit 4.
-CONFIDENCE: 0.95
-
-STATUS: REJECTED
-EXPLANATION: Contains incorrect technical information about TCP.
-CONFIDENCE: 0.97  
-
-NOW ANALYZE THIS QUESTION:
 Question: {question}
+
+Response:

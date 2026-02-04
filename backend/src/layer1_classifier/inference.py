@@ -1,5 +1,5 @@
 import torch
-from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+from transformers import AutoTokenizer, DistilBertForSequenceClassification
 from pathlib import Path
 import time
 import json
@@ -12,7 +12,7 @@ class Layer1Classifier:
         if not self.model_path.exists():
             raise FileNotFoundError(f"Model not found at {model_path}. Run training first.")
         
-        self.tokenizer = DistilBertTokenizer.from_pretrained(self.model_path)
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_path)
         self.model = DistilBertForSequenceClassification.from_pretrained(self.model_path)
         self.model.to(self.device)
         self.model.eval()
