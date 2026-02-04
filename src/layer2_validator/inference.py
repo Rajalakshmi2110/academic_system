@@ -1,8 +1,18 @@
 import json
 import time
+import sys
 from pathlib import Path
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+
 from src.layer1_classifier.inference import Layer1Classifier
-from src.layer2_validator.flan_t5_validator import FLANT5Validator
+
+# Use rule-based validator instead of FLAN-T5 for faster, more reliable results
+try:
+    from src.layer2_validator.rule_based_validator import RuleBasedValidator as Layer2Validator
+except ImportError:
+    from src.layer2_validator.flan_t5_validator import FLANT5Validator as Layer2Validator
 
 class TwoLayerPipeline:
     def __init__(self):
@@ -17,10 +27,10 @@ class TwoLayerPipeline:
             print(f"[ERROR] Layer 1 failed to load: {e}")
             raise
         
-        # Initialize Layer 2 (FLAN-T5)
+        # Initialize Layer 2 (Rule-Based Validator)
         try:
-            self.layer2 = FLANT5Validator()
-            print("[OK] Layer 2 (FLAN-T5) loaded successfully")
+            self.layer2 = Layer2Validator()
+            print("[OK] Layer 2 (Rule-Based Validator) loaded successfully")
         except Exception as e:
             print(f"[ERROR] Layer 2 failed to load: {e}")
             raise

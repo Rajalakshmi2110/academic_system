@@ -1,6 +1,6 @@
 # Academic Doubt Clarification System
 
-Two-Layer Intent Classification System for Academic Question Validation
+Two-Layer Intent Classification System for Academic Question Validation - Data Structures
 
 ## Project Structure
 - `data/` - Dataset files (raw and processed)

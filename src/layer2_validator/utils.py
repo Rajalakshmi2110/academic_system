@@ -4,50 +4,24 @@ from pathlib import Path
 
 def parse_validation_response(response):
     status = "WARNING"
-    explanation = "Unable to parse model response"
-    confidence = 0.5
+    explanation = "Question needs review"
+    confidence = 0.65
 
-    response = response.strip()
+    response = response.strip().upper()
 
-    # Single-word fallback
-    if response.upper() in ["VALID", "WARNING", "REJECTED"]:
-        status = response.upper()
-        explanation = f"The question was classified as {status.lower()}."
-        confidence = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}[status]
-        return {
-            "status": status,
-            "explanation": explanation,
-            "confidence": confidence
-        }
-
-    # Status
-    status_match = re.search(
-        r'STATUS\s*:\s*(VALID|WARNING|REJECTED)',
-        response,
-        re.IGNORECASE
-    )
-    if status_match:
-        status = status_match.group(1).upper()
-
-    # Explanation (multiline safe)
-    explanation_match = re.search(
-        r'EXPLANATION\s*:\s*(.*?)(CONFIDENCE|$)',
-        response,
-        re.IGNORECASE | re.DOTALL
-    )
-    if explanation_match:
-        explanation = explanation_match.group(1).strip()
-
-    # Confidence
-    confidence_match = re.search(
-        r'CONFIDENCE\s*:\s*([0-9]*\.?[0-9]+)',
-        response
-    )
-    if confidence_match:
-        confidence = float(confidence_match.group(1))
-        confidence = max(0.0, min(1.0, confidence))
-    else:
-        confidence = {"VALID": 0.85, "WARNING": 0.65, "REJECTED": 0.95}[status]
+    # Extract status from response
+    if "VALID" in response and "REJECTED" not in response:
+        status = "VALID"
+        explanation = "Question is clear and factually correct"
+        confidence = 0.85
+    elif "REJECTED" in response:
+        status = "REJECTED"
+        explanation = "Question contains incorrect facts or assumptions"
+        confidence = 0.90
+    elif "WARNING" in response:
+        status = "WARNING"
+        explanation = "Question is vague or too broad"
+        confidence = 0.70
 
     return {
         "status": status,

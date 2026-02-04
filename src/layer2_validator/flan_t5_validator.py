@@ -4,10 +4,14 @@ from pathlib import Path
 import re
 import json
 import time
-from .utils import parse_validation_response
+
+try:
+    from .utils import parse_validation_response
+except ImportError:
+    from utils import parse_validation_response
 
 class FLANT5Validator:
-    def __init__(self, model_name='google/flan-t5-base'):
+    def __init__(self, model_name='google/flan-t5-large'):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.model_name = model_name
         
@@ -52,10 +56,10 @@ class FLANT5Validator:
         with torch.no_grad():
             outputs = self.model.generate(
                 **inputs,
-                max_length=150,
-                num_beams=3,
-                temperature=0.7,
-                do_sample=True,
+                max_length=50,
+                num_beams=1,
+                temperature=0.3,
+                do_sample=False,
                 pad_token_id=self.tokenizer.eos_token_id
             )
         

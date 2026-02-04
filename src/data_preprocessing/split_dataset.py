@@ -6,29 +6,13 @@ def split_dataset():
     # Set fixed seed for reproducible results
     random.seed(42)
     
-    # Define file paths
-    raw_data_path = Path("data/raw/question_dataset_full.json")
+    # Define file paths - use DS dataset
+    raw_data_path = Path("data/raw/ds_questions_dataset.json")
     processed_dir = Path("data/processed")
     
-    # Load the full dataset (handle multiple JSON arrays)
+    # Load the full dataset
     with open(raw_data_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-    
-    # Split content by ']\n\n[' to separate multiple arrays
-    array_parts = content.split(']\n\n[')
-    data = []
-    
-    for i, part in enumerate(array_parts):
-        # Add brackets back to make valid JSON
-        if i == 0:
-            json_str = part + ']'
-        elif i == len(array_parts) - 1:
-            json_str = '[' + part
-        else:
-            json_str = '[' + part + ']'
-        
-        # Parse and extend data
-        data.extend(json.loads(json_str))
+        data = json.load(f)
     
     # Shuffle the data randomly
     random.shuffle(data)

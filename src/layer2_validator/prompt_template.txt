@@ -1,43 +1,15 @@
-You are an academic examiner for a Computer Networks course.
+Analyze this data structures question and classify it.
 
-Analyze the student question for factual correctness and syllabus alignment.
+Rules:
+- VALID: Question is specific, clear, and factually correct
+- WARNING: Question is too vague or overly broad  
+- REJECTED: Question contains factually incorrect statements
 
-DECISION RULES:
-- VALID: The question is factually correct and well-formed.
-- WARNING: The question is vague, overly broad, or partially correct.
-- REJECTED: The question contains incorrect assumptions or false statements.
-
-IMPORTANT RULES (STRICT):
-- If the question contains ANY wrong fact, you MUST return REJECTED.
-- Do NOT guess or assume intent.
-- Do NOT repeat words or labels.
-- Produce exactly ONE decision.
-
-OUTPUT FORMAT (MANDATORY – DO NOT DEVIATE):
-
-STATUS: <VALID | WARNING | REJECTED>
-EXPLANATION: <2–3 clear sentences explaining the decision>
-CONFIDENCE: <number between 0.00 and 1.00>
-
-STOP GENERATION IMMEDIATELY AFTER CONFIDENCE.
-
-EXAMPLES:
-
-Question: Explain the TCP three-way handshake
-STATUS: VALID
-EXPLANATION: TCP uses a three-way handshake involving SYN, SYN-ACK, and ACK packets for connection establishment.
-CONFIDENCE: 0.95
-
-Question: TCP uses a five-way handshake for security
-STATUS: REJECTED
-EXPLANATION: TCP uses a three-way handshake, not a five-way handshake. The premise of the question is incorrect.
-CONFIDENCE: 0.97
-
-Question: Explain network protocols and security
-STATUS: WARNING
-EXPLANATION: The question is broad and lacks specificity regarding protocols covered in the syllabus.
-CONFIDENCE: 0.72
-
-NOW ANALYZE THIS QUESTION STRICTLY:
+Examples:
+"Explain the difference between stack and queue" -> VALID
+"Explain data structures" -> WARNING (too broad)
+"A stack follows FIFO principle" -> REJECTED (incorrect fact)
 
 Question: {question}
+
+Classification:
