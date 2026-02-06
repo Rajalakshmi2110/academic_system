@@ -26,6 +26,9 @@ backend/models/
 *.pth
 *.ckpt
 
+# PDFs (uploaded via UI, not needed in git)
+*.pdf
+
 # IDE
 .vscode/
 .idea/
