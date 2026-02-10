@@ -1,4 +1,3 @@
-import json
 import time
 import sys
 from pathlib import Path
@@ -122,11 +121,3 @@ class TwoLayerPipeline:
             'layer1_time_ms': layer1_result['inference_time_ms'],
             'layer2_time_ms': layer2_result['inference_time_ms']
         }
-    
-    def batch_process(self, questions):
-        """Process multiple questions through the pipeline"""
-        results = []
-        for question in questions:
-            result = self.process_question(question)
-            results.append(result)
-        return results

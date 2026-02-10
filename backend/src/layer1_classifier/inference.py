@@ -2,7 +2,6 @@ import torch
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 from pathlib import Path
 import time
-import json
 
 class Layer1Classifier:
     def __init__(self, model_path='models/layer1_distilbert'):
@@ -117,44 +116,3 @@ class Layer1Classifier:
             results.append(result)
         
         return results
-
-def demo_inference():
-    """Demo function showing how to use the classifier"""
-    try:
-        classifier = Layer1Classifier()
-        
-        # Test questions
-        test_questions = [
-            "Explain the TCP three-way handshake process",
-            "What is the best programming language for web development?",
-            "Define CSMA/CD protocol in Ethernet networks",
-            "How do I fix my WiFi connection at home?"
-        ]
-        
-        print("=== LAYER 1 INFERENCE DEMO ===")
-        
-        # Single predictions
-        for question in test_questions:
-            result = classifier.predict(question, return_confidence=True)
-            status = "IN-SYLLABUS" if result['relevant'] else "OUT-OF-SYLLABUS"
-            print(f"Q: {question}")
-            print(f"Prediction: {status} (confidence: {result['confidence']:.3f})")
-            print(f"Inference time: {result['inference_time_ms']:.2f} ms")
-            print("-" * 50)
-        
-        # Batch prediction
-        print("\nBatch prediction:")
-        batch_results = classifier.batch_predict(test_questions)
-        for result in batch_results:
-            status = "IN-SYLLABUS" if result['relevant'] else "OUT-OF-SYLLABUS"
-            print(f"{status}: {result['question'][:50]}...")
-        
-        avg_time = sum(r['inference_time_ms'] for r in batch_results) / len(batch_results)
-        print(f"Average batch inference time: {avg_time:.2f} ms per question")
-        
-    except FileNotFoundError as e:
-        print(f"Error: {e}")
-        print("Please run training first: python src/layer1_classifier/train.py")
-
-if __name__ == "__main__":
-    demo_inference()

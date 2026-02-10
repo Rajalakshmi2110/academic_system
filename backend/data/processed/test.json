@@ -1,132 +1,102 @@
 [
   {
-    "id": "Q506",
-    "question": "Who won the MVP award in the NBA last season?",
+    "id": "Q571",
+    "question": "What is 'hashing' and how does it provide O(1) search time?",
+    "label": 1
+  },
+  {
+    "id": "Q488",
+    "question": "Describe the 'in-order successor' logic in a binary search tree.",
+    "label": 1
+  },
+  {
+    "id": "Q1058",
+    "question": "explain the purpose of the static keyword in Java",
     "label": 0
   },
   {
-    "id": "Q522",
-    "question": "Describe the 'path relaxation' step in Dijkstra\u2019s algorithm.",
+    "id": "Q677",
+    "question": "What is 'amortized time complexity' and why is it used for splay trees?",
     "label": 1
   },
   {
-    "id": "Q142",
-    "question": "Who directed the movie 'Interstellar'?",
+    "id": "Q065",
+    "question": "How does hash table work?",
+    "label": 1
+  },
+  {
+    "id": "Q139",
+    "question": "What are the characteristics of a Impressionist painting?",
     "label": 0
   },
   {
-    "id": "Q923",
-    "question": "What is 'primary clustering' in linear probing?",
-    "label": 1
-  },
-  {
-    "id": "Q967",
-    "question": "How to perform a basic tune-up on a classic car engine?",
+    "id": "Q469",
+    "question": "Which planet in our solar system is known as the 'Red Planet'?",
     "label": 0
   },
   {
-    "id": "Q409",
-    "question": "What are the common breeds of domestic cats found in North America?",
+    "id": "Q121",
+    "question": "What are the primary ingredients in a Margherita pizza?",
     "label": 0
   },
   {
-    "id": "Q598",
-    "question": "What is 'external sorting' and when is it necessary?",
+    "id": "Q146",
+    "question": "Describe the 'sink down' or 'bubble down' process in a min-heap.",
     "label": 1
   },
   {
-    "id": "Q439",
-    "question": "How do you identify a first-edition antique book?",
+    "id": "Q015",
+    "question": "Explain Stack ADT operations",
+    "label": 1
+  },
+  {
+    "id": "Q1213",
+    "label": 0,
+    "question": "how to implement a queue in C++ using a linked list"
+  },
+  {
+    "id": "Q472",
+    "question": "How to grow an organic vegetable garden in a backyard?",
     "label": 0
   },
   {
-    "id": "Q599",
-    "question": "What is the population of the city of London?",
+    "id": "Q044",
+    "question": "How does symbol table work in hashing?",
+    "label": 1
+  },
+  {
+    "id": "Q693",
+    "question": "How do you identify different constellations in the night sky?",
     "label": 0
   },
   {
-    "id": "Q765",
-    "question": "What is an 'ISAM' file and what indexing technique does it use?",
+    "id": "Q132",
+    "question": "How is a sparse matrix stored efficiently using a multi-linked list?",
     "label": 1
   },
   {
-    "id": "Q270",
-    "question": "Describe the properties of a 'Red-Black' tree regarding node coloring.",
+    "id": "Q461",
+    "question": "Explain the 'Extract-Min' operation in a binomial heap.",
     "label": 1
   },
   {
-    "id": "Q552",
-    "question": "Describe 'depth-first search' (DFS) and its use of a stack.",
+    "id": "Q508",
+    "question": "What is a 'complete m-way search tree' and its properties?",
     "label": 1
   },
   {
-    "id": "Q1018",
-    "question": "What are queues?",
-    "label": 1
-  },
-  {
-    "id": "Q763",
-    "question": "What are the most popular tourist attractions in Rome, Italy?",
+    "id": "Q248",
+    "question": "How does the international space station maintain its orbit around Earth?",
     "label": 0
   },
   {
-    "id": "Q253",
-    "question": "What is 'lazy deletion' in the context of open addressing hashing?",
+    "id": "Q925",
+    "question": "Explain the 'NLR' (Node-Left-Right) traversal algorithm.",
     "label": 1
   },
   {
-    "id": "Q143",
-    "question": "Explain the difference between a directed acyclic graph (DAG) and a tree.",
-    "label": 1
-  },
-  {
-    "id": "Q272",
-    "question": "What are the health benefits of drinking green tea every day?",
-    "label": 0
-  },
-  {
-    "id": "Q147",
-    "question": "What is a 'sentinel node' in a doubly linked list?",
-    "label": 1
-  },
-  {
-    "id": "Q470",
-    "question": "Describe the 'NLR' traversal algorithm for binary search trees.",
-    "label": 1
-  },
-  {
-    "id": "Q659",
-    "question": "What is a 'sink' node in a directed graph?",
-    "label": 1
-  },
-  {
-    "id": "Q406",
-    "question": "Describe the cultural significance of the Renaissance period in Europe.",
-    "label": 0
-  },
-  {
-    "id": "Q512",
-    "question": "What are the major rivers that flow through the continent of Africa?",
-    "label": 0
-  },
-  {
-    "id": "Q672",
-    "question": "What are the primary differences between Hinduism and Buddhism?",
-    "label": 0
-  },
-  {
-    "id": "Q218",
-    "question": "Who won the Best Picture award at the 2023 Oscars?",
-    "label": 0
-  },
-  {
-    "id": "Q323",
-    "question": "How is a sparse matrix represented efficiently using a multi-linked list?",
-    "label": 1
-  },
-  {
-    "id": "Q736",
-    "question": "What are the basic rules of professional American football?",
+    "id": "Q1060",
+    "question": "what is the difference between a constructor and a method in Java",
     "label": 0
   },
   {
@@ -135,138 +105,68 @@
     "label": 1
   },
   {
-    "id": "Q581",
-    "question": "Who are the major figures in Ancient Egyptian history?",
+    "id": "Q765",
+    "question": "What is an 'ISAM' file and what indexing technique does it use?",
+    "label": 1
+  },
+  {
+    "id": "Q1136",
+    "question": "how to use inheritance in Python classes",
     "label": 0
   },
   {
-    "id": "Q217",
-    "question": "What is the 'Josephus Problem' and how is a circular linked list used to solve it?",
-    "label": 1
-  },
-  {
-    "id": "Q068",
-    "question": "Describe the concept of Big O notation",
-    "label": 1
-  },
-  {
-    "id": "Q275",
-    "question": "Who are the most famous poets of the Romantic era?",
+    "id": "Q639",
+    "question": "What is the distance between the Earth and the Moon in kilometers?",
     "label": 0
   },
   {
-    "id": "Q411",
-    "question": "What is an 'Abstract Data Type' and how does it hide implementation details?",
-    "label": 1
-  },
-  {
-    "id": "Q324",
-    "question": "What are the top three highest-grossing movies in history?",
+    "id": "Q412",
+    "question": "How do you calculate the interest rate for a standard savings account?",
     "label": 0
   },
   {
-    "id": "Q825",
-    "question": "Explain the 'folding method' of hashing for large numeric keys.",
+    "id": "Q434",
+    "question": "Describe the 'bubble up' process when inserting into a binary max-heap.",
     "label": 1
   },
   {
-    "id": "Q033",
-    "question": "What are biconnected components?",
+    "id": "Q867",
+    "question": "Explain the 'transitive closure' of a graph and its calculation via Warshall's algorithm.",
     "label": 1
   },
   {
-    "id": "Q842",
-    "question": "What are the main differences between a flute and a piccolo?",
+    "id": "Q1142",
+    "question": "how to use the @property decorator in Python for encapsulation",
     "label": 0
   },
   {
-    "id": "Q235",
-    "question": "What is a 'dense index' versus a 'sparse index' in file organization?",
-    "label": 1
-  },
-  {
-    "id": "Q058",
-    "question": "What is blockchain technology?",
+    "id": "Q339",
+    "question": "What is the most popular holiday destination in Asia?",
     "label": 0
   },
   {
-    "id": "Q795",
-    "question": "What is an 'Activity Network Diagram' (AND)?",
+    "id": "Q974",
+    "question": "Describe the 'row-major' and 'column-major' order of 2D array storage.",
     "label": 1
   },
   {
-    "id": "Q787",
-    "question": "What are the primary colors in the RYB color model?",
+    "id": "Q263",
+    "question": "How to prepare for a marathon as a beginner runner?",
     "label": 0
   },
   {
-    "id": "Q864",
-    "question": "Describe the 'triangular inequality' property of shortest path algorithms.",
+    "id": "Q258",
+    "question": "Describe the 'partition exchange' sort (Quick Sort) algorithm.",
     "label": 1
   },
   {
-    "id": "Q333",
-    "question": "What are the common side effects of drinking too much coffee?",
+    "id": "Q142",
+    "question": "Who directed the movie 'Interstellar'?",
     "label": 0
   },
   {
-    "id": "Q702",
-    "question": "Explain the 'path matrix' of a graph and how it is constructed.",
-    "label": 1
-  },
-  {
-    "id": "Q225",
-    "question": "Explain the 'division method' for hashing an integer key.",
-    "label": 1
-  },
-  {
-    "id": "Q571",
-    "question": "What is 'hashing' and how does it provide O(1) search time?",
-    "label": 1
-  },
-  {
-    "id": "Q705",
-    "question": "What is the 'degree' of an M-way search tree?",
-    "label": 1
-  },
-  {
-    "id": "Q656",
-    "question": "What is a 'self-referential structure' in C and how is it used in nodes?",
-    "label": 1
-  },
-  {
-    "id": "Q277",
-    "question": "What is 'amortized time complexity' and why is it used for splay trees?",
-    "label": 1
-  },
-  {
-    "id": "Q389",
-    "question": "What is the 'archive bit' in a file's attribute flag?",
-    "label": 1
-  },
-  {
-    "id": "Q474",
-    "question": "What is 'internal sorting' and in what scenario is it applicable?",
-    "label": 1
-  },
-  {
-    "id": "Q168",
-    "question": "What is a 'source' vertex in a directed graph?",
-    "label": 1
-  },
-  {
-    "id": "Q251",
-    "question": "What are the core differences between espresso and drip coffee?",
-    "label": 0
-  },
-  {
-    "id": "Q747",
-    "question": "What is the 'path relaxation' step in Dijkstra's algorithm?",
-    "label": 1
-  },
-  {
-    "id": "Q547",
-    "question": "What is a 'multi-graph' and how does it differ from a simple graph?",
+    "id": "Q996",
+    "question": "Describe the 'amortized time complexity' of operations on a splay tree.",
     "label": 1
   },
   {
@@ -275,19 +175,49 @@
     "label": 1
   },
   {
-    "id": "Q949",
-    "question": "Explain the 'convergence property' in shortest paths.",
+    "id": "Q1189",
+    "label": 0,
+    "question": "what is the purpose of the ArrayList class in Java"
+  },
+  {
+    "id": "Q494",
+    "question": "Describe the 'bubble down' process when deleting from a min-heap.",
     "label": 1
   },
   {
-    "id": "Q624",
-    "question": "Who wrote the classic novel 'To Kill a Mockingbird'?",
+    "id": "Q119",
+    "question": "How do you perform an in-order traversal of a threaded binary tree?",
+    "label": 1
+  },
+  {
+    "id": "Q491",
+    "question": "Explain the 'amortized time complexity' of operations in a splay tree.",
+    "label": 1
+  },
+  {
+    "id": "Q630",
+    "question": "How do you identify a genuine leather product from a synthetic one?",
     "label": 0
   },
   {
-    "id": "Q074",
-    "question": "Explain REST API",
+    "id": "Q744",
+    "question": "What is a 'bridge' in an undirected graph and why is it important?",
+    "label": 1
+  },
+  {
+    "id": "Q230",
+    "question": "Who is the artist behind the famous painting 'The Starry Night'?",
     "label": 0
+  },
+  {
+    "id": "Q040",
+    "question": "What is heap sort?",
+    "label": 1
+  },
+  {
+    "id": "Q1001",
+    "question": "Explain data structures",
+    "label": 1
   },
   {
     "id": "Q664",
@@ -295,279 +225,139 @@
     "label": 1
   },
   {
-    "id": "Q700",
-    "question": "Explain the 'convergence property' in shortest path algorithms.",
+    "id": "Q002",
+    "question": "What is the difference between stack and queue?",
     "label": 1
   },
   {
-    "id": "Q1014",
-    "question": "What is space complexity?",
-    "label": 1
-  },
-  {
-    "id": "Q274",
-    "question": "What is a 'header node' in a grounded header linked list?",
-    "label": 1
-  },
-  {
-    "id": "Q687",
-    "question": "What are the most famous landmarks located in Paris, France?",
+    "id": "Q1087",
+    "question": "how to use the C++ STL string class",
     "label": 0
   },
   {
-    "id": "Q215",
-    "question": "What is the history of the Olympic Games in Ancient Greece?",
+    "id": "Q331",
+    "question": "Describe the 'sequential representation' of a binary tree using a one-dimensional array.",
+    "label": 1
+  },
+  {
+    "id": "Q766",
+    "question": "What is the capital of Japan?",
     "label": 0
   },
   {
-    "id": "Q364",
-    "question": "Explain the 'multi-list' representation of a graph.",
-    "label": 1
-  },
-  {
-    "id": "Q380",
-    "question": "What is the 'root list' in a Fibonacci heap?",
-    "label": 1
-  },
-  {
-    "id": "Q167",
-    "question": "Describe the 'Extract-Min' procedure in a Fibonacci heap.",
-    "label": 1
-  },
-  {
-    "id": "Q374",
-    "question": "Explain the 'LRN' (Left-Right-Node) traversal of a binary tree.",
-    "label": 1
-  },
-  {
-    "id": "Q855",
-    "question": "Explain the difference between internal and external sorting techniques.",
-    "label": 1
-  },
-  {
-    "id": "Q651",
-    "question": "How do you calculate the interest on a mortgage using a fixed rate?",
+    "id": "Q1127",
+    "question": "what does the push() method do in JavaScript arrays",
     "label": 0
   },
   {
-    "id": "Q465",
-    "question": "What is a 'header node' in a grounded header linked list?",
-    "label": 1
+    "id": "Q1216",
+    "label": 0,
+    "question": "explain the use of a priority queue in Python using the heapq module"
   },
   {
-    "id": "Q998",
-    "question": "Explain the 'optimal substructure' property of graph algorithms.",
-    "label": 1
-  },
-  {
-    "id": "Q990",
-    "question": "What are 'sentinel values' in a hash table using open addressing?",
-    "label": 1
-  },
-  {
-    "id": "Q104",
-    "question": "Explain the zig-zag step in a splay tree splaying operation.",
-    "label": 1
-  },
-  {
-    "id": "Q888",
-    "question": "Describe the 'bubble down' process when deleting from a min-heap.",
-    "label": 1
-  },
-  {
-    "id": "Q1022",
-    "question": "What are sorting algorithms?",
-    "label": 1
-  },
-  {
-    "id": "Q876",
-    "question": "Describe the 'sequential representation' of a binary tree using an array.",
-    "label": 1
-  },
-  {
-    "id": "Q082",
-    "question": "Explain chaining in hash tables",
-    "label": 1
-  },
-  {
-    "id": "Q297",
-    "question": "Explain the 'LRN' (Left-Right-Node) traversal algorithm.",
-    "label": 1
-  },
-  {
-    "id": "Q792",
-    "question": "What is 'secondary clustering' in hashing?",
-    "label": 1
-  },
-  {
-    "id": "Q234",
-    "question": "Describe the 'triangular inequality' property of shortest paths in graphs.",
-    "label": 1
-  },
-  {
-    "id": "Q678",
-    "question": "What are the signs and symptoms of a typical seasonal flu?",
+    "id": "Q1139",
+    "question": "what is an abstract method in a Java class",
     "label": 0
   },
   {
-    "id": "Q047",
-    "question": "What is sequential file organization?",
-    "label": 1
-  },
-  {
-    "id": "Q072",
-    "question": "How to use Git for version control?",
+    "id": "Q612",
+    "question": "Which team won the first-ever FIFA World Cup in 1930?",
     "label": 0
   },
   {
-    "id": "Q722",
-    "question": "Describe the 'zig' operation in a splay tree when N is a child of root.",
-    "label": 1
-  },
-  {
-    "id": "Q197",
-    "question": "Explain the 'tail recursion' concept and its efficiency in stacks.",
-    "label": 1
-  },
-  {
-    "id": "Q592",
-    "question": "What is an 'adjacency list' and its space efficiency?",
-    "label": 1
-  },
-  {
-    "id": "Q371",
-    "question": "What are 'sentinel values' in a hash table using open addressing?",
-    "label": 1
-  },
-  {
-    "id": "Q883",
-    "question": "What is 'secondary storage' and why are B-trees particularly suitable for it?",
-    "label": 1
-  },
-  {
-    "id": "Q907",
-    "question": "Explain the 'optimal substructure' property of graph algorithms.",
-    "label": 1
-  },
-  {
-    "id": "Q634",
-    "question": "Describe the 'mid-square method' of hashing for a numeric key.",
-    "label": 1
-  },
-  {
-    "id": "Q644",
-    "question": "Explain the concept of 'cylinder surface indexing' in file organization.",
-    "label": 1
-  },
-  {
-    "id": "Q850",
-    "question": "What is 'secondary clustering' and how does it impact quadratic probing?",
-    "label": 1
-  },
-  {
-    "id": "Q301",
-    "question": "Explain the difference between a grounded header linked list and a circular header linked list.",
-    "label": 1
-  },
-  {
-    "id": "Q566",
-    "question": "What are the primary causes of the French Revolution?",
+    "id": "Q218",
+    "question": "Who won the Best Picture award at the 2023 Oscars?",
     "label": 0
   },
   {
-    "id": "Q081",
-    "question": "What is open addressing in hashing?",
-    "label": 1
-  },
-  {
-    "id": "Q388",
-    "question": "Describe the 'zig-zig' step in a splay tree.",
-    "label": 1
-  },
-  {
-    "id": "Q945",
-    "question": "Who directed the 'Harry Potter' movies?",
+    "id": "Q1040",
+    "question": "explain how list comprehension works in Python with an example",
     "label": 0
   },
   {
-    "id": "Q128",
-    "question": "Explain the relationship between the base address and an array index.",
-    "label": 1
-  },
-  {
-    "id": "Q550",
-    "question": "What is a 'priority queue' and how is it implemented using a heap?",
-    "label": 1
-  },
-  {
-    "id": "Q471",
-    "question": "What is the 'degree' of a B-tree and how does it define node occupancy?",
-    "label": 1
-  },
-  {
-    "id": "Q748",
-    "question": "What is the largest organ in the human body?",
+    "id": "Q366",
+    "question": "What are the symptoms of seasonal allergies?",
     "label": 0
   },
   {
-    "id": "Q045",
-    "question": "What are hashing functions?",
+    "id": "Q1026",
+    "question": "What is divide and conquer?",
     "label": 1
   },
   {
-    "id": "Q827",
-    "question": "What are the core differences between civil law and criminal law?",
+    "id": "Q540",
+    "question": "Describe the 'interpolation search' algorithm and its average complexity.",
+    "label": 1
+  },
+  {
+    "id": "Q007",
+    "question": "What is a heap data structure?",
+    "label": 1
+  },
+  {
+    "id": "Q930",
+    "question": "What are the common types of renewable energy sources?",
     "label": 0
   },
   {
-    "id": "Q271",
-    "question": "What is the 'In-order successor' of a node in a binary search tree?",
-    "label": 1
-  },
-  {
-    "id": "Q619",
-    "question": "Explain the process of converting a general tree into a binary tree.",
-    "label": 1
-  },
-  {
-    "id": "Q353",
-    "question": "What is 'secondary clustering' and how does it affect quadratic probing?",
-    "label": 1
-  },
-  {
-    "id": "Q868",
-    "question": "What is the 'degree' of a B-tree and how does it determine node occupancy?",
-    "label": 1
-  },
-  {
-    "id": "Q368",
-    "question": "What is the 'path relaxation' step in Dijkstra's algorithm?",
-    "label": 1
-  },
-  {
-    "id": "Q100",
-    "question": "Explain divide and conquer strategy",
-    "label": 1
-  },
-  {
-    "id": "Q390",
-    "question": "How to effectively train a puppy to stay?",
+    "id": "Q324",
+    "question": "What are the top three highest-grossing movies in history?",
     "label": 0
   },
   {
-    "id": "Q095",
-    "question": "What is the time complexity of heap operations?",
+    "id": "Q891",
+    "question": "Explain the 'LR' double rotation in an AVL tree.",
     "label": 1
   },
   {
-    "id": "Q105",
-    "question": "Describe the properties of a Red-Black tree regarding the color of the root and leaf nodes.",
+    "id": "Q602",
+    "question": "How do you calculate the height of a binary search tree given its root node?",
     "label": 1
   },
   {
-    "id": "Q345",
-    "question": "Who is the current Prime Minister of Canada?",
+    "id": "Q1235",
+    "label": 0,
+    "question": "how to find the common elements in two arrays in C++ using a loop and a set"
+  },
+  {
+    "id": "Q1206",
+    "label": 0,
+    "question": "how to use the heap sort algorithm to sort an array in Java"
+  },
+  {
+    "id": "Q1168",
+    "question": "explain how to use the split() method in Python",
     "label": 0
+  },
+  {
+    "id": "Q1100",
+    "question": "how to handle asynchronous code in JavaScript using Promises",
+    "label": 0
+  },
+  {
+    "id": "Q235",
+    "question": "What is a 'dense index' versus a 'sparse index' in file organization?",
+    "label": 1
+  },
+  {
+    "id": "Q024",
+    "question": "Describe preorder and postorder traversal",
+    "label": 1
+  },
+  {
+    "id": "Q515",
+    "question": "How to repair a cracked screen on a smartphone?",
+    "label": 0
+  },
+  {
+    "id": "Q1084",
+    "question": "explain the Rule of Three/Five in C++ memory management",
+    "label": 0
+  },
+  {
+    "id": "Q959",
+    "question": "Explain the 'RR' single rotation for AVL tree rebalancing.",
+    "label": 1
   },
   {
     "id": "Q782",
@@ -575,29 +365,134 @@
     "label": 1
   },
   {
-    "id": "Q981",
-    "question": "What is 'lazy deletion' in the context of open addressing hashing?",
+    "id": "Q789",
+    "question": "What is a 'text file' and how does it store data?",
     "label": 1
   },
   {
-    "id": "Q221",
-    "question": "How do you identify a genuine leather handbag from a synthetic one?",
+    "id": "Q131",
+    "question": "Define 'transitive closure' for a directed graph.",
+    "label": 1
+  },
+  {
+    "id": "Q1225",
+    "label": 0,
+    "question": "how to implement a circular linked list in Java"
+  },
+  {
+    "id": "Q328",
+    "question": "Explain the 'bubble up' process when inserting a value into a max-heap.",
+    "label": 1
+  },
+  {
+    "id": "Q314",
+    "question": "Define the term 'Articulation Point' in a graph structure.",
+    "label": 1
+  },
+  {
+    "id": "Q225",
+    "question": "Explain the 'division method' for hashing an integer key.",
+    "label": 1
+  },
+  {
+    "id": "Q097",
+    "question": "What is memoization?",
+    "label": 1
+  },
+  {
+    "id": "Q187",
+    "question": "Who is the CEO of Apple Inc.?",
     "label": 0
   },
   {
-    "id": "Q160",
-    "question": "Which team won the Super Bowl in 2023?",
+    "id": "Q1011",
+    "question": "Explain non-linear data structures",
+    "label": 1
+  },
+  {
+    "id": "Q1044",
+    "question": "how to iterate over a dictionary in Python using items()",
     "label": 0
   },
   {
-    "id": "Q1008",
-    "question": "What is recursion?",
+    "id": "Q284",
+    "question": "What are the basic rules of cricket for international test matches?",
+    "label": 0
+  },
+  {
+    "id": "Q1158",
+    "question": "how to use the std::queue in C++ STL",
+    "label": 0
+  },
+  {
+    "id": "Q742",
+    "question": "How to plan a backpacking trip through Europe on a budget?",
+    "label": 0
+  },
+  {
+    "id": "Q818",
+    "question": "Who is the current world record holder for the marathon?",
+    "label": 0
+  },
+  {
+    "id": "Q878",
+    "question": "Who is considered the father of modern chemistry?",
+    "label": 0
+  },
+  {
+    "id": "Q539",
+    "question": "Who wrote the play 'Romeo and Juliet'?",
+    "label": 0
+  },
+  {
+    "id": "Q1104",
+    "question": "how to use the fetch API in JavaScript to get data from a server",
+    "label": 0
+  },
+  {
+    "id": "Q506",
+    "question": "Who won the MVP award in the NBA last season?",
+    "label": 0
+  },
+  {
+    "id": "Q1230",
+    "label": 0,
+    "question": "what is a heap in C++ and how do you use the priority_queue container from the STL"
+  },
+  {
+    "id": "Q543",
+    "question": "Explain 'binary search' and its requirement for a sorted list.",
     "label": 1
   },
   {
-    "id": "Q349",
-    "question": "Describe the 'triangular inequality' property in shortest path algorithms.",
+    "id": "Q293",
+    "question": "What are the best tourist attractions in New York City?",
+    "label": 0
+  },
+  {
+    "id": "Q940",
+    "question": "Describe the 'mid-square method' of hashing.",
     "label": 1
+  },
+  {
+    "id": "Q811",
+    "question": "How do B+ trees store records compared to standard B-trees?",
+    "label": 1
+  },
+  {
+    "id": "Q1023",
+    "question": "Explain searching algorithms",
+    "label": 1
+  },
+  {
+    "id": "Q436",
+    "question": "Who is the lead actor in the movie 'The Shawshank Redemption'?",
+    "label": 0
+  },
+  {
+    "id": "Q645",
+    "question": "What are the different types of volcanic eruptions and their characteristics?",
+    "label": 0
   },
   {
     "id": "Q433",
@@ -605,18 +500,58 @@
     "label": 0
   },
   {
-    "id": "Q715",
-    "question": "What are the main causes of global warming in the modern era?",
+    "id": "Q136",
+    "question": "How do you brew a cup of Earl Grey tea?",
     "label": 0
   },
   {
-    "id": "Q164",
-    "question": "Explain the 'LL' rotation used to rebalance an AVL tree.",
+    "id": "Q549",
+    "question": "Explain the 'LIFO' principle of a stack data structure.",
     "label": 1
   },
   {
-    "id": "Q826",
-    "question": "What is 'rehashing' and why is it performed when a table is nearly full?",
+    "id": "Q822",
+    "question": "Describe the 'mid-square method' for generating hash values.",
+    "label": 1
+  },
+  {
+    "id": "Q647",
+    "question": "What is 'lazy deletion' and in which hashing technique is it typically used?",
+    "label": 1
+  },
+  {
+    "id": "Q1224",
+    "label": 0,
+    "question": "explain the use of the quick sort algorithm for sorting an array in Python"
+  },
+  {
+    "id": "Q470",
+    "question": "Describe the 'NLR' traversal algorithm for binary search trees.",
+    "label": 1
+  },
+  {
+    "id": "Q115",
+    "question": "List the different types of soil found in the Amazon rainforest.",
+    "label": 0
+  },
+  {
+    "id": "Q665",
+    "question": "What is the 'load factor' of a hash table and its impact on performance?",
+    "label": 1
+  },
+  {
+    "id": "Q450",
+    "question": "What is a 'self-referential structure' in C and how is it used in linked lists?",
+    "label": 1
+  },
+  {
+    "id": "Q1141",
+    "question": "explain the use of access modifiers like public and private in C++",
+    "label": 0
+  },
+  {
+    "id": "Q553",
+    "question": "What is 'double hashing' and how does it reduce clustering?",
     "label": 1
   },
   {
@@ -625,38 +560,38 @@
     "label": 0
   },
   {
-    "id": "Q007",
-    "question": "What is a heap data structure?",
+    "id": "Q947",
+    "question": "What is a 'sink' vertex in a directed graph?",
     "label": 1
   },
   {
-    "id": "Q891",
-    "question": "Explain the 'LR' double rotation in an AVL tree.",
+    "id": "Q335",
+    "question": "Explain the 'Extract-Min' procedure in a binomial heap.",
     "label": 1
   },
   {
-    "id": "Q829",
-    "question": "What is the purpose of 'multi-level indexing' in large file systems?",
-    "label": 1
+    "id": "Q1232",
+    "label": 0,
+    "question": "explain the use of a stack for evaluating a postfix expression in Python"
   },
   {
-    "id": "Q285",
-    "question": "Explain the 'LR' double rotation in an AVL tree.",
-    "label": 1
-  },
-  {
-    "id": "Q604",
-    "question": "Describe the process of a 'zig-zig' step in a splay tree operation.",
-    "label": 1
-  },
-  {
-    "id": "Q460",
-    "question": "What is the capital of the state of New York?",
+    "id": "Q1094",
+    "question": "what is operator overloading in C++ and give an example",
     "label": 0
   },
   {
-    "id": "Q226",
-    "question": "What is the difference between a directed graph and an undirected graph?",
+    "id": "Q351",
+    "question": "What are the major rivers located in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q147",
+    "question": "What is a 'sentinel node' in a doubly linked list?",
+    "label": 1
+  },
+  {
+    "id": "Q547",
+    "question": "What is a 'multi-graph' and how does it differ from a simple graph?",
     "label": 1
   },
   {
@@ -665,58 +600,263 @@
     "label": 0
   },
   {
-    "id": "Q559",
-    "question": "What is 'linear search' and its average running time?",
+    "id": "Q728",
+    "question": "Describe the 'mid-square method' and its efficiency as a hash function.",
     "label": 1
   },
   {
-    "id": "Q719",
-    "question": "Explain the 'in-order predecessor' logic in a binary search tree.",
+    "id": "Q759",
+    "question": "What is the 'root list' in a Fibonacci heap?",
     "label": 1
   },
   {
-    "id": "Q666",
-    "question": "Which country is the largest producer of coffee in the world?",
+    "id": "Q334",
+    "question": "What is a 'sentinel node' in a doubly linked list and why is it used?",
+    "label": 1
+  },
+  {
+    "id": "Q748",
+    "question": "What is the largest organ in the human body?",
     "label": 0
   },
   {
-    "id": "Q734",
-    "question": "Describe the 'row-major' and 'column-major' order for 2D array storage.",
+    "id": "Q929",
+    "question": "What is the 'depth property' in a 2-3-4 tree?",
     "label": 1
   },
   {
-    "id": "Q204",
-    "question": "Describe the node-size property in the context of 2-3-4 trees.",
+    "id": "Q1205",
+    "label": 0,
+    "question": "explain the difference between a breadth-first search and a depth-first search in Python"
+  },
+  {
+    "id": "Q1199",
+    "label": 0,
+    "question": "what is a priority queue in Java and how do you implement it"
+  },
+  {
+    "id": "Q207",
+    "question": "Explain the process of 'splitting' a 4-node during an insertion in a 2-3-4 tree.",
     "label": 1
   },
   {
-    "id": "Q575",
-    "question": "How to create a simple budget in a spreadsheet?",
+    "id": "Q1220",
+    "label": 0,
+    "question": "explain the use of a stack for reversing a string in JavaScript"
+  },
+  {
+    "id": "Q164",
+    "question": "Explain the 'LL' rotation used to rebalance an AVL tree.",
+    "label": 1
+  },
+  {
+    "id": "Q593",
+    "question": "Who is the lead scientist in the field of quantum physics?",
     "label": 0
   },
   {
-    "id": "Q028",
-    "question": "What are connected components in graphs?",
+    "id": "Q467",
+    "question": "Explain the 'triangular inequality' property in the context of shortest paths.",
     "label": 1
   },
   {
-    "id": "Q617",
-    "question": "How is a sparse matrix represented efficiently using a multi-linked list?",
+    "id": "Q094",
+    "question": "How to implement priority queue using heap?",
     "label": 1
   },
   {
-    "id": "Q518",
-    "question": "What is the population density of the city of Tokyo?",
+    "id": "Q143",
+    "question": "Explain the difference between a directed acyclic graph (DAG) and a tree.",
+    "label": 1
+  },
+  {
+    "id": "Q394",
+    "question": "Describe the 'multi-way search tree' concept of degree M.",
+    "label": 1
+  },
+  {
+    "id": "Q1183",
+    "question": "how to use the cin object in C++",
     "label": 0
   },
   {
-    "id": "Q239",
-    "question": "What are the most common languages spoken in South America?",
+    "id": "Q741",
+    "question": "What is 'lazy deletion' in the context of open addressing hashing?",
+    "label": 1
+  },
+  {
+    "id": "Q601",
+    "question": "Explain the concept of 'Wait' and 'Processed' status in graph traversal algorithms.",
+    "label": 1
+  },
+  {
+    "id": "Q1131",
+    "question": "what is the difference between Python's list remove() and pop() methods",
     "label": 0
   },
   {
-    "id": "Q224",
-    "question": "What are the best practices for sustainable organic farming in arid climates?",
+    "id": "Q162",
+    "question": "What is the 'root list' of a Fibonacci heap?",
+    "label": 1
+  },
+  {
+    "id": "Q776",
+    "question": "Explain the 'NLR' (Node-Left-Right) traversal algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q256",
+    "question": "What is an 'Extended Binary Tree' or a '2-tree'?",
+    "label": 1
+  },
+  {
+    "id": "Q1099",
+    "question": "explain the concept of closures in JavaScript",
+    "label": 0
+  },
+  {
+    "id": "Q941",
+    "question": "What is 'secondary clustering' in hashing?",
+    "label": 1
+  },
+  {
+    "id": "Q089",
+    "question": "What is Kubernetes?",
+    "label": 0
+  },
+  {
+    "id": "Q542",
+    "question": "How does a hydroelectric dam generate electricity?",
+    "label": 0
+  },
+  {
+    "id": "Q705",
+    "question": "What is the 'degree' of an M-way search tree?",
+    "label": 1
+  },
+  {
+    "id": "Q736",
+    "question": "What are the basic rules of professional American football?",
+    "label": 0
+  },
+  {
+    "id": "Q199",
+    "question": "How do you calculate the interest on a fixed deposit?",
+    "label": 0
+  },
+  {
+    "id": "Q779",
+    "question": "Describe the 'transitive closure' of a graph using Warshall's algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q190",
+    "question": "What are the rules of grammar for the French language?",
+    "label": 0
+  },
+  {
+    "id": "Q1229",
+    "label": 0,
+    "question": "how to implement a linked list traversal in Python using a while loop"
+  },
+  {
+    "id": "Q690",
+    "question": "Who was the lead scientist of the Manhattan Project?",
+    "label": 0
+  },
+  {
+    "id": "Q441",
+    "question": "What is an 'extended binary tree' (or 2-tree)?",
+    "label": 1
+  },
+  {
+    "id": "Q319",
+    "question": "Describe the 'mid-square method' for generating a hash index.",
+    "label": 1
+  },
+  {
+    "id": "Q1226",
+    "label": 0,
+    "question": "what is a hash table in JavaScript and how do you use it"
+  },
+  {
+    "id": "Q697",
+    "question": "Describe the 'bubble down' operation in a min-heap.",
+    "label": 1
+  },
+  {
+    "id": "Q866",
+    "question": "How to effectively train a puppy to stay on command?",
+    "label": 0
+  },
+  {
+    "id": "Q327",
+    "question": "How many states are there in the United States of America?",
+    "label": 0
+  },
+  {
+    "id": "Q014",
+    "question": "What is a circular linked list?",
+    "label": 1
+  },
+  {
+    "id": "Q570",
+    "question": "Describe 'quick sort' and the importance of the pivot element.",
+    "label": 1
+  },
+  {
+    "id": "Q1207",
+    "label": 0,
+    "question": "what is a linked list in JavaScript and how do you implement it"
+  },
+  {
+    "id": "Q920",
+    "question": "What is the 'load factor' threshold for rehashing a hash table?",
+    "label": 1
+  },
+  {
+    "id": "Q452",
+    "question": "Describe the 'level-order' traversal of a binary tree using a queue.",
+    "label": 1
+  },
+  {
+    "id": "Q860",
+    "question": "What are the major mountain ranges in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q1228",
+    "label": 0,
+    "question": "explain the use of a binary search tree for finding the minimum and maximum values in a dataset in Java"
+  },
+  {
+    "id": "Q408",
+    "question": "Define 'linear probing' as a collision resolution technique in hashing.",
+    "label": 1
+  },
+  {
+    "id": "Q1150",
+    "question": "how to create a random number in JavaScript using Math.random()",
+    "label": 0
+  },
+  {
+    "id": "Q055",
+    "question": "How to create a website using HTML?",
+    "label": 0
+  },
+  {
+    "id": "Q1035",
+    "question": "Explain shortest path algorithms",
+    "label": 1
+  },
+  {
+    "id": "Q477",
+    "question": "What is 'rehashing' and when should it be performed on a hash table?",
+    "label": 1
+  },
+  {
+    "id": "Q448",
+    "question": "How does a traditional camera lens capture light to form an image?",
     "label": 0
   },
   {
@@ -740,9 +880,19 @@
     "label": 1
   },
   {
+    "id": "Q1210",
+    "label": 0,
+    "question": "how to implement a hash table in C++ using an array and a hash function"
+  },
+  {
     "id": "Q179",
     "question": "Explain 'R0' rotation in an AVL tree deletion process.",
     "label": 1
+  },
+  {
+    "id": "Q1117",
+    "question": "what is the syntax for a switch statement in C++",
+    "label": 0
   },
   {
     "id": "Q210",

@@ -9,6 +9,7 @@ os.chdir(base_dir)
 sys.path.insert(0, str(base_dir))
 
 from src.layer2_validator.inference import TwoLayerPipeline
+from src.layer3_rag.inference import generate_answer
 
 app = Flask(__name__)
 CORS(app)
@@ -21,8 +22,26 @@ def chat():
     question = data.get('question', '')
     if not question:
         return jsonify({'error': 'Question is required'}), 400
-    result = pipeline.process_question(question)
-    return jsonify(result)
+    
+    # Layer 1 & 2: Validate question
+    validation_result = pipeline.process_question(question)
+    
+    if validation_result['final_status'] != 'VALID':
+        return jsonify(validation_result)
+    
+    # Layer 3: Generate answer using RAG
+    try:
+        answer = generate_answer(question)
+        return jsonify({
+            'status': 'success',
+            'question': question,
+            'answer': answer
+        })
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': f'Error generating answer: {str(e)}'
+        }), 500
 
 @app.route('/api/health', methods=['GET'])
 def health():

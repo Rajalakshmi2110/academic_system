@@ -168,6 +168,3 @@ class RuleBasedValidator:
                 'confidence': 0.65,
                 'inference_time_ms': (time.time() - start_time) * 1000
             }
-    
-    def batch_validate(self, questions):
-        return [self.validate_question(q) for q in questions]

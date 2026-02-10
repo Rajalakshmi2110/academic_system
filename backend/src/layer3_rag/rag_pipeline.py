@@ -2,7 +2,6 @@ import pickle
 import faiss
 import requests
 from sentence_transformers import SentenceTransformer
-import numpy as np
 
 class RAGPipeline:
     def __init__(self, vector_db_path, ollama_url="http://localhost:11434"):

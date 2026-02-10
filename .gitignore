@@ -52,3 +52,11 @@ dist/
 # Logs
 *.log
 logs/
+*.pyc
+__pycache__/
+.DS_Store
+*.log
+.env
+node_modules/
+.vscode/
+.idea/
