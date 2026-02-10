@@ -10,6 +10,7 @@ const ChatInterface = () => {
 
   const getStatusColor = (status) => {
     const colors = {
+      'success': '#4CAF50',
       'VALID': '#4CAF50',
       'WARNING': '#FFC107',
       'REJECTED': '#F44336',
@@ -47,9 +48,13 @@ const ChatInterface = () => {
                 <Typography>{msg.text}</Typography>
               ) : (
                 <>
-                  <Chip label={msg.data.final_status} sx={{ bgcolor: getStatusColor(msg.data.final_status), color: 'white', mb: 1 }} size="small" />
-                  <Typography>{msg.data.explanation || msg.data.message}</Typography>
-                  {msg.data.final_status !== 'OUT_OF_SYLLABUS' && (
+                  <Chip 
+                    label={msg.data.status || msg.data.final_status} 
+                    sx={{ bgcolor: getStatusColor(msg.data.status || msg.data.final_status), color: 'white', mb: 1 }} 
+                    size="small" 
+                  />
+                  <Typography>{msg.data.answer || msg.data.explanation || msg.data.message}</Typography>
+                  {(msg.data.status === 'success' || msg.data.final_status === 'VALID') && (
                     <Box sx={{ mt: 1, display: 'flex', gap: 1 }}>
                       <Button size="small" startIcon={<ThumbUp />}>Helpful</Button>
                       <Button size="small" startIcon={<ThumbDown />}>Not Helpful</Button>

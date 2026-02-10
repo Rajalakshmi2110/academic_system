@@ -7,12 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from src.layer1_classifier.inference import Layer1Classifier
-
-# Use rule-based validator instead of FLAN-T5 for faster, more reliable results
-try:
-    from src.layer2_validator.rule_based_validator import RuleBasedValidator as Layer2Validator
-except ImportError:
-    from src.layer2_validator.flan_t5_validator import FLANT5Validator as Layer2Validator
+from src.layer2_validator.rule_based_validator import RuleBasedValidator as Layer2Validator
 
 class TwoLayerPipeline:
     def __init__(self):
@@ -49,6 +44,20 @@ class TwoLayerPipeline:
         """
         start_time = time.time()
         
+        # Pre-check: Gibberish detection (before Layer 1)
+        if self.layer2.is_gibberish(question):
+            return {
+                'question': question,
+                'layer1_result': None,
+                'layer2_result': 'REJECTED',
+                'final_status': 'REJECTED',
+                'explanation': 'Question appears to be gibberish or invalid input.',
+                'confidence': 0.95,
+                'total_latency_ms': (time.time() - start_time) * 1000,
+                'layer1_time_ms': 0,
+                'layer2_time_ms': (time.time() - start_time) * 1000
+            }
+        
         # Layer 1: Syllabus Relevance Check
         layer1_result = self.layer1.predict(question, return_confidence=True)
         
@@ -69,6 +78,35 @@ class TwoLayerPipeline:
         
         # Layer 2: Deep Academic Validation
         layer2_result = self.layer2.validate_question(question)
+        
+        # Check if Layer 2 caught out-of-syllabus
+        if layer2_result.get('final_status') == 'OUT_OF_SYLLABUS':
+            return {
+                'question': question,
+                'layer1_result': 'IN_SYLLABUS',
+                'layer2_result': 'OUT_OF_SYLLABUS',
+                'final_status': 'OUT_OF_SYLLABUS',
+                'message': layer2_result['explanation'],
+                'suggestion': layer2_result['suggestion'],
+                'confidence': layer2_result['confidence'],
+                'total_latency_ms': (time.time() - start_time) * 1000,
+                'layer1_time_ms': layer1_result['inference_time_ms'],
+                'layer2_time_ms': layer2_result['inference_time_ms']
+            }
+        
+        # Check if Layer 2 rejected
+        if layer2_result.get('final_status') == 'REJECTED':
+            return {
+                'question': question,
+                'layer1_result': 'IN_SYLLABUS',
+                'layer2_result': 'REJECTED',
+                'final_status': 'REJECTED',
+                'explanation': layer2_result['explanation'],
+                'confidence': layer2_result['confidence'],
+                'total_latency_ms': (time.time() - start_time) * 1000,
+                'layer1_time_ms': layer1_result['inference_time_ms'],
+                'layer2_time_ms': layer2_result['inference_time_ms']
+            }
         
         # Format final response
         total_time = (time.time() - start_time) * 1000
@@ -92,109 +130,3 @@ class TwoLayerPipeline:
             result = self.process_question(question)
             results.append(result)
         return results
-    
-    def get_statistics(self, results):
-        """Generate statistics from batch processing results"""
-        total_questions = len(results)
-        out_of_syllabus = sum(1 for r in results if r['final_status'] == 'OUT_OF_SYLLABUS')
-        valid = sum(1 for r in results if r['final_status'] == 'VALID')
-        warning = sum(1 for r in results if r['final_status'] == 'WARNING')
-        rejected = sum(1 for r in results if r['final_status'] == 'REJECTED')
-        
-        avg_total_time = sum(r['total_latency_ms'] for r in results) / total_questions
-        avg_layer1_time = sum(r['layer1_time_ms'] for r in results) / total_questions
-        avg_layer2_time = sum(r['layer2_time_ms'] for r in results if r['layer2_time_ms'] > 0)
-        if avg_layer2_time:
-            avg_layer2_time = avg_layer2_time / sum(1 for r in results if r['layer2_time_ms'] > 0)
-        else:
-            avg_layer2_time = 0
-        
-        return {
-            'total_questions': total_questions,
-            'distribution': {
-                'out_of_syllabus': out_of_syllabus,
-                'valid': valid,
-                'warning': warning,
-                'rejected': rejected
-            },
-            'percentages': {
-                'out_of_syllabus': (out_of_syllabus / total_questions) * 100,
-                'valid': (valid / total_questions) * 100,
-                'warning': (warning / total_questions) * 100,
-                'rejected': (rejected / total_questions) * 100
-            },
-            'performance': {
-                'avg_total_latency_ms': avg_total_time,
-                'avg_layer1_latency_ms': avg_layer1_time,
-                'avg_layer2_latency_ms': avg_layer2_time
-            }
-        }
-
-def demo_pipeline():
-    """Comprehensive demo of the two-layer pipeline"""
-    try:
-        pipeline = TwoLayerPipeline()
-        
-        # Test questions covering all scenarios
-        test_questions = [
-            # Should be OUT_OF_SYLLABUS (Layer 1 rejects)
-            "What's the best programming language for AI?",
-            "How do I bake a chocolate cake?",
-            
-            # Should be VALID (Layer 1 accepts, Layer 2 validates)
-            "Explain the difference between stack and queue",
-            "Compare merge sort and quick sort algorithms",
-            
-            # Should be WARNING (Layer 1 accepts, Layer 2 finds issues)
-            "Explain data structures and algorithms and everything",
-            "What is the best sorting algorithm?",
-            
-            # Should be REJECTED (Layer 1 accepts, Layer 2 finds errors)
-            "Stack is FIFO data structure",
-            "Binary search has O(n^2) complexity"
-        ]
-        
-        print("\n=== TWO-LAYER PIPELINE DEMO ===")
-        
-        results = []
-        for i, question in enumerate(test_questions, 1):
-            print(f"\nTest {i}/{len(test_questions)}:")
-            print(f"Question: {question}")
-            
-            result = pipeline.process_question(question)
-            results.append(result)
-            
-            print(f"Layer 1: {result['layer1_result']}")
-            if result['layer2_result']:
-                print(f"Layer 2: {result['layer2_result']}")
-            print(f"Final Status: {result['final_status']}")
-            
-            if 'explanation' in result:
-                print(f"Explanation: {result['explanation']}")
-            elif 'message' in result:
-                print(f"Message: {result['message']}")
-            
-            print(f"Confidence: {result['confidence']:.3f}")
-            print(f"Total Time: {result['total_latency_ms']:.2f} ms")
-            print("-" * 70)
-        
-        # Generate statistics
-        stats = pipeline.get_statistics(results)
-        
-        print("\n=== PIPELINE STATISTICS ===")
-        print(f"Total Questions: {stats['total_questions']}")
-        print(f"Out-of-Syllabus: {stats['distribution']['out_of_syllabus']} ({stats['percentages']['out_of_syllabus']:.1f}%)")
-        print(f"Valid: {stats['distribution']['valid']} ({stats['percentages']['valid']:.1f}%)")
-        print(f"Warning: {stats['distribution']['warning']} ({stats['percentages']['warning']:.1f}%)")
-        print(f"Rejected: {stats['distribution']['rejected']} ({stats['percentages']['rejected']:.1f}%)")
-        
-        print(f"\nPerformance:")
-        print(f"Average Total Latency: {stats['performance']['avg_total_latency_ms']:.2f} ms")
-        print(f"Average Layer 1 Time: {stats['performance']['avg_layer1_latency_ms']:.2f} ms")
-        print(f"Average Layer 2 Time: {stats['performance']['avg_layer2_latency_ms']:.2f} ms")
-        
-    except Exception as e:
-        print(f"Pipeline demo failed: {e}")
-
-if __name__ == "__main__":
-    demo_pipeline()
