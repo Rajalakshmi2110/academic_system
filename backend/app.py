@@ -83,5 +83,16 @@ def chat():
 def health():
     return jsonify({'status': 'ok'})
 
+@app.route('/api/metrics', methods=['GET'])
+def metrics():
+    try:
+        import json
+        metrics_path = base_dir / 'evaluation_results.json'
+        with open(metrics_path, 'r') as f:
+            data = json.load(f)
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel } from '@mui/material';
-import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block } from '@mui/icons-material';
+import React, { useState, useEffect } from 'react';
+import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, Dialog, DialogTitle, DialogContent, IconButton, Grid, Card, CardContent } from '@mui/material';
+import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, Assessment, Close } from '@mui/icons-material';
 import axios from 'axios';
 
 const ChatInterface = () => {
@@ -8,6 +8,14 @@ const ChatInterface = () => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [showSteps, setShowSteps] = useState(false);
+  const [metricsOpen, setMetricsOpen] = useState(false);
+  const [metrics, setMetrics] = useState(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/metrics')
+      .then(res => setMetrics(res.data))
+      .catch(err => console.error('Failed to load metrics:', err));
+  }, []);
 
   const getStatusColor = (status) => {
     const colors = {
@@ -51,11 +59,20 @@ const ChatInterface = () => {
     <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', bgcolor: '#F5F5F5' }}>
       <Box sx={{ bgcolor: '#1976D2', color: 'white', p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Typography variant="h5">Data Structures Doubt Clarification</Typography>
-        <FormControlLabel
-          control={<Switch checked={showSteps} onChange={(e) => setShowSteps(e.target.checked)} sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: 'white' } }} />}
-          label="Show Steps"
-          sx={{ color: 'white' }}
-        />
+        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+          <Button 
+            startIcon={<Assessment />} 
+            onClick={() => setMetricsOpen(true)}
+            sx={{ color: 'white', border: '1px solid white' }}
+          >
+            Metrics
+          </Button>
+          <FormControlLabel
+            control={<Switch checked={showSteps} onChange={(e) => setShowSteps(e.target.checked)} sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: 'white' } }} />}
+            label="Show Steps"
+            sx={{ color: 'white' }}
+          />
+        </Box>
       </Box>
       <Box sx={{ flex: 1, overflow: 'auto', p: 2 }}>
         {messages.map((msg, idx) => (
@@ -153,6 +170,136 @@ const ChatInterface = () => {
           <Button variant="contained" onClick={sendMessage} disabled={loading} sx={{ borderRadius: 2, bgcolor: '#1976D2' }}><Send /></Button>
         </Box>
       </Box>
+
+      <Dialog open={metricsOpen} onClose={() => setMetricsOpen(false)} maxWidth="md" fullWidth>
+        <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', bgcolor: '#1976D2', color: 'white' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Assessment />
+            <Typography variant="h6">System Performance Metrics</Typography>
+          </Box>
+          <IconButton onClick={() => setMetricsOpen(false)} sx={{ color: 'white' }}>
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent sx={{ mt: 2 }}>
+          {metrics ? (
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Card sx={{ bgcolor: '#E3F2FD' }}>
+                  <CardContent>
+                    <Typography variant="h6" sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <CheckCircle sx={{ color: '#4CAF50' }} /> Layer 1 - Binary Classifier (DistilBERT)
+                    </Typography>
+                    <Grid container spacing={2}>
+                      <Grid item xs={6} sm={3}>
+                        <Typography variant="caption" color="textSecondary">Accuracy</Typography>
+                        <Typography variant="h5" sx={{ color: '#4CAF50', fontWeight: 'bold' }}>
+                          {(metrics.layer1.accuracy * 100).toFixed(2)}%
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6} sm={3}>
+                        <Typography variant="caption" color="textSecondary">Precision</Typography>
+                        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                          {(metrics.layer1.precision * 100).toFixed(2)}%
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6} sm={3}>
+                        <Typography variant="caption" color="textSecondary">Recall</Typography>
+                        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                          {(metrics.layer1.recall * 100).toFixed(2)}%
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6} sm={3}>
+                        <Typography variant="caption" color="textSecondary">Avg Latency</Typography>
+                        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                          {metrics.layer1.avg_latency_ms.toFixed(1)}ms
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Typography variant="caption" sx={{ display: 'block', mt: 1, color: '#666' }}>
+                      Tested on {metrics.layer1.total_samples} samples
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              
+              <Grid item xs={12}>
+                <Card sx={{ bgcolor: '#FFF3E0' }}>
+                  <CardContent>
+                    <Typography variant="h6" sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Warning sx={{ color: '#FF9800' }} /> Layer 2 - Rule-Based Validator
+                    </Typography>
+                    <Grid container spacing={2}>
+                      <Grid item xs={6} sm={3}>
+                        <Typography variant="caption" color="textSecondary">Valid</Typography>
+                        <Typography variant="h5" sx={{ color: '#4CAF50', fontWeight: 'bold' }}>
+                          {metrics.layer2.valid}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6} sm={3}>
+                        <Typography variant="caption" color="textSecondary">Rejected</Typography>
+                        <Typography variant="h5" sx={{ color: '#F44336', fontWeight: 'bold' }}>
+                          {metrics.layer2.rejected}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6} sm={3}>
+                        <Typography variant="caption" color="textSecondary">Out of Syllabus</Typography>
+                        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                          {metrics.layer2.out_of_syllabus}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6} sm={3}>
+                        <Typography variant="caption" color="textSecondary">Avg Latency</Typography>
+                        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                          {metrics.layer2.avg_latency_ms.toFixed(2)}ms
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Typography variant="caption" sx={{ display: 'block', mt: 1, color: '#666' }}>
+                      Tested on {metrics.layer2.total_samples} samples
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              
+              <Grid item xs={12}>
+                <Card sx={{ bgcolor: '#F3E5F5' }}>
+                  <CardContent>
+                    <Typography variant="h6" sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Assessment sx={{ color: '#9C27B0' }} /> End-to-End Performance
+                    </Typography>
+                    <Grid container spacing={2}>
+                      <Grid item xs={4}>
+                        <Typography variant="caption" color="textSecondary">Avg Response Time</Typography>
+                        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                          {(metrics.end_to_end.avg_latency_ms / 1000).toFixed(2)}s
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Typography variant="caption" color="textSecondary">Min Response Time</Typography>
+                        <Typography variant="h5" sx={{ color: '#4CAF50', fontWeight: 'bold' }}>
+                          {(metrics.end_to_end.min_latency_ms / 1000).toFixed(2)}s
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Typography variant="caption" color="textSecondary">Max Response Time</Typography>
+                        <Typography variant="h5" sx={{ color: '#F44336', fontWeight: 'bold' }}>
+                          {(metrics.end_to_end.max_latency_ms / 1000).toFixed(2)}s
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Typography variant="caption" sx={{ display: 'block', mt: 1, color: '#666' }}>
+                      Tested on {metrics.end_to_end.total_samples} complete workflows
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+          ) : (
+            <Typography>Loading metrics...</Typography>
+          )}
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 };
