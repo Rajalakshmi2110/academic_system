@@ -139,8 +139,8 @@ class RuleBasedValidator:
                     'inference_time_ms': (time.time() - start_time) * 1000
                 }
         
-        # Check if question is too short
-        if len(question.split()) < 4:
+        # Check if question is too short (reduce threshold to 3 words)
+        if len(question.split()) < 3:
             return {
                 'question': question,
                 'status': 'WARNING',
@@ -149,22 +149,12 @@ class RuleBasedValidator:
                 'inference_time_ms': (time.time() - start_time) * 1000
             }
         
-        # Check if contains valid data structures topics
-        has_valid_topic = any(topic in question_lower for topic in self.valid_topics)
-        
-        if has_valid_topic:
-            return {
-                'question': question,
-                'status': 'VALID',
-                'explanation': 'Question is clear, specific, and factually sound.',
-                'confidence': 0.85,
-                'inference_time_ms': (time.time() - start_time) * 1000
-            }
-        else:
-            return {
-                'question': question,
-                'status': 'WARNING',
-                'explanation': 'Question may lack specific data structures terminology.',
-                'confidence': 0.65,
-                'inference_time_ms': (time.time() - start_time) * 1000
-            }
+        # If we reach here, question passed all checks
+        # Layer 1 already confirmed it's DS-related, so trust that
+        return {
+            'question': question,
+            'status': 'VALID',
+            'explanation': 'Question is clear and specific.',
+            'confidence': 0.80,
+            'inference_time_ms': (time.time() - start_time) * 1000
+        }
