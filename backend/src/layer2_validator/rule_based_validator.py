@@ -20,35 +20,7 @@ class RuleBasedValidator:
             'rope data structure', 'bloom filter', 'count-min sketch'
         ]
         
-        # Keywords indicating vague/broad questions
-        self.vague_patterns = [
-            r'\b(everything|anything|all|any)\b',
-            r'\b(best|worst|better|good|bad)\b',
-            r'\band\b.*\band\b.*\band\b',  # Multiple "and"s
-        ]
-        
-        # Incorrect facts about Data Structures
-        self.incorrect_facts = [
-            (r'\bbinary search\b.*o\(n\^2\)', 'Binary search is O(log n), not O(n^2)'),
-            (r'\bbinary search\b.*o\(n\^3\)', 'Binary search is O(log n), not O(n^3)'),
-            (r'\bbinary search\b.*o\(n\)(?!\s*log)', 'Binary search is O(log n), not O(n)'),
-            (r'\bstack\b.*\bis\b.*\bfifo\b', 'Stack is LIFO (Last In First Out), not FIFO'),
-            (r'\bqueue\b.*\bis\b.*\blifo\b', 'Queue is FIFO (First In First Out), not LIFO'),
-            (r'\btree\b.*\bhas\b.*\bcycle\b', 'Trees are acyclic by definition'),
-            (r'\blinked list\b.*o\(1\).*\bsearch\b', 'Linked list search is O(n), not O(1)'),
-            (r'\bbubble sort\b.*o\(n\s*log\s*n\)', 'Bubble sort is O(n^2), not O(n log n)'),
-        ]
-        
-        # Valid Data Structures topics IN CA3101 syllabus
-        self.valid_topics = [
-            'array', 'linked list', 'stack', 'queue', 'tree', 'graph',
-            'heap', 'hash', 'sort', 'search', 'binary', 'traversal',
-            'bfs', 'dfs', 'recursion', 'complexity', 'big o', 'algorithm',
-            'avl', 'bst', 'node', 'pointer', 'insertion', 'deletion',
-            'merge sort', 'quick sort', 'bubble sort', 'selection sort',
-            'dijkstra', 'spanning tree', 'trie', 'deque', 'priority queue',
-            '2-3 tree', 'b-tree', 'kruskal', 'prim', 'chaining', 'probing'
-        ]
+
         
         print("Rule-based validator initialized")
     
@@ -116,38 +88,6 @@ class RuleBasedValidator:
                     'confidence': 0.90,
                     'inference_time_ms': (time.time() - start_time) * 1000
                 }
-        
-        # Check for incorrect facts
-        for pattern, correction in self.incorrect_facts:
-            if re.search(pattern, question_lower):
-                return {
-                    'question': question,
-                    'final_status': 'REJECTED',
-                    'explanation': f'Question contains incorrect information: {correction}',
-                    'confidence': 0.95,
-                    'inference_time_ms': (time.time() - start_time) * 1000
-                }
-        
-        # Check for vague patterns
-        for pattern in self.vague_patterns:
-            if re.search(pattern, question_lower):
-                return {
-                    'question': question,
-                    'status': 'WARNING',
-                    'explanation': 'Question is too vague or overly broad. Please be more specific.',
-                    'confidence': 0.75,
-                    'inference_time_ms': (time.time() - start_time) * 1000
-                }
-        
-        # Check if question is too short (reduce threshold to 3 words)
-        if len(question.split()) < 3:
-            return {
-                'question': question,
-                'status': 'WARNING',
-                'explanation': 'Question is too short. Please provide more context.',
-                'confidence': 0.70,
-                'inference_time_ms': (time.time() - start_time) * 1000
-            }
         
         # If we reach here, question passed all checks
         # Layer 1 already confirmed it's DS-related, so trust that
