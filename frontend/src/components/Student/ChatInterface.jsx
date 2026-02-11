@@ -40,10 +40,10 @@ const ChatInterface = () => {
   };
 
   const getStepIcon = (status) => {
-    if (status === 'IN_SYLLABUS' || status === 'VALID' || status === 'SUCCESS') return <CheckCircle sx={{ color: '#4CAF50' }} />;
+    if (status === 'DS_RELATED' || status === 'VALID' || status === 'SUCCESS') return <CheckCircle sx={{ color: '#4CAF50' }} />;
     if (status === 'WARNING') return <Warning sx={{ color: '#FFC107' }} />;
     if (status === 'REJECTED') return <Cancel sx={{ color: '#F44336' }} />;
-    if (status === 'OUT_OF_SYLLABUS') return <Block sx={{ color: '#9E9E9E' }} />;
+    if (status === 'NOT_DS_RELATED' || status === 'NOT_IN_CA3101' || status === 'OUT_OF_SYLLABUS') return <Block sx={{ color: '#9E9E9E' }} />;
     return null;
   };
 
@@ -81,10 +81,10 @@ const ChatInterface = () => {
                           <Box sx={{ mb: 2, p: 1.5, bgcolor: '#F5F5F5', borderRadius: 1 }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                               {getStepIcon(msg.data.intermediate_steps.layer1.status)}
-                              <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>Layer 1</Typography>
+                              <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>Layer 1 - Binary Classifier</Typography>
                             </Box>
                             <Typography variant="caption" sx={{ display: 'block', color: '#666' }}>
-                              {msg.data.intermediate_steps.layer1.description}
+                              Checks if question is Data Structures related
                             </Typography>
                             <Typography variant="caption" sx={{ display: 'block', mt: 0.5 }}>
                               Status: {msg.data.intermediate_steps.layer1.status || 'N/A'} | 
@@ -97,10 +97,10 @@ const ChatInterface = () => {
                           <Box sx={{ mb: 2, p: 1.5, bgcolor: '#F5F5F5', borderRadius: 1 }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                               {getStepIcon(msg.data.intermediate_steps.layer2.status)}
-                              <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>Layer 2</Typography>
+                              <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>Layer 2 - Rule Validator</Typography>
                             </Box>
                             <Typography variant="caption" sx={{ display: 'block', color: '#666' }}>
-                              {msg.data.intermediate_steps.layer2.description}
+                              Checks if DS topic is in CA3101 syllabus
                             </Typography>
                             <Typography variant="caption" sx={{ display: 'block', mt: 0.5 }}>
                               Status: {msg.data.intermediate_steps.layer2.status} | 

@@ -61,10 +61,10 @@ class TwoLayerPipeline:
         layer1_result = self.layer1.predict(question, return_confidence=True)
         
         if not layer1_result['relevant']:
-            # Question is out-of-syllabus - return immediately
+            # Question is not DS-related - return immediately
             return {
                 'question': question,
-                'layer1_result': 'OUT_OF_SYLLABUS',
+                'layer1_result': 'NOT_DS_RELATED',
                 'layer2_result': None,
                 'final_status': 'OUT_OF_SYLLABUS',
                 'message': 'This question is not related to the CA3101 Data Structures syllabus.',
@@ -82,8 +82,8 @@ class TwoLayerPipeline:
         if layer2_result.get('final_status') == 'OUT_OF_SYLLABUS':
             return {
                 'question': question,
-                'layer1_result': 'IN_SYLLABUS',
-                'layer2_result': 'OUT_OF_SYLLABUS',
+                'layer1_result': 'DS_RELATED',
+                'layer2_result': 'NOT_IN_CA3101',
                 'final_status': 'OUT_OF_SYLLABUS',
                 'message': layer2_result['explanation'],
                 'suggestion': layer2_result['suggestion'],
@@ -97,7 +97,7 @@ class TwoLayerPipeline:
         if layer2_result.get('final_status') == 'REJECTED':
             return {
                 'question': question,
-                'layer1_result': 'IN_SYLLABUS',
+                'layer1_result': 'DS_RELATED',
                 'layer2_result': 'REJECTED',
                 'final_status': 'REJECTED',
                 'explanation': layer2_result['explanation'],
@@ -112,7 +112,7 @@ class TwoLayerPipeline:
         
         return {
             'question': question,
-            'layer1_result': 'IN_SYLLABUS',
+            'layer1_result': 'DS_RELATED',
             'layer2_result': layer2_result['status'],
             'final_status': layer2_result['status'],
             'explanation': layer2_result['explanation'],
