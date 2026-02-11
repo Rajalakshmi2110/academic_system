@@ -29,14 +29,14 @@ class RuleBasedValidator:
         
         # Incorrect facts about Data Structures
         self.incorrect_facts = [
-            (r'binary search.*o\(n\^2\)', 'Binary search is O(log n), not O(n^2)'),
-            (r'binary search.*o\(n\^3\)', 'Binary search is O(log n), not O(n^3)'),
-            (r'binary search.*o\(n\)(?!\s*log)', 'Binary search is O(log n), not O(n)'),
-            (r'stack.*\bis\b.*fifo', 'Stack is LIFO (Last In First Out), not FIFO'),
-            (r'queue.*\bis\b.*lifo', 'Queue is FIFO (First In First Out), not LIFO'),
-            (r'tree.*\bhas\b.*cycle', 'Trees are acyclic by definition'),
-            (r'linked list.*o\(1\).*search', 'Linked list search is O(n), not O(1)'),
-            (r'bubble sort.*o\(n\s*log\s*n\)', 'Bubble sort is O(n^2), not O(n log n)'),
+            (r'\bbinary search\b.*o\(n\^2\)', 'Binary search is O(log n), not O(n^2)'),
+            (r'\bbinary search\b.*o\(n\^3\)', 'Binary search is O(log n), not O(n^3)'),
+            (r'\bbinary search\b.*o\(n\)(?!\s*log)', 'Binary search is O(log n), not O(n)'),
+            (r'\bstack\b.*\bis\b.*\bfifo\b', 'Stack is LIFO (Last In First Out), not FIFO'),
+            (r'\bqueue\b.*\bis\b.*\blifo\b', 'Queue is FIFO (First In First Out), not LIFO'),
+            (r'\btree\b.*\bhas\b.*\bcycle\b', 'Trees are acyclic by definition'),
+            (r'\blinked list\b.*o\(1\).*\bsearch\b', 'Linked list search is O(n), not O(1)'),
+            (r'\bbubble sort\b.*o\(n\s*log\s*n\)', 'Bubble sort is O(n^2), not O(n log n)'),
         ]
         
         # Valid Data Structures topics IN CA3101 syllabus
@@ -122,7 +122,7 @@ class RuleBasedValidator:
             if re.search(pattern, question_lower):
                 return {
                     'question': question,
-                    'status': 'REJECTED',
+                    'final_status': 'REJECTED',
                     'explanation': f'Question contains incorrect information: {correction}',
                     'confidence': 0.95,
                     'inference_time_ms': (time.time() - start_time) * 1000
