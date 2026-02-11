@@ -17,7 +17,7 @@ class RAGPipeline:
         self.ollama_url = ollama_url
         self.model_name = "llama3.1:8b"
     
-    def retrieve_context(self, question, top_k=3):
+    def retrieve_context(self, question, top_k=2):
         # Embed question
         query_embedding = self.embedder.encode([question]).astype('float32')
         
@@ -34,7 +34,7 @@ class RAGPipeline:
 
 Question: {question}
 
-Provide a clear, detailed answer in 2-3 sentences based on the context:"""
+Answer in 2 sentences:"""
         
         # Call Ollama API
         try:
@@ -53,6 +53,6 @@ Provide a clear, detailed answer in 2-3 sentences based on the context:"""
             return f"Error generating answer: {str(e)}"
     
     def answer_question(self, question):
-        context = self.retrieve_context(question, top_k=3)
+        context = self.retrieve_context(question, top_k=2)
         answer = self.generate_answer(question, context)
         return answer
