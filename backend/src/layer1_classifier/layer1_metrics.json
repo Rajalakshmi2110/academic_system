@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.9946236559139785,
+  "precision": 0.98989898989899,
+  "recall": 1.0,
+  "f1_score": 0.9949238578680203,
+  "confusion_matrix": [
+    [
+      87,
+      1
+    ],
+    [
+      0,
+      98
+    ]
+  ],
+  "avg_latency_ms": 19.18571988741557,
+  "total_samples": 186,
+  "pass": true
+}

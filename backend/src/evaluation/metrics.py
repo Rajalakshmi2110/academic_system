@@ -13,12 +13,17 @@ from src.layer3_rag.inference import generate_answer
 
 class SystemEvaluator:
     def __init__(self):
-        self.layer1 = Layer1Classifier()
-        self.pipeline = TwoLayerPipeline()
+        project_root = Path(__file__).parent.parent.parent
+        model_path = project_root / 'models' / 'layer1_distilbert'
+        
+        self.layer1 = Layer1Classifier(model_path=str(model_path))
+        self.pipeline = TwoLayerPipeline(layer1_model_path=str(model_path))
+        self.project_root = project_root
     
     def evaluate_layer1(self, test_file='data/processed/test.json'):
         """Evaluate Layer 1 classifier performance"""
-        with open(test_file, 'r') as f:
+        test_file_path = self.project_root / test_file
+        with open(test_file_path, 'r') as f:
             test_data = json.load(f)
         
         y_true = [item['label'] for item in test_data]
@@ -154,6 +159,10 @@ def run_evaluation():
         json.dump(results, f, indent=2)
     
     print("Results saved to evaluation_results.json")
+    print("\nNote: Run individual layer evaluations for detailed metrics:")
+    print("  - python src/layer1_classifier/evaluate.py")
+    print("  - python src/layer2_validator/evaluate.py")
+    print("  - python src/layer3_rag/evaluate.py")
 
 
 if __name__ == '__main__':

@@ -101,3 +101,59 @@ def evaluate_model():
 if __name__ == "__main__":
     success = evaluate_model()
     print(f"\nOverall evaluation: {'PASS' if success else 'FAIL'}")
+    
+    # Save metrics to JSON
+    import json
+    from pathlib import Path
+    
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model_path = Path('models/layer1_distilbert')
+    tokenizer = DistilBertTokenizer.from_pretrained(model_path)
+    model = DistilBertForSequenceClassification.from_pretrained(model_path)
+    model.to(device)
+    model.eval()
+    
+    test_dataset = QuestionDataset('data/processed/test.json', tokenizer)
+    test_loader = DataLoader(test_dataset, batch_size=16)
+    
+    predictions = []
+    true_labels = []
+    inference_times = []
+    
+    with torch.no_grad():
+        for batch in test_loader:
+            input_ids = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            labels = batch['labels'].to(device)
+            
+            start_time = time.time()
+            outputs = model(input_ids=input_ids, attention_mask=attention_mask)
+            inference_time = (time.time() - start_time) * 1000 / len(input_ids)
+            inference_times.append(inference_time)
+            
+            preds = torch.argmax(outputs.logits, dim=-1)
+            predictions.extend(preds.cpu().numpy())
+            true_labels.extend(labels.cpu().numpy())
+    
+    from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
+    accuracy = accuracy_score(true_labels, predictions)
+    precision, recall, f1, _ = precision_recall_fscore_support(true_labels, predictions, average='binary')
+    cm = confusion_matrix(true_labels, predictions)
+    avg_inference_time = np.mean(inference_times)
+    
+    metrics = {
+        "accuracy": float(accuracy),
+        "precision": float(precision),
+        "recall": float(recall),
+        "f1_score": float(f1),
+        "confusion_matrix": cm.tolist(),
+        "avg_latency_ms": float(avg_inference_time),
+        "total_samples": len(test_dataset),
+        "pass": bool(success)
+    }
+    
+    output_path = Path('src/layer1_classifier/layer1_metrics.json')
+    with open(output_path, 'w') as f:
+        json.dump(metrics, f, indent=2)
+    
+    print(f"\n✓ Metrics saved to {output_path}")
