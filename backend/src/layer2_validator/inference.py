@@ -6,7 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from src.layer1_classifier.inference import Layer1Classifier
-from src.layer2_validator.rule_based_validator import RuleBasedValidator as Layer2Validator
+from src.layer2_validator.mcp_validator import MCPValidator as Layer2Validator
 
 class TwoLayerPipeline:
     def __init__(self):
@@ -21,10 +21,10 @@ class TwoLayerPipeline:
             print(f"[ERROR] Layer 1 failed to load: {e}")
             raise
         
-        # Initialize Layer 2 (Rule-Based Validator)
+        # Initialize Layer 2 (MCP Validator with GPT-4o)
         try:
             self.layer2 = Layer2Validator()
-            print("[OK] Layer 2 (Rule-Based Validator) loaded successfully")
+            print("[OK] Layer 2 (MCP Validator) loaded successfully")
         except Exception as e:
             print(f"[ERROR] Layer 2 failed to load: {e}")
             raise
@@ -42,20 +42,6 @@ class TwoLayerPipeline:
             dict: Complete validation result
         """
         start_time = time.time()
-        
-        # Pre-check: Gibberish detection (before Layer 1)
-        if self.layer2.is_gibberish(question):
-            return {
-                'question': question,
-                'layer1_result': None,
-                'layer2_result': 'REJECTED',
-                'final_status': 'REJECTED',
-                'explanation': 'Question appears to be gibberish or invalid input.',
-                'confidence': 0.95,
-                'total_latency_ms': (time.time() - start_time) * 1000,
-                'layer1_time_ms': 0,
-                'layer2_time_ms': (time.time() - start_time) * 1000
-            }
         
         # Layer 1: Syllabus Relevance Check
         layer1_result = self.layer1.predict(question, return_confidence=True)
@@ -116,6 +102,7 @@ class TwoLayerPipeline:
             'layer2_result': layer2_result['status'],
             'final_status': layer2_result['status'],
             'explanation': layer2_result['explanation'],
+            'warning': layer2_result.get('explanation') if layer2_result['status'] == 'WARNING' else None,
             'confidence': layer2_result['confidence'],
             'total_latency_ms': total_time,
             'layer1_time_ms': layer1_result['inference_time_ms'],

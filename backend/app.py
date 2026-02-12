@@ -20,7 +20,8 @@ pipeline = TwoLayerPipeline()
 def chat():
     data = request.json
     question = data.get('question', '')
-    show_steps = data.get('show_steps', False)  # New parameter for review mode
+    show_steps = data.get('show_steps', False)
+    force_answer = data.get('force_answer', False)  # New parameter for OUT_OF_SYLLABUS override
     
     if not question:
         return jsonify({'error': 'Question is required'}), 400
@@ -42,21 +43,27 @@ def chat():
         }
     }
     
-    if validation_result['final_status'] != 'VALID':
-        response = validation_result.copy()
-        if show_steps:
-            response['intermediate_steps'] = steps
-        return jsonify(response)
+    if validation_result['final_status'] not in ['VALID', 'WARNING']:
+        # Check if OUT_OF_SYLLABUS and user wants answer anyway
+        if validation_result['final_status'] == 'OUT_OF_SYLLABUS' and force_answer:
+            # User clicked "Answer Anyway" - proceed to Layer 3
+            pass  # Continue to Layer 3 below
+        else:
+            # Return validation result without calling Layer 3
+            response = validation_result.copy()
+            if show_steps:
+                response['intermediate_steps'] = steps
+            return jsonify(response)
     
     # Layer 3: Generate answer using RAG
     try:
         import time
         layer3_start = time.time()
-        answer = generate_answer(question)
+        rag_result = generate_answer(question)
         layer3_time = (time.time() - layer3_start) * 1000
         
         steps['layer3'] = {
-            'status': 'SUCCESS',
+            'status': rag_result.get('status', 'SUCCESS'),
             'latency_ms': layer3_time,
             'description': 'RAG pipeline - FAISS retrieval + Llama 3.1 generation'
         }
@@ -64,8 +71,10 @@ def chat():
         response = {
             'status': 'success',
             'question': question,
-            'answer': answer,
-            'final_status': 'VALID'
+            'answer': rag_result.get('answer', rag_result) if isinstance(rag_result, dict) else rag_result,
+            'final_status': 'VALID',
+            'warning': validation_result.get('warning'),  # Include warning if present
+            'out_of_syllabus_answered': force_answer  # Flag if this was OUT_OF_SYLLABUS but answered anyway
         }
         
         if show_steps:
@@ -91,6 +100,40 @@ def metrics():
         with open(metrics_path, 'r') as f:
             data = json.load(f)
         return jsonify(data)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/feedback', methods=['POST'])
+def submit_feedback():
+    try:
+        import json
+        from datetime import datetime
+        
+        data = request.json
+        feedback_entry = {
+            'question': data.get('question'),
+            'answer': data.get('answer'),
+            'feedback': data.get('feedback'),  # 'helpful' or 'not_helpful'
+            'timestamp': datetime.now().isoformat()
+        }
+        
+        feedback_path = base_dir / 'feedback.json'
+        
+        # Load existing feedback
+        if feedback_path.exists():
+            with open(feedback_path, 'r') as f:
+                feedback_list = json.load(f)
+        else:
+            feedback_list = []
+        
+        # Append new feedback
+        feedback_list.append(feedback_entry)
+        
+        # Save back
+        with open(feedback_path, 'w') as f:
+            json.dump(feedback_list, f, indent=2)
+        
+        return jsonify({'status': 'success', 'message': 'Feedback recorded'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

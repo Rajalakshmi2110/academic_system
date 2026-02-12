@@ -28,23 +28,45 @@ const ChatInterface = () => {
     return colors[status] || '#9E9E9E';
   };
 
-  const sendMessage = async () => {
+  const sendMessage = async (forceAnswer = false) => {
     if (!input.trim()) return;
     const userMsg = { type: 'user', text: input };
     setMessages(prev => [...prev, userMsg]);
+    const currentInput = input;
     setInput('');
     setLoading(true);
 
     try {
       const res = await axios.post('http://localhost:5000/api/chat', { 
-        question: input,
-        show_steps: showSteps 
+        question: currentInput,
+        show_steps: showSteps,
+        force_answer: forceAnswer
       });
       setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
     } catch (error) {
       setMessages(prev => [...prev, { type: 'bot', data: { final_status: 'ERROR', explanation: 'Failed to connect to backend' } }]);
     }
     setLoading(false);
+  };
+
+  const handleAnswerAnyway = (question) => {
+    // Re-send the question with force_answer=true
+    setInput(question);
+    setTimeout(() => sendMessage(true), 100);
+  };
+
+  const handleFeedback = async (question, answer, feedback) => {
+    try {
+      await axios.post('http://localhost:5000/api/feedback', {
+        question,
+        answer,
+        feedback
+      });
+      // Show success message
+      alert('Thank you for your feedback!');
+    } catch (error) {
+      console.error('Failed to submit feedback:', error);
+    }
   };
 
   const getStepIcon = (status) => {
@@ -151,11 +173,48 @@ const ChatInterface = () => {
                     </Accordion>
                   )}
                   
-                  <Typography>{msg.data.answer || msg.data.explanation || msg.data.message}</Typography>
+                  <Typography>
+                    {typeof (msg.data.answer || msg.data.explanation || msg.data.message) === 'string' 
+                      ? (msg.data.answer || msg.data.explanation || msg.data.message)
+                      : JSON.stringify(msg.data.answer || msg.data.explanation || msg.data.message)}
+                  </Typography>
+                  
+                  {msg.data.final_status === 'OUT_OF_SYLLABUS' && (
+                    <Box sx={{ mt: 2 }}>
+                      <Button 
+                        variant="outlined" 
+                        size="small" 
+                        onClick={() => handleAnswerAnyway(msg.data.question)}
+                        sx={{ borderColor: '#FF9800', color: '#FF9800' }}
+                      >
+                        📚 Answer Anyway (Not in CA3101 syllabus)
+                      </Button>
+                    </Box>
+                  )}
+                  
+                  {msg.data.warning && (
+                    <Box sx={{ mt: 1, p: 1, bgcolor: '#FFF3E0', borderRadius: 1, borderLeft: '4px solid #FF9800' }}>
+                      <Typography variant="caption" sx={{ color: '#E65100', fontWeight: 'bold' }}>
+                        ⚠️ Warning: {msg.data.warning}
+                      </Typography>
+                    </Box>
+                  )}
                   {(msg.data.status === 'success' || msg.data.final_status === 'VALID') && (
                     <Box sx={{ mt: 1, display: 'flex', gap: 1 }}>
-                      <Button size="small" startIcon={<ThumbUp />}>Helpful</Button>
-                      <Button size="small" startIcon={<ThumbDown />}>Not Helpful</Button>
+                      <Button 
+                        size="small" 
+                        startIcon={<ThumbUp />}
+                        onClick={() => handleFeedback(msg.data.question, msg.data.answer, 'helpful')}
+                      >
+                        Helpful
+                      </Button>
+                      <Button 
+                        size="small" 
+                        startIcon={<ThumbDown />}
+                        onClick={() => handleFeedback(msg.data.question, msg.data.answer, 'not_helpful')}
+                      >
+                        Not Helpful
+                      </Button>
                     </Box>
                   )}
                 </>
