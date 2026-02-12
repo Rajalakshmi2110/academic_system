@@ -75,20 +75,16 @@ Answer in 2 sentences:"""
             return f"Error generating answer: {str(e)}"
     
     def answer_question(self, question):
-        # Step 1: Validate with LLM
-        is_valid, message = self.validate_question(question)
-        if not is_valid:
-            return {"status": "invalid", "message": message}
+        # Skip validation - already validated by Layer 1 & 2
         
-        # Step 2: Retrieve context
+        # Step 1: Retrieve context
         context = self.retrieve_context(question, top_k=2)
         
-        # Step 3: Generate answer
+        # Step 2: Generate answer
         answer = self.generate_answer(question, context)
         
         return {
             "status": "success",
-            "validation": message,
             "context": context,
             "answer": answer
         }

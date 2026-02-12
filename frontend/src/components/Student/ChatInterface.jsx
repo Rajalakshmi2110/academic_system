@@ -49,10 +49,22 @@ const ChatInterface = () => {
     setLoading(false);
   };
 
-  const handleAnswerAnyway = (question) => {
-    // Re-send the question with force_answer=true
-    setInput(question);
-    setTimeout(() => sendMessage(true), 100);
+  const handleAnswerAnyway = async (question) => {
+    const userMsg = { type: 'user', text: question };
+    setMessages(prev => [...prev, userMsg]);
+    setLoading(true);
+
+    try {
+      const res = await axios.post('http://localhost:5000/api/chat', { 
+        question: question,
+        show_steps: showSteps,
+        force_answer: true
+      });
+      setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
+    } catch (error) {
+      setMessages(prev => [...prev, { type: 'bot', data: { final_status: 'ERROR', explanation: 'Failed to connect to backend' } }]);
+    }
+    setLoading(false);
   };
 
   const handleFeedback = async (question, answer, feedback) => {
