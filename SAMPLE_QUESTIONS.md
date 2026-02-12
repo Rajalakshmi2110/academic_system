@@ -109,3 +109,73 @@ This hybrid approach:
 - Catches critical conceptual errors (LIFO/FIFO, cycles in trees)
 - Lets LLM educate students on complexity mistakes
 - Provides flexibility without maintaining 100+ hardcoded rules
+
+
+
+Sample Questions to Test Your MCP System
+:white_check_mark: VALID Questions (Should get answers)
+Basic Concepts:
+1. What is a stack?
+2. Explain linked list
+3. How does BFS work?
+4. What is time complexity?
+5. Difference between stack and queue
+With Typos (Tests MCP leniency):
+6. explain dijkstra algoritm
+7. what is binery search
+8. how to travers a tree
+9. explain quik sort
+10. what is haep data structure
+Broad Questions:
+11. Explain sorting algorithms
+12. What are tree traversal methods?
+13. Tell me about graph algorithms
+14. Explain hashing techniques
+15. What are different types of trees?
+Short Questions:
+16. AVL tree?
+17. DFS vs BFS
+18. Big O notation
+19. Recursion
+20. Hash collision
+Complex Questions:
+21. How does Dijkstra's algorithm find shortest path?
+22. What is the time complexity of quicksort in worst case?
+23. Explain AVL tree rotations with example
+24. How does chaining handle hash collisions?
+25. What is the difference between 2-3 tree and B-tree?
+
+:x: OUT_OF_SYLLABUS Questions (Should be rejected)
+Advanced DS (Not in CA3101):
+26. Explain skip list
+27. What is fibonacci heap?
+28. How does red-black tree work?
+29. Tell me about splay trees
+30. Explain segment tree
+Non-DS Topics:
+31. How to deploy on AWS?
+32. What is React hooks?
+33. Explain SQL joins
+34. How does Docker work?
+35. What is MongoDB?
+
+:x: REJECTED Questions (Gibberish)
+36. asdfasdf
+37. ????????
+38. qwertyuiop
+39. jkjkjkjkjk
+40. 12345678
+
+:dart: Edge Cases (Tests MCP intelligence)
+Incorrect Facts (Should still get answer with correction):
+41. Is binary search O(n^2)?
+42. Stack is FIFO right?
+43. Queue is LIFO correct?
+44. Trees can have cycles?
+45. Linked list search is O(1)?
+Very Short:
+46. BFS
+47. Stack
+48. Array
+49. Graph
+50. Heap

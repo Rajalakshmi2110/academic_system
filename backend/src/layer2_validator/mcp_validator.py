@@ -1,14 +1,21 @@
 from groq import Groq
 import time
 import json
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 class MCPValidator:
     def __init__(self):
-        # Get free API key from: https://console.groq.com/keys
-        self.client = Groq(
-            api_key="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"  # Replace with your free key
-        )
+        # Load environment variables from .env file
+        load_dotenv()
+        
+        # Get API key from environment variable
+        api_key = os.getenv('GROQ_API_KEY')
+        if not api_key:
+            raise ValueError("GROQ_API_KEY environment variable not set. Get free key from: https://console.groq.com/keys")
+        
+        self.client = Groq(api_key=api_key)
         
         # Load syllabus
         syllabus_path = Path(__file__).parent.parent.parent / 'data' / 'raw' / 'ca3101_syllabus.json'
@@ -45,33 +52,39 @@ class MCPValidator:
                 messages=[
                     {"role": "system", "content": """You are a validator for CA3101 Data Structures course.
 
-Your job: Categorize questions into 3 types:
+Your job: Categorize questions into 4 types:
 
-1. REJECTED - Complete gibberish or out-of-syllabus:
+1. REJECTED ❌ - Gibberish OR Non-DS topics:
    - Gibberish: asdfasdf, ?????, qwertyuiop
-   - Out-of-syllabus DS: Skip lists, Fibonacci heaps, Red-black trees, Splay trees, Suffix trees, Segment trees
-   - Non-DS: AWS, cloud, React, SQL, databases
+   - Non-DS topics: AWS, cloud, React, SQL, databases, Docker, MongoDB
+   Action: Stop processing, don't call Layer 3
 
-2. WARNING - Contains incorrect facts (but still answer it!):
-   - "Stack is FIFO right?" → WARNING (wrong fact, but Layer 3 will correct)
+2. OUT_OF_SYLLABUS 🚫 - DS topics NOT in CA3101:
+   - Advanced DS: Skip lists, Fibonacci heaps, Red-black trees, Splay trees, Suffix trees, Segment trees
+   Action: Show "Not in CA3101" message with optional "Answer Anyway" button
+
+3. WARNING ⚠️ - Contains incorrect facts (but still answer it!):
+   - "Stack is FIFO right?" → WARNING (wrong fact, Layer 3 will correct)
    - "Is binary search O(n^2)?" → WARNING (wrong complexity)
    - "Queue is LIFO correct?" → WARNING (wrong fact)
    - "Trees can have cycles?" → WARNING (wrong concept)
+   Action: Proceed to Layer 3 with warning badge
 
-3. VALID - Everything else:
-   - Correct questions
-   - Questions with typos
-   - Vague or short questions
-   - Questions about AVL, 2-3 trees, B-trees (in syllabus!)
+4. VALID ✅ - Correct DS questions in CA3101:
+   - Correct questions about arrays, linked lists, stacks, queues, trees, graphs, heaps, hashing, sorting
+   - Questions with typos are still VALID
+   - Vague or short questions are VALID
+   - AVL trees, 2-3 trees, B-trees are in syllabus (VALID)
+   Action: Proceed to Layer 3
 
 Respond with JSON:
 {"status": "VALID", "reason": "Question is clear"}
 or
 {"status": "WARNING", "reason": "Contains incorrect fact: [what's wrong]"}
 or
-{"status": "OUT_OF_SYLLABUS", "reason": "Topic X not in CA3101"}
+{"status": "OUT_OF_SYLLABUS", "reason": "Topic X is DS but not in CA3101"}
 or
-{"status": "REJECTED", "reason": "Complete gibberish"}"""},
+{"status": "REJECTED", "reason": "Gibberish or non-DS topic"}"""},
                     {"role": "user", "content": f"Validate: {question}"}
                 ],
                 tools=tools,

@@ -8,14 +8,18 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from src.layer1_classifier.inference import Layer1Classifier
 from src.layer2_validator.mcp_validator import MCPValidator as Layer2Validator
 
+# use Rules (backup)
+#from src.layer2_validator.rule_based_validator import RuleBasedValidator as Layer2Validator
+
+
 class TwoLayerPipeline:
-    def __init__(self):
+    def __init__(self, layer1_model_path='models/layer1_distilbert'):
         """Initialize both Layer 1 and Layer 2 models"""
         print("Initializing Two-Layer Academic Doubt Clarification System...")
         
         # Initialize Layer 1 (DistilBERT)
         try:
-            self.layer1 = Layer1Classifier()
+            self.layer1 = Layer1Classifier(model_path=layer1_model_path)
             print("[OK] Layer 1 (DistilBERT) loaded successfully")
         except Exception as e:
             print(f"[ERROR] Layer 1 failed to load: {e}")
