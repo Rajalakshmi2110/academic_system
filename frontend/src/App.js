@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Box, Button } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import ChatInterface from './components/Student/ChatInterface';
 import AdminPage from './components/Admin/AdminPage';
@@ -17,26 +16,17 @@ const theme = createTheme({
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
 
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('admin') === 'true') {
+      setIsAdmin(true);
+    }
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {isAdmin ? (
-        <AdminPage />
-      ) : (
-        <>
-          <Box sx={{ position: 'fixed', top: 10, right: 10, zIndex: 1000 }}>
-            <Button
-              variant="outlined"
-              size="small"
-              onClick={() => setIsAdmin(true)}
-              sx={{ bgcolor: 'white' }}
-            >
-              Admin
-            </Button>
-          </Box>
-          <ChatInterface />
-        </>
-      )}
+      {isAdmin ? <AdminPage /> : <ChatInterface />}
     </ThemeProvider>
   );
 }
