@@ -26,9 +26,18 @@ const AdminLogin = ({ onLogin }) => {
   return (
     <Box sx={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: '#F5F5F5' }}>
       <Paper sx={{ p: 4, maxWidth: 400, width: '100%' }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
-          <Lock sx={{ color: '#1976D2' }} />
-          <Typography variant="h5">Admin Login</Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Lock sx={{ color: '#1976D2' }} />
+            <Typography variant="h5">Admin Login</Typography>
+          </Box>
+          <Button
+            size="small"
+            onClick={() => window.location.href = '/'}
+            sx={{ color: '#666' }}
+          >
+            Home
+          </Button>
         </Box>
         
         {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
