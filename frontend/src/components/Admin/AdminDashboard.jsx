@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Paper, Typography, List, ListItem, ListItemText, IconButton, Alert, LinearProgress, Card, CardContent, Grid } from '@mui/material';
-import { CloudUpload, Delete, Refresh, Logout, Description } from '@mui/icons-material';
+import { Box, Button, Paper, Typography, List, ListItem, ListItemText, IconButton, Alert, LinearProgress, Card, CardContent, Grid, TextField, Accordion, AccordionSummary, AccordionDetails, Chip } from '@mui/material';
+import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder } from '@mui/icons-material';
 import axios from 'axios';
 
 const AdminDashboard = ({ onLogout }) => {
-  const [pdfs, setPdfs] = useState([]);
+  const [folders, setFolders] = useState({});
   const [stats, setStats] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [rebuilding, setRebuilding] = useState(false);
   const [message, setMessage] = useState(null);
+  const [folderName, setFolderName] = useState('');
 
   useEffect(() => {
     loadPdfs();
@@ -18,7 +19,7 @@ const AdminDashboard = ({ onLogout }) => {
   const loadPdfs = async () => {
     try {
       const res = await axios.get('http://localhost:5000/api/admin/list-pdfs');
-      setPdfs(res.data.pdfs);
+      setFolders(res.data.folders);
     } catch (err) {
       setMessage({ type: 'error', text: 'Failed to load PDFs' });
     }
@@ -34,18 +35,21 @@ const AdminDashboard = ({ onLogout }) => {
   };
 
   const handleUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
 
     setUploading(true);
     setMessage(null);
 
-    const formData = new FormData();
-    formData.append('file', file);
-
     try {
-      await axios.post('http://localhost:5000/api/admin/upload-pdf', formData);
-      setMessage({ type: 'success', text: `${file.name} uploaded successfully` });
+      for (let file of files) {
+        const formData = new FormData();
+        formData.append('file', file);
+        if (folderName) formData.append('folder', folderName);
+        await axios.post('http://localhost:5000/api/admin/upload-pdf', formData);
+      }
+      setMessage({ type: 'success', text: `${files.length} file(s) uploaded` });
+      setFolderName('');
       loadPdfs();
       loadStats();
     } catch (err) {
@@ -54,12 +58,12 @@ const AdminDashboard = ({ onLogout }) => {
     setUploading(false);
   };
 
-  const handleDelete = async (filename) => {
-    if (!window.confirm(`Delete ${filename}?`)) return;
+  const handleDelete = async (path) => {
+    if (!window.confirm(`Delete ${path}?`)) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/admin/delete-pdf/${filename}`);
-      setMessage({ type: 'success', text: `${filename} deleted` });
+      await axios.delete('http://localhost:5000/api/admin/delete-pdf', { data: { path } });
+      setMessage({ type: 'success', text: 'File deleted' });
       loadPdfs();
       loadStats();
     } catch (err) {
@@ -114,7 +118,14 @@ const AdminDashboard = ({ onLogout }) => {
             <Card>
               <CardContent>
                 <Typography variant="h6">Actions</Typography>
-                <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
+                <TextField
+                  size="small"
+                  placeholder="Folder name (optional)"
+                  value={folderName}
+                  onChange={(e) => setFolderName(e.target.value)}
+                  sx={{ mb: 1, width: '100%' }}
+                />
+                <Box sx={{ display: 'flex', gap: 1 }}>
                   <Button
                     variant="contained"
                     component="label"
@@ -123,7 +134,7 @@ const AdminDashboard = ({ onLogout }) => {
                     size="small"
                   >
                     Upload
-                    <input type="file" hidden accept=".pdf" onChange={handleUpload} />
+                    <input type="file" hidden accept=".pdf" multiple onChange={handleUpload} />
                   </Button>
                   <Button
                     variant="outlined"
@@ -143,28 +154,41 @@ const AdminDashboard = ({ onLogout }) => {
         {(uploading || rebuilding) && <LinearProgress sx={{ mb: 2 }} />}
 
         <Paper sx={{ p: 2 }}>
-          <Typography variant="h6" sx={{ mb: 2 }}>Uploaded Class Notes</Typography>
-          {pdfs.length === 0 ? (
+          <Typography variant="h6" sx={{ mb: 2 }}>Uploaded PDFs by Folder</Typography>
+          {Object.keys(folders).length === 0 ? (
             <Typography color="textSecondary">No PDFs uploaded yet</Typography>
           ) : (
-            <List>
-              {pdfs.map((pdf) => (
-                <ListItem
-                  key={pdf.filename}
-                  secondaryAction={
-                    <IconButton edge="end" onClick={() => handleDelete(pdf.filename)}>
-                      <Delete />
-                    </IconButton>
-                  }
-                >
-                  <Description sx={{ mr: 2, color: '#1976D2' }} />
-                  <ListItemText
-                    primary={pdf.filename}
-                    secondary={`${pdf.size_mb} MB • ${new Date(pdf.modified).toLocaleString()}`}
-                  />
-                </ListItem>
-              ))}
-            </List>
+            Object.entries(folders).map(([folderName, files]) => (
+              <Accordion key={folderName}>
+                <AccordionSummary expandIcon={<ExpandMore />}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Folder sx={{ color: '#1976D2' }} />
+                    <Typography>{folderName}</Typography>
+                    <Chip label={files.length} size="small" />
+                  </Box>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <List>
+                    {files.map((pdf) => (
+                      <ListItem
+                        key={pdf.path}
+                        secondaryAction={
+                          <IconButton edge="end" onClick={() => handleDelete(pdf.path)}>
+                            <Delete />
+                          </IconButton>
+                        }
+                      >
+                        <Description sx={{ mr: 2, color: '#1976D2' }} />
+                        <ListItemText
+                          primary={pdf.filename}
+                          secondary={`${pdf.size_mb} MB • ${new Date(pdf.modified).toLocaleString()}`}
+                        />
+                      </ListItem>
+                    ))}
+                  </List>
+                </AccordionDetails>
+              </Accordion>
+            ))
           )}
         </Paper>
       </Box>

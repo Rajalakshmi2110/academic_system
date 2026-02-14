@@ -30,18 +30,29 @@ def upload_pdf():
         return jsonify({'error': 'No file provided'}), 400
     
     file = request.files['file']
+    folder = request.form.get('folder', '')  # Get folder name from form
+    
     if file.filename == '' or not allowed_file(file.filename):
         return jsonify({'error': 'Invalid file'}), 400
     
     try:
         filename = secure_filename(file.filename)
-        filepath = UPLOAD_FOLDER / filename
+        
+        # Create subfolder if specified
+        if folder:
+            folder_path = UPLOAD_FOLDER / secure_filename(folder)
+            folder_path.mkdir(parents=True, exist_ok=True)
+            filepath = folder_path / filename
+        else:
+            filepath = UPLOAD_FOLDER / filename
+        
         file.save(filepath)
         
         return jsonify({
             'status': 'success',
             'message': f'File {filename} uploaded',
             'filename': filename,
+            'folder': folder,
             'size': filepath.stat().st_size,
             'uploaded_at': datetime.now().isoformat()
         })
@@ -51,32 +62,50 @@ def upload_pdf():
 @admin_bp.route('/list-pdfs', methods=['GET'])
 def list_pdfs():
     try:
-        pdfs = []
-        for pdf_file in UPLOAD_FOLDER.glob('*.pdf'):
+        folders = {}
+        
+        # Scan all subfolders
+        for pdf_file in UPLOAD_FOLDER.rglob('*.pdf'):
             stat = pdf_file.stat()
-            pdfs.append({
+            relative_path = pdf_file.relative_to(UPLOAD_FOLDER)
+            folder_name = str(relative_path.parent) if relative_path.parent != Path('.') else 'Root'
+            
+            if folder_name not in folders:
+                folders[folder_name] = []
+            
+            folders[folder_name].append({
                 'filename': pdf_file.name,
+                'path': str(relative_path),
                 'size': stat.st_size,
                 'size_mb': round(stat.st_size / (1024 * 1024), 2),
                 'modified': datetime.fromtimestamp(stat.st_mtime).isoformat()
             })
         
-        pdfs.sort(key=lambda x: x['modified'], reverse=True)
-        return jsonify({'pdfs': pdfs, 'total': len(pdfs)})
+        # Sort files within each folder
+        for folder in folders:
+            folders[folder].sort(key=lambda x: x['modified'], reverse=True)
+        
+        total = sum(len(files) for files in folders.values())
+        return jsonify({'folders': folders, 'total': total})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@admin_bp.route('/delete-pdf/<filename>', methods=['DELETE'])
-def delete_pdf(filename):
+@admin_bp.route('/delete-pdf', methods=['DELETE'])
+def delete_pdf():
     try:
-        filename = secure_filename(filename)
-        filepath = UPLOAD_FOLDER / filename
+        data = request.json
+        filepath = data.get('path', '')
         
-        if not filepath.exists():
+        if not filepath:
+            return jsonify({'error': 'Path required'}), 400
+        
+        full_path = UPLOAD_FOLDER / filepath
+        
+        if not full_path.exists():
             return jsonify({'error': 'File not found'}), 404
         
-        filepath.unlink()
-        return jsonify({'status': 'success', 'message': f'{filename} deleted'})
+        full_path.unlink()
+        return jsonify({'status': 'success', 'message': f'{filepath} deleted'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -110,7 +139,7 @@ def rebuild_vector_db():
 @admin_bp.route('/stats', methods=['GET'])
 def get_stats():
     try:
-        pdf_count = len(list(UPLOAD_FOLDER.glob('*.pdf')))
+        pdf_count = len(list(UPLOAD_FOLDER.rglob('*.pdf')))
         
         vector_db_path = Path(__file__).parent.parent.parent / 'data' / 'vector_db'
         chunks_file = vector_db_path / 'chunks.pkl'
