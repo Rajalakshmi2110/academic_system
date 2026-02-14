@@ -66,22 +66,57 @@ def list_pdfs():
     try:
         folders = {}
         
-        # Scan all subfolders
-        for pdf_file in UPLOAD_FOLDER.rglob('*.pdf'):
-            stat = pdf_file.stat()
-            relative_path = pdf_file.relative_to(UPLOAD_FOLDER)
-            folder_name = str(relative_path.parent) if relative_path.parent != Path('.') else 'Root'
-            
-            if folder_name not in folders:
-                folders[folder_name] = []
-            
-            folders[folder_name].append({
-                'filename': pdf_file.name,
-                'path': str(relative_path),
-                'size': stat.st_size,
-                'size_mb': round(stat.st_size / (1024 * 1024), 2),
-                'modified': datetime.fromtimestamp(stat.st_mtime).isoformat()
-            })
+        # Define folder categories
+        categories = {
+            'Textbook': UPLOAD_FOLDER / 'Textbook',
+            'Syllabus': UPLOAD_FOLDER / 'Syllabus',
+            'ClassNotes': UPLOAD_FOLDER / 'ClassNotes'
+        }
+        
+        for category, base_path in categories.items():
+            if not base_path.exists():
+                continue
+                
+            # Scan recursively within each category
+            for pdf_file in base_path.rglob('*.pdf'):
+                stat = pdf_file.stat()
+                relative_path = pdf_file.relative_to(UPLOAD_FOLDER)
+                
+                # Get folder path within category
+                folder_parts = relative_path.parts[1:-1]  # Skip category and filename
+                if folder_parts:
+                    folder_name = f"{category}/{'/'.join(folder_parts)}"
+                else:
+                    folder_name = category
+                
+                if folder_name not in folders:
+                    folders[folder_name] = []
+                
+                folders[folder_name].append({
+                    'filename': pdf_file.name,
+                    'path': str(relative_path),
+                    'size': stat.st_size,
+                    'size_mb': round(stat.st_size / (1024 * 1024), 2),
+                    'modified': datetime.fromtimestamp(stat.st_mtime).isoformat()
+                })
+        
+        # Also scan for JSON files in Syllabus
+        syllabus_path = UPLOAD_FOLDER / 'Syllabus'
+        if syllabus_path.exists():
+            for json_file in syllabus_path.rglob('*.json'):
+                stat = json_file.stat()
+                relative_path = json_file.relative_to(UPLOAD_FOLDER)
+                
+                if 'Syllabus' not in folders:
+                    folders['Syllabus'] = []
+                
+                folders['Syllabus'].append({
+                    'filename': json_file.name,
+                    'path': str(relative_path),
+                    'size': stat.st_size,
+                    'size_mb': round(stat.st_size / (1024 * 1024), 2),
+                    'modified': datetime.fromtimestamp(stat.st_mtime).isoformat()
+                })
         
         # Sort files within each folder
         for folder in folders:
