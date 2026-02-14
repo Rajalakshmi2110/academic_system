@@ -133,3 +133,21 @@ if __name__ == "__main__":
     
     print(f"\n✅ DONE! Vector DB rebuilt with {num_vectors} vectors")
     print(f"Location: {OUTPUT_DIR}")
+    
+    # Auto-export all chunks to text file
+    print("\nExporting all chunks to text file...")
+    try:
+        output_file = Path(OUTPUT_DIR) / '../processed/all_chunks.txt'
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+        
+        with open(output_file, 'w') as f:
+            f.write(f"Total Chunks: {len(chunks)}\n")
+            f.write("="*80 + "\n\n")
+            
+            for i, chunk in enumerate(chunks):
+                f.write(f"CHUNK {i}:\n{chunk}\n\n")
+                f.write("="*80 + "\n\n")
+        
+        print(f"✓ Exported {len(chunks)} chunks to {output_file}")
+    except Exception as e:
+        print(f"✗ Failed to export chunks: {e}")
