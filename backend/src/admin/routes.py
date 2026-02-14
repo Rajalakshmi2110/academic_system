@@ -77,10 +77,13 @@ def list_pdfs():
             if not base_path.exists():
                 continue
                 
-            # Scan recursively within each category
-            for pdf_file in base_path.rglob('*.pdf'):
-                stat = pdf_file.stat()
-                relative_path = pdf_file.relative_to(UPLOAD_FOLDER)
+            # Scan recursively within each category for PDFs and DOC/DOCX/PPT/PPTX
+            for file_path in base_path.rglob('*'):
+                if file_path.suffix.lower() not in ['.pdf', '.doc', '.docx', '.ppt', '.pptx']:
+                    continue
+                    
+                stat = file_path.stat()
+                relative_path = file_path.relative_to(UPLOAD_FOLDER)
                 
                 # Get folder path within category
                 folder_parts = relative_path.parts[1:-1]  # Skip category and filename
@@ -93,7 +96,7 @@ def list_pdfs():
                     folders[folder_name] = []
                 
                 folders[folder_name].append({
-                    'filename': pdf_file.name,
+                    'filename': file_path.name,
                     'path': str(relative_path),
                     'size': stat.st_size,
                     'size_mb': round(stat.st_size / (1024 * 1024), 2),
