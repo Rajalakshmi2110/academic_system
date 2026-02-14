@@ -1,14 +1,18 @@
 from flask import Blueprint, request, jsonify, send_file
 from werkzeug.utils import secure_filename
 import subprocess
+import os
 from pathlib import Path
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 admin_bp = Blueprint('admin', __name__)
 
 UPLOAD_FOLDER = Path('/Users/rathrajy/learning/project/DS')
 ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx', 'ppt', 'pptx'}
-ADMIN_PASSWORD = 'admin123'
+ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'admin123')
 
 # Create ClassNotes subfolder for new uploads
 CLASS_NOTES_FOLDER = UPLOAD_FOLDER / 'ClassNotes'
