@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Paper, Typography, List, ListItem, ListItemText, IconButton, Alert, LinearProgress, Card, CardContent, Grid, TextField, Accordion, AccordionSummary, AccordionDetails, Chip } from '@mui/material';
+import { Box, Button, Paper, Typography, List, ListItem, ListItemText, IconButton, Alert, LinearProgress, Card, CardContent, Grid, TextField, Accordion, AccordionSummary, AccordionDetails, Chip, Select, MenuItem, FormControl, InputLabel, Radio, RadioGroup, FormControlLabel, FormLabel } from '@mui/material';
 import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder } from '@mui/icons-material';
 import axios from 'axios';
 
@@ -9,7 +9,9 @@ const AdminDashboard = ({ onLogout }) => {
   const [uploading, setUploading] = useState(false);
   const [rebuilding, setRebuilding] = useState(false);
   const [message, setMessage] = useState(null);
-  const [folderName, setFolderName] = useState('');
+  const [selectedFolder, setSelectedFolder] = useState('');
+  const [newFolderName, setNewFolderName] = useState('');
+  const [createNew, setCreateNew] = useState(false);
 
   useEffect(() => {
     loadPdfs();
@@ -42,14 +44,18 @@ const AdminDashboard = ({ onLogout }) => {
     setMessage(null);
 
     try {
+      const folderToUse = createNew ? newFolderName : selectedFolder;
+      
       for (let file of files) {
         const formData = new FormData();
         formData.append('file', file);
-        if (folderName) formData.append('folder', folderName);
+        if (folderToUse) formData.append('folder', folderToUse);
         await axios.post('http://localhost:5000/api/admin/upload-pdf', formData);
       }
       setMessage({ type: 'success', text: `${files.length} file(s) uploaded` });
-      setFolderName('');
+      setSelectedFolder('');
+      setNewFolderName('');
+      setCreateNew(false);
       loadPdfs();
       loadStats();
     } catch (err) {
@@ -118,13 +124,41 @@ const AdminDashboard = ({ onLogout }) => {
             <Card>
               <CardContent>
                 <Typography variant="h6">Actions</Typography>
-                <TextField
-                  size="small"
-                  placeholder="Folder name (optional)"
-                  value={folderName}
-                  onChange={(e) => setFolderName(e.target.value)}
-                  sx={{ mb: 1, width: '100%' }}
-                />
+                <FormControl component="fieldset" sx={{ mb: 1 }}>
+                  <RadioGroup row value={createNew ? 'new' : 'existing'} onChange={(e) => setCreateNew(e.target.value === 'new')}>
+                    <FormControlLabel value="existing" control={<Radio size="small" />} label="Existing Folder" />
+                    <FormControlLabel value="new" control={<Radio size="small" />} label="New Folder" />
+                  </RadioGroup>
+                </FormControl>
+                
+                {createNew ? (
+                  <TextField
+                    size="small"
+                    placeholder="New folder name"
+                    value={newFolderName}
+                    onChange={(e) => setNewFolderName(e.target.value)}
+                    sx={{ mb: 1, width: '100%' }}
+                  />
+                ) : (
+                  <FormControl size="small" fullWidth sx={{ mb: 1 }}>
+                    <InputLabel>Select Folder</InputLabel>
+                    <Select
+                      value={selectedFolder}
+                      label="Select Folder"
+                      onChange={(e) => setSelectedFolder(e.target.value)}
+                    >
+                      <MenuItem value="">Root (ClassNotes)</MenuItem>
+                      {Object.keys(folders)
+                        .filter(f => f.startsWith('ClassNotes/'))
+                        .map(f => f.replace('ClassNotes/', ''))
+                        .filter((v, i, a) => a.indexOf(v) === i)
+                        .map(folder => (
+                          <MenuItem key={folder} value={folder}>{folder}</MenuItem>
+                        ))}
+                    </Select>
+                  </FormControl>
+                )}
+                
                 <Box sx={{ display: 'flex', gap: 1 }}>
                   <Button
                     variant="contained"
