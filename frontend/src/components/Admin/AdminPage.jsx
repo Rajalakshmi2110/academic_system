@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Tabs, Tab } from '@mui/material';
+import { Box } from '@mui/material';
 import AdminLogin from './AdminLogin';
 import AdminDashboard from './AdminDashboard';
 import MetricsPage from './MetricsPage';
@@ -14,14 +14,8 @@ const AdminPage = () => {
 
   return (
     <Box>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider', bgcolor: '#1976D2' }}>
-        <Tabs value={currentTab} onChange={(e, v) => setCurrentTab(v)} sx={{ '& .MuiTab-root': { color: 'white' }, '& .Mui-selected': { color: 'white !important' } }}>
-          <Tab label="Dashboard" />
-          <Tab label="Metrics" />
-        </Tabs>
-      </Box>
-      {currentTab === 0 && <AdminDashboard onLogout={() => setIsLoggedIn(false)} />}
-      {currentTab === 1 && <MetricsPage />}
+      {currentTab === 0 && <AdminDashboard onLogout={() => setIsLoggedIn(false)} onSwitchTab={setCurrentTab} />}
+      {currentTab === 1 && <MetricsPage onSwitchTab={setCurrentTab} onLogout={() => setIsLoggedIn(false)} />}
     </Box>
   );
 };

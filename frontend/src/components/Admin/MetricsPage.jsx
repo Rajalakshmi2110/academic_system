@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Paper, Typography, Grid, Card, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Divider, Chip } from '@mui/material';
-import { CheckCircle, Speed, Assessment, TrendingUp } from '@mui/icons-material';
+import { Box, Paper, Typography, Grid, Card, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Divider, Chip, Button } from '@mui/material';
+import { CheckCircle, Speed, Assessment, TrendingUp, Logout } from '@mui/icons-material';
 import axios from 'axios';
 
-const MetricsPage = () => {
+const MetricsPage = ({ onSwitchTab, onLogout }) => {
   const [metrics, setMetrics] = useState(null);
 
   useEffect(() => {
@@ -23,6 +23,14 @@ const MetricsPage = () => {
 
   return (
     <Box sx={{ p: 4, bgcolor: '#F5F7FA', minHeight: '100vh' }}>
+      <Box sx={{ bgcolor: '#1976D2', color: 'white', p: 2, mb: 3, borderRadius: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography variant="h5">Evaluation Metrics</Typography>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Button variant="outlined" onClick={() => onSwitchTab(0)} sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}>DASHBOARD</Button>
+          <Button variant="outlined" onClick={() => onSwitchTab(1)} sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}>METRICS</Button>
+          <Button startIcon={<Logout />} onClick={onLogout} sx={{ color: 'white' }}>Logout</Button>
+        </Box>
+      </Box>
       <Box sx={{ mb: 4 }}>
         <Typography variant="h4" sx={{ fontWeight: 700, color: '#1A202C', mb: 1 }}>System Performance Metrics</Typography>
         <Typography variant="body2" color="text.secondary">Real-time evaluation metrics for the 3-layer validation pipeline</Typography>

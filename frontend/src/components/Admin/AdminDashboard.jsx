@@ -3,7 +3,7 @@ import { Box, Button, Paper, Typography, List, ListItem, ListItemText, IconButto
 import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder, Download, Search } from '@mui/icons-material';
 import axios from 'axios';
 
-const AdminDashboard = ({ onLogout }) => {
+const AdminDashboard = ({ onLogout, onSwitchTab }) => {
   const [folders, setFolders] = useState({});
   const [stats, setStats] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -117,7 +117,11 @@ const AdminDashboard = ({ onLogout }) => {
     <Box sx={{ minHeight: '100vh', bgcolor: '#F5F5F5' }}>
       <Box sx={{ bgcolor: '#1976D2', color: 'white', p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Typography variant="h5">Admin Dashboard</Typography>
-        <Button startIcon={<Logout />} onClick={onLogout} sx={{ color: 'white' }}>Logout</Button>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Button variant="outlined" onClick={() => onSwitchTab(0)} sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}>DASHBOARD</Button>
+          <Button variant="outlined" onClick={() => onSwitchTab(1)} sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}>METRICS</Button>
+          <Button startIcon={<Logout />} onClick={onLogout} sx={{ color: 'white' }}>Logout</Button>
+        </Box>
       </Box>
 
       <Box sx={{ p: 3 }}>
