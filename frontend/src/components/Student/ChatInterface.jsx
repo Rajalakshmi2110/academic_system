@@ -12,6 +12,7 @@ const ChatInterface = () => {
   const [showSteps, setShowSteps] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [comparisonMode, setComparisonMode] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem('conversations');
@@ -110,12 +111,16 @@ const ChatInterface = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/chat', { 
-        question: currentInput,
-        show_steps: showSteps,
-        force_answer: forceAnswer
-      });
-      setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
+      if (comparisonMode) {
+        const [validatedRes, directRes] = await Promise.all([
+          axios.post('http://localhost:5000/api/chat', { question: currentInput, show_steps: showSteps, force_answer: forceAnswer }),
+          axios.post('http://localhost:5000/api/chat/direct', { question: currentInput })
+        ]);
+        setMessages(prev => [...prev, { type: 'bot', data: validatedRes.data, comparison: directRes.data }]);
+      } else {
+        const res = await axios.post('http://localhost:5000/api/chat', { question: currentInput, show_steps: showSteps, force_answer: forceAnswer });
+        setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
+      }
     } catch (error) {
       setMessages(prev => [...prev, { type: 'bot', data: { final_status: 'ERROR', explanation: 'Failed to connect to backend' } }]);
     }
@@ -243,6 +248,11 @@ const ChatInterface = () => {
             <Typography variant="h6">Data Structures Doubt Clarification</Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+            <FormControlLabel
+              control={<Switch checked={comparisonMode} onChange={(e) => setComparisonMode(e.target.checked)} sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: 'white' } }} />}
+              label="Compare Mode"
+              sx={{ color: 'white' }}
+            />
             <Button
               variant="outlined"
               size="small"
@@ -261,10 +271,30 @@ const ChatInterface = () => {
         <Box sx={{ flex: 1, overflow: 'auto', p: 2 }}>
           {messages.map((msg, idx) => (
             <Box key={idx} sx={{ display: 'flex', justifyContent: msg.type === 'user' ? 'flex-end' : 'flex-start', mb: 2 }}>
-              <Paper sx={{ p: 2, maxWidth: '70%', bgcolor: msg.type === 'user' ? '#E3F2FD' : 'white', borderRadius: 2 }}>
-                {msg.type === 'user' ? (
+              {msg.type === 'user' ? (
+                <Paper sx={{ p: 2, maxWidth: '70%', bgcolor: '#E3F2FD', borderRadius: 2 }}>
                   <Typography>{msg.text}</Typography>
-                ) : (
+                </Paper>
+              ) : msg.comparison ? (
+                <Box sx={{ display: 'flex', gap: 2, width: '100%' }}>
+                  <Paper sx={{ p: 2, flex: 1, bgcolor: '#FFF3E0', borderRadius: 2, border: '2px solid #FF9800' }}>
+                    <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#E65100' }}>🚫 Basic RAG (No Validation)</Typography>
+                    <Typography sx={{ mb: 2 }}>{msg.comparison.answer}</Typography>
+                    <Typography variant="caption" sx={{ color: '#666' }}>Latency: {msg.comparison.latency_ms?.toFixed(0)}ms</Typography>
+                  </Paper>
+                  <Paper sx={{ p: 2, flex: 1, bgcolor: '#E8F5E9', borderRadius: 2, border: '2px solid #4CAF50' }}>
+                    <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#2E7D32' }}>✅ 3-Layer Validated System</Typography>
+                    <Chip label={msg.data.final_status} sx={{ bgcolor: getStatusColor(msg.data.final_status), color: 'white', mb: 1 }} size="small" />
+                    <Typography sx={{ mb: 2 }}>{msg.data.answer || msg.data.explanation || msg.data.message}</Typography>
+                    {msg.data.warning && (
+                      <Box sx={{ mb: 1, p: 1, bgcolor: '#FFF3E0', borderRadius: 1 }}>
+                        <Typography variant="caption" sx={{ color: '#E65100' }}>⚠️ {msg.data.warning}</Typography>
+                      </Box>
+                    )}
+                  </Paper>
+                </Box>
+              ) : (
+                <Paper sx={{ p: 2, maxWidth: '70%', bgcolor: 'white', borderRadius: 2 }}>
                   <>
                     <Chip 
                       label={msg.data.status || msg.data.final_status} 
@@ -397,8 +427,8 @@ const ChatInterface = () => {
                       </Box>
                     )}
                   </>
-                )}
-              </Paper>
+                </Paper>
+              )}
             </Box>
           ))}
         </Box>

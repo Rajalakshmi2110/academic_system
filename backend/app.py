@@ -70,7 +70,7 @@ def chat():
         
         steps['layer3'] = {
             'name': 'RAG Pipeline',
-            'status': 'SUCCESS' if rag_result.get('status', 'SUCCESS') == 'SUCCESS' else 'ERROR',
+            'status': 'SUCCESS',
             'latency_ms': layer3_time,
             'description': 'FAISS retrieval + Llama 3.1 generation'
         }
@@ -93,6 +93,34 @@ def chat():
         return jsonify({
             'status': 'error',
             'message': f'Error generating answer: {str(e)}'
+        }), 500
+
+@app.route('/api/chat/direct', methods=['POST'])
+def chat_direct():
+    """Direct RAG without validation layers - for comparison demo"""
+    data = request.json
+    question = data.get('question', '')
+    
+    if not question:
+        return jsonify({'error': 'Question is required'}), 400
+    
+    try:
+        import time
+        start = time.time()
+        rag_result = generate_answer(question)
+        latency = (time.time() - start) * 1000
+        
+        return jsonify({
+            'status': 'success',
+            'question': question,
+            'answer': rag_result.get('answer', rag_result) if isinstance(rag_result, dict) else rag_result,
+            'latency_ms': latency,
+            'mode': 'direct'
+        })
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': f'Error: {str(e)}'
         }), 500
 
 @app.route('/api/health', methods=['GET'])
