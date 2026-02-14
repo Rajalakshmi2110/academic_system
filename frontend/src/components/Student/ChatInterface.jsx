@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, IconButton, Snackbar, Drawer, List, ListItem, ListItemText, ListItemButton, Divider } from '@mui/material';
-import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat } from '@mui/icons-material';
+import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu } from '@mui/icons-material';
 import axios from 'axios';
 
 const ChatInterface = () => {
@@ -11,6 +11,7 @@ const ChatInterface = () => {
   const [loading, setLoading] = useState(false);
   const [showSteps, setShowSteps] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
     const saved = localStorage.getItem('conversations');
@@ -171,25 +172,26 @@ const ChatInterface = () => {
   return (
     <Box sx={{ height: '100vh', display: 'flex' }}>
       <Drawer
-        variant="permanent"
+        variant="persistent"
+        open={sidebarOpen}
         sx={{
-          width: 260,
+          width: sidebarOpen ? 260 : 0,
           flexShrink: 0,
-          '& .MuiDrawer-paper': { width: 260, boxSizing: 'border-box', bgcolor: '#202123', color: 'white' }
+          '& .MuiDrawer-paper': { width: 260, boxSizing: 'border-box', bgcolor: 'white', color: '#333', borderRight: '1px solid #E0E0E0' }
         }}
       >
-        <Box sx={{ p: 2 }}>
+        <Box sx={{ p: 2, bgcolor: '#1976D2' }}>
           <Button
             fullWidth
             variant="outlined"
             startIcon={<Add />}
             onClick={createNewConversation}
-            sx={{ color: 'white', borderColor: 'rgba(255,255,255,0.3)', '&:hover': { borderColor: 'white' } }}
+            sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}
           >
             New Chat
           </Button>
         </Box>
-        <Divider sx={{ bgcolor: 'rgba(255,255,255,0.1)' }} />
+        <Divider />
         <List sx={{ flex: 1, overflow: 'auto', px: 1 }}>
           {conversations.map(conv => (
             <ListItem
@@ -200,7 +202,7 @@ const ChatInterface = () => {
                   edge="end"
                   size="small"
                   onClick={() => deleteConversation(conv.id)}
-                  sx={{ color: 'rgba(255,255,255,0.5)', '&:hover': { color: 'white' } }}
+                  sx={{ color: '#666', '&:hover': { color: '#F44336' } }}
                 >
                   <Delete fontSize="small" />
                 </IconButton>
@@ -212,11 +214,16 @@ const ChatInterface = () => {
                 sx={{
                   borderRadius: 1,
                   mb: 0.5,
-                  '&.Mui-selected': { bgcolor: 'rgba(255,255,255,0.1)' },
-                  '&:hover': { bgcolor: 'rgba(255,255,255,0.05)' }
+                  border: '1px solid transparent',
+                  '&.Mui-selected': { 
+                    bgcolor: 'white',
+                    border: '1px solid #1976D2',
+                    '&:hover': { bgcolor: 'white' }
+                  },
+                  '&:hover': { bgcolor: '#F5F5F5' }
                 }}
               >
-                <Chat sx={{ mr: 1, fontSize: 18 }} />
+                <Chat sx={{ mr: 1, fontSize: 18, color: '#1976D2' }} />
                 <ListItemText
                   primary={conv.title}
                   primaryTypographyProps={{ fontSize: 14, noWrap: true }}
@@ -229,7 +236,12 @@ const ChatInterface = () => {
 
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', bgcolor: '#F5F5F5' }}>
         <Box sx={{ bgcolor: '#1976D2', color: 'white', p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h5">Data Structures Doubt Clarification</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <IconButton onClick={() => setSidebarOpen(!sidebarOpen)} sx={{ color: 'white' }}>
+              <Menu />
+            </IconButton>
+            <Typography variant="h6">Data Structures Doubt Clarification</Typography>
+          </Box>
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
             <Button
               variant="outlined"
