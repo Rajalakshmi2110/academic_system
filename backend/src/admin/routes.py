@@ -7,7 +7,7 @@ from datetime import datetime
 admin_bp = Blueprint('admin', __name__)
 
 UPLOAD_FOLDER = Path('/Users/rathrajy/learning/project/DS')
-ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx'}
+ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx', 'ppt', 'pptx'}
 ADMIN_PASSWORD = 'admin123'
 
 # Create ClassNotes subfolder for new uploads

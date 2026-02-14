@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Rebuild FAISS vector database from PDFs, DOC/DOCX and JSON files
+Rebuild FAISS vector database from PDFs, DOC/DOCX, PPT/PPTX and JSON files
 Usage: python rebuild_vector_db.py
 """
 
@@ -18,8 +18,15 @@ except ImportError:
     DOCX_AVAILABLE = False
     print("⚠️  python-docx not installed. Install with: pip install python-docx")
 
+try:
+    from pptx import Presentation
+    PPTX_AVAILABLE = True
+except ImportError:
+    PPTX_AVAILABLE = False
+    print("⚠️  python-pptx not installed. Install with: pip install python-pptx")
+
 def extract_text_from_pdfs(pdf_dir):
-    """Extract text from all PDFs, DOC/DOCX, and JSON files in directory (recursively)"""
+    """Extract text from all PDFs, DOC/DOCX, PPT/PPTX, and JSON files in directory (recursively)"""
     all_text = ""
     pdf_dir = Path(pdf_dir)
     
@@ -60,6 +67,22 @@ def extract_text_from_pdfs(pdf_dir):
         for doc_file in pdf_dir.rglob('*.doc'):
             print(f"⚠️  {doc_file.name}: .doc format not supported, convert to .docx")
     
+    # Load PPTX files (recursively)
+    if PPTX_AVAILABLE:
+        for pptx_file in pdf_dir.rglob('*.pptx'):
+            try:
+                prs = Presentation(pptx_file)
+                for slide in prs.slides:
+                    for shape in slide.shapes:
+                        if hasattr(shape, "text"):
+                            all_text += shape.text + "\n"
+                print(f"✓ {pptx_file.relative_to(pdf_dir)}")
+            except Exception as e:
+                print(f"✗ {pptx_file.name}: {e}")
+        
+        for ppt_file in pdf_dir.rglob('*.ppt'):
+            print(f"⚠️  {ppt_file.name}: .ppt format not supported, convert to .pptx")
+    
     return all_text
 
 def chunk_text(text, size=500, overlap=50):
@@ -97,7 +120,7 @@ if __name__ == "__main__":
     PDF_DIR = "/Users/rathrajy/learning/project/DS"
     OUTPUT_DIR = "backend/data/vector_db"
     
-    print("Extracting text from PDFs, DOC/DOCX, JSON...")
+    print("Extracting text from PDFs, DOC/DOCX, PPT/PPTX, JSON...")
     text = extract_text_from_pdfs(PDF_DIR)
     print(f"\n✓ Extracted {len(text):,} characters")
     
