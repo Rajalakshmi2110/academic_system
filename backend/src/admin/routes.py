@@ -179,7 +179,15 @@ def rebuild_vector_db():
 @admin_bp.route('/stats', methods=['GET'])
 def get_stats():
     try:
-        pdf_count = len(list(UPLOAD_FOLDER.rglob('*.pdf')))
+        # Count all files (pdf, doc, docx, ppt, pptx, json)
+        file_count = (
+            len(list(UPLOAD_FOLDER.rglob('*.pdf'))) +
+            len(list(UPLOAD_FOLDER.rglob('*.doc'))) +
+            len(list(UPLOAD_FOLDER.rglob('*.docx'))) +
+            len(list(UPLOAD_FOLDER.rglob('*.ppt'))) +
+            len(list(UPLOAD_FOLDER.rglob('*.pptx'))) +
+            len(list(UPLOAD_FOLDER.rglob('*.json')))
+        )
         
         vector_db_path = Path(__file__).parent.parent.parent / 'data' / 'vector_db'
         chunks_file = vector_db_path / 'chunks.pkl'
@@ -193,7 +201,7 @@ def get_stats():
             chunk_count = 0
         
         return jsonify({
-            'pdfs_uploaded': pdf_count,
+            'pdfs_uploaded': file_count,
             'vector_chunks': chunk_count,
             'upload_folder': str(UPLOAD_FOLDER)
         })
