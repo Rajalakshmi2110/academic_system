@@ -118,7 +118,7 @@ def build_vector_db(chunks, output_dir):
 if __name__ == "__main__":
     # Configuration - scan entire DS folder
     PDF_DIR = "/Users/rathrajy/learning/project/DS"
-    OUTPUT_DIR = "backend/data/vector_db"
+    OUTPUT_DIR = Path(__file__).parent.parent / "data" / "vector_db"
     
     print("Extracting text from PDFs, DOC/DOCX, PPT/PPTX, JSON...")
     text = extract_text_from_pdfs(PDF_DIR)
