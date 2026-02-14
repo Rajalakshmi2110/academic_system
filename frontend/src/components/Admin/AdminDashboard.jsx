@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Paper, Typography, List, ListItem, ListItemText, IconButton, Alert, LinearProgress, Card, CardContent, Grid, TextField, Accordion, AccordionSummary, AccordionDetails, Chip, Select, MenuItem, FormControl, InputLabel, Radio, RadioGroup, FormControlLabel, FormLabel } from '@mui/material';
-import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder } from '@mui/icons-material';
+import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder, Download, Search } from '@mui/icons-material';
 import axios from 'axios';
 
 const AdminDashboard = ({ onLogout }) => {
@@ -12,6 +12,7 @@ const AdminDashboard = ({ onLogout }) => {
   const [selectedFolder, setSelectedFolder] = useState('');
   const [newFolderName, setNewFolderName] = useState('');
   const [createNew, setCreateNew] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     loadPdfs();
@@ -74,6 +75,25 @@ const AdminDashboard = ({ onLogout }) => {
       loadStats();
     } catch (err) {
       setMessage({ type: 'error', text: 'Delete failed' });
+    }
+  };
+
+  const handleDownload = async (path, filename) => {
+    try {
+      const res = await axios.post('http://localhost:5000/api/admin/download-file', 
+        { path }, 
+        { responseType: 'blob' }
+      );
+      
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', filename);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (err) {
+      setMessage({ type: 'error', text: 'Download failed' });
     }
   };
 
@@ -188,11 +208,29 @@ const AdminDashboard = ({ onLogout }) => {
         {(uploading || rebuilding) && <LinearProgress sx={{ mb: 2 }} />}
 
         <Paper sx={{ p: 2 }}>
-          <Typography variant="h6" sx={{ mb: 2 }}>Uploaded PDFs by Folder</Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+            <Typography variant="h6">Uploaded Files by Folder</Typography>
+            <TextField
+              size="small"
+              placeholder="Search files..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              InputProps={{
+                startAdornment: <Search sx={{ mr: 1, color: 'gray' }} />
+              }}
+              sx={{ width: 300 }}
+            />
+          </Box>
           {Object.keys(folders).length === 0 ? (
-            <Typography color="textSecondary">No PDFs uploaded yet</Typography>
+            <Typography color="textSecondary">No files uploaded yet</Typography>
           ) : (
-            Object.entries(folders).map(([folderName, files]) => (
+            Object.entries(folders)
+              .filter(([folderName, files]) => 
+                searchQuery === '' || 
+                folderName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                files.some(f => f.filename.toLowerCase().includes(searchQuery.toLowerCase()))
+              )
+              .map(([folderName, files]) => (
               <Accordion key={folderName}>
                 <AccordionSummary expandIcon={<ExpandMore />}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -203,13 +241,20 @@ const AdminDashboard = ({ onLogout }) => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <List>
-                    {files.map((pdf) => (
+                    {files
+                      .filter(pdf => searchQuery === '' || pdf.filename.toLowerCase().includes(searchQuery.toLowerCase()))
+                      .map((pdf) => (
                       <ListItem
                         key={pdf.path}
                         secondaryAction={
-                          <IconButton edge="end" onClick={() => handleDelete(pdf.path)}>
-                            <Delete />
-                          </IconButton>
+                          <Box>
+                            <IconButton edge="end" onClick={() => handleDownload(pdf.path, pdf.filename)}>
+                              <Download />
+                            </IconButton>
+                            <IconButton edge="end" onClick={() => handleDelete(pdf.path)}>
+                              <Delete />
+                            </IconButton>
+                          </Box>
                         }
                       >
                         <Description sx={{ mr: 2, color: '#1976D2' }} />

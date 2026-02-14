@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, send_file
 from werkzeug.utils import secure_filename
 import subprocess
 from pathlib import Path
@@ -173,6 +173,24 @@ def rebuild_vector_db():
                 'message': 'Rebuild failed',
                 'error': result.stderr
             }), 500
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@admin_bp.route('/download-file', methods=['POST'])
+def download_file():
+    try:
+        data = request.json
+        filepath = data.get('path', '')
+        
+        if not filepath:
+            return jsonify({'error': 'Path required'}), 400
+        
+        full_path = UPLOAD_FOLDER / filepath
+        
+        if not full_path.exists():
+            return jsonify({'error': 'File not found'}), 404
+        
+        return send_file(full_path, as_attachment=True, download_name=full_path.name)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
