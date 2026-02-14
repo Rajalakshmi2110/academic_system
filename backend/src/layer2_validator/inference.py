@@ -47,8 +47,46 @@ class TwoLayerPipeline:
         """
         start_time = time.time()
         
+        # Check if question is about uploaded course files
+        file_extensions = ['.pdf', '.docx', '.doc', '.pptx', '.ppt', '.json']
+        is_file_question = any(ext in question.lower() for ext in file_extensions)
+        
+        # If asking about a file, verify it exists in vector DB
+        if is_file_question:
+            import re
+            from pathlib import Path
+            # Extract filename from question
+            pattern = r'([\w\-\.]+\.(?:pdf|docx|doc|pptx|ppt|json))'
+            matches = re.findall(pattern, question, re.IGNORECASE)
+            if matches:
+                filename = matches[0]
+                # Check if file exists in /DS/ folder
+                # Path: backend/src/layer2_validator -> backend -> academic_system -> project -> DS
+                backend_dir = Path(__file__).parent.parent.parent
+                project_root = backend_dir.parent.parent
+                ds_folder = project_root / 'DS'
+                file_exists = any(ds_folder.rglob(filename))
+                if not file_exists:
+                    return {
+                        'question': question,
+                        'layer1_result': 'FAIL',
+                        'layer2_result': None,
+                        'final_status': 'REJECTED',
+                        'message': f'File "{filename}" not found in course materials.',
+                        'suggestion': 'Please check the filename or ask about available course topics.',
+                        'confidence': 1.0,
+                        'total_latency_ms': (time.time() - start_time) * 1000,
+                        'layer1_time_ms': 0,
+                        'layer2_time_ms': 0
+                    }
+        
         # Layer 1: Syllabus Relevance Check
         layer1_result = self.layer1.predict(question, return_confidence=True)
+        
+        # Override Layer 1 rejection if asking about course files
+        if not layer1_result['relevant'] and is_file_question:
+            layer1_result['relevant'] = True
+            layer1_result['label'] = 1
         
         if not layer1_result['relevant']:
             # Question is not DS-related - return immediately
