@@ -10,11 +10,15 @@ sys.path.insert(0, str(base_dir))
 
 from src.layer2_validator.inference import TwoLayerPipeline
 from src.layer3_rag.inference import generate_answer
+from src.admin import admin_bp
 
 app = Flask(__name__)
 CORS(app)
 
 pipeline = TwoLayerPipeline()
+
+# Register admin blueprint
+app.register_blueprint(admin_bp, url_prefix='/api/admin')
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
