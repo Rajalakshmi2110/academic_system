@@ -134,7 +134,7 @@ const AdminDashboard = ({ onLogout }) => {
                     size="small"
                   >
                     Upload
-                    <input type="file" hidden accept=".pdf" multiple onChange={handleUpload} />
+                    <input type="file" hidden accept=".pdf,.doc,.docx" multiple onChange={handleUpload} />
                   </Button>
                   <Button
                     variant="outlined"

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Rebuild FAISS vector database from PDFs and JSON files
+Rebuild FAISS vector database from PDFs, DOC/DOCX and JSON files
 Usage: python rebuild_vector_db.py
 """
 
@@ -11,9 +11,15 @@ from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 import pickle
+try:
+    from docx import Document
+    DOCX_AVAILABLE = True
+except ImportError:
+    DOCX_AVAILABLE = False
+    print("⚠️  python-docx not installed. Install with: pip install python-docx")
 
 def extract_text_from_pdfs(pdf_dir):
-    """Extract text from all PDFs in directory (recursively)"""
+    """Extract text from all PDFs, DOC/DOCX, and JSON files in directory (recursively)"""
     all_text = ""
     pdf_dir = Path(pdf_dir)
     
@@ -39,6 +45,20 @@ def extract_text_from_pdfs(pdf_dir):
             print(f"✓ {pdf_file.relative_to(pdf_dir)}")
         except Exception as e:
             print(f"✗ {pdf_file.name}: {e}")
+    
+    # Load DOCX files (recursively)
+    if DOCX_AVAILABLE:
+        for docx_file in pdf_dir.rglob('*.docx'):
+            try:
+                doc = Document(docx_file)
+                for para in doc.paragraphs:
+                    all_text += para.text + "\n"
+                print(f"✓ {docx_file.relative_to(pdf_dir)}")
+            except Exception as e:
+                print(f"✗ {docx_file.name}: {e}")
+        
+        for doc_file in pdf_dir.rglob('*.doc'):
+            print(f"⚠️  {doc_file.name}: .doc format not supported, convert to .docx")
     
     return all_text
 
@@ -77,7 +97,7 @@ if __name__ == "__main__":
     PDF_DIR = "/Users/rathrajy/learning/project/DS"
     OUTPUT_DIR = "backend/data/vector_db"
     
-    print("Extracting text from PDFs...")
+    print("Extracting text from PDFs, DOC/DOCX, JSON...")
     text = extract_text_from_pdfs(PDF_DIR)
     print(f"\n✓ Extracted {len(text):,} characters")
     
