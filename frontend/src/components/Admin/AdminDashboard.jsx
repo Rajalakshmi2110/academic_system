@@ -107,7 +107,7 @@ const AdminDashboard = ({ onLogout }) => {
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
-                <Typography variant="h6">PDFs Uploaded</Typography>
+                <Typography variant="h6">Files Uploaded</Typography>
                 <Typography variant="h3">{stats?.pdfs_uploaded || 0}</Typography>
               </CardContent>
             </Card>
