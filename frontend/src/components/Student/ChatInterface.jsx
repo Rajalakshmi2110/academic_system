@@ -10,6 +10,21 @@ const ChatInterface = () => {
   const [showSteps, setShowSteps] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
 
+  // Load conversation history from localStorage on mount
+  useEffect(() => {
+    const savedHistory = localStorage.getItem('chatHistory');
+    if (savedHistory) {
+      setMessages(JSON.parse(savedHistory));
+    }
+  }, []);
+
+  // Save conversation history to localStorage whenever messages change
+  useEffect(() => {
+    if (messages.length > 0) {
+      localStorage.setItem('chatHistory', JSON.stringify(messages));
+    }
+  }, [messages]);
+
   const getStatusColor = (status) => {
     const colors = {
       'success': '#4CAF50',
@@ -82,6 +97,13 @@ const ChatInterface = () => {
     });
   };
 
+  const clearHistory = () => {
+    if (window.confirm('Clear all conversation history?')) {
+      setMessages([]);
+      localStorage.removeItem('chatHistory');
+    }
+  };
+
   const getStepIcon = (status) => {
     if (status === 'PASS' || status === 'IN_SYLLABUS' || status === 'SUCCESS') return <CheckCircle sx={{ color: '#4CAF50' }} />;
     if (status === 'WARNING') return <Warning sx={{ color: '#FFC107' }} />;
@@ -103,6 +125,16 @@ const ChatInterface = () => {
           >
             Admin
           </Button>
+          {messages.length > 0 && (
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={clearHistory}
+              sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}
+            >
+              Clear History
+            </Button>
+          )}
           <FormControlLabel
             control={<Switch checked={showSteps} onChange={(e) => setShowSteps(e.target.checked)} sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: 'white' } }} />}
             label="Show Steps"
