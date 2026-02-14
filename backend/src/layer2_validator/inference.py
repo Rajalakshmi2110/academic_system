@@ -54,7 +54,7 @@ class TwoLayerPipeline:
             # Question is not DS-related - return immediately
             return {
                 'question': question,
-                'layer1_result': 'NOT_DS_RELATED',
+                'layer1_result': 'FAIL',
                 'layer2_result': None,
                 'final_status': 'REJECTED',
                 'message': 'This question is not related to Data Structures.',
@@ -72,8 +72,8 @@ class TwoLayerPipeline:
         if layer2_result.get('final_status') == 'OUT_OF_SYLLABUS':
             return {
                 'question': question,
-                'layer1_result': 'DS_RELATED',
-                'layer2_result': 'NOT_IN_CA3101',
+                'layer1_result': 'PASS',
+                'layer2_result': 'OUT_OF_SYLLABUS',
                 'final_status': 'OUT_OF_SYLLABUS',
                 'message': layer2_result['explanation'],
                 'suggestion': layer2_result['suggestion'],
@@ -87,8 +87,8 @@ class TwoLayerPipeline:
         if layer2_result.get('final_status') == 'REJECTED':
             return {
                 'question': question,
-                'layer1_result': 'DS_RELATED',
-                'layer2_result': 'REJECTED',
+                'layer1_result': 'PASS',
+                'layer2_result': 'FAIL',
                 'final_status': 'REJECTED',
                 'explanation': layer2_result['explanation'],
                 'confidence': layer2_result['confidence'],
@@ -102,8 +102,8 @@ class TwoLayerPipeline:
         
         return {
             'question': question,
-            'layer1_result': 'DS_RELATED',
-            'layer2_result': layer2_result['status'],
+            'layer1_result': 'PASS',
+            'layer2_result': 'IN_SYLLABUS' if layer2_result['status'] == 'VALID' else layer2_result['status'],
             'final_status': layer2_result['status'],
             'explanation': layer2_result['explanation'],
             'warning': layer2_result.get('explanation') if layer2_result['status'] == 'WARNING' else None,

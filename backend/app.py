@@ -32,14 +32,16 @@ def chat():
     # Build intermediate steps for review
     steps = {
         'layer1': {
+            'name': 'DS Classifier',
             'status': validation_result.get('layer1_result'),
             'latency_ms': validation_result.get('layer1_time_ms', 0),
-            'description': 'Binary classifier (DistilBERT) - DS vs Non-DS'
+            'description': 'Checks if question is Data Structures related'
         },
         'layer2': {
+            'name': 'Syllabus Checker',
             'status': validation_result.get('layer2_result'),
             'latency_ms': validation_result.get('layer2_time_ms', 0),
-            'description': 'Rule-based validator - Quality & Syllabus check'
+            'description': 'Checks if DS topic is in CA3101 syllabus'
         }
     }
     
@@ -63,9 +65,10 @@ def chat():
         layer3_time = (time.time() - layer3_start) * 1000
         
         steps['layer3'] = {
-            'status': rag_result.get('status', 'SUCCESS'),
+            'name': 'RAG Pipeline',
+            'status': 'SUCCESS' if rag_result.get('status', 'SUCCESS') == 'SUCCESS' else 'ERROR',
             'latency_ms': layer3_time,
-            'description': 'RAG pipeline - FAISS retrieval + Llama 3.1 generation'
+            'description': 'FAISS retrieval + Llama 3.1 generation'
         }
         
         response = {
