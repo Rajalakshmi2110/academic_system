@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel } from '@mui/material';
-import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block } from '@mui/icons-material';
+import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, IconButton, Snackbar } from '@mui/material';
+import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy } from '@mui/icons-material';
 import axios from 'axios';
 
 const ChatInterface = () => {
@@ -8,6 +8,7 @@ const ChatInterface = () => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [showSteps, setShowSteps] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
 
   const getStatusColor = (status) => {
     const colors = {
@@ -71,6 +72,14 @@ const ChatInterface = () => {
     } catch (error) {
       console.error('Failed to submit feedback:', error);
     }
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopySuccess(true);
+    }).catch(err => {
+      console.error('Failed to copy:', err);
+    });
   };
 
   const getStepIcon = (status) => {
@@ -184,11 +193,22 @@ const ChatInterface = () => {
                     </Accordion>
                   )}
                   
-                  <Typography>
-                    {typeof (msg.data.answer || msg.data.explanation || msg.data.message) === 'string' 
-                      ? (msg.data.answer || msg.data.explanation || msg.data.message)
-                      : JSON.stringify(msg.data.answer || msg.data.explanation || msg.data.message)}
-                  </Typography>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <Typography sx={{ flex: 1 }}>
+                      {typeof (msg.data.answer || msg.data.explanation || msg.data.message) === 'string' 
+                        ? (msg.data.answer || msg.data.explanation || msg.data.message)
+                        : JSON.stringify(msg.data.answer || msg.data.explanation || msg.data.message)}
+                    </Typography>
+                    {(msg.data.answer || msg.data.explanation) && (
+                      <IconButton 
+                        size="small" 
+                        onClick={() => copyToClipboard(msg.data.answer || msg.data.explanation)}
+                        sx={{ ml: 1 }}
+                      >
+                        <ContentCopy fontSize="small" />
+                      </IconButton>
+                    )}
+                  </Box>
                   
                   {msg.data.final_status === 'OUT_OF_SYLLABUS' && (
                     <Box sx={{ mt: 2 }}>
@@ -240,6 +260,12 @@ const ChatInterface = () => {
           <Button variant="contained" onClick={sendMessage} disabled={loading} sx={{ borderRadius: 2, bgcolor: '#1976D2' }}><Send /></Button>
         </Box>
       </Box>
+      <Snackbar
+        open={copySuccess}
+        autoHideDuration={2000}
+        onClose={() => setCopySuccess(false)}
+        message="Copied to clipboard!"
+      />
     </Box>
   );
 };
