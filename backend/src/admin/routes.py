@@ -6,11 +6,13 @@ from datetime import datetime
 
 admin_bp = Blueprint('admin', __name__)
 
-UPLOAD_FOLDER = Path('/Users/rathrajy/learning/project/DS/ClassNotes')
+UPLOAD_FOLDER = Path('/Users/rathrajy/learning/project/DS')
 ALLOWED_EXTENSIONS = {'pdf'}
 ADMIN_PASSWORD = 'admin123'
 
-UPLOAD_FOLDER.mkdir(parents=True, exist_ok=True)
+# Create ClassNotes subfolder for new uploads
+CLASS_NOTES_FOLDER = UPLOAD_FOLDER / 'ClassNotes'
+CLASS_NOTES_FOLDER.mkdir(parents=True, exist_ok=True)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -40,11 +42,11 @@ def upload_pdf():
         
         # Create subfolder if specified
         if folder:
-            folder_path = UPLOAD_FOLDER / secure_filename(folder)
+            folder_path = CLASS_NOTES_FOLDER / secure_filename(folder)
             folder_path.mkdir(parents=True, exist_ok=True)
             filepath = folder_path / filename
         else:
-            filepath = UPLOAD_FOLDER / filename
+            filepath = CLASS_NOTES_FOLDER / filename
         
         file.save(filepath)
         
