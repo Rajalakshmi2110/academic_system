@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, IconButton, Snackbar, Drawer, List, ListItem, ListItemText, ListItemButton, Divider } from '@mui/material';
-import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu } from '@mui/icons-material';
+import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu, HourglassEmpty } from '@mui/icons-material';
 import axios from 'axios';
 
 const ChatInterface = () => {
@@ -9,6 +9,7 @@ const ChatInterface = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loadingStage, setLoadingStage] = useState('');
   const [showSteps, setShowSteps] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -109,9 +110,11 @@ const ChatInterface = () => {
     setMessages(prev => [...prev, userMsg]);
     setInput('');
     setLoading(true);
+    setLoadingStage('🔍 Validating question...');
 
     try {
       if (comparisonMode) {
+        setLoadingStage('⚡ Processing both modes...');
         const [validatedRes, directRes] = await Promise.all([
           axios.post('http://localhost:5000/api/chat', { 
             question: currentInput, 
@@ -126,6 +129,8 @@ const ChatInterface = () => {
         ]);
         setMessages(prev => [...prev, { type: 'bot', data: validatedRes.data, comparison: directRes.data }]);
       } else {
+        setTimeout(() => setLoadingStage('📋 Checking syllabus...'), 100);
+        setTimeout(() => setLoadingStage('🤖 Generating answer...'), 1500);
         const res = await axios.post('http://localhost:5000/api/chat', { 
           question: currentInput, 
           show_steps: showSteps, 
@@ -303,6 +308,14 @@ const ChatInterface = () => {
           </Box>
         </Box>
         <Box sx={{ flex: 1, overflow: 'auto', p: 2 }}>
+          {loadingStage && (
+            <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+              <Paper sx={{ p: 2, bgcolor: '#E3F2FD', borderRadius: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
+                <HourglassEmpty sx={{ color: '#1976D2' }} />
+                <Typography sx={{ color: '#1976D2', fontWeight: 'bold' }}>{loadingStage}</Typography>
+              </Paper>
+            </Box>
+          )}
           {messages.map((msg, idx) => (
             <Box key={idx} sx={{ display: 'flex', justifyContent: msg.type === 'user' ? 'flex-end' : 'flex-start', mb: 2 }}>
               {msg.type === 'user' ? (
