@@ -113,12 +113,25 @@ const ChatInterface = () => {
     try {
       if (comparisonMode) {
         const [validatedRes, directRes] = await Promise.all([
-          axios.post('http://localhost:5000/api/chat', { question: currentInput, show_steps: showSteps, force_answer: forceAnswer }),
-          axios.post('http://localhost:5000/api/chat/direct', { question: currentInput })
+          axios.post('http://localhost:5000/api/chat', { 
+            question: currentInput, 
+            show_steps: showSteps, 
+            force_answer: forceAnswer,
+            history: messages  // Send conversation history
+          }),
+          axios.post('http://localhost:5000/api/chat/direct', { 
+            question: currentInput,
+            history: messages  // Send conversation history
+          })
         ]);
         setMessages(prev => [...prev, { type: 'bot', data: validatedRes.data, comparison: directRes.data }]);
       } else {
-        const res = await axios.post('http://localhost:5000/api/chat', { question: currentInput, show_steps: showSteps, force_answer: forceAnswer });
+        const res = await axios.post('http://localhost:5000/api/chat', { 
+          question: currentInput, 
+          show_steps: showSteps, 
+          force_answer: forceAnswer,
+          history: messages  // Send conversation history
+        });
         setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
       }
     } catch (error) {
@@ -136,9 +149,30 @@ const ChatInterface = () => {
       const res = await axios.post('http://localhost:5000/api/chat', { 
         question: question,
         show_steps: showSteps,
-        force_answer: true
+        force_answer: true,
+        history: messages  // Send conversation history
       });
       setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
+    } catch (error) {
+      setMessages(prev => [...prev, { type: 'bot', data: { final_status: 'ERROR', explanation: 'Failed to connect to backend' } }]);
+    }
+    setLoading(false);
+  };
+
+  const handleRetryWithContext = async (rejectedQuestion) => {
+    setLoading(true);
+
+    try {
+      const res = await axios.post('http://localhost:5000/api/chat/direct', { 
+        question: rejectedQuestion,
+        history: messages
+      });
+      setMessages(prev => [...prev, { type: 'bot', data: { 
+        status: 'success',
+        answer: res.data.answer,
+        final_status: 'VALID',
+        retried: true
+      } }]);
     } catch (error) {
       setMessages(prev => [...prev, { type: 'bot', data: { final_status: 'ERROR', explanation: 'Failed to connect to backend' } }]);
     }
@@ -397,6 +431,19 @@ const ChatInterface = () => {
                           sx={{ borderColor: '#FF9800', color: '#FF9800' }}
                         >
                           📚 Answer Anyway (Not in CA3101 syllabus)
+                        </Button>
+                      </Box>
+                    )}
+                    
+                    {msg.data.final_status === 'REJECTED' && messages.length > 2 && (
+                      <Box sx={{ mt: 2 }}>
+                        <Button 
+                          variant="outlined" 
+                          size="small" 
+                          onClick={() => handleRetryWithContext(msg.data.question)}
+                          sx={{ borderColor: '#2196F3', color: '#2196F3' }}
+                        >
+                          💬 Answer with Context
                         </Button>
                       </Box>
                     )}

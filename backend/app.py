@@ -25,12 +25,34 @@ def chat():
     data = request.json
     question = data.get('question', '')
     show_steps = data.get('show_steps', False)
-    force_answer = data.get('force_answer', False)  # New parameter for OUT_OF_SYLLABUS override
+    force_answer = data.get('force_answer', False)
+    history = data.get('history', [])  # NEW: Get conversation history
     
     if not question:
         return jsonify({'error': 'Question is required'}), 400
     
-    # Layer 1 & 2: Validate question
+    # Build context from conversation history
+    context_prefix = ""
+    if history:
+        context_prefix = "Previous conversation:\n"
+        # Get last 3 Q&A pairs (6 messages max)
+        recent_history = history[-6:]
+        for msg in recent_history:
+            if msg.get('type') == 'user':
+                context_prefix += f"User: {msg.get('text', '')}\n"
+            elif msg.get('type') == 'bot':
+                bot_data = msg.get('data', {})
+                answer = bot_data.get('answer', '')
+                if answer:
+                    # Truncate long answers to 200 chars
+                    answer_short = answer[:200] + '...' if len(answer) > 200 else answer
+                    context_prefix += f"Assistant: {answer_short}\n"
+        context_prefix += "\nCurrent question: "
+    
+    # Combine context with current question
+    full_question = context_prefix + question if context_prefix else question
+    
+    # Layer 1 & 2: Validate question (use original question for validation)
     validation_result = pipeline.process_question(question)
     
     # Build intermediate steps for review
@@ -61,11 +83,11 @@ def chat():
                 response['intermediate_steps'] = steps
             return jsonify(response)
     
-    # Layer 3: Generate answer using RAG
+    # Layer 3: Generate answer using RAG with context
     try:
         import time
         layer3_start = time.time()
-        rag_result = generate_answer(question)
+        rag_result = generate_answer(full_question)  # Use full_question with context
         layer3_time = (time.time() - layer3_start) * 1000
         
         steps['layer3'] = {
@@ -100,14 +122,35 @@ def chat_direct():
     """Direct RAG without validation layers - for comparison demo"""
     data = request.json
     question = data.get('question', '')
+    history = data.get('history', [])  # NEW: Get conversation history
     
     if not question:
         return jsonify({'error': 'Question is required'}), 400
     
+    # Build context from conversation history
+    context_prefix = ""
+    if history:
+        context_prefix = "Previous conversation:\n"
+        recent_history = history[-6:]
+        for msg in recent_history:
+            if msg.get('type') == 'user':
+                context_prefix += f"User: {msg.get('text', '')}\n"
+            elif msg.get('type') == 'bot':
+                if msg.get('comparison'):
+                    answer = msg['comparison'].get('answer', '')
+                else:
+                    answer = msg.get('data', {}).get('answer', '')
+                if answer:
+                    answer_short = answer[:200] + '...' if len(answer) > 200 else answer
+                    context_prefix += f"Assistant: {answer_short}\n"
+        context_prefix += "\nCurrent question: "
+    
+    full_question = context_prefix + question if context_prefix else question
+    
     try:
         import time
         start = time.time()
-        rag_result = generate_answer(question)
+        rag_result = generate_answer(full_question)  # Use full_question with context
         latency = (time.time() - start) * 1000
         
         return jsonify({

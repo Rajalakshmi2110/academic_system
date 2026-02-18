@@ -1658,8 +1658,7 @@
   {"id": "S9047", "label": 1, "question": "A backup utility uses the 'Archive' attribute flag. Explain the communication between file-modifying programs and backup software that enables 'Incremental Backups'."},
   {"id": "S9048", "label": 1, "question": "For a 'Binary Tree,' define 'Internal Path Length' vs 'External Path Length' and explain their relationship to the 'Weighted Path Length' used in Huffman Coding."},
   {"id": "S9049", "label": 1, "question": "Contrast 'Bubble Sort' and 'Quick Sort' in terms of stability. Based on the sources, explain why Quick Sort is generally faster but considered 'Unstable'."},
-  {"id": "S9050", "label": 1, "question": "Define a 'Deque' (Double-ended queue) and distinguish between 'Input Restricted' and 'Output Restricted' variants."}
-,
+  {"id": "S9050", "label": 1, "question": "Define a 'Deque' (Double-ended queue) and distinguish between 'Input Restricted' and 'Output Restricted' variants."},
   {"id": "Q9051", "label": 1, "question": "Stack is LIFO right?"},
   {"id": "Q9052", "label": 1, "question": "Queue is FIFO right?"},
   {"id": "Q9053", "label": 1, "question": "Is stack FIFO?"},
