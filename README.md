@@ -10,7 +10,7 @@ This system validates student questions through multiple layers before generatin
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Student Question                          │
+│                    Student Question                         │
 └────────────────────────┬────────────────────────────────────┘
                          │
                          ▼
@@ -18,7 +18,7 @@ This system validates student questions through multiple layers before generatin
 │  Layer 1: DS Classifier (DistilBERT)                        │
 │  - DS-related vs Non-DS classification                      │
 │  - Status: PASS or FAIL                                     │
-│  - Accuracy: 99.61% | Latency: ~18ms                       │
+│  - Accuracy: 99.61% | Latency: ~18ms                        │
 └────────────────────────┬────────────────────────────────────┘
                          │
                          ▼

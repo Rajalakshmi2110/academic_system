@@ -51,12 +51,14 @@ Question: {question}"""
         return "\n\n".join(context_chunks)
     
     def generate_answer(self, question, context):
-        # Create prompt
+        # Create prompt with formatting instructions
         prompt = f"""Context: {context}
 
 Question: {question}
 
-Answer in 2 sentences:"""
+Provide a clear answer. If including pseudocode or algorithms, format them in a code block using triple backticks (```).
+
+Answer:"""
         
         # Call Ollama API
         try:

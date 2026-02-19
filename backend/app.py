@@ -11,11 +11,15 @@ sys.path.insert(0, str(base_dir))
 from src.layer2_validator.inference import TwoLayerPipeline
 from src.layer3_rag.inference import generate_answer
 from src.admin import admin_bp
+from src.session_manager import SessionManager
+from src.output_formatter import OutputFormatter
 
 app = Flask(__name__)
 CORS(app)
 
 pipeline = TwoLayerPipeline()
+session_manager = SessionManager()
+formatter = OutputFormatter()
 
 # Register admin blueprint
 app.register_blueprint(admin_bp, url_prefix='/api/admin')
@@ -26,10 +30,18 @@ def chat():
     question = data.get('question', '')
     show_steps = data.get('show_steps', False)
     force_answer = data.get('force_answer', False)
-    history = data.get('history', [])  # NEW: Get conversation history
+    session_id = data.get('session_id')
+    output_format = data.get('format', 'json')
+    history = data.get('history', [])
     
     if not question:
         return jsonify({'error': 'Question is required'}), 400
+    
+    # Use session history if session_id provided
+    if session_id:
+        session = session_manager.get_session(session_id)
+        if session:
+            history = session['history']
     
     # Build context from conversation history
     context_prefix = ""
@@ -109,6 +121,16 @@ def chat():
         if show_steps:
             response['intermediate_steps'] = steps
             response['total_latency_ms'] = validation_result.get('total_latency_ms', 0) + layer3_time
+        
+        # Save to session if session_id provided
+        if session_id:
+            session_manager.add_message(session_id, {'type': 'user', 'text': question})
+            session_manager.add_message(session_id, {'type': 'bot', 'data': response})
+        
+        # Format output
+        if output_format != 'json':
+            formatted = formatter.format_response(response, output_format)
+            return jsonify(formatted)
         
         return jsonify(response)
     except Exception as e:
@@ -217,3 +239,20 @@ def submit_feedback():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+
+@app.route('/api/session', methods=['POST'])
+def create_session():
+    session_id = session_manager.create_session()
+    return jsonify({'session_id': session_id})
+
+@app.route('/api/session/<session_id>', methods=['GET'])
+def get_session(session_id):
+    session = session_manager.get_session(session_id)
+    if session:
+        return jsonify(session)
+    return jsonify({'error': 'Session not found'}), 404
+
+@app.route('/api/session/<session_id>', methods=['DELETE'])
+def clear_session(session_id):
+    session_manager.clear_session(session_id)
+    return jsonify({'status': 'success'})

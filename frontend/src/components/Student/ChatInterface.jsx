@@ -135,7 +135,8 @@ const ChatInterface = () => {
           question: currentInput, 
           show_steps: showSteps, 
           force_answer: forceAnswer,
-          history: messages  // Send conversation history
+          history: messages,
+          format: 'structured'
         });
         setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
       }
@@ -155,7 +156,8 @@ const ChatInterface = () => {
         question: question,
         show_steps: showSteps,
         force_answer: true,
-        history: messages  // Send conversation history
+        history: messages,
+        format: 'structured'
       });
       setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
     } catch (error) {
@@ -419,11 +421,35 @@ const ChatInterface = () => {
                     )}
                     
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                      <Typography sx={{ flex: 1 }}>
-                        {typeof (msg.data.answer || msg.data.explanation || msg.data.message) === 'string' 
-                          ? (msg.data.answer || msg.data.explanation || msg.data.message)
-                          : JSON.stringify(msg.data.answer || msg.data.explanation || msg.data.message)}
-                      </Typography>
+                      <Box sx={{ flex: 1 }}>
+                        {msg.data.formatted_answer ? (
+                          msg.data.formatted_answer.sections.map((section, i) => (
+                            <Box key={i} sx={{ mb: 2 }}>
+                              {section.type === 'code' && (
+                                <Box sx={{ bgcolor: '#F5F5F5', p: 2, borderRadius: 1, fontFamily: 'monospace', whiteSpace: 'pre-wrap', overflowX: 'auto' }}>
+                                  {section.content}
+                                </Box>
+                              )}
+                              {section.type === 'steps' && (
+                                <Box>
+                                  {section.content.map((step, j) => (
+                                    <Typography key={j} sx={{ mb: 0.5, pl: 2 }}>{step}</Typography>
+                                  ))}
+                                </Box>
+                              )}
+                              {section.type === 'text' && (
+                                <Typography>{section.content}</Typography>
+                              )}
+                            </Box>
+                          ))
+                        ) : (
+                          <Typography sx={{ whiteSpace: 'pre-wrap' }}>
+                            {typeof (msg.data.answer || msg.data.explanation || msg.data.message) === 'string' 
+                              ? (msg.data.answer || msg.data.explanation || msg.data.message)
+                              : JSON.stringify(msg.data.answer || msg.data.explanation || msg.data.message)}
+                          </Typography>
+                        )}
+                      </Box>
                       {(msg.data.answer || msg.data.explanation) && (
                         <IconButton 
                           size="small" 
