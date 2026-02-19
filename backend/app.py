@@ -43,12 +43,15 @@ def chat():
         if session:
             history = session['history']
     
-    # Build context from conversation history
-    context_prefix = ""
-    if history:
+    # Detect if this is a follow-up question
+    follow_up_keywords = ['it', 'that', 'this', 'explain more', 'elaborate', 'what about', 'how about', 'also', 'and']
+    is_follow_up = any(question.lower().startswith(kw) for kw in ['it', 'that', 'this', 'what about it', 'how about that']) or \
+                   (len(question.split()) < 5 and any(kw in question.lower() for kw in ['more', 'also', 'too']))
+    
+    # Only use history context if it's a follow-up question
+    if is_follow_up and history:
         context_prefix = "Previous conversation:\n"
-        # Get last 3 Q&A pairs (6 messages max)
-        recent_history = history[-6:]
+        recent_history = history[-2:]  # Only last Q&A
         for msg in recent_history:
             if msg.get('type') == 'user':
                 context_prefix += f"User: {msg.get('text', '')}\n"
@@ -56,13 +59,12 @@ def chat():
                 bot_data = msg.get('data', {})
                 answer = bot_data.get('answer', '')
                 if answer:
-                    # Truncate long answers to 200 chars
                     answer_short = answer[:200] + '...' if len(answer) > 200 else answer
                     context_prefix += f"Assistant: {answer_short}\n"
         context_prefix += "\nCurrent question: "
-    
-    # Combine context with current question
-    full_question = context_prefix + question if context_prefix else question
+        full_question = context_prefix + question
+    else:
+        full_question = question
     
     # Layer 1 & 2: Validate question (use original question for validation)
     validation_result = pipeline.process_question(question)
@@ -95,11 +97,12 @@ def chat():
                 response['intermediate_steps'] = steps
             return jsonify(response)
     
-    # Layer 3: Generate answer using RAG with context
+    # Layer 3: Generate answer using RAG
     try:
         import time
         layer3_start = time.time()
-        rag_result = generate_answer(full_question)  # Use full_question with context
+        # Use full_question (with context) only for follow-ups, otherwise use original question
+        rag_result = generate_answer(full_question if is_follow_up else question, is_follow_up=is_follow_up)
         layer3_time = (time.time() - layer3_start) * 1000
         
         steps['layer3'] = {
@@ -113,10 +116,14 @@ def chat():
             'status': 'success',
             'question': question,
             'answer': rag_result.get('answer', rag_result) if isinstance(rag_result, dict) else rag_result,
+            'sources': rag_result.get('sources', []) if isinstance(rag_result, dict) else [],
             'final_status': 'VALID',
-            'warning': validation_result.get('warning'),  # Include warning if present
-            'out_of_syllabus_answered': force_answer  # Flag if this was OUT_OF_SYLLABUS but answered anyway
+            'warning': validation_result.get('warning'),
+            'out_of_syllabus_answered': force_answer
         }
+        
+        # Always format the response to clean HTML entities
+        response = formatter.format_response(response, output_format)
         
         if show_steps:
             response['intermediate_steps'] = steps
@@ -126,11 +133,6 @@ def chat():
         if session_id:
             session_manager.add_message(session_id, {'type': 'user', 'text': question})
             session_manager.add_message(session_id, {'type': 'bot', 'data': response})
-        
-        # Format output
-        if output_format != 'json':
-            formatted = formatter.format_response(response, output_format)
-            return jsonify(formatted)
         
         return jsonify(response)
     except Exception as e:

@@ -8,6 +8,10 @@ class OutputFormatter:
         # Clean HTML entities from answer
         if 'answer' in data and isinstance(data['answer'], str):
             data['answer'] = html.unescape(data['answer'])
+            # Remove markdown underlines (===, ---)
+            data['answer'] = re.sub(r'^[=\-]{3,}$', '', data['answer'], flags=re.MULTILINE)
+            # Clean up extra newlines
+            data['answer'] = re.sub(r'\n{3,}', '\n\n', data['answer'])
         
         if format_type == 'structured':
             data['formatted_answer'] = OutputFormatter._structure_answer(data.get('answer', ''))

@@ -17,6 +17,6 @@ def get_rag_pipeline(vector_db_path=None):
         )
     return _pipeline
 
-def generate_answer(question: str, vector_db_path=None) -> str:
+def generate_answer(question: str, vector_db_path=None, is_follow_up=False) -> str:
     pipeline = get_rag_pipeline(vector_db_path)
-    return pipeline.answer_question(question)
+    return pipeline.answer_question(question, is_follow_up)

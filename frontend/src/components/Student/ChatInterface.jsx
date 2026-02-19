@@ -47,13 +47,28 @@ const ChatInterface = () => {
     const newConv = {
       id: Date.now(),
       title: 'New Chat',
-      messages: [],
+      messages: [{
+        type: 'welcome',
+        data: {
+          status: 'welcome',
+          final_status: 'VALID',
+          title: 'Welcome to CA3101 Data Structures',
+          subtitle: 'Ask me anything about data structures covered in your syllabus',
+          suggestions: [
+            'What is a linked list?',
+            'Explain binary search tree',
+            'How does a stack work?',
+            'Difference between array and linked list',
+            'UNIT_I_LinearDataStructure.pdf explain'
+          ]
+        }
+      }],
       createdAt: Date.now(),
       updatedAt: Date.now()
     };
     setConversations(prev => [newConv, ...prev]);
     setCurrentConvId(newConv.id);
-    setMessages([]);
+    setMessages(newConv.messages);
   };
 
   const switchConversation = (convId) => {
@@ -110,11 +125,11 @@ const ChatInterface = () => {
     setMessages(prev => [...prev, userMsg]);
     setInput('');
     setLoading(true);
-    setLoadingStage('🔍 Validating question...');
+    setLoadingStage('Validating question...');
 
     try {
       if (comparisonMode) {
-        setLoadingStage('⚡ Processing both modes...');
+        setLoadingStage('Processing both modes...');
         const [validatedRes, directRes] = await Promise.all([
           axios.post('http://localhost:5000/api/chat', { 
             question: currentInput, 
@@ -129,8 +144,8 @@ const ChatInterface = () => {
         ]);
         setMessages(prev => [...prev, { type: 'bot', data: validatedRes.data, comparison: directRes.data }]);
       } else {
-        setTimeout(() => setLoadingStage('📋 Checking syllabus...'), 100);
-        setTimeout(() => setLoadingStage('🤖 Generating answer...'), 1500);
+        setTimeout(() => setLoadingStage('Checking syllabus...'), 100);
+        setTimeout(() => setLoadingStage('Generating answer...'), 1500);
         const res = await axios.post('http://localhost:5000/api/chat', { 
           question: currentInput, 
           show_steps: showSteps, 
@@ -144,6 +159,7 @@ const ChatInterface = () => {
       setMessages(prev => [...prev, { type: 'bot', data: { final_status: 'ERROR', explanation: 'Failed to connect to backend' } }]);
     }
     setLoading(false);
+    setLoadingStage('');
   };
 
   const handleAnswerAnyway = async (question) => {
@@ -164,6 +180,7 @@ const ChatInterface = () => {
       setMessages(prev => [...prev, { type: 'bot', data: { final_status: 'ERROR', explanation: 'Failed to connect to backend' } }]);
     }
     setLoading(false);
+    setLoadingStage('');
   };
 
   const handleRetryWithContext = async (rejectedQuestion) => {
@@ -184,6 +201,7 @@ const ChatInterface = () => {
       setMessages(prev => [...prev, { type: 'bot', data: { final_status: 'ERROR', explanation: 'Failed to connect to backend' } }]);
     }
     setLoading(false);
+    setLoadingStage('');
   };
 
   const handleFeedback = async (question, answer, feedback) => {
@@ -310,29 +328,51 @@ const ChatInterface = () => {
           </Box>
         </Box>
         <Box sx={{ flex: 1, overflow: 'auto', p: 2 }}>
-          {loadingStage && (
-            <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-              <Paper sx={{ p: 2, bgcolor: '#E3F2FD', borderRadius: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
-                <HourglassEmpty sx={{ color: '#1976D2' }} />
-                <Typography sx={{ color: '#1976D2', fontWeight: 'bold' }}>{loadingStage}</Typography>
-              </Paper>
-            </Box>
-          )}
           {messages.map((msg, idx) => (
             <Box key={idx} sx={{ display: 'flex', justifyContent: msg.type === 'user' ? 'flex-end' : 'flex-start', mb: 2 }}>
               {msg.type === 'user' ? (
                 <Paper sx={{ p: 2, maxWidth: '70%', bgcolor: '#E3F2FD', borderRadius: 2 }}>
                   <Typography>{msg.text}</Typography>
                 </Paper>
+              ) : msg.type === 'welcome' ? (
+                <Box sx={{ width: '100%', textAlign: 'center', py: 4 }}>
+                  <Paper sx={{ p: 4, maxWidth: 600, mx: 'auto', bgcolor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: 3, boxShadow: 3 }}>
+                    <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#1976D2', mb: 1 }}>
+                      {msg.data.title}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: '#666', mb: 3 }}>
+                      {msg.data.subtitle}
+                    </Typography>
+                    <Typography variant="subtitle2" sx={{ color: '#888', mb: 2, fontWeight: 500 }}>
+                      Try asking:
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, justifyContent: 'center' }}>
+                      {msg.data.suggestions.map((suggestion, i) => (
+                        <Chip
+                          key={i}
+                          label={suggestion}
+                          onClick={() => setInput(suggestion)}
+                          sx={{ 
+                            cursor: 'pointer',
+                            bgcolor: 'white',
+                            border: '1px solid #E0E0E0',
+                            '&:hover': { bgcolor: '#E3F2FD', borderColor: '#1976D2' },
+                            transition: 'all 0.2s'
+                          }}
+                        />
+                      ))}
+                    </Box>
+                  </Paper>
+                </Box>
               ) : msg.comparison ? (
                 <Box sx={{ display: 'flex', gap: 2, width: '100%' }}>
                   <Paper sx={{ p: 2, flex: 1, bgcolor: '#FFF3E0', borderRadius: 2, border: '2px solid #FF9800' }}>
-                    <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#E65100' }}>🚫 Basic RAG (No Validation)</Typography>
+                    <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#E65100' }}>Basic RAG (No Validation)</Typography>
                     <Typography sx={{ mb: 2 }}>{msg.comparison.answer}</Typography>
                     <Typography variant="caption" sx={{ color: '#666' }}>Latency: {msg.comparison.latency_ms?.toFixed(0)}ms</Typography>
                   </Paper>
                   <Paper sx={{ p: 2, flex: 1, bgcolor: '#E8F5E9', borderRadius: 2, border: '2px solid #4CAF50' }}>
-                    <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#2E7D32' }}>✅ 3-Layer Validated System</Typography>
+                    <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#2E7D32' }}>3-Layer Validated System</Typography>
                     <Chip label={msg.data.final_status} sx={{ bgcolor: getStatusColor(msg.data.final_status), color: 'white', mb: 1 }} size="small" />
                     <Typography sx={{ mb: 2 }}>{msg.data.answer || msg.data.explanation || msg.data.message}</Typography>
                     {msg.data.warning && (
@@ -354,7 +394,7 @@ const ChatInterface = () => {
                     {msg.data.intermediate_steps && (
                       <Accordion sx={{ mb: 2, boxShadow: 'none', border: '1px solid #E0E0E0' }}>
                         <AccordionSummary expandIcon={<ExpandMore />}>
-                          <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>🔍 Intermediate Steps</Typography>
+                          <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>Intermediate Steps</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                           {msg.data.intermediate_steps.layer1 && (
@@ -438,7 +478,7 @@ const ChatInterface = () => {
                                 </Box>
                               )}
                               {section.type === 'text' && (
-                                <Typography>{section.content}</Typography>
+                                <Typography sx={{ mb: 1, lineHeight: 1.6 }}>{section.content}</Typography>
                               )}
                             </Box>
                           ))
@@ -448,6 +488,16 @@ const ChatInterface = () => {
                               ? (msg.data.answer || msg.data.explanation || msg.data.message)
                               : JSON.stringify(msg.data.answer || msg.data.explanation || msg.data.message)}
                           </Typography>
+                        )}
+                        {msg.data.sources && msg.data.sources.length > 0 && (
+                          <Box sx={{ mt: 2, p: 1, bgcolor: '#F0F0F0', borderRadius: 1 }}>
+                            <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', mb: 0.5 }}>Sources:</Typography>
+                            {[...new Set(msg.data.sources.map(src => src.source))].map((source, idx) => (
+                              <Typography key={idx} variant="caption" sx={{ display: 'block', color: '#666' }}>
+                                • {source}
+                              </Typography>
+                            ))}
+                          </Box>
                         )}
                       </Box>
                       {(msg.data.answer || msg.data.explanation) && (
@@ -461,6 +511,23 @@ const ChatInterface = () => {
                       )}
                     </Box>
                     
+                    {msg.data.suggestions && msg.data.suggestions.length > 0 && (
+                      <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                        {msg.data.suggestions.map((suggestion, idx) => (
+                          <Chip
+                            key={idx}
+                            label={suggestion}
+                            onClick={() => setInput(suggestion)}
+                            sx={{ 
+                              cursor: 'pointer',
+                              '&:hover': { bgcolor: '#E3F2FD' }
+                            }}
+                            variant="outlined"
+                          />
+                        ))}
+                      </Box>
+                    )}
+                    
                     {msg.data.final_status === 'OUT_OF_SYLLABUS' && (
                       <Box sx={{ mt: 2 }}>
                         <Button 
@@ -469,28 +536,17 @@ const ChatInterface = () => {
                           onClick={() => handleAnswerAnyway(msg.data.question)}
                           sx={{ borderColor: '#FF9800', color: '#FF9800' }}
                         >
-                          📚 Answer Anyway (Not in CA3101 syllabus)
+                          Answer Anyway (Not in CA3101 syllabus)
                         </Button>
                       </Box>
                     )}
                     
-                    {msg.data.final_status === 'REJECTED' && messages.length > 2 && (
-                      <Box sx={{ mt: 2 }}>
-                        <Button 
-                          variant="outlined" 
-                          size="small" 
-                          onClick={() => handleRetryWithContext(msg.data.question)}
-                          sx={{ borderColor: '#2196F3', color: '#2196F3' }}
-                        >
-                          💬 Answer with Context
-                        </Button>
-                      </Box>
-                    )}
+
                     
                     {msg.data.warning && (
                       <Box sx={{ mt: 1, p: 1, bgcolor: '#FFF3E0', borderRadius: 1, borderLeft: '4px solid #FF9800' }}>
                         <Typography variant="caption" sx={{ color: '#E65100', fontWeight: 'bold' }}>
-                          ⚠️ Warning: {msg.data.warning}
+                          Warning: {msg.data.warning}
                         </Typography>
                       </Box>
                     )}
@@ -519,6 +575,23 @@ const ChatInterface = () => {
           ))}
         </Box>
         <Box sx={{ p: 2, bgcolor: 'white', borderTop: '1px solid #E0E0E0' }}>
+          {loading && loadingStage && (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.5, p: 1.5, bgcolor: '#E3F2FD', borderRadius: 2, border: '1px solid #BBDEFB' }}>
+              <Box sx={{ 
+                width: 20, 
+                height: 20, 
+                border: '3px solid #BBDEFB', 
+                borderTop: '3px solid #1976D2', 
+                borderRadius: '50%', 
+                animation: 'spin 0.8s linear infinite',
+                '@keyframes spin': {
+                  '0%': { transform: 'rotate(0deg)' },
+                  '100%': { transform: 'rotate(360deg)' }
+                }
+              }} />
+              <Typography variant="body2" sx={{ color: '#1565C0', fontWeight: 500 }}>{loadingStage}</Typography>
+            </Box>
+          )}
           <Box sx={{ display: 'flex', gap: 1 }}>
             <TextField fullWidth value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && sendMessage()} placeholder="Ask your doubt..." disabled={loading} sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }} />
             <Button variant="contained" onClick={sendMessage} disabled={loading} sx={{ borderRadius: 2, bgcolor: '#1976D2' }}><Send /></Button>

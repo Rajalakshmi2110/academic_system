@@ -80,8 +80,18 @@ class TwoLayerPipeline:
                         'layer2_time_ms': 0
                     }
         
+        # Check if question contains DS keywords (bypass Layer 1 if yes)
+        ds_keywords = ['linked list', 'linkedlist', 'array', 'stack', 'queue', 'tree', 'graph', 
+                       'hash', 'sort', 'search', 'heap', 'avl', 'bst', 'dfs', 'bfs']
+        has_ds_keyword = any(keyword in question.lower() for keyword in ds_keywords)
+        
         # Layer 1: Syllabus Relevance Check
         layer1_result = self.layer1.predict(question, return_confidence=True)
+        
+        # Override Layer 1 rejection if question has DS keywords
+        if not layer1_result['relevant'] and has_ds_keyword:
+            layer1_result['relevant'] = True
+            layer1_result['label'] = 1
         
         # Override Layer 1 rejection if asking about course files
         if not layer1_result['relevant'] and is_file_question:
