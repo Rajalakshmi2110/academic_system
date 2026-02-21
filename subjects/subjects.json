@@ -8,6 +8,15 @@
       "created_at": "2024-01-01T00:00:00Z",
       "document_count": 53,
       "model_trained": true
+    },
+    {
+      "id": "introduction_to_operating_system",
+      "name": "INTRODUCTION TO OPERATING SYSTEM",
+      "code": "BX3004",
+      "active": false,
+      "created_at": "2026-02-21T14:43:50.360451",
+      "document_count": 1,
+      "model_trained": false
     }
   ]
 }

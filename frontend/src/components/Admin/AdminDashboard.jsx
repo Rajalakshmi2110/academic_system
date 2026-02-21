@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Paper, Typography, List, ListItem, ListItemText, IconButton, Alert, LinearProgress, Card, CardContent, Grid, TextField, Accordion, AccordionSummary, AccordionDetails, Chip, Select, MenuItem, FormControl, InputLabel, Radio, RadioGroup, FormControlLabel, FormLabel, Drawer, ListItemButton, Divider } from '@mui/material';
-import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder, Download, Search, Dashboard as DashboardIcon, Assessment, Add } from '@mui/icons-material';
+import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder, Download, Search, Dashboard as DashboardIcon, Assessment, Add, HourglassEmpty, CheckCircle } from '@mui/icons-material';
 import axios from 'axios';
 
 const AdminDashboard = ({ onLogout, onSwitchTab }) => {
@@ -20,6 +20,13 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
     loadSubjects();
     loadPdfs();
     loadStats();
+    
+    // Poll for training status every 10 seconds
+    const interval = setInterval(() => {
+      loadSubjects();
+    }, 10000);
+    
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -161,7 +168,22 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
             >
               {subjects.map(subject => (
                 <MenuItem key={subject.id} value={subject.id}>
-                  {subject.name}
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                    <span>{subject.name}</span>
+                    {!subject.model_trained && (
+                      <Chip 
+                        label="Training" 
+                        size="small" 
+                        sx={{ 
+                          ml: 1, 
+                          bgcolor: '#FFC107', 
+                          color: 'white',
+                          height: 20,
+                          fontSize: '0.7rem'
+                        }} 
+                      />
+                    )}
+                  </Box>
                 </MenuItem>
               ))}
             </Select>
@@ -195,7 +217,23 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
       {/* Main Content */}
       <Box sx={{ flex: 1, bgcolor: '#F5F5F5' }}>
         <Box sx={{ bgcolor: 'white', p: 2, borderBottom: '1px solid #E0E0E0' }}>
-          <Typography variant="h5">Dashboard - {subjects.find(s => s.id === currentSubject)?.name || 'Loading...'}</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Typography variant="h5">Dashboard - {subjects.find(s => s.id === currentSubject)?.name || 'Loading...'}</Typography>
+            {subjects.find(s => s.id === currentSubject && !s.model_trained) && (
+              <Chip 
+                label="Training in Progress" 
+                icon={<HourglassEmpty />}
+                sx={{ bgcolor: '#FFC107', color: 'white' }} 
+              />
+            )}
+            {subjects.find(s => s.id === currentSubject && s.model_trained) && (
+              <Chip 
+                label="Ready" 
+                icon={<CheckCircle />}
+                sx={{ bgcolor: '#4CAF50', color: 'white' }} 
+              />
+            )}
+          </Box>
         </Box>
         {message && <Alert severity={message.type} sx={{ mb: 2 }}>{message.text}</Alert>}
 
