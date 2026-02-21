@@ -6,8 +6,7 @@ import axios from 'axios';
 const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
   const [formData, setFormData] = useState({
     name: '',
-    code: '',
-    id: ''
+    code: ''
   });
   const [syllabusFile, setSyllabusFile] = useState(null);
   const [documentFiles, setDocumentFiles] = useState([]);
@@ -19,8 +18,7 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value,
-      ...(name === 'name' && !prev.id ? { id: value.toLowerCase().replace(/\s+/g, '_') } : {})
+      [name]: value
     }));
   };
 
@@ -42,8 +40,8 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.id) {
-      setMessage({ type: 'error', text: 'Subject name and ID are required' });
+    if (!formData.name || !formData.code) {
+      setMessage({ type: 'error', text: 'Subject name and course code are required' });
       return;
     }
 
@@ -59,7 +57,7 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.name);
       formDataToSend.append('code', formData.code);
-      formDataToSend.append('id', formData.id);
+      formDataToSend.append('id', formData.code.toLowerCase());
       formDataToSend.append('syllabus', syllabusFile);
       formDataToSend.append('auto_train', autoTrain);
       
@@ -79,7 +77,7 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
       });
       
       // Reset form
-      setFormData({ name: '', code: '', id: '' });
+      setFormData({ name: '', code: '' });
       setSyllabusFile(null);
       setDocumentFiles([]);
       
@@ -161,19 +159,10 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
               name="code"
               value={formData.code}
               onChange={handleInputChange}
-              sx={{ mb: 2 }}
-              placeholder="e.g., CA3101"
-            />
-            
-            <TextField
-              fullWidth
-              label="Subject ID (auto-generated)"
-              name="id"
-              value={formData.id}
-              onChange={handleInputChange}
               required
               sx={{ mb: 3 }}
-              helperText="Used for folder naming (lowercase, underscores)"
+              placeholder="e.g., OS3101"
+              helperText="Will be used as subject ID (e.g., os3101)"
             />
 
             <Divider sx={{ my: 3 }} />
