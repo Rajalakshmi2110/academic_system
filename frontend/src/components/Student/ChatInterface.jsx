@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, IconButton, Snackbar, Drawer, List, ListItem, ListItemText, ListItemButton, Divider, Select, MenuItem, FormControl } from '@mui/material';
 import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu, HourglassEmpty } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const ChatInterface = () => {
-  const navigate = useNavigate();
   const [conversations, setConversations] = useState([]);
   const [currentConvId, setCurrentConvId] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -366,8 +364,9 @@ const ChatInterface = () => {
             <Button
               variant="contained"
               size="small"
-              onClick={() => navigate('/admin')}
-              sx={{ bgcolor: 'white', color: '#1976D2', '&:hover': { bgcolor: '#E3F2FD' } }}
+              component="a"
+              href="/admin"
+              sx={{ bgcolor: 'white', color: '#1976D2', '&:hover': { bgcolor: '#E3F2FD' }, textDecoration: 'none' }}
             >
               Admin Panel
             </Button>
