@@ -28,17 +28,15 @@ const ChatInterface = () => {
       })
       .catch(err => console.error('Failed to load subjects:', err));
 
+    // Load saved conversations
     const saved = localStorage.getItem('conversations');
     if (saved) {
       const convs = JSON.parse(saved);
       setConversations(convs);
-      if (convs.length > 0) {
-        setCurrentConvId(convs[0].id);
-        setMessages(convs[0].messages);
-      }
-    } else {
-      createNewConversation();
     }
+    
+    // Always create new conversation on load
+    createNewConversation();
   }, []);
 
   useEffect(() => {
@@ -339,27 +337,27 @@ const ChatInterface = () => {
             <IconButton onClick={() => setSidebarOpen(!sidebarOpen)} sx={{ color: 'white' }}>
               <Menu />
             </IconButton>
-            <Typography variant="h6">Academic Doubt Clarification System</Typography>
+            <Typography variant="h6">Academic Doubt Clarification</Typography>
           </Box>
-          <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-            <FormControlLabel
-              control={<Switch checked={comparisonMode} onChange={(e) => setComparisonMode(e.target.checked)} sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: 'white' } }} />}
-              label="Compare Mode"
-              sx={{ color: 'white' }}
-            />
-            <Button
-              variant="outlined"
-              size="small"
-              onClick={() => window.location.href = '/?admin=true'}
-              sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}
-            >
-              Admin
-            </Button>
+          <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
             <FormControlLabel
               control={<Switch checked={showSteps} onChange={(e) => setShowSteps(e.target.checked)} sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: 'white' } }} />}
               label="Show Steps"
-              sx={{ color: 'white' }}
+              sx={{ color: 'white', m: 0 }}
             />
+            <FormControlLabel
+              control={<Switch checked={comparisonMode} onChange={(e) => setComparisonMode(e.target.checked)} sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: 'white' } }} />}
+              label="Compare Mode"
+              sx={{ color: 'white', m: 0 }}
+            />
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => window.location.href = '/admin'}
+              sx={{ bgcolor: 'white', color: '#1976D2', '&:hover': { bgcolor: '#E3F2FD' } }}
+            >
+              Admin Panel
+            </Button>
           </Box>
         </Box>
         <Box sx={{ flex: 1, overflow: 'auto', p: 2 }}>
