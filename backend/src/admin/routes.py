@@ -2,21 +2,22 @@ from flask import Blueprint, request, jsonify, send_file
 from werkzeug.utils import secure_filename
 import subprocess
 import os
+import sys
 from pathlib import Path
 from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
 
+# Add parent directory to path
+sys.path.append(str(Path(__file__).parent.parent))
+from subject_manager import SubjectManager
+
 admin_bp = Blueprint('admin', __name__)
+subject_manager = SubjectManager()
 
-UPLOAD_FOLDER = Path('/Users/rathrajy/learning/project/DS')
-ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx', 'ppt', 'pptx'}
+ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx', 'ppt', 'pptx', 'json'}
 ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'admin123')
-
-# Create ClassNotes subfolder for new uploads
-CLASS_NOTES_FOLDER = UPLOAD_FOLDER / 'ClassNotes'
-CLASS_NOTES_FOLDER.mkdir(parents=True, exist_ok=True)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -36,28 +37,40 @@ def upload_pdf():
         return jsonify({'error': 'No file provided'}), 400
     
     file = request.files['file']
-    folder = request.form.get('folder', '')  # Get folder name from form
+    subject_id = request.form.get('subject_id', 'data_structures')  # Default to DS
+    folder = request.form.get('folder', '')  # Optional subfolder
     
     if file.filename == '' or not allowed_file(file.filename):
         return jsonify({'error': 'Invalid file'}), 400
     
     try:
+        # Get subject's documents folder
+        docs_path = Path(subject_manager.get_documents_path(subject_id))
+        docs_path.mkdir(parents=True, exist_ok=True)
+        
         filename = secure_filename(file.filename)
         
         # Create subfolder if specified
         if folder:
-            folder_path = CLASS_NOTES_FOLDER / secure_filename(folder)
+            folder_path = docs_path / secure_filename(folder)
             folder_path.mkdir(parents=True, exist_ok=True)
             filepath = folder_path / filename
         else:
-            filepath = CLASS_NOTES_FOLDER / filename
+            filepath = docs_path / filename
         
         file.save(filepath)
+        
+        # Update document count
+        subject = subject_manager.get_subject(subject_id)
+        if subject:
+            doc_count = subject.get('document_count', 0) + 1
+            subject_manager.update_subject(subject_id, document_count=doc_count)
         
         return jsonify({
             'status': 'success',
             'message': f'File {filename} uploaded',
             'filename': filename,
+            'subject_id': subject_id,
             'folder': folder,
             'size': filepath.stat().st_size,
             'uploaded_at': datetime.now().isoformat()
@@ -68,33 +81,28 @@ def upload_pdf():
 @admin_bp.route('/list-pdfs', methods=['GET'])
 def list_pdfs():
     try:
+        subject_id = request.args.get('subject_id', 'data_structures')
+        
+        # Get subject's documents folder
+        docs_path = Path(subject_manager.get_documents_path(subject_id))
+        
         folders = {}
         
-        # Define folder categories
-        categories = {
-            'Textbook': UPLOAD_FOLDER / 'Textbook',
-            'Syllabus': UPLOAD_FOLDER / 'Syllabus',
-            'ClassNotes': UPLOAD_FOLDER / 'ClassNotes'
-        }
-        
-        for category, base_path in categories.items():
-            if not base_path.exists():
-                continue
-                
-            # Scan recursively within each category for PDFs and DOC/DOCX/PPT/PPTX
-            for file_path in base_path.rglob('*'):
-                if file_path.suffix.lower() not in ['.pdf', '.doc', '.docx', '.ppt', '.pptx']:
+        if docs_path.exists():
+            # Scan recursively for all supported files
+            for file_path in docs_path.rglob('*'):
+                if file_path.suffix.lower() not in ['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.json']:
                     continue
                     
                 stat = file_path.stat()
-                relative_path = file_path.relative_to(UPLOAD_FOLDER)
+                relative_path = file_path.relative_to(docs_path)
                 
-                # Get folder path within category
-                folder_parts = relative_path.parts[1:-1]  # Skip category and filename
+                # Get folder path
+                folder_parts = relative_path.parts[:-1]
                 if folder_parts:
-                    folder_name = f"{category}/{'/'.join(folder_parts)}"
+                    folder_name = '/'.join(folder_parts)
                 else:
-                    folder_name = category
+                    folder_name = 'Root'
                 
                 if folder_name not in folders:
                     folders[folder_name] = []
@@ -107,30 +115,12 @@ def list_pdfs():
                     'modified': datetime.fromtimestamp(stat.st_mtime).isoformat()
                 })
         
-        # Also scan for JSON files in Syllabus
-        syllabus_path = UPLOAD_FOLDER / 'Syllabus'
-        if syllabus_path.exists():
-            for json_file in syllabus_path.rglob('*.json'):
-                stat = json_file.stat()
-                relative_path = json_file.relative_to(UPLOAD_FOLDER)
-                
-                if 'Syllabus' not in folders:
-                    folders['Syllabus'] = []
-                
-                folders['Syllabus'].append({
-                    'filename': json_file.name,
-                    'path': str(relative_path),
-                    'size': stat.st_size,
-                    'size_mb': round(stat.st_size / (1024 * 1024), 2),
-                    'modified': datetime.fromtimestamp(stat.st_mtime).isoformat()
-                })
-        
         # Sort files within each folder
         for folder in folders:
             folders[folder].sort(key=lambda x: x['modified'], reverse=True)
         
         total = sum(len(files) for files in folders.values())
-        return jsonify({'folders': folders, 'total': total})
+        return jsonify({'folders': folders, 'total': total, 'subject_id': subject_id})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -139,16 +129,25 @@ def delete_pdf():
     try:
         data = request.json
         filepath = data.get('path', '')
+        subject_id = data.get('subject_id', 'data_structures')
         
         if not filepath:
             return jsonify({'error': 'Path required'}), 400
         
-        full_path = UPLOAD_FOLDER / filepath
+        docs_path = Path(subject_manager.get_documents_path(subject_id))
+        full_path = docs_path / filepath
         
         if not full_path.exists():
             return jsonify({'error': 'File not found'}), 404
         
         full_path.unlink()
+        
+        # Update document count
+        subject = subject_manager.get_subject(subject_id)
+        if subject:
+            doc_count = max(0, subject.get('document_count', 1) - 1)
+            subject_manager.update_subject(subject_id, document_count=doc_count)
+        
         return jsonify({'status': 'success', 'message': f'{filepath} deleted'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -156,10 +155,13 @@ def delete_pdf():
 @admin_bp.route('/rebuild-vector-db', methods=['POST'])
 def rebuild_vector_db():
     try:
+        data = request.json or {}
+        subject_id = data.get('subject_id', 'data_structures')
+        
         script_path = Path(__file__).parent.parent.parent / 'scripts' / 'rebuild_vector_db.py'
         
         result = subprocess.run(
-            ['python', str(script_path)],
+            ['python', str(script_path), subject_id],
             capture_output=True,
             text=True,
             timeout=300
@@ -168,8 +170,9 @@ def rebuild_vector_db():
         if result.returncode == 0:
             return jsonify({
                 'status': 'success',
-                'message': 'Vector database rebuilt',
-                'output': result.stdout
+                'message': f'Vector database rebuilt for {subject_id}',
+                'output': result.stdout,
+                'subject_id': subject_id
             })
         else:
             return jsonify({
@@ -185,11 +188,13 @@ def download_file():
     try:
         data = request.json
         filepath = data.get('path', '')
+        subject_id = data.get('subject_id', 'data_structures')
         
         if not filepath:
             return jsonify({'error': 'Path required'}), 400
         
-        full_path = UPLOAD_FOLDER / filepath
+        docs_path = Path(subject_manager.get_documents_path(subject_id))
+        full_path = docs_path / filepath
         
         if not full_path.exists():
             return jsonify({'error': 'File not found'}), 404
@@ -201,17 +206,22 @@ def download_file():
 @admin_bp.route('/stats', methods=['GET'])
 def get_stats():
     try:
-        # Count all files (pdf, doc, docx, ppt, pptx, json)
-        file_count = (
-            len(list(UPLOAD_FOLDER.rglob('*.pdf'))) +
-            len(list(UPLOAD_FOLDER.rglob('*.doc'))) +
-            len(list(UPLOAD_FOLDER.rglob('*.docx'))) +
-            len(list(UPLOAD_FOLDER.rglob('*.ppt'))) +
-            len(list(UPLOAD_FOLDER.rglob('*.pptx'))) +
-            len(list(UPLOAD_FOLDER.rglob('*.json')))
-        )
+        subject_id = request.args.get('subject_id', 'data_structures')
         
-        vector_db_path = Path(__file__).parent.parent.parent / 'data' / 'vector_db'
+        # Count files in subject's documents folder
+        docs_path = Path(subject_manager.get_documents_path(subject_id))
+        file_count = 0
+        if docs_path.exists():
+            file_count = (
+                len(list(docs_path.rglob('*.pdf'))) +
+                len(list(docs_path.rglob('*.doc'))) +
+                len(list(docs_path.rglob('*.docx'))) +
+                len(list(docs_path.rglob('*.ppt'))) +
+                len(list(docs_path.rglob('*.pptx')))
+            )
+        
+        # Count chunks in subject's vector DB
+        vector_db_path = Path(subject_manager.get_vector_db_path(subject_id))
         chunks_file = vector_db_path / 'chunks.pkl'
         
         import pickle
@@ -225,7 +235,8 @@ def get_stats():
         return jsonify({
             'pdfs_uploaded': file_count,
             'vector_chunks': chunk_count,
-            'upload_folder': str(UPLOAD_FOLDER)
+            'subject_id': subject_id,
+            'upload_folder': str(docs_path)
         })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
