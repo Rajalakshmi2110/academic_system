@@ -1,14 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Paper, Typography, Grid, Card, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Divider, Chip, Button } from '@mui/material';
-import { CheckCircle, Speed, Assessment, TrendingUp, Logout } from '@mui/icons-material';
+import { Box, Paper, Typography, Grid, Card, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Divider, Chip, Button, Drawer, List, ListItemButton, ListItemText, FormControl, Select, MenuItem } from '@mui/material';
+import { CheckCircle, Speed, Assessment, TrendingUp, Logout, Dashboard as DashboardIcon, Add } from '@mui/icons-material';
 import axios from 'axios';
 
 const MetricsPage = ({ onSwitchTab, onLogout }) => {
   const [metrics, setMetrics] = useState(null);
+  const [subjects, setSubjects] = useState([]);
+  const [currentSubject, setCurrentSubject] = useState('data_structures');
 
   useEffect(() => {
-    fetchMetrics();
+    loadSubjects();
   }, []);
+
+  useEffect(() => {
+    if (currentSubject) {
+      fetchMetrics();
+    }
+  }, [currentSubject]);
+
+  const loadSubjects = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/subjects/list');
+      setSubjects(res.data.subjects || []);
+      if (res.data.subjects.length > 0) {
+        setCurrentSubject(res.data.subjects[0].id);
+      }
+    } catch (err) {
+      console.error('Failed to load subjects:', err);
+    }
+  };
 
   const fetchMetrics = async () => {
     try {
@@ -22,19 +42,61 @@ const MetricsPage = ({ onSwitchTab, onLogout }) => {
   if (!metrics) return <Box sx={{ p: 4 }}><Typography>Loading metrics...</Typography></Box>;
 
   return (
-    <Box sx={{ p: 4, bgcolor: '#F5F7FA', minHeight: '100vh' }}>
-      <Box sx={{ bgcolor: '#1976D2', color: 'white', p: 2, mb: 3, borderRadius: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography variant="h5">Evaluation Metrics</Typography>
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <Button variant="outlined" onClick={() => onSwitchTab(0)} sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}>DASHBOARD</Button>
-          <Button variant="outlined" onClick={() => onSwitchTab(1)} sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}>METRICS</Button>
-          <Button startIcon={<Logout />} onClick={onLogout} sx={{ color: 'white' }}>Logout</Button>
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      <Drawer
+        variant="permanent"
+        sx={{
+          width: 260,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': { width: 260, boxSizing: 'border-box', bgcolor: '#1976D2', color: 'white' }
+        }}
+      >
+        <Box sx={{ p: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>Admin Panel</Typography>
+          <FormControl fullWidth size="small" sx={{ mb: 2 }}>
+            <Select
+              value={currentSubject}
+              onChange={(e) => setCurrentSubject(e.target.value)}
+              sx={{ bgcolor: 'white', borderRadius: 1 }}
+            >
+              {subjects.map(subject => (
+                <MenuItem key={subject.id} value={subject.id}>
+                  {subject.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </Box>
-      </Box>
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="h4" sx={{ fontWeight: 700, color: '#1A202C', mb: 1 }}>System Performance Metrics</Typography>
-        <Typography variant="body2" color="text.secondary">Real-time evaluation metrics for the 3-layer validation pipeline</Typography>
-      </Box>
+        <Divider sx={{ bgcolor: 'rgba(255,255,255,0.2)' }} />
+        <List>
+          <ListItemButton onClick={() => onSwitchTab(0)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
+            <DashboardIcon sx={{ mr: 2 }} />
+            <ListItemText primary="Dashboard" />
+          </ListItemButton>
+          <ListItemButton onClick={() => onSwitchTab(1)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
+            <Assessment sx={{ mr: 2 }} />
+            <ListItemText primary="Metrics" />
+          </ListItemButton>
+          <ListItemButton onClick={() => onSwitchTab(2)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
+            <Add sx={{ mr: 2 }} />
+            <ListItemText primary="Add Subject" />
+          </ListItemButton>
+        </List>
+        <Box sx={{ flexGrow: 1 }} />
+        <Divider sx={{ bgcolor: 'rgba(255,255,255,0.2)' }} />
+        <List>
+          <ListItemButton onClick={onLogout} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
+            <Logout sx={{ mr: 2 }} />
+            <ListItemText primary="Logout" />
+          </ListItemButton>
+        </List>
+      </Drawer>
+
+      <Box sx={{ flex: 1, bgcolor: '#F5F7FA' }}>
+        <Box sx={{ bgcolor: 'white', p: 2, borderBottom: '1px solid #E0E0E0' }}>
+          <Typography variant="h5">Metrics - {subjects.find(s => s.id === currentSubject)?.name || 'Loading...'}</Typography>
+        </Box>
+        <Box sx={{ p: 4 }}>
 
       {/* Layer 1 Metrics */}
       <Paper elevation={0} sx={{ p: 4, mb: 3, borderRadius: 3, border: '1px solid #E2E8F0' }}>
@@ -259,6 +321,8 @@ const MetricsPage = ({ onSwitchTab, onLogout }) => {
           Total Samples Evaluated: {metrics.end_to_end.total_samples}
         </Typography>
       </Paper>
+        </Box>
+      </Box>
     </Box>
   );
 };

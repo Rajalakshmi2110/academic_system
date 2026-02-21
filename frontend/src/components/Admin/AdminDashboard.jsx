@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Paper, Typography, List, ListItem, ListItemText, IconButton, Alert, LinearProgress, Card, CardContent, Grid, TextField, Accordion, AccordionSummary, AccordionDetails, Chip, Select, MenuItem, FormControl, InputLabel, Radio, RadioGroup, FormControlLabel, FormLabel } from '@mui/material';
-import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder, Download, Search } from '@mui/icons-material';
+import { Box, Button, Paper, Typography, List, ListItem, ListItemText, IconButton, Alert, LinearProgress, Card, CardContent, Grid, TextField, Accordion, AccordionSummary, AccordionDetails, Chip, Select, MenuItem, FormControl, InputLabel, Radio, RadioGroup, FormControlLabel, FormLabel, Drawer, ListItemButton, Divider } from '@mui/material';
+import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder, Download, Search, Dashboard as DashboardIcon, Assessment, Add } from '@mui/icons-material';
 import axios from 'axios';
 
 const AdminDashboard = ({ onLogout, onSwitchTab }) => {
@@ -141,11 +141,19 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
   };
 
   return (
-    <Box sx={{ minHeight: '100vh', bgcolor: '#F5F5F5' }}>
-      <Box sx={{ bgcolor: '#1976D2', color: 'white', p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Typography variant="h5">Admin Dashboard</Typography>
-          <FormControl size="small" sx={{ minWidth: 200 }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      {/* Sidebar */}
+      <Drawer
+        variant="permanent"
+        sx={{
+          width: 260,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': { width: 260, boxSizing: 'border-box', bgcolor: '#1976D2', color: 'white' }
+        }}
+      >
+        <Box sx={{ p: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>Admin Panel</Typography>
+          <FormControl fullWidth size="small" sx={{ mb: 2 }}>
             <Select
               value={currentSubject}
               onChange={(e) => setCurrentSubject(e.target.value)}
@@ -159,14 +167,36 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
             </Select>
           </FormControl>
         </Box>
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <Button variant="outlined" onClick={() => onSwitchTab(0)} sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}>DASHBOARD</Button>
-          <Button variant="outlined" onClick={() => onSwitchTab(1)} sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}>METRICS</Button>
-          <Button startIcon={<Logout />} onClick={onLogout} sx={{ color: 'white' }}>Logout</Button>
-        </Box>
-      </Box>
+        <Divider sx={{ bgcolor: 'rgba(255,255,255,0.2)' }} />
+        <List>
+          <ListItemButton onClick={() => onSwitchTab(0)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
+            <DashboardIcon sx={{ mr: 2 }} />
+            <ListItemText primary="Dashboard" />
+          </ListItemButton>
+          <ListItemButton onClick={() => onSwitchTab(1)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
+            <Assessment sx={{ mr: 2 }} />
+            <ListItemText primary="Metrics" />
+          </ListItemButton>
+          <ListItemButton onClick={() => onSwitchTab(2)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
+            <Add sx={{ mr: 2 }} />
+            <ListItemText primary="Add Subject" />
+          </ListItemButton>
+        </List>
+        <Box sx={{ flexGrow: 1 }} />
+        <Divider sx={{ bgcolor: 'rgba(255,255,255,0.2)' }} />
+        <List>
+          <ListItemButton onClick={onLogout} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
+            <Logout sx={{ mr: 2 }} />
+            <ListItemText primary="Logout" />
+          </ListItemButton>
+        </List>
+      </Drawer>
 
-      <Box sx={{ p: 3 }}>
+      {/* Main Content */}
+      <Box sx={{ flex: 1, bgcolor: '#F5F5F5' }}>
+        <Box sx={{ bgcolor: 'white', p: 2, borderBottom: '1px solid #E0E0E0' }}>
+          <Typography variant="h5">Dashboard - {subjects.find(s => s.id === currentSubject)?.name || 'Loading...'}</Typography>
+        </Box>
         {message && <Alert severity={message.type} sx={{ mb: 2 }}>{message.text}</Alert>}
 
         <Grid container spacing={3} sx={{ mb: 3 }}>
