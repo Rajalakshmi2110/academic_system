@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Card, CardContent, Typography, Grid, Chip, Button, Drawer, List, ListItemButton, ListItemText, Divider } from '@mui/material';
-import { Dashboard as DashboardIcon, Assessment, Add, Logout, CheckCircle, Folder, Description, AutorenewRounded } from '@mui/icons-material';
+import { Box, Card, CardContent, Typography, Grid, Chip, Button, Drawer, List, ListItemButton, ListItemText, Divider, IconButton } from '@mui/material';
+import { Dashboard as DashboardIcon, Assessment, Add, Logout, CheckCircle, Folder, Description, AutorenewRounded, Menu } from '@mui/icons-material';
 import axios from 'axios';
 
 const AdminHome = ({ onLogout, onSwitchTab, onSelectSubject }) => {
   const [subjects, setSubjects] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
     loadSubjects();
@@ -25,9 +26,10 @@ const AdminHome = ({ onLogout, onSwitchTab, onSelectSubject }) => {
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
       {/* Sidebar */}
       <Drawer
-        variant="permanent"
+        variant="persistent"
+        open={sidebarOpen}
         sx={{
-          width: 260,
+          width: sidebarOpen ? 260 : 0,
           flexShrink: 0,
           '& .MuiDrawer-paper': { width: 260, boxSizing: 'border-box', bgcolor: '#1976D2', color: 'white' }
         }}
@@ -62,9 +64,17 @@ const AdminHome = ({ onLogout, onSwitchTab, onSelectSubject }) => {
 
       {/* Main Content */}
       <Box sx={{ flex: 1, bgcolor: '#F5F5F5' }}>
-        <Box sx={{ bgcolor: 'white', p: 3, borderBottom: '1px solid #E0E0E0' }}>
-          <Typography variant="h4" sx={{ fontWeight: 'bold' }}>Admin Dashboard</Typography>
-          <Typography variant="body2" color="textSecondary">Manage subjects, upload documents, and monitor training</Typography>
+        <Box sx={{ bgcolor: 'white', p: 3, borderBottom: '1px solid #E0E0E0', display: 'flex', alignItems: 'center', gap: 2 }}>
+          <IconButton
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            sx={{ color: '#1976D2' }}
+          >
+            <Menu />
+          </IconButton>
+          <Box>
+            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>Admin Dashboard</Typography>
+            <Typography variant="body2" color="textSecondary">Manage subjects, upload documents, and monitor training</Typography>
+          </Box>
         </Box>
 
         <Box sx={{ p: 4 }}>
