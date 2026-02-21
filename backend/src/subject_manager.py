@@ -7,8 +7,14 @@ from pathlib import Path
 from datetime import datetime
 
 class SubjectManager:
-    def __init__(self, base_path="subjects"):
-        self.base_path = Path(base_path)
+    def __init__(self, base_path=None):
+        if base_path is None:
+            # Default: Use subjects folder at project root
+            backend_dir = Path(__file__).parent.parent.parent
+            self.base_path = backend_dir / "subjects"
+        else:
+            self.base_path = Path(base_path)
+        
         self.config_file = self.base_path / "subjects.json"
         self._ensure_config()
     
