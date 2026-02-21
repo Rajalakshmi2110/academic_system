@@ -26,55 +26,57 @@ const AdminHome = ({ onLogout, onSwitchTab, onSelectSubject }) => {
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
       {/* Sidebar */}
       <Drawer
-        variant="persistent"
-        open={sidebarOpen}
+        variant="permanent"
         sx={{
-          width: sidebarOpen ? 260 : 0,
+          width: sidebarOpen ? 260 : 70,
           flexShrink: 0,
-          '& .MuiDrawer-paper': { width: 260, boxSizing: 'border-box', bgcolor: '#1976D2', color: 'white' }
+          transition: 'width 0.3s',
+          '& .MuiDrawer-paper': { 
+            width: sidebarOpen ? 260 : 70, 
+            boxSizing: 'border-box', 
+            bgcolor: '#1976D2', 
+            color: 'white',
+            transition: 'width 0.3s',
+            overflowX: 'hidden'
+          }
         }}
       >
-        <Box sx={{ p: 2 }}>
-          <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>Admin Panel</Typography>
+        <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          {sidebarOpen && <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Admin Panel</Typography>}
+          <IconButton onClick={() => setSidebarOpen(!sidebarOpen)} sx={{ color: 'white' }}>
+            <Menu />
+          </IconButton>
         </Box>
         <Divider sx={{ bgcolor: 'rgba(255,255,255,0.2)' }} />
         <List>
-          <ListItemButton selected sx={{ bgcolor: 'rgba(255,255,255,0.2)', color: 'white' }}>
-            <DashboardIcon sx={{ mr: 2 }} />
-            <ListItemText primary="Home" />
+          <ListItemButton selected sx={{ bgcolor: 'rgba(255,255,255,0.2)', color: 'white', justifyContent: sidebarOpen ? 'initial' : 'center' }}>
+            <DashboardIcon sx={{ mr: sidebarOpen ? 2 : 0 }} />
+            {sidebarOpen && <ListItemText primary="Home" />}
           </ListItemButton>
-          <ListItemButton onClick={() => onSwitchTab(1)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
-            <Assessment sx={{ mr: 2 }} />
-            <ListItemText primary="Metrics" />
+          <ListItemButton onClick={() => onSwitchTab(1)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }, justifyContent: sidebarOpen ? 'initial' : 'center' }}>
+            <Assessment sx={{ mr: sidebarOpen ? 2 : 0 }} />
+            {sidebarOpen && <ListItemText primary="Metrics" />}
           </ListItemButton>
-          <ListItemButton onClick={() => onSwitchTab(2)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
-            <Add sx={{ mr: 2 }} />
-            <ListItemText primary="Add Subject" />
+          <ListItemButton onClick={() => onSwitchTab(2)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }, justifyContent: sidebarOpen ? 'initial' : 'center' }}>
+            <Add sx={{ mr: sidebarOpen ? 2 : 0 }} />
+            {sidebarOpen && <ListItemText primary="Add Subject" />}
           </ListItemButton>
         </List>
         <Box sx={{ flexGrow: 1 }} />
         <Divider sx={{ bgcolor: 'rgba(255,255,255,0.2)' }} />
         <List>
-          <ListItemButton onClick={onLogout} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
-            <Logout sx={{ mr: 2 }} />
-            <ListItemText primary="Logout" />
+          <ListItemButton onClick={onLogout} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }, justifyContent: sidebarOpen ? 'initial' : 'center' }}>
+            <Logout sx={{ mr: sidebarOpen ? 2 : 0 }} />
+            {sidebarOpen && <ListItemText primary="Logout" />}
           </ListItemButton>
         </List>
       </Drawer>
 
       {/* Main Content */}
       <Box sx={{ flex: 1, bgcolor: '#F5F5F5' }}>
-        <Box sx={{ bgcolor: 'white', p: 3, borderBottom: '1px solid #E0E0E0', display: 'flex', alignItems: 'center', gap: 2 }}>
-          <IconButton
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            sx={{ color: '#1976D2' }}
-          >
-            <Menu />
-          </IconButton>
-          <Box>
-            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>Admin Dashboard</Typography>
-            <Typography variant="body2" color="textSecondary">Manage subjects, upload documents, and monitor training</Typography>
-          </Box>
+        <Box sx={{ bgcolor: 'white', p: 3, borderBottom: '1px solid #E0E0E0' }}>
+          <Typography variant="h4" sx={{ fontWeight: 'bold' }}>Admin Dashboard</Typography>
+          <Typography variant="body2" color="textSecondary">Manage subjects, upload documents, and monitor training</Typography>
         </Box>
 
         <Box sx={{ p: 4 }}>
