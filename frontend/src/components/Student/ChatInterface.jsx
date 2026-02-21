@@ -262,6 +262,24 @@ const ChatInterface = () => {
         }}
       >
         <Box sx={{ p: 2, bgcolor: '#1976D2' }}>
+          <Typography variant="subtitle2" sx={{ color: 'white', mb: 1, fontWeight: 'bold' }}>Select Subject</Typography>
+          <FormControl fullWidth size="small" sx={{ mb: 2 }}>
+            <Select
+              value={currentSubject}
+              onChange={(e) => setCurrentSubject(e.target.value)}
+              sx={{ 
+                bgcolor: 'white', 
+                borderRadius: 1,
+                '& .MuiSelect-select': { py: 1 }
+              }}
+            >
+              {subjects.map(subject => (
+                <MenuItem key={subject.id} value={subject.id}>
+                  {subject.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <Button
             fullWidth
             variant="outlined"
@@ -321,24 +339,7 @@ const ChatInterface = () => {
             <IconButton onClick={() => setSidebarOpen(!sidebarOpen)} sx={{ color: 'white' }}>
               <Menu />
             </IconButton>
-            <Typography variant="h6">Academic Q&A System</Typography>
-            <FormControl size="small" sx={{ minWidth: 200 }}>
-              <Select
-                value={currentSubject}
-                onChange={(e) => setCurrentSubject(e.target.value)}
-                sx={{ 
-                  bgcolor: 'white', 
-                  borderRadius: 1,
-                  '& .MuiSelect-select': { py: 1 }
-                }}
-              >
-                {subjects.map(subject => (
-                  <MenuItem key={subject.id} value={subject.id}>
-                    {subject.name} ({subject.code})
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <Typography variant="h6">Academic Doubt Clarification System</Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
             <FormControlLabel
