@@ -13,15 +13,37 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
   const [newFolderName, setNewFolderName] = useState('');
   const [createNew, setCreateNew] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [subjects, setSubjects] = useState([]);
+  const [currentSubject, setCurrentSubject] = useState('data_structures');
 
   useEffect(() => {
+    loadSubjects();
     loadPdfs();
     loadStats();
   }, []);
 
+  useEffect(() => {
+    if (currentSubject) {
+      loadPdfs();
+      loadStats();
+    }
+  }, [currentSubject]);
+
+  const loadSubjects = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/subjects/list');
+      setSubjects(res.data.subjects || []);
+      if (res.data.subjects.length > 0) {
+        setCurrentSubject(res.data.subjects[0].id);
+      }
+    } catch (err) {
+      console.error('Failed to load subjects:', err);
+    }
+  };
+
   const loadPdfs = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/list-pdfs');
+      const res = await axios.get(`http://localhost:5000/api/admin/list-pdfs?subject_id=${currentSubject}`);
       setFolders(res.data.folders);
     } catch (err) {
       setMessage({ type: 'error', text: 'Failed to load PDFs' });
@@ -30,7 +52,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
 
   const loadStats = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/stats');
+      const res = await axios.get(`http://localhost:5000/api/admin/stats?subject_id=${currentSubject}`);
       setStats(res.data);
     } catch (err) {
       console.error('Failed to load stats');
@@ -50,6 +72,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
       for (let file of files) {
         const formData = new FormData();
         formData.append('file', file);
+        formData.append('subject_id', currentSubject);
         if (folderToUse) formData.append('folder', folderToUse);
         await axios.post('http://localhost:5000/api/admin/upload-pdf', formData);
       }
@@ -69,7 +92,9 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
     if (!window.confirm(`Delete ${path}?`)) return;
 
     try {
-      await axios.delete('http://localhost:5000/api/admin/delete-pdf', { data: { path } });
+      await axios.delete('http://localhost:5000/api/admin/delete-pdf', { 
+        data: { path, subject_id: currentSubject } 
+      });
       setMessage({ type: 'success', text: 'File deleted' });
       loadPdfs();
       loadStats();
@@ -81,7 +106,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
   const handleDownload = async (path, filename) => {
     try {
       const res = await axios.post('http://localhost:5000/api/admin/download-file', 
-        { path }, 
+        { path, subject_id: currentSubject }, 
         { responseType: 'blob' }
       );
       
@@ -104,7 +129,9 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
     setMessage(null);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/admin/rebuild-vector-db');
+      const res = await axios.post('http://localhost:5000/api/admin/rebuild-vector-db', {
+        subject_id: currentSubject
+      });
       setMessage({ type: 'success', text: 'Vector database rebuilt successfully' });
       loadStats();
     } catch (err) {
@@ -116,7 +143,22 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: '#F5F5F5' }}>
       <Box sx={{ bgcolor: '#1976D2', color: 'white', p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography variant="h5">Admin Dashboard</Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Typography variant="h5">Admin Dashboard</Typography>
+          <FormControl size="small" sx={{ minWidth: 200 }}>
+            <Select
+              value={currentSubject}
+              onChange={(e) => setCurrentSubject(e.target.value)}
+              sx={{ bgcolor: 'white', borderRadius: 1 }}
+            >
+              {subjects.map(subject => (
+                <MenuItem key={subject.id} value={subject.id}>
+                  {subject.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
         <Box sx={{ display: 'flex', gap: 1 }}>
           <Button variant="outlined" onClick={() => onSwitchTab(0)} sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}>DASHBOARD</Button>
           <Button variant="outlined" onClick={() => onSwitchTab(1)} sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}>METRICS</Button>
