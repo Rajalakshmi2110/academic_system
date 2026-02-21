@@ -1,30 +1,39 @@
-# Academic Doubt Clarification System - CA3101 Data Structures
+# Multi-Subject Academic Doubt Clarification System
 
-A 3-layer intelligent question validation and answering system for CA3101 Data Structures course using ML classification, Groq-based validation, and RAG-based answer generation.
+A 3-layer intelligent question validation and answering system supporting multiple subjects with automated training pipeline. Built with ML classification, Groq-based validation, and RAG-based answer generation.
 
 ## 🎯 System Overview
 
-This system validates student questions through multiple layers before generating answers, ensuring only relevant, well-formed questions about CA3101 syllabus topics receive responses.
+This system validates student questions through multiple layers before generating answers, ensuring only relevant, well-formed questions receive responses. **Supports unlimited subjects** with automated training pipeline.
+
+### Key Features
+
+✅ **Multi-Subject Support**: Add unlimited subjects (Data Structures, Operating Systems, etc.)
+✅ **Automated Training**: Auto-generates 2000+ training samples and trains models
+✅ **3-Layer Validation**: DistilBERT → Groq LLM → RAG Pipeline
+✅ **Admin Dashboard**: Upload documents, manage subjects, view metrics
+✅ **Student Interface**: Subject selector, chat interface, source citations
 
 ### Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Student Question                         │
+│              (Subject: Operating Systems)                   │
 └────────────────────────┬────────────────────────────────────┘
                          │
                          ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  Layer 1: DS Classifier (DistilBERT)                        │
-│  - DS-related vs Non-DS classification                      │
-│  - Status: PASS or FAIL                                     │
-│  - Accuracy: 99.61% | Latency: ~18ms                        │
+│  Layer 1: Subject Classifier (DistilBERT)                   │
+│  - Subject-specific model per subject                       │
+│  - Valid vs Invalid classification                          │
+│  - Accuracy: 99%+ | Latency: ~18ms                          │
 └────────────────────────┬────────────────────────────────────┘
                          │
                          ▼
 ┌─────────────────────────────────────────────────────────────┐
 │  Layer 2: Syllabus Checker (Groq Llama 3.3 70B)             │
-│  - Validates: Gibberish, DS relevance, syllabus coverage    │
+│  - Validates against subject-specific syllabus              │
 │  - Status: VALID, WARNING, OUT_OF_SYLLABUS, or REJECTED     │
 │  - Latency: ~600-900ms                                      │
 └────────────────────────┬────────────────────────────────────┘
@@ -32,34 +41,31 @@ This system validates student questions through multiple layers before generatin
                          ▼
 ┌─────────────────────────────────────────────────────────────┐
 │  Layer 3: RAG Answer Generator                              │
-│  - FAISS retrieval (652 chunks, top_k=2)                    │
+│  - Subject-specific FAISS vector database                   │
+│  - Retrieves from subject's uploaded documents              │
 │  - Llama 3.1 8B generation                                  │
-│  - Latency: ~8-10s (optimized)                              │
+│  - Latency: ~8-10s                                          │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ## 📊 Performance Metrics
 
-### Layer 1: DS Classifier
-- **Accuracy**: 99.61%
-- **Precision**: 100%
-- **Recall**: 99.28%
-- **F1-Score**: 99.64%
+### Layer 1: Subject Classifier (Per Subject)
+- **Accuracy**: 99%+
+- **Model**: DistilBERT (fine-tuned per subject)
+- **Training**: Auto-generated 2000+ samples from syllabus
 - **Latency**: ~18ms
-- **Model**: DistilBERT (fine-tuned)
-- **Dataset**: 1,710 questions
 
 ### Layer 2: Syllabus Checker
-- **Method**: Groq API with Llama 3.3 70B Versatile
+- **Method**: Groq API with Llama 3.3 70B
 - **Latency**: ~600-900ms
-- **Coverage**: All CA3101 syllabus topics
-- **Fallback**: Rule-based validator (available but not active)
+- **Coverage**: Subject-specific syllabus validation
 
-### Layer 3: RAG Generator
-- **Vector DB**: 652 chunks from course materials
-- **Retrieval**: FAISS with sentence-transformers
+### Layer 3: RAG Generator (Per Subject)
+- **Vector DB**: Subject-specific FAISS index
+- **Source**: Uploaded PDFs, PPTs, Word docs per subject
 - **Generation**: Llama 3.1 8B via Ollama
-- **Latency**: 8-10s (optimized from 12s)
+- **Latency**: 8-10s
 
 ### Validation Statuses
 
@@ -77,12 +83,13 @@ This system validates student questions through multiple layers before generatin
 - **SUCCESS**: Answer generated successfully
 - **ERROR**: Generation failed
 
-## 🚀 Setup Instructions
+## 🚀 Quick Start
 
 ### Prerequisites
 - Python 3.8+
 - Node.js 16+
 - Ollama (for Layer 3)
+- Groq API Key (free: https://console.groq.com/keys)
 
 ### Backend Setup
 
@@ -90,20 +97,15 @@ This system validates student questions through multiple layers before generatin
 cd backend
 
 # Install dependencies
-pip install -r requirements.txt
+pip install torch transformers sentence-transformers faiss-cpu groq PyPDF2 flask flask-cors
 
-# Set up Groq API key (free tier: https://console.groq.com/keys)
-echo "GROQ_API_KEY=your_key_here" > .env
+# Set up Groq API key
+export GROQ_API_KEY="your_key_here"
 
-# Install Ollama
+# Install and start Ollama
 brew install ollama  # macOS
-# or visit https://ollama.ai for other platforms
-
-# Pull Llama model
+ollama serve &       # Start in background
 ollama pull llama3.1:8b
-
-# Start Ollama server (in separate terminal)
-ollama serve
 
 # Run backend
 python app.py
@@ -122,163 +124,156 @@ npm start
 ```
 
 ### Access
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
+- **Student Interface**: http://localhost:3000
+- **Admin Panel**: http://localhost:3000/admin
+- **Backend API**: http://localhost:5000
 
-## 📁 Project Structure
+## 📁 Project Structure (Multi-Subject)
 
 ```
 academic_system/
+├── subjects/                          ← All subject data
+│   ├── subjects.json                  ← Subject registry
+│   ├── data_structures/
+│   │   ├── documents/                 ← PDFs, PPTs, Word docs
+│   │   │   ├── textbook.pdf
+│   │   │   ├── lecture1.pdf
+│   │   │   └── training_data.json    ← Auto-generated (2000+ samples)
+│   │   ├── models/
+│   │   │   └── layer1_distilbert/    ← Trained classifier
+│   │   ├── vector_db/                ← FAISS index
+│   │   │   ├── faiss_index.bin
+│   │   │   ├── chunks.pkl
+│   │   │   └── metadata.json
+│   │   └── syllabus.json             ← Course structure
+│   └── operating_systems/
+│       └── (same structure)
 ├── backend/
-│   ├── data/
-│   │   ├── processed/          # Train/val/test splits
-│   │   ├── raw/                # Original datasets
-│   │   └── vector_db/          # FAISS index + chunks
-│   ├── models/
-│   │   └── layer1_distilbert/  # Fine-tuned classifier
 │   ├── src/
-│   │   ├── layer1_classifier/  # DistilBERT training/inference
-│   │   ├── layer2_validator/   # Groq-based validation
-│   │   ├── layer3_rag/         # RAG pipeline
-│   │   ├── data_preprocessing/ # Dataset splitting
-│   │   └── evaluation/         # End-to-end metrics
+│   │   ├── subject_manager.py        ← Subject CRUD
+│   │   ├── training_pipeline.py      ← Automated training
+│   │   ├── layer1_classifier/        ← DistilBERT inference
+│   │   ├── layer2_validator/         ← Groq validation
+│   │   ├── layer3_rag/               ← RAG pipeline
+│   │   └── admin/
+│   │       ├── routes.py             ← File management
+│   │       └── subject_routes.py     ← Subject management
 │   ├── scripts/
-│   │   └── rebuild_vector_db.py
-│   └── app.py                  # Flask API
+│   │   ├── generate_training_data.py ← Auto-generate samples
+│   │   ├── train_layer1.py           ← Train DistilBERT
+│   │   └── build_vector_db.py        ← Build FAISS index
+│   └── app.py                        ← Flask API
 ├── frontend/
-│   └── src/
-│       └── components/
-│           └── Student/
-│               └── ChatInterface.jsx
+│   └── src/components/
+│       ├── Student/
+│       │   └── ChatInterface.jsx     ← Subject selector + chat
+│       └── Admin/
+│           ├── AdminDashboard.jsx    ← File management
+│           ├── MetricsPage.jsx       ← Subject metrics
+│           └── AddSubjectPage.jsx    ← Add new subject
 └── README.md
 ```
 
-## 🔧 Configuration
+## 🎓 Adding a New Subject
 
-### Layer 1: Classifier
-- Model: `distilbert-base-uncased`
-- Max length: 128 tokens
-- Training: 3 epochs, lr=2e-5
-- Dataset: 1,710 questions (968 in-syllabus, 742 out-of-syllabus)
+### Via Admin UI (Recommended)
 
-### Layer 2: Validator
-- Primary: Groq API with Llama 3.3 70B (free tier available)
-- Fallback: Rule-based validator (85 rules, available but not active)
-- Checks: Syllabus coverage, topic relevance, incorrect facts
+1. **Login to Admin Panel**: http://localhost:3000/admin
+2. **Click "Add Subject"** in sidebar
+3. **Fill Form**:
+   - Subject Name: e.g., "Operating Systems"
+   - Course Code: e.g., "OS3101"
+   - Subject ID: Auto-filled as "operating_systems"
+4. **Upload Syllabus**: `syllabus.json` with course structure
+5. **Upload Documents**: PDFs, PPTs, Word files (textbooks, notes)
+6. **Enable Auto-Train**: ✅ (recommended)
+7. **Click "Create Subject"**
 
-### Layer 3: RAG
-- Embedder: `sentence-transformers/all-MiniLM-L6-v2`
-- Vector DB: FAISS (652 chunks)
-- Chunk size: 500 words, overlap: 50
-- Retrieval: top_k=2 (optimized)
-- LLM: Llama 3.1 8B
+### What Happens Automatically (5-10 minutes)
 
-## 📚 CA3101 Syllabus Coverage
+```
+[1/3] Generating 2000+ training samples from syllabus...
+  - Uses Groq LLM to create valid/invalid questions
+  - Saves to subjects/{subject_id}/documents/training_data.json
 
-**Covered Topics:**
-- Arrays, Linked Lists, Stacks, Queues
-- Binary Trees, AVL Trees, 2-3 Trees, B-Trees
-- Graphs (BFS, DFS, Dijkstra, Kruskal, Prim)
-- Heaps, Priority Queues
-- Hashing (Chaining, Probing)
-- Sorting (Bubble, Selection, Merge, Quick)
-- Searching (Binary Search)
-- Recursion, Complexity Analysis
+[2/3] Training Layer 1 DistilBERT model...
+  - Trains on generated data (3 epochs)
+  - Saves to subjects/{subject_id}/models/layer1_distilbert/
 
-**Not Covered (Rejected):**
-- Skip Lists, Fibonacci Heaps
-- Red-Black Trees, Splay Trees
-- Suffix Trees, Segment Trees
-- Advanced topics beyond CA3101
+[3/3] Building FAISS vector database...
+  - Processes all uploaded PDFs
+  - Creates embeddings and index
+  - Saves to subjects/{subject_id}/vector_db/
 
-## 🧪 Testing
-
-### Run Evaluation
-```bash
-cd backend
-python src/evaluation/metrics.py
+✅ Subject ready for students!
 ```
 
-### Test Individual Layers
-```bash
-# Layer 1 - DS Classifier
-python src/layer1_classifier/evaluate.py
+### Syllabus Format
 
-# Layer 2 - Syllabus Checker (requires GROQ_API_KEY)
-python -c "from src.layer2_validator.inference import TwoLayerPipeline; p = TwoLayerPipeline(); print(p.process_question('What is AVL tree?'))"
-
-# Layer 3 - RAG Pipeline (requires Ollama running)
-python -c "from src.layer3_rag.inference import generate_answer; print(generate_answer('What is AVL tree?'))"
+```json
+{
+  "course_code": "OS3101",
+  "course_name": "OPERATING SYSTEMS",
+  "units": [
+    {
+      "unit_number": 1,
+      "title": "INTRODUCTION",
+      "topics": [
+        "Operating System Concepts",
+        "System Calls",
+        "Process Management"
+      ]
+    }
+  ]
+}
 ```
 
-## 🎓 Usage Examples
+## 🎯 Usage Examples
 
-### Valid Questions (Get Answers)
-- "What is AVL tree rotation?"
-- "Explain binary search tree traversal"
-- "How does Dijkstra's algorithm work?"
-- "Stack is LIFO right?"
-- "Is binary search O(log n)?"
-- "Queue uses FIFO?"
-- "Array vs linked list?"
+### Student Workflow
 
-### Warning (Incorrect facts but still answered)
-- "Stack is FIFO right?" → Layer 3 corrects: "No, Stack is LIFO"
-- "Is binary search O(n^2)?" → Layer 3 corrects: "No, it's O(log n)"
-- "Queue is LIFO correct?" → Layer 3 corrects: "No, Queue is FIFO"
+1. **Select Subject**: Choose from dropdown (e.g., "Data Structures")
+2. **Ask Question**: "What is AVL tree rotation?"
+3. **Get Answer**: With source citations from uploaded documents
 
-### Rejected (Not DS-related)
-- "What is AWS Lambda?"
-- "Explain React framework"
-- "asdfghjkl" (gibberish)
+### Admin Workflow
 
-### Out-of-Syllabus (DS but not in CA3101)
-- "Explain skip lists"
-- "What is a Fibonacci heap?"
-- "Describe red-black trees"
-- "What is dynamic programming?"
+1. **Dashboard**: Upload/delete documents, rebuild vector DB
+2. **Metrics**: View Layer 1/2/3 performance per subject
+3. **Add Subject**: Upload syllabus + documents, auto-train model
 
 ## 🔬 Technical Details
 
-### Layer 1 Training
-- Dataset: 1,710 questions (968 in-syllabus, 742 out-of-syllabus)
-- Split: 70% train (1,197), 15% val (256), 15% test (257)
-- Optimizer: AdamW
-- Loss: CrossEntropyLoss
-- Best Epoch: 3 with 99.22% validation accuracy
+### Automated Training Pipeline
+- **Data Generation**: Groq Llama 3.3 70B generates 2000+ samples
+- **Model Training**: DistilBERT (3 epochs, ~5 minutes)
+- **Vector DB**: FAISS with all-MiniLM-L6-v2 embeddings
+- **Execution**: Background thread (non-blocking)
 
-### Layer 2 Groq Validator
-- Model: Llama 3.3 70B Versatile via Groq API
-- Function calling: MCP-style tool to fetch syllabus topics
-- Checks: Gibberish, non-DS topics, out-of-syllabus DS topics, incorrect facts
-- Fallback: Rule-based validator with 85 rules (available but not active)
-- Topics covered: Arrays, Linked Lists, Stacks, Queues, Trees, Graphs, Heaps, Hashing, Sorting, Searching
-
-### Layer 3 RAG
-- Source: Rema Thareja textbook + TV Geetha notes + Unit PDFs
-- Total chunks: 652
-- Total characters: 1.67M
-- Embedding dim: 384
+### Multi-Subject Architecture
+- **Isolation**: Each subject has own models, data, vector DB
+- **Scalability**: Add unlimited subjects
+- **Caching**: Pipeline instances cached per subject
+- **Path Resolution**: Absolute paths from backend to project root
 
 ## 🚧 Known Limitations
 
-1. **Latency**: Layer 2 (~600-900ms) + Layer 3 (~8-10s) = ~9-11s total
-2. **Scope**: Only CA3101 Data Structures topics
-3. **Answer Quality**: Depends on course material coverage
-4. **API Dependency**: Layer 2 requires Groq API key (free tier available)
-5. **Concurrency**: Limited to 3-4 concurrent users on single machine
+1. **Training Time**: 5-10 minutes per subject (runs in background)
+2. **Latency**: Layer 2 (~600-900ms) + Layer 3 (~8-10s) = ~9-11s total
+3. **API Dependency**: Requires Groq API key (free tier available)
+4. **Concurrency**: Limited to 3-4 concurrent users per subject
 
 ## 🔮 Future Improvements
 
-1. **GPU Acceleration**: Deploy on GPU for 1-2s latency
-2. **Smaller Model**: Use Phi-3 mini (3.8B) for 2-3s latency
-3. **Caching**: Cache common questions
-4. **Streaming**: Stream answers token-by-token
-5. **Feedback Loop**: Collect user feedback to improve
+1. **Training Progress UI**: Real-time status in admin panel
+2. **GPU Acceleration**: Deploy on GPU for faster inference
+3. **Streaming Answers**: Token-by-token generation
+4. **Subject Templates**: Pre-configured syllabus templates
+5. **Bulk Import**: Upload multiple subjects at once
 
 ## 📝 License
 
-Academic project for CA3101 Data Structures course.
+Academic project for multi-subject doubt clarification system.
 
 ## 👥 Contributors
 
@@ -291,4 +286,6 @@ For questions or issues, open an issue on GitHub.
 
 ---
 
-**Built with:** Python, PyTorch, Transformers, FAISS, Groq, Ollama, React, Flask
+**Built with:** Python, PyTorch, Transformers, FAISS, Groq, Ollama, React, Flask, Material-UI
+
+**Branch:** `multi-subject-support`
