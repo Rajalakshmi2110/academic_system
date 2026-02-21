@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, IconButton, Snackbar, Drawer, List, ListItem, ListItemText, ListItemButton, Divider } from '@mui/material';
+import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, IconButton, Snackbar, Drawer, List, ListItem, ListItemText, ListItemButton, Divider, Select, MenuItem, FormControl } from '@mui/material';
 import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu, HourglassEmpty } from '@mui/icons-material';
 import axios from 'axios';
 
@@ -14,8 +14,20 @@ const ChatInterface = () => {
   const [copySuccess, setCopySuccess] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [comparisonMode, setComparisonMode] = useState(false);
+  const [subjects, setSubjects] = useState([]);
+  const [currentSubject, setCurrentSubject] = useState('data_structures');
 
   useEffect(() => {
+    // Fetch active subjects
+    axios.get('http://localhost:5000/api/subjects/active')
+      .then(res => {
+        setSubjects(res.data.subjects || []);
+        if (res.data.subjects.length > 0) {
+          setCurrentSubject(res.data.subjects[0].id);
+        }
+      })
+      .catch(err => console.error('Failed to load subjects:', err));
+
     const saved = localStorage.getItem('conversations');
     if (saved) {
       const convs = JSON.parse(saved);
@@ -135,11 +147,13 @@ const ChatInterface = () => {
             question: currentInput, 
             show_steps: showSteps, 
             force_answer: forceAnswer,
-            history: messages  // Send conversation history
+            history: messages,
+            subject_id: currentSubject  // NEW: Pass subject
           }),
           axios.post('http://localhost:5000/api/chat/direct', { 
             question: currentInput,
-            history: messages  // Send conversation history
+            history: messages,
+            subject_id: currentSubject  // NEW: Pass subject
           })
         ]);
         setMessages(prev => [...prev, { type: 'bot', data: validatedRes.data, comparison: directRes.data }]);
@@ -151,7 +165,8 @@ const ChatInterface = () => {
           show_steps: showSteps, 
           force_answer: forceAnswer,
           history: messages,
-          format: 'structured'
+          format: 'structured',
+          subject_id: currentSubject  // NEW: Pass subject
         });
         setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
       }
@@ -173,7 +188,8 @@ const ChatInterface = () => {
         show_steps: showSteps,
         force_answer: true,
         history: messages,
-        format: 'structured'
+        format: 'structured',
+        subject_id: currentSubject  // NEW: Pass subject
       });
       setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
     } catch (error) {
@@ -189,7 +205,8 @@ const ChatInterface = () => {
     try {
       const res = await axios.post('http://localhost:5000/api/chat/direct', { 
         question: rejectedQuestion,
-        history: messages
+        history: messages,
+        subject_id: currentSubject  // NEW: Pass subject
       });
       setMessages(prev => [...prev, { type: 'bot', data: { 
         status: 'success',
@@ -304,7 +321,24 @@ const ChatInterface = () => {
             <IconButton onClick={() => setSidebarOpen(!sidebarOpen)} sx={{ color: 'white' }}>
               <Menu />
             </IconButton>
-            <Typography variant="h6">Data Structures Doubt Clarification</Typography>
+            <Typography variant="h6">Academic Q&A System</Typography>
+            <FormControl size="small" sx={{ minWidth: 200 }}>
+              <Select
+                value={currentSubject}
+                onChange={(e) => setCurrentSubject(e.target.value)}
+                sx={{ 
+                  bgcolor: 'white', 
+                  borderRadius: 1,
+                  '& .MuiSelect-select': { py: 1 }
+                }}
+              >
+                {subjects.map(subject => (
+                  <MenuItem key={subject.id} value={subject.id}>
+                    {subject.name} ({subject.code})
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Box>
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
             <FormControlLabel
