@@ -220,18 +220,54 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Typography variant="h5">Dashboard - {subjects.find(s => s.id === currentSubject)?.name || 'Loading...'}</Typography>
             {subjects.find(s => s.id === currentSubject && !s.model_trained) && (
-              <Chip 
-                label="Training in Progress" 
-                icon={<HourglassEmpty />}
-                sx={{ bgcolor: '#FFC107', color: 'white' }} 
-              />
+              <Box sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: 1, 
+                px: 2, 
+                py: 0.75,
+                bgcolor: '#FFF3E0',
+                border: '1px solid #FFB74D',
+                borderRadius: 2,
+                boxShadow: '0 2px 4px rgba(255,152,0,0.1)'
+              }}>
+                <Box sx={{ 
+                  width: 16, 
+                  height: 16, 
+                  border: '2px solid #FF9800', 
+                  borderTop: '2px solid transparent', 
+                  borderRadius: '50%', 
+                  animation: 'spin 1s linear infinite',
+                  '@keyframes spin': {
+                    '0%': { transform: 'rotate(0deg)' },
+                    '100%': { transform: 'rotate(360deg)' }
+                  }
+                }} />
+                <Typography variant="body2" sx={{ color: '#E65100', fontWeight: 600 }}>
+                  Training Model
+                </Typography>
+                <Typography variant="caption" sx={{ color: '#F57C00' }}>
+                  (~5-10 min)
+                </Typography>
+              </Box>
             )}
             {subjects.find(s => s.id === currentSubject && s.model_trained) && (
-              <Chip 
-                label="Ready" 
-                icon={<CheckCircle />}
-                sx={{ bgcolor: '#4CAF50', color: 'white' }} 
-              />
+              <Box sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: 1, 
+                px: 2, 
+                py: 0.75,
+                bgcolor: '#E8F5E9',
+                border: '1px solid #81C784',
+                borderRadius: 2,
+                boxShadow: '0 2px 4px rgba(76,175,80,0.1)'
+              }}>
+                <CheckCircle sx={{ fontSize: 18, color: '#4CAF50' }} />
+                <Typography variant="body2" sx={{ color: '#2E7D32', fontWeight: 600 }}>
+                  Ready
+                </Typography>
+              </Box>
             )}
           </Box>
         </Box>
