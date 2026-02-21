@@ -1,22 +1,23 @@
 from .rag_pipeline import RAGPipeline
 from pathlib import Path
 
-_pipeline = None
+_pipelines = {}  # Cache pipelines per subject
 
-def get_rag_pipeline(vector_db_path=None):
-    global _pipeline
-    if _pipeline is None:
-        if vector_db_path is None:
-            # Default to relative path from project root
-            project_root = Path(__file__).parent.parent.parent
-            vector_db_path = str(project_root / "data" / "vector_db")
-        
-        _pipeline = RAGPipeline(
-            vector_db_path=vector_db_path,
-            ollama_url="http://localhost:11434"
-        )
-    return _pipeline
+def get_rag_pipeline(subject_id='data_structures', vector_db_path=None):
+    global _pipelines
+    
+    # Return cached pipeline if exists
+    if subject_id in _pipelines:
+        return _pipelines[subject_id]
+    
+    # Create new pipeline for subject
+    _pipelines[subject_id] = RAGPipeline(
+        subject_id=subject_id,
+        vector_db_path=vector_db_path,
+        ollama_url="http://localhost:11434"
+    )
+    return _pipelines[subject_id]
 
-def generate_answer(question: str, vector_db_path=None, is_follow_up=False) -> str:
-    pipeline = get_rag_pipeline(vector_db_path)
+def generate_answer(question: str, subject_id='data_structures', vector_db_path=None, is_follow_up=False) -> str:
+    pipeline = get_rag_pipeline(subject_id, vector_db_path)
     return pipeline.answer_question(question, is_follow_up)

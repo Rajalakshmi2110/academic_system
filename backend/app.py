@@ -18,7 +18,14 @@ from src.output_formatter import OutputFormatter
 app = Flask(__name__)
 CORS(app)
 
-pipeline = TwoLayerPipeline()
+# Cache pipelines per subject
+pipelines = {}
+
+def get_pipeline(subject_id='data_structures'):
+    if subject_id not in pipelines:
+        pipelines[subject_id] = TwoLayerPipeline(subject_id=subject_id)
+    return pipelines[subject_id]
+
 session_manager = SessionManager()
 formatter = OutputFormatter()
 
@@ -35,9 +42,13 @@ def chat():
     session_id = data.get('session_id')
     output_format = data.get('format', 'json')
     history = data.get('history', [])
+    subject_id = data.get('subject_id', 'data_structures')  # NEW: Get subject
     
     if not question:
         return jsonify({'error': 'Question is required'}), 400
+    
+    # Get pipeline for subject
+    pipeline = get_pipeline(subject_id)
     
     # Use session history if session_id provided
     if session_id:
@@ -104,7 +115,11 @@ def chat():
         import time
         layer3_start = time.time()
         # Use full_question (with context) only for follow-ups, otherwise use original question
-        rag_result = generate_answer(full_question if is_follow_up else question, is_follow_up=is_follow_up)
+        rag_result = generate_answer(
+            full_question if is_follow_up else question,
+            subject_id=subject_id,  # NEW: Pass subject_id
+            is_follow_up=is_follow_up
+        )
         layer3_time = (time.time() - layer3_start) * 1000
         
         steps['layer3'] = {
@@ -148,7 +163,8 @@ def chat_direct():
     """Direct RAG without validation layers - for comparison demo"""
     data = request.json
     question = data.get('question', '')
-    history = data.get('history', [])  # NEW: Get conversation history
+    history = data.get('history', [])
+    subject_id = data.get('subject_id', 'data_structures')  # NEW: Get subject
     
     if not question:
         return jsonify({'error': 'Question is required'}), 400
@@ -176,7 +192,7 @@ def chat_direct():
     try:
         import time
         start = time.time()
-        rag_result = generate_answer(full_question)  # Use full_question with context
+        rag_result = generate_answer(full_question, subject_id=subject_id)  # NEW: Pass subject_id
         latency = (time.time() - start) * 1000
         
         return jsonify({

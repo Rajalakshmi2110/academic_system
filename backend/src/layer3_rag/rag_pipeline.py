@@ -5,19 +5,31 @@ from sentence_transformers import SentenceTransformer
 import json
 
 class RAGPipeline:
-    def __init__(self, vector_db_path, ollama_url="http://localhost:11434"):
+    def __init__(self, subject_id='data_structures', vector_db_path=None, ollama_url="http://localhost:11434"):
+        from pathlib import Path
+        
+        self.subject_id = subject_id
+        
+        # Use provided path or construct from subject_id
+        if vector_db_path:
+            self.vector_db_path = vector_db_path
+        else:
+            # Default: subjects/{subject_id}/vector_db
+            base_dir = Path(__file__).parent.parent.parent.parent
+            self.vector_db_path = str(base_dir / 'subjects' / subject_id / 'vector_db')
+        
         # Load FAISS index and chunks
-        self.index = faiss.read_index(f"{vector_db_path}/faiss_index.bin")
-        with open(f"{vector_db_path}/chunks.pkl", 'rb') as f:
+        self.index = faiss.read_index(f"{self.vector_db_path}/faiss_index.bin")
+        with open(f"{self.vector_db_path}/chunks.pkl", 'rb') as f:
             self.chunks = pickle.load(f)
         
         # Try to load metadata (source info)
         try:
-            with open(f"{vector_db_path}/metadata.json", 'r') as f:
+            with open(f"{self.vector_db_path}/metadata.json", 'r') as f:
                 self.metadata = json.load(f)
         except:
             # Create default metadata if not exists
-            self.metadata = [{"source": "Data Structures Textbook", "page": i} for i in range(len(self.chunks))]
+            self.metadata = [{"source": f"{subject_id} materials", "page": i} for i in range(len(self.chunks))]
         
         # Load embedding model
         self.embedder = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
@@ -25,6 +37,8 @@ class RAGPipeline:
         # Ollama configuration
         self.ollama_url = ollama_url
         self.model_name = "llama3.1:8b"
+        
+        print(f"RAG Pipeline loaded for {subject_id} with {len(self.chunks)} chunks")
     
     def validate_question(self, question):
         """Validate question using LLM"""
