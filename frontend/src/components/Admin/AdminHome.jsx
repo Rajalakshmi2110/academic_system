@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Card, CardContent, Typography, Grid, Chip, Button, Drawer, List, ListItemButton, ListItemText, Divider } from '@mui/material';
-import { Dashboard as DashboardIcon, Assessment, Add, Logout, CheckCircle, HourglassEmpty, Folder, Description } from '@mui/icons-material';
+import { Dashboard as DashboardIcon, Assessment, Add, Logout, CheckCircle, Folder, Description, AutorenewRounded } from '@mui/icons-material';
 import axios from 'axios';
 
 const AdminHome = ({ onLogout, onSwitchTab, onSelectSubject }) => {
@@ -111,19 +111,45 @@ const AdminHome = ({ onLogout, onSwitchTab, onSelectSubject }) => {
                           {subject.name}
                         </Typography>
                         {subject.model_trained ? (
-                          <Chip 
-                            icon={<CheckCircle />}
-                            label="Ready" 
-                            size="small" 
-                            sx={{ bgcolor: '#E8F5E9', color: '#2E7D32' }} 
-                          />
+                          <Box sx={{ 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            gap: 0.5,
+                            px: 1.5,
+                            py: 0.5,
+                            bgcolor: '#E8F5E9',
+                            borderRadius: 2,
+                            border: '1px solid #81C784'
+                          }}>
+                            <CheckCircle sx={{ fontSize: 16, color: '#4CAF50' }} />
+                            <Typography variant="caption" sx={{ fontWeight: 600, color: '#2E7D32' }}>
+                              Ready
+                            </Typography>
+                          </Box>
                         ) : (
-                          <Chip 
-                            icon={<HourglassEmpty />}
-                            label="Training" 
-                            size="small" 
-                            sx={{ bgcolor: '#FFF3E0', color: '#E65100' }} 
-                          />
+                          <Box sx={{ 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            gap: 0.5,
+                            px: 1.5,
+                            py: 0.5,
+                            bgcolor: '#FFF3E0',
+                            borderRadius: 2,
+                            border: '1px solid #FFB74D'
+                          }}>
+                            <AutorenewRounded sx={{ 
+                              fontSize: 16, 
+                              color: '#FF9800',
+                              animation: 'spin 2s linear infinite',
+                              '@keyframes spin': {
+                                '0%': { transform: 'rotate(0deg)' },
+                                '100%': { transform: 'rotate(360deg)' }
+                              }
+                            }} />
+                            <Typography variant="caption" sx={{ fontWeight: 600, color: '#E65100' }}>
+                              Training
+                            </Typography>
+                          </Box>
                         )}
                       </Box>
                       
