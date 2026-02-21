@@ -11,6 +11,7 @@ sys.path.insert(0, str(base_dir))
 from src.layer2_validator.inference import TwoLayerPipeline
 from src.layer3_rag.inference import generate_answer
 from src.admin import admin_bp
+from src.admin.subject_routes import subject_bp
 from src.session_manager import SessionManager
 from src.output_formatter import OutputFormatter
 
@@ -21,8 +22,9 @@ pipeline = TwoLayerPipeline()
 session_manager = SessionManager()
 formatter = OutputFormatter()
 
-# Register admin blueprint
+# Register admin blueprints
 app.register_blueprint(admin_bp, url_prefix='/api/admin')
+app.register_blueprint(subject_bp, url_prefix='/api/subjects')
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
