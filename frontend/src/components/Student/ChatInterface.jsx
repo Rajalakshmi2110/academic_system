@@ -365,7 +365,7 @@ const ChatInterface = () => {
               variant="contained"
               size="small"
               component="a"
-              href="/admin"
+              href="/?admin=true"
               sx={{ bgcolor: 'white', color: '#1976D2', '&:hover': { bgcolor: '#E3F2FD' }, textDecoration: 'none' }}
             >
               Admin Panel
