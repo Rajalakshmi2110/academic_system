@@ -17,12 +17,17 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
   const [currentSubject, setCurrentSubject] = useState('data_structures');
 
   useEffect(() => {
-    loadSubjects();
     if (initialSubject) {
       setCurrentSubject(initialSubject);
     }
-    loadPdfs();
-    loadStats();
+    loadSubjects();
+  }, [initialSubject]);
+
+  useEffect(() => {
+    if (currentSubject) {
+      loadPdfs();
+      loadStats();
+    }
     
     // Poll for training status every 10 seconds
     const interval = setInterval(() => {
@@ -30,7 +35,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
     }, 10000);
     
     return () => clearInterval(interval);
-  }, [initialSubject]);
+  }, [currentSubject]);
 
   useEffect(() => {
     if (currentSubject) {
