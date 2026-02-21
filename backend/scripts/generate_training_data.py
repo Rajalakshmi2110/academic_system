@@ -93,7 +93,9 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
     # Initialize Groq client
     api_key = os.getenv('GROQ_API_KEY')
     if not api_key:
-        raise ValueError("GROQ_API_KEY not found in environment")
+        error_msg = "GROQ_API_KEY not found in environment. Please set it in .env file or export it."
+        print(f"\n❌ ERROR: {error_msg}")
+        raise ValueError(error_msg)
     
     client = Groq(api_key=api_key)
     
@@ -138,7 +140,7 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
             })
             question_id += 1
         
-        time.sleep(1)  # Rate limiting
+        time.sleep(0.5)  # Rate limiting
     
     # Generate invalid questions
     print(f"\n[2/3] Generating invalid questions ({invalid_target} questions)...")
@@ -159,7 +161,7 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
             })
             question_id += 1
         
-        time.sleep(1)
+        time.sleep(0.5)
     
     # Verify labels using LLM (sample check)
     print(f"\n[3/3] Verifying labels (sampling 10%)...")

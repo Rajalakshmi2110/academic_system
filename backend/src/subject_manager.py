@@ -92,9 +92,22 @@ class SubjectManager:
         
         raise ValueError(f"Subject {subject_id} not found")
     
-    def delete_subject(self, subject_id):
-        """Delete subject (soft delete - mark as inactive)"""
-        return self.update_subject(subject_id, active=False)
+    def delete_subject(self, subject_id, permanent=False):
+        """Delete subject (soft delete by default, permanent if specified)"""
+        if permanent:
+            import shutil
+            config = self._load_config()
+            config['subjects'] = [s for s in config['subjects'] if s['id'] != subject_id]
+            self._save_config(config)
+            
+            # Delete folder
+            subject_path = self.base_path / subject_id
+            if subject_path.exists():
+                shutil.rmtree(subject_path)
+            
+            return {'id': subject_id, 'deleted': True}
+        else:
+            return self.update_subject(subject_id, active=False)
     
     def get_subject_path(self, subject_id, subdir=""):
         """Get path for subject directory"""

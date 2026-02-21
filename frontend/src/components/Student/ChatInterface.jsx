@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, IconButton, Snackbar, Drawer, List, ListItem, ListItemText, ListItemButton, Divider, Select, MenuItem, FormControl } from '@mui/material';
-import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu, HourglassEmpty } from '@mui/icons-material';
+import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, IconButton, Snackbar, Drawer, List, ListItem, ListItemText, ListItemButton, Divider, Dialog, DialogTitle, DialogContent, DialogActions, Collapse } from '@mui/material';
+import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu, School, ExpandLess } from '@mui/icons-material';
 import axios from 'axios';
 
 const ChatInterface = () => {
@@ -15,20 +15,20 @@ const ChatInterface = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [comparisonMode, setComparisonMode] = useState(false);
   const [subjects, setSubjects] = useState([]);
-  const [currentSubject, setCurrentSubject] = useState('data_structures');
+  const [subjectModalOpen, setSubjectModalOpen] = useState(false);
+  const [expandedSubjects, setExpandedSubjects] = useState({});
 
   useEffect(() => {
-    // Fetch active subjects
     axios.get('http://localhost:5000/api/subjects/active')
       .then(res => {
-        setSubjects(res.data.subjects || []);
-        if (res.data.subjects.length > 0) {
-          setCurrentSubject(res.data.subjects[0].id);
-        }
+        const activeSubjects = res.data.subjects || [];
+        setSubjects(activeSubjects);
+        const expanded = {};
+        activeSubjects.forEach(s => expanded[s.id] = true);
+        setExpandedSubjects(expanded);
       })
       .catch(err => console.error('Failed to load subjects:', err));
 
-    // Load saved conversations
     const saved = localStorage.getItem('conversations');
     const hasVisited = localStorage.getItem('hasVisited');
     
@@ -36,16 +36,15 @@ const ChatInterface = () => {
       const convs = JSON.parse(saved);
       setConversations(convs);
       
-      // If first visit, create new chat. Otherwise, load last chat
       if (!hasVisited) {
-        createNewConversation();
+        setSubjectModalOpen(true);
         localStorage.setItem('hasVisited', 'true');
       } else if (convs.length > 0) {
         setCurrentConvId(convs[0].id);
         setMessages(convs[0].messages);
       }
     } else {
-      createNewConversation();
+      setSubjectModalOpen(true);
       localStorage.setItem('hasVisited', 'true');
     }
   }, []);
@@ -64,23 +63,23 @@ const ChatInterface = () => {
     }
   }, [messages, currentConvId]);
 
-  const createNewConversation = () => {
+  const createNewConversation = (subjectId, subjectName) => {
     const newConv = {
       id: Date.now(),
       title: 'New Chat',
+      subjectId: subjectId,
+      subjectName: subjectName,
       messages: [{
         type: 'welcome',
         data: {
           status: 'welcome',
           final_status: 'VALID',
-          title: 'Welcome to CA3101 Data Structures',
-          subtitle: 'Ask me anything about data structures covered in your syllabus',
+          title: `Welcome to ${subjectName}`,
+          subtitle: 'Ask me anything covered in your syllabus',
           suggestions: [
-            'What is a linked list?',
-            'Explain binary search tree',
-            'How does a stack work?',
-            'Difference between array and linked list',
-            'UNIT_I_LinearDataStructure.pdf explain'
+            'Explain the main concepts',
+            'What topics are covered?',
+            'Help me understand this subject'
           ]
         }
       }],
@@ -90,6 +89,7 @@ const ChatInterface = () => {
     setConversations(prev => [newConv, ...prev]);
     setCurrentConvId(newConv.id);
     setMessages(newConv.messages);
+    setSubjectModalOpen(false);
   };
 
   const switchConversation = (convId) => {
@@ -98,6 +98,23 @@ const ChatInterface = () => {
       setCurrentConvId(convId);
       setMessages(conv.messages);
     }
+  };
+
+  const toggleSubjectExpand = (subjectId) => {
+    setExpandedSubjects(prev => ({ ...prev, [subjectId]: !prev[subjectId] }));
+  };
+
+  const getConversationsBySubject = () => {
+    const grouped = {};
+    subjects.forEach(subject => {
+      grouped[subject.id] = conversations.filter(c => c.subjectId === subject.id);
+    });
+    return grouped;
+  };
+
+  const getCurrentSubject = () => {
+    const conv = conversations.find(c => c.id === currentConvId);
+    return conv ? { id: conv.subjectId, name: conv.subjectName } : null;
   };
 
   const deleteConversation = (convId) => {
@@ -149,6 +166,7 @@ const ChatInterface = () => {
     setLoadingStage('Validating question...');
 
     try {
+      const currentSubject = getCurrentSubject();
       if (comparisonMode) {
         setLoadingStage('Processing both modes...');
         const [validatedRes, directRes] = await Promise.all([
@@ -157,12 +175,12 @@ const ChatInterface = () => {
             show_steps: showSteps, 
             force_answer: forceAnswer,
             history: messages,
-            subject_id: currentSubject  // NEW: Pass subject
+            subject_id: currentSubject?.id
           }),
           axios.post('http://localhost:5000/api/chat/direct', { 
             question: currentInput,
             history: messages,
-            subject_id: currentSubject  // NEW: Pass subject
+            subject_id: currentSubject?.id
           })
         ]);
         setMessages(prev => [...prev, { type: 'bot', data: validatedRes.data, comparison: directRes.data }]);
@@ -175,7 +193,7 @@ const ChatInterface = () => {
           force_answer: forceAnswer,
           history: messages,
           format: 'structured',
-          subject_id: currentSubject  // NEW: Pass subject
+          subject_id: currentSubject?.id
         });
         setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
       }
@@ -192,13 +210,14 @@ const ChatInterface = () => {
     setLoading(true);
 
     try {
+      const currentSubject = getCurrentSubject();
       const res = await axios.post('http://localhost:5000/api/chat', { 
         question: question,
         show_steps: showSteps,
         force_answer: true,
         history: messages,
         format: 'structured',
-        subject_id: currentSubject  // NEW: Pass subject
+        subject_id: currentSubject?.id
       });
       setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
     } catch (error) {
@@ -212,10 +231,11 @@ const ChatInterface = () => {
     setLoading(true);
 
     try {
+      const currentSubject = getCurrentSubject();
       const res = await axios.post('http://localhost:5000/api/chat/direct', { 
         question: rejectedQuestion,
         history: messages,
-        subject_id: currentSubject  // NEW: Pass subject
+        subject_id: currentSubject?.id
       });
       setMessages(prev => [...prev, { type: 'bot', data: { 
         status: 'success',
@@ -261,6 +281,40 @@ const ChatInterface = () => {
 
   return (
     <Box sx={{ height: '100vh', display: 'flex' }}>
+      <Dialog open={subjectModalOpen} maxWidth="sm" fullWidth>
+        <DialogTitle>Choose a Subject</DialogTitle>
+        <DialogContent>
+          <Typography variant="body2" sx={{ mb: 2, color: '#666' }}>
+            Select a subject to start your chat. Each conversation is locked to one subject.
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            {subjects.map(subject => (
+              <Button
+                key={subject.id}
+                variant="outlined"
+                onClick={() => createNewConversation(subject.id, subject.name)}
+                sx={{ 
+                  justifyContent: 'flex-start',
+                  p: 2,
+                  textAlign: 'left',
+                  '&:hover': { bgcolor: '#E3F2FD' }
+                }}
+              >
+                <School sx={{ mr: 2, color: '#1976D2' }} />
+                <Box>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                    {subject.name}
+                  </Typography>
+                  <Typography variant="caption" sx={{ color: '#666' }}>
+                    {subject.course_code}
+                  </Typography>
+                </Box>
+              </Button>
+            ))}
+          </Box>
+        </DialogContent>
+      </Dialog>
+
       <Drawer
         variant="persistent"
         open={sidebarOpen}
@@ -271,29 +325,11 @@ const ChatInterface = () => {
         }}
       >
         <Box sx={{ p: 2, bgcolor: '#1976D2' }}>
-          <Typography variant="subtitle2" sx={{ color: 'white', mb: 1, fontWeight: 'bold' }}>Select Subject</Typography>
-          <FormControl fullWidth size="small" sx={{ mb: 2 }}>
-            <Select
-              value={currentSubject}
-              onChange={(e) => setCurrentSubject(e.target.value)}
-              sx={{ 
-                bgcolor: 'white', 
-                borderRadius: 1,
-                '& .MuiSelect-select': { py: 1 }
-              }}
-            >
-              {subjects.map(subject => (
-                <MenuItem key={subject.id} value={subject.id}>
-                  {subject.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
           <Button
             fullWidth
             variant="outlined"
             startIcon={<Add />}
-            onClick={createNewConversation}
+            onClick={() => setSubjectModalOpen(true)}
             sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}
           >
             New Chat
@@ -301,44 +337,68 @@ const ChatInterface = () => {
         </Box>
         <Divider />
         <List sx={{ flex: 1, overflow: 'auto', px: 1 }}>
-          {conversations.map(conv => (
-            <ListItem
-              key={conv.id}
-              disablePadding
-              secondaryAction={
-                <IconButton
-                  edge="end"
-                  size="small"
-                  onClick={() => deleteConversation(conv.id)}
-                  sx={{ color: '#666', '&:hover': { color: '#F44336' } }}
+          {subjects.map(subject => {
+            const subjectConvs = getConversationsBySubject()[subject.id] || [];
+            if (subjectConvs.length === 0) return null;
+            return (
+              <Box key={subject.id}>
+                <ListItemButton
+                  onClick={() => toggleSubjectExpand(subject.id)}
+                  sx={{ borderRadius: 1, mb: 0.5 }}
                 >
-                  <Delete fontSize="small" />
-                </IconButton>
-              }
-            >
-              <ListItemButton
-                selected={conv.id === currentConvId}
-                onClick={() => switchConversation(conv.id)}
-                sx={{
-                  borderRadius: 1,
-                  mb: 0.5,
-                  border: '1px solid transparent',
-                  '&.Mui-selected': { 
-                    bgcolor: 'white',
-                    border: '1px solid #1976D2',
-                    '&:hover': { bgcolor: 'white' }
-                  },
-                  '&:hover': { bgcolor: '#F5F5F5' }
-                }}
-              >
-                <Chat sx={{ mr: 1, fontSize: 18, color: '#1976D2' }} />
-                <ListItemText
-                  primary={conv.title}
-                  primaryTypographyProps={{ fontSize: 14, noWrap: true }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
+                  <School sx={{ mr: 1, fontSize: 18, color: '#1976D2' }} />
+                  <ListItemText
+                    primary={subject.name}
+                    primaryTypographyProps={{ fontSize: 13, fontWeight: 'bold', noWrap: true }}
+                  />
+                  {expandedSubjects[subject.id] ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+                <Collapse in={expandedSubjects[subject.id]} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {subjectConvs.map(conv => (
+                      <ListItem
+                        key={conv.id}
+                        disablePadding
+                        secondaryAction={
+                          <IconButton
+                            edge="end"
+                            size="small"
+                            onClick={() => deleteConversation(conv.id)}
+                            sx={{ color: '#666', '&:hover': { color: '#F44336' } }}
+                          >
+                            <Delete fontSize="small" />
+                          </IconButton>
+                        }
+                        sx={{ pl: 2 }}
+                      >
+                        <ListItemButton
+                          selected={conv.id === currentConvId}
+                          onClick={() => switchConversation(conv.id)}
+                          sx={{
+                            borderRadius: 1,
+                            mb: 0.5,
+                            border: '1px solid transparent',
+                            '&.Mui-selected': { 
+                              bgcolor: 'white',
+                              border: '1px solid #1976D2',
+                              '&:hover': { bgcolor: 'white' }
+                            },
+                            '&:hover': { bgcolor: '#F5F5F5' }
+                          }}
+                        >
+                          <Chat sx={{ mr: 1, fontSize: 16, color: '#666' }} />
+                          <ListItemText
+                            primary={conv.title}
+                            primaryTypographyProps={{ fontSize: 13, noWrap: true }}
+                          />
+                        </ListItemButton>
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
+              </Box>
+            );
+          })}
         </List>
       </Drawer>
 
@@ -349,6 +409,13 @@ const ChatInterface = () => {
               <Menu />
             </IconButton>
             <Typography variant="h6">Academic Doubt Clarification</Typography>
+            {getCurrentSubject() && (
+              <Chip
+                icon={<School />}
+                label={getCurrentSubject().name}
+                sx={{ bgcolor: 'white', color: '#1976D2', fontWeight: 'bold' }}
+              />
+            )}
           </Box>
           <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
             <FormControlLabel

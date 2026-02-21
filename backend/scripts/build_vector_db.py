@@ -22,7 +22,7 @@ def extract_text_from_pdf(pdf_path):
         print(f"Error reading {pdf_path}: {e}")
         return ""
 
-def chunk_text(text, chunk_size=500, overlap=50):
+def chunk_text(text, chunk_size=800, overlap=100):
     """Split text into overlapping chunks"""
     words = text.split()
     chunks = []

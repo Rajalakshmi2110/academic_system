@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Paper, Typography, List, ListItem, ListItemText, IconButton, Alert, LinearProgress, Card, CardContent, Grid, TextField, Accordion, AccordionSummary, AccordionDetails, Chip, Select, MenuItem, FormControl, InputLabel, Radio, RadioGroup, FormControlLabel, FormLabel, Drawer, ListItemButton, Divider } from '@mui/material';
-import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder, Download, Search, Dashboard as DashboardIcon, Assessment, Add, HourglassEmpty, CheckCircle } from '@mui/icons-material';
+import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder, Download, Search, Dashboard as DashboardIcon, Assessment, Add, HourglassEmpty, CheckCircle, Menu } from '@mui/icons-material';
 import axios from 'axios';
 
 const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
@@ -14,22 +14,26 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
   const [createNew, setCreateNew] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [subjects, setSubjects] = useState([]);
-  const [currentSubject, setCurrentSubject] = useState('data_structures');
+  const [currentSubject, setCurrentSubject] = useState('');
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
-    if (initialSubject) {
-      setCurrentSubject(initialSubject);
-    }
     loadSubjects();
-  }, [initialSubject]);
+  }, []);
 
   useEffect(() => {
-    if (currentSubject) {
+    // Set currentSubject after subjects are loaded
+    if (subjects.length > 0 && !currentSubject) {
+      setCurrentSubject(initialSubject || subjects[0].id);
+    }
+  }, [subjects, initialSubject]);
+
+  useEffect(() => {
+    if (currentSubject && subjects.length > 0) {
       loadPdfs();
       loadStats();
     }
     
-    // Poll for training status every 10 seconds
     const interval = setInterval(() => {
       loadSubjects();
     }, 10000);
@@ -37,21 +41,10 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
     return () => clearInterval(interval);
   }, [currentSubject]);
 
-  useEffect(() => {
-    if (currentSubject) {
-      loadPdfs();
-      loadStats();
-    }
-  }, [currentSubject]);
-
   const loadSubjects = async () => {
     try {
       const res = await axios.get('http://localhost:5000/api/subjects/list');
       setSubjects(res.data.subjects || []);
-      // Only set currentSubject if it's not already set
-      if (!currentSubject && res.data.subjects.length > 0) {
-        setCurrentSubject(res.data.subjects[0].id);
-      }
     } catch (err) {
       console.error('Failed to load subjects:', err);
     }
@@ -156,73 +149,116 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
     setRebuilding(false);
   };
 
+  const handleTrainModel = async () => {
+    if (!window.confirm('Start model training? This will take 4-6 minutes.')) return;
+
+    try {
+      const res = await axios.post(`http://localhost:5000/api/subjects/train/${currentSubject}`);
+      setMessage({ type: 'success', text: res.data.message });
+      loadSubjects();
+    } catch (err) {
+      setMessage({ type: 'error', text: err.response?.data?.error || 'Training failed' });
+    }
+  };
+
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
       {/* Sidebar */}
       <Drawer
         variant="permanent"
         sx={{
-          width: 260,
+          width: sidebarOpen ? 260 : 70,
           flexShrink: 0,
-          '& .MuiDrawer-paper': { width: 260, boxSizing: 'border-box', bgcolor: '#1976D2', color: 'white' }
+          transition: 'width 0.3s',
+          '& .MuiDrawer-paper': { 
+            width: sidebarOpen ? 260 : 70, 
+            boxSizing: 'border-box', 
+            bgcolor: '#1976D2', 
+            color: 'white',
+            transition: 'width 0.3s',
+            overflowX: 'hidden'
+          }
         }}
       >
-        <Box sx={{ p: 2 }}>
-          <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>Admin Panel</Typography>
-          <FormControl fullWidth size="small" sx={{ mb: 2 }}>
-            <Select
-              value={currentSubject}
-              onChange={(e) => setCurrentSubject(e.target.value)}
-              sx={{ bgcolor: 'white', borderRadius: 1 }}
-            >
-              {subjects.map(subject => (
-                <MenuItem key={subject.id} value={subject.id}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                    <span>{subject.name}</span>
-                    {!subject.model_trained && (
-                      <Chip 
-                        label="Training" 
-                        size="small" 
-                        sx={{ 
-                          ml: 1, 
-                          bgcolor: '#FFC107', 
-                          color: 'white',
-                          height: 20,
-                          fontSize: '0.7rem'
-                        }} 
-                      />
-                    )}
-                  </Box>
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          {sidebarOpen && <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Admin Panel</Typography>}
+          <IconButton onClick={() => setSidebarOpen(!sidebarOpen)} sx={{ color: 'white' }}>
+            <Menu />
+          </IconButton>
         </Box>
+        {sidebarOpen && (
+          <Box sx={{ px: 2, pb: 2 }}>
+            <FormControl fullWidth size="small">
+              <Select
+                value={currentSubject}
+                onChange={(e) => setCurrentSubject(e.target.value)}
+                sx={{ bgcolor: 'white', borderRadius: 1 }}
+                displayEmpty
+                MenuProps={{
+                  PaperProps: {
+                    style: {
+                      maxHeight: 300,
+                      width: 280
+                    }
+                  }
+                }}
+              >
+                {subjects.length === 0 && (
+                  <MenuItem value="" disabled>
+                    <em>Loading subjects...</em>
+                  </MenuItem>
+                )}
+                {subjects.map(subject => (
+                  <MenuItem key={subject.id} value={subject.id}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                      <Typography noWrap sx={{ maxWidth: 180 }}>{subject.name}</Typography>
+                      {!subject.model_trained && (
+                        <Box sx={{ 
+                          width: 16, 
+                          height: 16, 
+                          border: '2px solid #FF9800', 
+                          borderTop: '2px solid transparent', 
+                          borderRadius: '50%', 
+                          ml: 1,
+                          animation: 'spin 1s linear infinite',
+                          '@keyframes spin': {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' }
+                          }
+                        }} />
+                      )}
+                    </Box>
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
+        )}
         <Divider sx={{ bgcolor: 'rgba(255,255,255,0.2)' }} />
         <List>
-          <ListItemButton onClick={() => onSwitchTab(0)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
-            <DashboardIcon sx={{ mr: 2 }} />
-            <ListItemText primary="Home" />
+          <ListItemButton onClick={() => onSwitchTab(0)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }, justifyContent: sidebarOpen ? 'initial' : 'center' }}>
+            <DashboardIcon sx={{ mr: sidebarOpen ? 2 : 0 }} />
+            {sidebarOpen && <ListItemText primary="Home" />}
           </ListItemButton>
-          <ListItemButton selected sx={{ bgcolor: 'rgba(255,255,255,0.2)', color: 'white' }}>
-            <Folder sx={{ mr: 2 }} />
-            <ListItemText primary="Manage Subject" />
+          <ListItemButton selected sx={{ bgcolor: 'rgba(255,255,255,0.2)', color: 'white', justifyContent: sidebarOpen ? 'initial' : 'center' }}>
+            <Folder sx={{ mr: sidebarOpen ? 2 : 0 }} />
+            {sidebarOpen && <ListItemText primary="Manage Subject" />}
           </ListItemButton>
-          <ListItemButton onClick={() => onSwitchTab(1)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
-            <Assessment sx={{ mr: 2 }} />
-            <ListItemText primary="Metrics" />
+          <ListItemButton onClick={() => onSwitchTab(1)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }, justifyContent: sidebarOpen ? 'initial' : 'center' }}>
+            <Assessment sx={{ mr: sidebarOpen ? 2 : 0 }} />
+            {sidebarOpen && <ListItemText primary="Metrics" />}
           </ListItemButton>
-          <ListItemButton onClick={() => onSwitchTab(2)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
-            <Add sx={{ mr: 2 }} />
-            <ListItemText primary="Add Subject" />
+          <ListItemButton onClick={() => onSwitchTab(2)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }, justifyContent: sidebarOpen ? 'initial' : 'center' }}>
+            <Add sx={{ mr: sidebarOpen ? 2 : 0 }} />
+            {sidebarOpen && <ListItemText primary="Add Subject" />}
           </ListItemButton>
         </List>
         <Box sx={{ flexGrow: 1 }} />
         <Divider sx={{ bgcolor: 'rgba(255,255,255,0.2)' }} />
         <List>
-          <ListItemButton onClick={onLogout} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
-            <Logout sx={{ mr: 2 }} />
-            <ListItemText primary="Logout" />
+          <ListItemButton onClick={onLogout} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }, justifyContent: sidebarOpen ? 'initial' : 'center' }}>
+            <Logout sx={{ mr: sidebarOpen ? 2 : 0 }} />
+            {sidebarOpen && <ListItemText primary="Logout" />}
           </ListItemButton>
         </List>
       </Drawer>
@@ -260,7 +296,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
                   Training Model
                 </Typography>
                 <Typography variant="caption" sx={{ color: '#F57C00' }}>
-                  (~5-10 min)
+                  (~4-6 min)
                 </Typography>
               </Box>
             )}
@@ -307,6 +343,17 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
             <Card>
               <CardContent>
                 <Typography variant="h6">Actions</Typography>
+                {subjects.find(s => s.id === currentSubject && !s.model_trained) && (
+                  <Button
+                    variant="contained"
+                    color="warning"
+                    fullWidth
+                    onClick={handleTrainModel}
+                    sx={{ mb: 2 }}
+                  >
+                    Train Model Now
+                  </Button>
+                )}
                 <FormControl component="fieldset" sx={{ mb: 1 }}>
                   <RadioGroup row value={createNew ? 'new' : 'existing'} onChange={(e) => setCreateNew(e.target.value === 'new')}>
                     <FormControlLabel value="existing" control={<Radio size="small" />} label="Existing Folder" />

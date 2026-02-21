@@ -15,7 +15,7 @@ class TrainingPipeline:
         self.backend_root = Path(__file__).parent.parent
         self.scripts_dir = self.backend_root / 'scripts'
         
-    def generate_training_data(self, subject_id, target_count=2000):
+    def generate_training_data(self, subject_id, target_count=1800):
         """Generate labeled training data from syllabus"""
         syllabus_path = self.subject_manager.get_syllabus_path(subject_id)
         output_path = self.subject_manager.get_documents_path(subject_id) / 'training_data.json'
@@ -107,9 +107,11 @@ class TrainingPipeline:
             return True
             
         except Exception as e:
-            print(f"\n❌ Pipeline failed: {str(e)}")
+            import traceback
+            error_msg = f"Pipeline failed: {str(e)}\n{traceback.format_exc()}"
+            print(f"\n❌ {error_msg}")
             self.subject_manager.update_subject(subject_id, model_trained=False)
-            raise
+            raise Exception(error_msg)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

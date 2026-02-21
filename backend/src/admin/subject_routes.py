@@ -76,9 +76,21 @@ def add_subject():
         if auto_train and syllabus_file:
             def train_async():
                 try:
+                    print(f"\n[TRAINING] Starting background training for {subject_id}")
                     training_pipeline.run_full_pipeline(subject_id)
+                    print(f"[TRAINING] ✓ Completed for {subject_id}")
                 except Exception as e:
-                    print(f"Training failed for {subject_id}: {e}")
+                    import traceback
+                    error_msg = f"[TRAINING] ✗ Failed for {subject_id}: {str(e)}\n{traceback.format_exc()}"
+                    print(error_msg)
+                    # Log to file
+                    import datetime
+                    log_file = Path(__file__).parent.parent.parent / 'training_errors.log'
+                    with open(log_file, 'a') as f:
+                        f.write(f"\n{'='*60}\n")
+                        f.write(f"{datetime.datetime.now().isoformat()}\n")
+                        f.write(error_msg)
+                        f.write(f"\n{'='*60}\n")
             
             thread = threading.Thread(target=train_async)
             thread.daemon = True
@@ -109,11 +121,56 @@ def update_subject(subject_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@subject_bp.route('/train/<subject_id>', methods=['POST'])
+def train_subject(subject_id):
+    """Manually trigger training for a subject"""
+    try:
+        import threading
+        
+        subject = subject_manager.get_subject(subject_id)
+        if not subject:
+            return jsonify({'error': 'Subject not found'}), 404
+        
+        # Check if syllabus exists
+        syllabus_path = subject_manager.get_syllabus_path(subject_id)
+        if not syllabus_path.exists():
+            return jsonify({'error': 'Syllabus not found. Upload syllabus first.'}), 400
+        
+        def train_async():
+            try:
+                print(f"\n[TRAINING] Starting manual training for {subject_id}")
+                training_pipeline.run_full_pipeline(subject_id)
+                print(f"[TRAINING] ✓ Completed for {subject_id}")
+            except Exception as e:
+                import traceback
+                error_msg = f"[TRAINING] ✗ Failed for {subject_id}: {str(e)}\n{traceback.format_exc()}"
+                print(error_msg)
+                import datetime
+                log_file = Path(__file__).parent.parent.parent / 'training_errors.log'
+                with open(log_file, 'a') as f:
+                    f.write(f"\n{'='*60}\n")
+                    f.write(f"{datetime.datetime.now().isoformat()}\n")
+                    f.write(error_msg)
+                    f.write(f"\n{'='*60}\n")
+        
+        thread = threading.Thread(target=train_async)
+        thread.daemon = True
+        thread.start()
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Training started in background (4-6 minutes)'
+        })
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @subject_bp.route('/delete/<subject_id>', methods=['DELETE'])
 def delete_subject(subject_id):
-    """Delete (deactivate) subject"""
+    """Delete subject permanently"""
     try:
-        subject = subject_manager.delete_subject(subject_id)
+        permanent = request.args.get('permanent', 'true').lower() == 'true'
+        subject = subject_manager.delete_subject(subject_id, permanent=permanent)
         return jsonify({'status': 'success', 'subject': subject})
     except ValueError as e:
         return jsonify({'error': str(e)}), 404

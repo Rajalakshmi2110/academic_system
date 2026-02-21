@@ -74,7 +74,7 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
       setMessage({ 
         type: 'success', 
         text: autoTrain 
-          ? 'Subject created! Training started in background (may take 5-10 minutes).' 
+          ? 'Subject created! Training started in background (may take 4-6 minutes).' 
           : 'Subject created successfully!'
       });
       
@@ -248,8 +248,8 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
 
             {autoTrain && (
               <Alert severity="info" sx={{ mb: 3 }}>
-                Training will generate 2000+ samples and train Layer 1 model automatically. 
-                This may take 5-10 minutes. You can continue using the dashboard while training runs in background.
+                Training will generate 1800 samples and train Layer 1 model automatically. 
+                This may take 4-6 minutes. You can continue using the dashboard while training runs in background.
               </Alert>
             )}
 

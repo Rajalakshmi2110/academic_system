@@ -3,6 +3,10 @@ from flask_cors import CORS
 import sys
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 base_dir = Path(__file__).parent
 os.chdir(base_dir)

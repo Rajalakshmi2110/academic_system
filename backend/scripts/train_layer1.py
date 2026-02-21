@@ -34,7 +34,7 @@ class QuestionDataset(Dataset):
             'labels': torch.tensor(self.labels[idx], dtype=torch.long)
         }
 
-def train_model(training_data_path, output_model_path, epochs=3, batch_size=16):
+def train_model(training_data_path, output_model_path, epochs=2, batch_size=32):
     """Train DistilBERT classifier"""
     
     print(f"Loading training data from {training_data_path}")

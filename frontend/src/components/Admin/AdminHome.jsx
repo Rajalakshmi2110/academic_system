@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Card, CardContent, Typography, Grid, Chip, Button, Drawer, List, ListItemButton, ListItemText, Divider, IconButton } from '@mui/material';
-import { Dashboard as DashboardIcon, Assessment, Add, Logout, CheckCircle, Folder, Description, AutorenewRounded, Menu } from '@mui/icons-material';
+import { Box, Card, CardContent, Typography, Grid, Chip, Button, Drawer, List, ListItemButton, ListItemText, Divider, IconButton, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import { Dashboard as DashboardIcon, Assessment, Add, Logout, CheckCircle, Folder, Description, AutorenewRounded, Menu, Delete } from '@mui/icons-material';
 import axios from 'axios';
 
 const AdminHome = ({ onLogout, onSwitchTab, onSelectSubject }) => {
   const [subjects, setSubjects] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [subjectToDelete, setSubjectToDelete] = useState(null);
 
   useEffect(() => {
     loadSubjects();
@@ -22,8 +24,44 @@ const AdminHome = ({ onLogout, onSwitchTab, onSelectSubject }) => {
     }
   };
 
+  const handleDeleteClick = (e, subject) => {
+    e.stopPropagation();
+    setSubjectToDelete(subject);
+    setDeleteModalOpen(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    try {
+      await axios.delete(`http://localhost:5000/api/subjects/delete/${subjectToDelete.id}?permanent=true`);
+      setDeleteModalOpen(false);
+      setSubjectToDelete(null);
+      loadSubjects();
+    } catch (err) {
+      console.error('Failed to delete subject:', err);
+      alert('Failed to delete subject');
+    }
+  };
+
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      <Dialog open={deleteModalOpen} onClose={() => setDeleteModalOpen(false)}>
+        <DialogTitle>Delete Subject?</DialogTitle>
+        <DialogContent>
+          <Typography>
+            Are you sure you want to delete <strong>{subjectToDelete?.name}</strong>?
+          </Typography>
+          <Typography variant="body2" color="error" sx={{ mt: 2 }}>
+            This will permanently delete all documents, models, and data. This action cannot be undone.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeleteModalOpen(false)}>Cancel</Button>
+          <Button onClick={handleDeleteConfirm} color="error" variant="contained">
+            Delete Permanently
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       {/* Sidebar */}
       <Drawer
         variant="permanent"
@@ -184,18 +222,26 @@ const AdminHome = ({ onLogout, onSwitchTab, onSelectSubject }) => {
                         </Box>
                       </Box>
 
-                      <Box sx={{ mt: 'auto' }}>
+                      <Box sx={{ mt: 'auto', display: 'flex', gap: 1 }}>
                         <Button 
-                        variant="outlined" 
-                        size="small" 
-                        fullWidth
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onSelectSubject(subject.id);
-                        }}
-                      >
-                        Manage Subject
-                      </Button>
+                          variant="outlined" 
+                          size="small" 
+                          fullWidth
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectSubject(subject.id);
+                          }}
+                        >
+                          Manage
+                        </Button>
+                        <IconButton
+                          size="small"
+                          color="error"
+                          onClick={(e) => handleDeleteClick(e, subject)}
+                          sx={{ border: '1px solid #F44336' }}
+                        >
+                          <Delete fontSize="small" />
+                        </IconButton>
                       </Box>
                     </CardContent>
                   </Card>
