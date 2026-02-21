@@ -13,13 +13,15 @@ from src.layer2_validator.mcp_validator import MCPValidator as Layer2Validator
 
 
 class TwoLayerPipeline:
-    def __init__(self, layer1_model_path='models/layer1_distilbert'):
+    def __init__(self, subject_id='data_structures'):
         """Initialize both Layer 1 and Layer 2 models"""
-        print("Initializing Two-Layer Academic Doubt Clarification System...")
+        print(f"Initializing Two-Layer Pipeline for {subject_id}...")
+        
+        self.subject_id = subject_id
         
         # Initialize Layer 1 (DistilBERT)
         try:
-            self.layer1 = Layer1Classifier(model_path=layer1_model_path)
+            self.layer1 = Layer1Classifier(subject_id=subject_id)
             print("[OK] Layer 1 (DistilBERT) loaded successfully")
         except Exception as e:
             print(f"[ERROR] Layer 1 failed to load: {e}")
@@ -27,7 +29,7 @@ class TwoLayerPipeline:
         
         # Initialize Layer 2 (MCP Validator with GPT-4o)
         try:
-            self.layer2 = Layer2Validator()
+            self.layer2 = Layer2Validator(subject_id=subject_id)
             print("[OK] Layer 2 (MCP Validator) loaded successfully")
         except Exception as e:
             print(f"[ERROR] Layer 2 failed to load: {e}")

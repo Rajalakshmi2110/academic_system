@@ -4,12 +4,20 @@ from pathlib import Path
 import time
 
 class Layer1Classifier:
-    def __init__(self, model_path='models/layer1_distilbert'):
+    def __init__(self, subject_id='data_structures', model_path=None):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.model_path = Path(model_path)
+        self.subject_id = subject_id
+        
+        # Use provided path or construct from subject_id
+        if model_path:
+            self.model_path = Path(model_path)
+        else:
+            # Default: subjects/{subject_id}/models/layer1_distilbert
+            base_dir = Path(__file__).parent.parent.parent.parent
+            self.model_path = base_dir / 'subjects' / subject_id / 'models' / 'layer1_distilbert'
         
         if not self.model_path.exists():
-            raise FileNotFoundError(f"Model not found at {model_path}. Run training first.")
+            raise FileNotFoundError(f"Model not found at {self.model_path}. Train model for {subject_id} first.")
         
         # Load model and tokenizer
         self.tokenizer = DistilBertTokenizer.from_pretrained(self.model_path)
@@ -17,7 +25,7 @@ class Layer1Classifier:
         self.model.to(self.device)
         self.model.eval()
         
-        print(f"Layer 1 classifier loaded on {self.device}")
+        print(f"Layer 1 classifier loaded for {subject_id} on {self.device}")
     
     def predict(self, question, return_confidence=False):
         """

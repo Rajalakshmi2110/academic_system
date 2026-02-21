@@ -6,9 +6,11 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 class MCPValidator:
-    def __init__(self):
+    def __init__(self, subject_id='data_structures'):
         # Load environment variables from .env file
         load_dotenv()
+        
+        self.subject_id = subject_id
         
         # Get API key from environment variable
         api_key = os.getenv('GROQ_API_KEY')
@@ -17,12 +19,18 @@ class MCPValidator:
         
         self.client = Groq(api_key=api_key)
         
-        # Load syllabus
-        syllabus_path = Path(__file__).parent.parent.parent / 'data' / 'raw' / 'ca3101_syllabus.json'
+        # Load syllabus from new location: subjects/{subject_id}/syllabus.json
+        base_dir = Path(__file__).parent.parent.parent.parent
+        syllabus_path = base_dir / 'subjects' / subject_id / 'syllabus.json'
+        
+        if not syllabus_path.exists():
+            raise FileNotFoundError(f"Syllabus not found for {subject_id} at {syllabus_path}")
+        
         with open(syllabus_path, 'r') as f:
             self.syllabus = json.load(f)
         
-        print("MCP-based validator initialized with Groq (Llama 3.1 70B)")
+        self.subject_name = self.syllabus.get('course_name', subject_id)
+        print(f"MCP-based validator initialized for {self.subject_name} with Groq (Llama 3.3 70B)")
     
     def get_syllabus_topics(self):
         """MCP Tool: Get allowed topics from CA3101 syllabus"""
