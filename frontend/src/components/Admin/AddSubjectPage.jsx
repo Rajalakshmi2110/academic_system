@@ -6,7 +6,8 @@ import axios from 'axios';
 const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
   const [formData, setFormData] = useState({
     name: '',
-    code: ''
+    code: '',
+    id: ''
   });
   const [syllabusFile, setSyllabusFile] = useState(null);
   const [documentFiles, setDocumentFiles] = useState([]);
@@ -18,7 +19,8 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: value,
+      ...(name === 'name' ? { id: value.toLowerCase().replace(/\s+/g, '_') } : {})
     }));
   };
 
@@ -40,8 +42,8 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.code) {
-      setMessage({ type: 'error', text: 'Subject name and course code are required' });
+    if (!formData.name || !formData.code || !formData.id) {
+      setMessage({ type: 'error', text: 'All fields are required' });
       return;
     }
 
@@ -57,7 +59,7 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.name);
       formDataToSend.append('code', formData.code);
-      formDataToSend.append('id', formData.code.toLowerCase());
+      formDataToSend.append('id', formData.id);
       formDataToSend.append('syllabus', syllabusFile);
       formDataToSend.append('auto_train', autoTrain);
       
@@ -77,7 +79,7 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
       });
       
       // Reset form
-      setFormData({ name: '', code: '' });
+      setFormData({ name: '', code: '', id: '' });
       setSyllabusFile(null);
       setDocumentFiles([]);
       
@@ -150,7 +152,7 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
               onChange={handleInputChange}
               required
               sx={{ mb: 2 }}
-              placeholder="e.g., Data Structures"
+              placeholder="e.g., Operating Systems"
             />
             
             <TextField
@@ -160,9 +162,20 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
               value={formData.code}
               onChange={handleInputChange}
               required
-              sx={{ mb: 3 }}
+              sx={{ mb: 2 }}
               placeholder="e.g., OS3101"
-              helperText="Will be used as subject ID (e.g., os3101)"
+            />
+            
+            <TextField
+              fullWidth
+              label="Subject ID (auto-generated)"
+              name="id"
+              value={formData.id}
+              onChange={handleInputChange}
+              required
+              sx={{ mb: 3 }}
+              placeholder="e.g., operating_systems"
+              helperText="Auto-filled from subject name (lowercase with underscores)"
             />
 
             <Divider sx={{ my: 3 }} />
