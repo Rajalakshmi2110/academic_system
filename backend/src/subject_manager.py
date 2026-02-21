@@ -105,16 +105,16 @@ class SubjectManager:
     
     def get_documents_path(self, subject_id):
         """Get documents path for subject"""
-        return self.get_subject_path(subject_id, "documents")
+        return Path(self.base_path) / subject_id / "documents"
     
     def get_vector_db_path(self, subject_id):
         """Get vector DB path for subject"""
-        return self.get_subject_path(subject_id, "vector_db")
+        return Path(self.base_path) / subject_id / "vector_db"
     
     def get_model_path(self, subject_id):
         """Get model path for subject"""
-        return self.get_subject_path(subject_id, "models/layer1_distilbert")
+        return Path(self.base_path) / subject_id / "models" / "layer1_distilbert"
     
     def get_syllabus_path(self, subject_id):
         """Get syllabus path for subject"""
-        return self.get_subject_path(subject_id, "syllabus.json")
+        return Path(self.base_path) / subject_id / "syllabus.json"
