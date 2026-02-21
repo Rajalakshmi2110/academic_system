@@ -1,0 +1,13 @@
+{
+  "subjects": [
+    {
+      "id": "data_structures",
+      "name": "Data Structures",
+      "code": "CA3101",
+      "active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "document_count": 53,
+      "model_trained": true
+    }
+  ]
+}
