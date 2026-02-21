@@ -197,7 +197,11 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
         <List>
           <ListItemButton onClick={() => onSwitchTab(0)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
             <DashboardIcon sx={{ mr: 2 }} />
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="Home" />
+          </ListItemButton>
+          <ListItemButton selected sx={{ bgcolor: 'rgba(255,255,255,0.2)', color: 'white' }}>
+            <Folder sx={{ mr: 2 }} />
+            <ListItemText primary="Manage Subject" />
           </ListItemButton>
           <ListItemButton onClick={() => onSwitchTab(1)} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
             <Assessment sx={{ mr: 2 }} />
