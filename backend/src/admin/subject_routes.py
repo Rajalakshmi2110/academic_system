@@ -3,14 +3,19 @@ Subject Management Routes - Admin API for managing subjects
 """
 from flask import Blueprint, request, jsonify
 import sys
+import json
+import threading
 from pathlib import Path
+from werkzeug.utils import secure_filename
 
 # Add parent directory to path
 sys.path.append(str(Path(__file__).parent.parent))
 from subject_manager import SubjectManager
+from training_pipeline import TrainingPipeline
 
 subject_bp = Blueprint('subjects', __name__)
 subject_manager = SubjectManager()
+training_pipeline = TrainingPipeline()
 
 @subject_bp.route('/list', methods=['GET'])
 def list_subjects():
@@ -32,18 +37,61 @@ def list_active_subjects():
 
 @subject_bp.route('/add', methods=['POST'])
 def add_subject():
-    """Add new subject"""
+    """Add new subject with files (syllabus + documents)"""
     try:
-        data = request.json
-        subject_id = data.get('id', '').lower().replace(' ', '_')
-        name = data.get('name', '')
-        code = data.get('code', '')
+        # Get form data
+        name = request.form.get('name', '')
+        code = request.form.get('code', '')
+        subject_id = request.form.get('id', '').lower().replace(' ', '_')
+        auto_train = request.form.get('auto_train', 'true') == 'true'
         
         if not subject_id or not name:
             return jsonify({'error': 'Subject ID and name required'}), 400
         
+        # Create subject folder structure
         subject = subject_manager.add_subject(subject_id, name, code)
+        
+        # Handle syllabus file
+        syllabus_file = request.files.get('syllabus')
+        if syllabus_file:
+            syllabus_path = subject_manager.get_syllabus_path(subject_id)
+            syllabus_content = json.load(syllabus_file)
+            with open(syllabus_path, 'w') as f:
+                json.dump(syllabus_content, f, indent=2)
+        
+        # Handle document files
+        document_files = request.files.getlist('documents')
+        docs_path = subject_manager.get_documents_path(subject_id)
+        
+        for doc_file in document_files:
+            if doc_file.filename:
+                filename = secure_filename(doc_file.filename)
+                doc_file.save(docs_path / filename)
+        
+        # Update document count
+        doc_count = len(list(docs_path.rglob('*.pdf')))
+        subject_manager.update_subject(subject_id, document_count=doc_count)
+        
+        # Start training pipeline in background if requested
+        if auto_train and syllabus_file:
+            def train_async():
+                try:
+                    training_pipeline.run_full_pipeline(subject_id)
+                except Exception as e:
+                    print(f"Training failed for {subject_id}: {e}")
+            
+            thread = threading.Thread(target=train_async)
+            thread.daemon = True
+            thread.start()
+            
+            return jsonify({
+                'status': 'success',
+                'subject': subject,
+                'message': 'Subject created. Training started in background.'
+            })
+        
         return jsonify({'status': 'success', 'subject': subject})
+        
     except ValueError as e:
         return jsonify({'error': str(e)}), 400
     except Exception as e:

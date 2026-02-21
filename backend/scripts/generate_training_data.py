@@ -104,7 +104,7 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
     # Create syllabus text for labeling
     syllabus_text = f"Course: {subject_name}\n"
     for unit in syllabus.get('units', []):
-        syllabus_text += f"\nUnit {unit['unit_number']}: {unit['unit_name']}\n"
+        syllabus_text += f"\nUnit {unit['unit_number']}: {unit.get('title', unit.get('unit_name', 'Unknown'))}\n"
         syllabus_text += f"Topics: {', '.join(unit['topics'][:10])}\n"
     
     print(f"Generating dataset for: {subject_name}")
@@ -120,7 +120,7 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
     # Generate valid questions from each unit
     print("\n[1/3] Generating valid questions from syllabus...")
     for unit in syllabus.get('units', []):
-        unit_name = unit['unit_name']
+        unit_name = unit.get('title', unit.get('unit_name', 'Unknown'))
         topics = unit['topics']
         
         # Generate questions for this unit

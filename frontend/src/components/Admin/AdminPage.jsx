@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import AdminLogin from './AdminLogin';
 import AdminDashboard from './AdminDashboard';
 import MetricsPage from './MetricsPage';
+import AddSubjectPage from './AddSubjectPage';
 
 const AdminPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,6 +17,7 @@ const AdminPage = () => {
     <Box>
       {currentTab === 0 && <AdminDashboard onLogout={() => setIsLoggedIn(false)} onSwitchTab={setCurrentTab} />}
       {currentTab === 1 && <MetricsPage onSwitchTab={setCurrentTab} onLogout={() => setIsLoggedIn(false)} />}
+      {currentTab === 2 && <AddSubjectPage onSwitchTab={setCurrentTab} onLogout={() => setIsLoggedIn(false)} />}
     </Box>
   );
 };
