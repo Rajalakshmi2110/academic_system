@@ -30,13 +30,24 @@ const ChatInterface = () => {
 
     // Load saved conversations
     const saved = localStorage.getItem('conversations');
+    const hasVisited = localStorage.getItem('hasVisited');
+    
     if (saved) {
       const convs = JSON.parse(saved);
       setConversations(convs);
+      
+      // If first visit, create new chat. Otherwise, load last chat
+      if (!hasVisited) {
+        createNewConversation();
+        localStorage.setItem('hasVisited', 'true');
+      } else if (convs.length > 0) {
+        setCurrentConvId(convs[0].id);
+        setMessages(convs[0].messages);
+      }
+    } else {
+      createNewConversation();
+      localStorage.setItem('hasVisited', 'true');
     }
-    
-    // Always create new conversation on load
-    createNewConversation();
   }, []);
 
   useEffect(() => {
