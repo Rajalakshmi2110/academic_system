@@ -3,7 +3,7 @@ import { Box, Button, Paper, Typography, List, ListItem, ListItemText, IconButto
 import { CloudUpload, Delete, Refresh, Logout, Description, ExpandMore, Folder, Download, Search, Dashboard as DashboardIcon, Assessment, Add, HourglassEmpty, CheckCircle } from '@mui/icons-material';
 import axios from 'axios';
 
-const AdminDashboard = ({ onLogout, onSwitchTab }) => {
+const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
   const [folders, setFolders] = useState({});
   const [stats, setStats] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -18,6 +18,9 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
 
   useEffect(() => {
     loadSubjects();
+    if (initialSubject) {
+      setCurrentSubject(initialSubject);
+    }
     loadPdfs();
     loadStats();
     
@@ -27,7 +30,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
     }, 10000);
     
     return () => clearInterval(interval);
-  }, []);
+  }, [initialSubject]);
 
   useEffect(() => {
     if (currentSubject) {
@@ -40,7 +43,8 @@ const AdminDashboard = ({ onLogout, onSwitchTab }) => {
     try {
       const res = await axios.get('http://localhost:5000/api/subjects/list');
       setSubjects(res.data.subjects || []);
-      if (res.data.subjects.length > 0) {
+      // Only set currentSubject if it's not already set
+      if (!currentSubject && res.data.subjects.length > 0) {
         setCurrentSubject(res.data.subjects[0].id);
       }
     } catch (err) {
