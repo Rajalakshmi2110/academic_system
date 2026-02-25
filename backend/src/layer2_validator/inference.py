@@ -8,18 +8,25 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from src.layer1_classifier.inference import Layer1Classifier
 from src.layer2_validator.mcp_validator import MCPValidator as Layer2Validator
 
-# use Rules (backup)
-#from src.layer2_validator.rule_based_validator import RuleBasedValidator as Layer2Validator
-
 
 class TwoLayerPipeline:
     def __init__(self, subject_id='data_structures'):
-        """Initialize both Layer 1 and Layer 2 models"""
         print(f"Initializing Two-Layer Pipeline for {subject_id}...")
         
         self.subject_id = subject_id
         
-        # Initialize Layer 1 (DistilBERT)
+        # Load subject name dynamically from syllabus.json
+        import json
+        from pathlib import Path
+        syllabus_path = Path(__file__).parent.parent.parent.parent / 'subjects' / subject_id / 'syllabus.json'
+        try:
+            with open(syllabus_path, 'r') as f:
+                syllabus = json.load(f)
+                self.subject_name = syllabus.get('course_name', subject_id.replace('_', ' ').title())
+        except:
+            self.subject_name = subject_id.replace('_', ' ').title()
+        
+        # Initialize Layer 1 (DistilBERT classifier)
         try:
             self.layer1 = Layer1Classifier(subject_id=subject_id)
             print("[OK] Layer 1 (DistilBERT) loaded successfully")
@@ -27,7 +34,7 @@ class TwoLayerPipeline:
             print(f"[ERROR] Layer 1 failed to load: {e}")
             raise
         
-        # Initialize Layer 2 (MCP Validator with GPT-4o)
+        # Initialize Layer 2 (MCP Validator with Llama 3.3 70B via Groq)
         try:
             self.layer2 = Layer2Validator(subject_id=subject_id)
             print("[OK] Layer 2 (MCP Validator) loaded successfully")
@@ -38,32 +45,18 @@ class TwoLayerPipeline:
         print("[READY] Two-Layer Pipeline ready!")
     
     def process_question(self, question):
-        """
-        Process a student question through the complete two-layer pipeline
-        
-        Args:
-            question (str): Student question to validate
-            
-        Returns:
-            dict: Complete validation result
-        """
         start_time = time.time()
         
-        # Check if question is about uploaded course files
         file_extensions = ['.pdf', '.docx', '.doc', '.pptx', '.ppt', '.json']
         is_file_question = any(ext in question.lower() for ext in file_extensions)
         
-        # If asking about a file, verify it exists in vector DB
         if is_file_question:
             import re
             from pathlib import Path
-            # Extract filename from question
             pattern = r'([\w\-\.]+\.(?:pdf|docx|doc|pptx|ppt|json))'
             matches = re.findall(pattern, question, re.IGNORECASE)
             if matches:
                 filename = matches[0]
-                # Check if file exists in /DS/ folder
-                # Path: backend/src/layer2_validator -> backend -> academic_system -> project -> DS
                 backend_dir = Path(__file__).parent.parent.parent
                 project_root = backend_dir.parent.parent
                 ds_folder = project_root / 'DS'
@@ -82,43 +75,49 @@ class TwoLayerPipeline:
                         'layer2_time_ms': 0
                     }
         
-        # Check if question contains DS keywords (bypass Layer 1 if yes)
-        ds_keywords = ['linked list', 'linkedlist', 'array', 'stack', 'queue', 'tree', 'graph', 
-                       'hash', 'sort', 'search', 'heap', 'avl', 'bst', 'dfs', 'bfs']
-        has_ds_keyword = any(keyword in question.lower() for keyword in ds_keywords)
+        subject_keywords = []
+        try:
+            import json
+            from pathlib import Path
+            syllabus_path = Path(__file__).parent.parent.parent.parent / 'subjects' / self.subject_id / 'syllabus.json'
+            with open(syllabus_path, 'r') as f:
+                syllabus = json.load(f)
+                for unit in syllabus.get('units', []):
+                    for topic in unit.get('topics', []):
+                        subject_keywords.append(topic.lower())
+        except:
+            pass
         
-        # Layer 1: Syllabus Relevance Check
+        has_subject_keyword = any(keyword in question.lower() for keyword in subject_keywords)
+        
         layer1_result = self.layer1.predict(question, return_confidence=True)
         
-        # Override Layer 1 rejection if question has DS keywords
-        if not layer1_result['relevant'] and has_ds_keyword:
+        # Override Layer 1 if question contains subject keywords
+        if not layer1_result['relevant'] and has_subject_keyword:
             layer1_result['relevant'] = True
             layer1_result['label'] = 1
         
-        # Override Layer 1 rejection if asking about course files
+        # Override Layer 1 if asking about uploaded files
         if not layer1_result['relevant'] and is_file_question:
             layer1_result['relevant'] = True
             layer1_result['label'] = 1
         
         if not layer1_result['relevant']:
-            # Question is not DS-related - return immediately
             return {
                 'question': question,
                 'layer1_result': 'FAIL',
                 'layer2_result': None,
                 'final_status': 'REJECTED',
-                'message': 'This question is not related to Data Structures.',
-                'suggestion': 'Please ask questions about arrays, linked lists, trees, graphs, sorting, searching, or other data structures topics.',
+                'message': f'This question is not related to {self.subject_name}.',
+                'suggestion': f'Please ask questions covered in the {self.subject_name} syllabus.',
                 'confidence': layer1_result['confidence'],
                 'total_latency_ms': (time.time() - start_time) * 1000,
                 'layer1_time_ms': layer1_result['inference_time_ms'],
                 'layer2_time_ms': 0
             }
         
-        # Layer 2: Deep Academic Validation
         layer2_result = self.layer2.validate_question(question)
         
-        # Check if Layer 2 caught out-of-syllabus
         if layer2_result.get('final_status') == 'OUT_OF_SYLLABUS':
             return {
                 'question': question,
@@ -133,7 +132,6 @@ class TwoLayerPipeline:
                 'layer2_time_ms': layer2_result['inference_time_ms']
             }
         
-        # Check if Layer 2 rejected
         if layer2_result.get('final_status') == 'REJECTED':
             return {
                 'question': question,
@@ -147,7 +145,6 @@ class TwoLayerPipeline:
                 'layer2_time_ms': layer2_result['inference_time_ms']
             }
         
-        # Format final response
         total_time = (time.time() - start_time) * 1000
         
         return {

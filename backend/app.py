@@ -5,25 +5,22 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
+load_dotenv()  # Load GROQ_API_KEY from .env
 
 base_dir = Path(__file__).parent
 os.chdir(base_dir)
 sys.path.insert(0, str(base_dir))
 
 from src.layer2_validator.inference import TwoLayerPipeline
-from src.layer3_rag.inference import generate_answer
+from src.layer3_rag.inference import generate_answer, format_answer
 from src.admin import admin_bp
 from src.admin.subject_routes import subject_bp
 from src.session_manager import SessionManager
-from src.output_formatter import OutputFormatter
 
 app = Flask(__name__)
 CORS(app)
 
-# Cache pipelines per subject
-pipelines = {}
+pipelines = {}  # Cache pipelines per subject to avoid reloading models
 
 def get_pipeline(subject_id='data_structures'):
     if subject_id not in pipelines:
@@ -31,9 +28,7 @@ def get_pipeline(subject_id='data_structures'):
     return pipelines[subject_id]
 
 session_manager = SessionManager()
-formatter = OutputFormatter()
 
-# Register admin blueprints
 app.register_blueprint(admin_bp, url_prefix='/api/admin')
 app.register_blueprint(subject_bp, url_prefix='/api/subjects')
 
@@ -46,26 +41,23 @@ def chat():
     session_id = data.get('session_id')
     output_format = data.get('format', 'json')
     history = data.get('history', [])
-    subject_id = data.get('subject_id', 'data_structures')  # NEW: Get subject
+    subject_id = data.get('subject_id', 'data_structures')
     
     if not question:
         return jsonify({'error': 'Question is required'}), 400
     
-    # Get pipeline for subject
-    pipeline = get_pipeline(subject_id)
+    pipeline = get_pipeline(subject_id)  # Get or create pipeline for this subject
     
-    # Use session history if session_id provided
     if session_id:
         session = session_manager.get_session(session_id)
         if session:
             history = session['history']
     
-    # Detect if this is a follow-up question
     follow_up_keywords = ['it', 'that', 'this', 'explain more', 'elaborate', 'what about', 'how about', 'also', 'and']
     is_follow_up = any(question.lower().startswith(kw) for kw in ['it', 'that', 'this', 'what about it', 'how about that']) or \
                    (len(question.split()) < 5 and any(kw in question.lower() for kw in ['more', 'also', 'too']))
     
-    # Only use history context if it's a follow-up question
+    # Add conversation history for follow-up questions
     if is_follow_up and history:
         context_prefix = "Previous conversation:\n"
         recent_history = history[-2:]  # Only last Q&A
@@ -83,10 +75,9 @@ def chat():
     else:
         full_question = question
     
-    # Layer 1 & 2: Validate question (use original question for validation)
+    # Layer 1 & 2: Validate question relevance and syllabus coverage
     validation_result = pipeline.process_question(question)
     
-    # Build intermediate steps for review
     steps = {
         'layer1': {
             'name': 'DS Classifier',
@@ -102,26 +93,24 @@ def chat():
         }
     }
     
+    # Return early if validation fails (unless user forces answer for OUT_OF_SYLLABUS)
     if validation_result['final_status'] not in ['VALID', 'WARNING']:
-        # Check if OUT_OF_SYLLABUS and user wants answer anyway
         if validation_result['final_status'] == 'OUT_OF_SYLLABUS' and force_answer:
-            # User clicked "Answer Anyway" - proceed to Layer 3
-            pass  # Continue to Layer 3 below
+            pass  # User clicked "Answer Anyway" - proceed to Layer 3
         else:
-            # Return validation result without calling Layer 3
             response = validation_result.copy()
             if show_steps:
                 response['intermediate_steps'] = steps
             return jsonify(response)
     
-    # Layer 3: Generate answer using RAG
+    # Layer 3: Generate answer using RAG (FAISS + Llama 3.1)
     try:
         import time
         layer3_start = time.time()
-        # Use full_question (with context) only for follow-ups, otherwise use original question
+        # Use context-enriched question for follow-ups, original for new questions
         rag_result = generate_answer(
             full_question if is_follow_up else question,
-            subject_id=subject_id,  # NEW: Pass subject_id
+            subject_id=subject_id,
             is_follow_up=is_follow_up
         )
         layer3_time = (time.time() - layer3_start) * 1000
@@ -143,14 +132,13 @@ def chat():
             'out_of_syllabus_answered': force_answer
         }
         
-        # Always format the response to clean HTML entities
-        response = formatter.format_response(response, output_format)
+        response = format_answer(response, output_format)  # Clean HTML entities
         
         if show_steps:
             response['intermediate_steps'] = steps
             response['total_latency_ms'] = validation_result.get('total_latency_ms', 0) + layer3_time
         
-        # Save to session if session_id provided
+        # Save to session for conversation history
         if session_id:
             session_manager.add_message(session_id, {'type': 'user', 'text': question})
             session_manager.add_message(session_id, {'type': 'bot', 'data': response})
@@ -168,12 +156,11 @@ def chat_direct():
     data = request.json
     question = data.get('question', '')
     history = data.get('history', [])
-    subject_id = data.get('subject_id', 'data_structures')  # NEW: Get subject
+    subject_id = data.get('subject_id', 'data_structures')
     
     if not question:
         return jsonify({'error': 'Question is required'}), 400
     
-    # Build context from conversation history
     context_prefix = ""
     if history:
         context_prefix = "Previous conversation:\n"
@@ -196,7 +183,7 @@ def chat_direct():
     try:
         import time
         start = time.time()
-        rag_result = generate_answer(full_question, subject_id=subject_id)  # NEW: Pass subject_id
+        rag_result = generate_answer(full_question, subject_id=subject_id)
         latency = (time.time() - start) * 1000
         
         return jsonify({
@@ -250,10 +237,8 @@ def submit_feedback():
         else:
             feedback_list = []
         
-        # Append new feedback
         feedback_list.append(feedback_entry)
         
-        # Save back
         with open(feedback_path, 'w') as f:
             json.dump(feedback_list, f, indent=2)
         

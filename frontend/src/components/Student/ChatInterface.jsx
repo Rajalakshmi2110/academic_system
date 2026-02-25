@@ -648,7 +648,7 @@ const ChatInterface = () => {
                           onClick={() => handleAnswerAnyway(msg.data.question)}
                           sx={{ borderColor: '#FF9800', color: '#FF9800' }}
                         >
-                          Answer Anyway (Not in CA3101 syllabus)
+                          Answer Anyway (Not in {getCurrentSubject()?.name || 'course'} syllabus)
                         </Button>
                       </Box>
                     )}

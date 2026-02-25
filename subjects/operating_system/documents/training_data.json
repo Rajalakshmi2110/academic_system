@@ -1,0 +1,6722 @@
+[
+  {
+    "id": "Q0001",
+    "question": "What is an introduction in the context of operating systems?",
+    "label": 1
+  },
+  {
+    "id": "Q0002",
+    "question": "Explain the importance of introduction to operating system concepts.",
+    "label": 1
+  },
+  {
+    "id": "Q0003",
+    "question": "Describe the role of an operating system in a computer system.",
+    "label": 1
+  },
+  {
+    "id": "Q0004",
+    "question": "Compare monolithic and microkernel operating system architectures.",
+    "label": 1
+  },
+  {
+    "id": "Q0005",
+    "question": "How does an operating system manage hardware resources?",
+    "label": 1
+  },
+  {
+    "id": "Q0006",
+    "question": "What are the primary functions of an operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0007",
+    "question": "Explain the concept of virtualization in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0008",
+    "question": "Describe the difference between a process and a thread.",
+    "label": 1
+  },
+  {
+    "id": "Q0009",
+    "question": "Compare the user interface of Windows and Linux operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0010",
+    "question": "How do operating systems provide services to applications?",
+    "label": 1
+  },
+  {
+    "id": "Q0011",
+    "question": "What is the purpose of an operating system's command-line interface?",
+    "label": 1
+  },
+  {
+    "id": "Q0012",
+    "question": "Explain the concept of multitasking in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0013",
+    "question": "Describe the components of a operating system.",
+    "label": 1
+  },
+  {
+    "id": "Q0014",
+    "question": "Compare the advantages and disadvantages of virtualization.",
+    "label": 1
+  },
+  {
+    "id": "Q0015",
+    "question": "How does an operating system handle interrupts?",
+    "label": 1
+  },
+  {
+    "id": "Q0016",
+    "question": "What are the key characteristics of a real-time operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0017",
+    "question": "Explain the concept of memory management in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0018",
+    "question": "Describe the role of a device driver in an operating system.",
+    "label": 1
+  },
+  {
+    "id": "Q0019",
+    "question": "Compare the security features of different operating systems.",
+    "label": 0
+  },
+  {
+    "id": "Q0020",
+    "question": "How do operating systems support networking?",
+    "label": 1
+  },
+  {
+    "id": "Q0021",
+    "question": "What is the purpose of a system call in an operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0022",
+    "question": "Explain the concept of process synchronization.",
+    "label": 1
+  },
+  {
+    "id": "Q0023",
+    "question": "Describe the difference between a 32-bit and 64-bit operating system.",
+    "label": 1
+  },
+  {
+    "id": "Q0024",
+    "question": "Compare the file systems used by different operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0025",
+    "question": "How does an operating system manage storage devices?",
+    "label": 1
+  },
+  {
+    "id": "Q0026",
+    "question": "What are the benefits of using a virtual machine?",
+    "label": 1
+  },
+  {
+    "id": "Q0027",
+    "question": "Explain the concept of concurrency in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0028",
+    "question": "Describe the components of a virtual machine.",
+    "label": 1
+  },
+  {
+    "id": "Q0029",
+    "question": "Compare the performance of different operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0030",
+    "question": "How do operating systems support multimedia?",
+    "label": 1
+  },
+  {
+    "id": "Q0031",
+    "question": "What is the purpose of a boot loader in an operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0032",
+    "question": "Explain the concept of deadlocks in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0033",
+    "question": "Describe the role of a kernel in an operating system.",
+    "label": 1
+  },
+  {
+    "id": "Q0034",
+    "question": "Compare the power management features of different operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0035",
+    "question": "How does an operating system handle errors?",
+    "label": 1
+  },
+  {
+    "id": "Q0036",
+    "question": "What are the key features of a mobile operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0037",
+    "question": "Explain the concept of scheduling in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0038",
+    "question": "Describe the difference between a client and a server in a network.",
+    "label": 1
+  },
+  {
+    "id": "Q0039",
+    "question": "Compare the scalability of different operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0040",
+    "question": "How do operating systems support cloud computing?",
+    "label": 1
+  },
+  {
+    "id": "Q0041",
+    "question": "What is the purpose of a hypervisor in virtualization?",
+    "label": 1
+  },
+  {
+    "id": "Q0042",
+    "question": "Explain the concept of caching in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0043",
+    "question": "Describe the components of a cloud computing system.",
+    "label": 1
+  },
+  {
+    "id": "Q0044",
+    "question": "Compare the reliability of different operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0045",
+    "question": "How does an operating system manage user accounts?",
+    "label": 1
+  },
+  {
+    "id": "Q0046",
+    "question": "What are the benefits of using a Linux operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0047",
+    "question": "Explain the concept of fragmentation in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0048",
+    "question": "Describe the role of a file system in an operating system.",
+    "label": 1
+  },
+  {
+    "id": "Q0049",
+    "question": "Compare the customization options of different operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0050",
+    "question": "How do operating systems support gaming?",
+    "label": 1
+  },
+  {
+    "id": "Q0051",
+    "question": "What is the purpose of a registry in a Windows operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0052",
+    "question": "Explain the concept of parallel processing in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0053",
+    "question": "Describe the difference between a 32-bit and 64-bit application.",
+    "label": 1
+  },
+  {
+    "id": "Q0054",
+    "question": "Compare the compatibility of different operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0055",
+    "question": "How does an operating system manage network protocols?",
+    "label": 1
+  },
+  {
+    "id": "Q0056",
+    "question": "What are the key features of a mainframe operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0057",
+    "question": "Explain the concept of asynchronous programming in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0058",
+    "question": "Describe the components of a mainframe computer system.",
+    "label": 1
+  },
+  {
+    "id": "Q0059",
+    "question": "Compare the security features of mainframe and desktop operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0060",
+    "question": "How do operating systems support database management?",
+    "label": 1
+  },
+  {
+    "id": "Q0061",
+    "question": "What is the purpose of a journaling file system?",
+    "label": 1
+  },
+  {
+    "id": "Q0062",
+    "question": "Explain the concept of symmetric multiprocessing in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0063",
+    "question": "Describe the role of a system administrator in managing operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0064",
+    "question": "Compare the cost of different operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0065",
+    "question": "How does an operating system manage disk storage?",
+    "label": 1
+  },
+  {
+    "id": "Q0066",
+    "question": "What are the benefits of using a Unix-based operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0067",
+    "question": "Explain the concept of embedded operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0068",
+    "question": "Describe the components of an embedded system.",
+    "label": 1
+  },
+  {
+    "id": "Q0069",
+    "question": "Compare the real-time capabilities of different operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0070",
+    "question": "How do operating systems support robotics?",
+    "label": 1
+  },
+  {
+    "id": "Q0071",
+    "question": "What is the purpose of a device emulator?",
+    "label": 1
+  },
+  {
+    "id": "Q0072",
+    "question": "Explain the concept of firmware in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0073",
+    "question": "Describe the difference between a soft and hard real-time system.",
+    "label": 1
+  },
+  {
+    "id": "Q0074",
+    "question": "Compare the performance of soft and hard real-time systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0075",
+    "question": "How does an operating system manage power consumption?",
+    "label": 1
+  },
+  {
+    "id": "Q0076",
+    "question": "What are the key features of a real-time operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0077",
+    "question": "Explain the concept of a watchdog timer in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0078",
+    "question": "Describe the role of a timer in an operating system.",
+    "label": 1
+  },
+  {
+    "id": "Q0079",
+    "question": "Compare the reliability of soft and hard real-time systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0080",
+    "question": "How do operating systems support automotive systems?",
+    "label": 0
+  },
+  {
+    "id": "Q0081",
+    "question": "What is the purpose of a safety-critical operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0082",
+    "question": "Explain the concept of a fail-safe system in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0083",
+    "question": "Describe the components of a safety-critical system.",
+    "label": 1
+  },
+  {
+    "id": "Q0084",
+    "question": "Compare the security features of safety-critical and non-safety-critical operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0085",
+    "question": "How does an operating system manage safety-critical tasks?",
+    "label": 1
+  },
+  {
+    "id": "Q0086",
+    "question": "What are the benefits of using a safety-critical operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0087",
+    "question": "Explain the concept of a fault-tolerant system in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0088",
+    "question": "Describe the role of redundancy in a fault-tolerant system.",
+    "label": 0
+  },
+  {
+    "id": "Q0089",
+    "question": "Compare the performance of fault-tolerant and non-fault-tolerant systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0090",
+    "question": "How do operating systems support medical devices?",
+    "label": 1
+  },
+  {
+    "id": "Q0091",
+    "question": "What is the purpose of a medical device operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0092",
+    "question": "Explain the concept of a medical-grade operating system.",
+    "label": 1
+  },
+  {
+    "id": "Q0093",
+    "question": "Describe the components of a medical device system.",
+    "label": 0
+  },
+  {
+    "id": "Q0094",
+    "question": "Compare the regulatory requirements for medical device operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0095",
+    "question": "How does an operating system manage medical device data?",
+    "label": 0
+  },
+  {
+    "id": "Q0096",
+    "question": "What are the key features of a medical device operating system?",
+    "label": 0
+  },
+  {
+    "id": "Q0097",
+    "question": "Explain the concept of a patient monitoring system in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0098",
+    "question": "Describe the role of an operating system in patient monitoring.",
+    "label": 1
+  },
+  {
+    "id": "Q0099",
+    "question": "Compare the security features of medical device operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0100",
+    "question": "How do operating systems support healthcare information systems?",
+    "label": 0
+  },
+  {
+    "id": "Q0101",
+    "question": "What is the purpose of a healthcare information system?",
+    "label": 1
+  },
+  {
+    "id": "Q0102",
+    "question": "Explain the concept of electronic health records in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0103",
+    "question": "Describe the components of a healthcare information system.",
+    "label": 1
+  },
+  {
+    "id": "Q0104",
+    "question": "Compare the benefits of using a healthcare information system.",
+    "label": 1
+  },
+  {
+    "id": "Q0105",
+    "question": "How does an operating system manage healthcare data?",
+    "label": 1
+  },
+  {
+    "id": "Q0106",
+    "question": "What are the key features of a healthcare information system?",
+    "label": 1
+  },
+  {
+    "id": "Q0107",
+    "question": "Explain the concept of telemedicine in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0108",
+    "question": "Describe the role of an operating system in telemedicine.",
+    "label": 1
+  },
+  {
+    "id": "Q0109",
+    "question": "Compare the performance of different telemedicine systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0110",
+    "question": "How do operating systems support remote patient monitoring?",
+    "label": 1
+  },
+  {
+    "id": "Q0111",
+    "question": "What is the purpose of remote patient monitoring in operating systems?",
+    "label": 1
+  },
+  {
+    "id": "Q0112",
+    "question": "Explain the concept of mHealth in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0113",
+    "question": "Describe the components of an mHealth system.",
+    "label": 1
+  },
+  {
+    "id": "Q0114",
+    "question": "Compare the benefits of using mHealth systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0115",
+    "question": "How does an operating system manage mHealth data?",
+    "label": 1
+  },
+  {
+    "id": "Q0116",
+    "question": "What are the key features of an mHealth system?",
+    "label": 0
+  },
+  {
+    "id": "Q0117",
+    "question": "Explain the concept of personalized medicine in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0118",
+    "question": "Describe the role of an operating system in personalized medicine.",
+    "label": 1
+  },
+  {
+    "id": "Q0119",
+    "question": "Compare the performance of different personalized medicine systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0120",
+    "question": "How do operating systems support clinical decision support systems?",
+    "label": 1
+  },
+  {
+    "id": "Q0121",
+    "question": "What is the purpose of a clinical decision support system?",
+    "label": 1
+  },
+  {
+    "id": "Q0122",
+    "question": "Explain the concept of clinical decision support in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0123",
+    "question": "Describe the components of a clinical decision support system.",
+    "label": 1
+  },
+  {
+    "id": "Q0124",
+    "question": "Compare the benefits of using clinical decision support systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0125",
+    "question": "How does an operating system manage clinical decision support data?",
+    "label": 1
+  },
+  {
+    "id": "Q0126",
+    "question": "What are the key features of a clinical decision support system?",
+    "label": 1
+  },
+  {
+    "id": "Q0127",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0128",
+    "question": "Who wrote To Kill a Mockingbird?",
+    "label": 0
+  },
+  {
+    "id": "Q0129",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0130",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0131",
+    "question": "What is the most popular programming language used in data science?",
+    "label": 0
+  },
+  {
+    "id": "Q0132",
+    "question": "What is the difference between a hash table and a binary search tree?",
+    "label": 0
+  },
+  {
+    "id": "Q0133",
+    "question": "Who won the FIFA World Cup in 2018?",
+    "label": 0
+  },
+  {
+    "id": "Q0134",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0135",
+    "question": "What is the process of photosynthesis in plants?",
+    "label": 0
+  },
+  {
+    "id": "Q0136",
+    "question": "Who is the main character in The Great Gatsby?",
+    "label": 0
+  },
+  {
+    "id": "Q0137",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0138",
+    "question": "How many states are in the United States?",
+    "label": 0
+  },
+  {
+    "id": "Q0139",
+    "question": "What is the boiling point of water in Celsius?",
+    "label": 0
+  },
+  {
+    "id": "Q0140",
+    "question": "What is the syntax for declaring a variable in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0141",
+    "question": "Who painted the Mona Lisa?",
+    "label": 0
+  },
+  {
+    "id": "Q0142",
+    "question": "What is the largest mountain range in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0143",
+    "question": "What is the chemical formula for water?",
+    "label": 0
+  },
+  {
+    "id": "Q0144",
+    "question": "What is the most popular social media platform?",
+    "label": 0
+  },
+  {
+    "id": "Q0145",
+    "question": "What is the difference between a while loop and a for loop in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0146",
+    "question": "Who is the author of the Harry Potter series?",
+    "label": 0
+  },
+  {
+    "id": "Q0147",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0148",
+    "question": "What is the process of mitosis in cells?",
+    "label": 0
+  },
+  {
+    "id": "Q0149",
+    "question": "What is the largest river in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0150",
+    "question": "What is the syntax for creating a class in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0151",
+    "question": "Who won the Super Bowl in 2020?",
+    "label": 0
+  },
+  {
+    "id": "Q0152",
+    "question": "What is the largest city in Australia?",
+    "label": 0
+  },
+  {
+    "id": "Q0153",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0154",
+    "question": "What is the most popular video game of all time?",
+    "label": 0
+  },
+  {
+    "id": "Q0155",
+    "question": "What is the difference between a list and a tuple in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0156",
+    "question": "Who is the main character in The Catcher in the Rye?",
+    "label": 0
+  },
+  {
+    "id": "Q0157",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0158",
+    "question": "What is the process of meiosis in cells?",
+    "label": 0
+  },
+  {
+    "id": "Q0159",
+    "question": "What is the largest city in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0160",
+    "question": "What is the syntax for declaring an array in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0161",
+    "question": "Who painted The Starry Night?",
+    "label": 0
+  },
+  {
+    "id": "Q0162",
+    "question": "What is the largest mountain peak in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0163",
+    "question": "What is the chemical formula for carbon dioxide?",
+    "label": 0
+  },
+  {
+    "id": "Q0164",
+    "question": "What is the most popular music genre?",
+    "label": 0
+  },
+  {
+    "id": "Q0165",
+    "question": "What is the difference between a stack and a queue in data structures?",
+    "label": 0
+  },
+  {
+    "id": "Q0166",
+    "question": "Who is the author of The Lord of the Rings?",
+    "label": 0
+  },
+  {
+    "id": "Q0167",
+    "question": "What is the largest lake in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0168",
+    "question": "What is the process of transcription in cells?",
+    "label": 0
+  },
+  {
+    "id": "Q0169",
+    "question": "What is the largest city in China?",
+    "label": 0
+  },
+  {
+    "id": "Q0170",
+    "question": "What is the syntax for creating a lambda function in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0171",
+    "question": "Who won the Academy Award for Best Picture in 2020?",
+    "label": 0
+  },
+  {
+    "id": "Q0172",
+    "question": "What is the largest city in Japan?",
+    "label": 0
+  },
+  {
+    "id": "Q0173",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0174",
+    "question": "What is the most popular type of cuisine?",
+    "label": 0
+  },
+  {
+    "id": "Q0175",
+    "question": "What is the difference between a dictionary and a set in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0176",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0177",
+    "question": "Who wrote the book 'To Kill a Mockingbird'?",
+    "label": 0
+  },
+  {
+    "id": "Q0178",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0179",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0180",
+    "question": "Which programming language is known for its simplicity, Python or Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0181",
+    "question": "What is the smallest country in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0182",
+    "question": "What is the most popular sport in the United States?",
+    "label": 0
+  },
+  {
+    "id": "Q0183",
+    "question": "What is the syntax for declaring a variable in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0184",
+    "question": "Who painted the famous artwork 'The Starry Night'?",
+    "label": 0
+  },
+  {
+    "id": "Q0185",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0186",
+    "question": "What is the process of photosynthesis in plants?",
+    "label": 0
+  },
+  {
+    "id": "Q0187",
+    "question": "Which mountain range runs along the border between France and Spain?",
+    "label": 0
+  },
+  {
+    "id": "Q0188",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0189",
+    "question": "What is the most widely spoken language in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0190",
+    "question": "What is the chemical equation for the reaction of hydrogen and oxygen?",
+    "label": 0
+  },
+  {
+    "id": "Q0191",
+    "question": "Who is the main character in the novel 'The Great Gatsby'?",
+    "label": 0
+  },
+  {
+    "id": "Q0192",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0193",
+    "question": "What is the most popular social media platform?",
+    "label": 0
+  },
+  {
+    "id": "Q0194",
+    "question": "What is the syntax for creating a loop in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0195",
+    "question": "What is the largest mammal on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0196",
+    "question": "What is the process of mitosis in cells?",
+    "label": 0
+  },
+  {
+    "id": "Q0197",
+    "question": "What is the highest mountain peak in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0198",
+    "question": "What is the most popular music genre in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0199",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0200",
+    "question": "What is the largest river in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0201",
+    "question": "What is the most popular type of computer network?",
+    "label": 0
+  },
+  {
+    "id": "Q0202",
+    "question": "What is the syntax for declaring a function in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0203",
+    "question": "Who is the author of the famous poem 'The Road Not Taken'?",
+    "label": 0
+  },
+  {
+    "id": "Q0204",
+    "question": "What is the largest city in Australia?",
+    "label": 0
+  },
+  {
+    "id": "Q0205",
+    "question": "What is the most popular type of database management system?",
+    "label": 0
+  },
+  {
+    "id": "Q0206",
+    "question": "What is the chemical equation for the reaction of carbon and oxygen?",
+    "label": 0
+  },
+  {
+    "id": "Q0207",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0208",
+    "question": "What is the most popular type of web development framework?",
+    "label": 0
+  },
+  {
+    "id": "Q0209",
+    "question": "What is the syntax for creating a class in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0210",
+    "question": "What is the largest bird of prey?",
+    "label": 0
+  },
+  {
+    "id": "Q0211",
+    "question": "What is the process of meiosis in cells?",
+    "label": 0
+  },
+  {
+    "id": "Q0212",
+    "question": "What is the highest mountain peak in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0213",
+    "question": "What is the most popular type of encryption algorithm?",
+    "label": 0
+  },
+  {
+    "id": "Q0214",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0215",
+    "question": "What is the largest city in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0216",
+    "question": "What is the most popular type of machine learning algorithm?",
+    "label": 0
+  },
+  {
+    "id": "Q0217",
+    "question": "What is the syntax for declaring a variable in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0218",
+    "question": "What is the largest species of shark?",
+    "label": 0
+  },
+  {
+    "id": "Q0219",
+    "question": "What is the process of transcription in cells?",
+    "label": 0
+  },
+  {
+    "id": "Q0220",
+    "question": "What is the largest city in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0221",
+    "question": "What is the most popular type of data storage device?",
+    "label": 0
+  },
+  {
+    "id": "Q0222",
+    "question": "Flumplenax jim-jam wizzle whim wham?",
+    "label": 0
+  },
+  {
+    "id": "Q0223",
+    "question": "What is the largest city on the planet Zorgon?",
+    "label": 0
+  },
+  {
+    "id": "Q0224",
+    "question": "Groobly wizzle whim wham wum wum?",
+    "label": 0
+  },
+  {
+    "id": "Q0225",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0226",
+    "question": "Who wrote To Kill a Mockingbird?",
+    "label": 0
+  },
+  {
+    "id": "Q0227",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0228",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0229",
+    "question": "What is the syntax for a for loop in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0230",
+    "question": "Which team won the 2020 Super Bowl?",
+    "label": 0
+  },
+  {
+    "id": "Q0231",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0232",
+    "question": "What is the definition of a polynomial in algebra?",
+    "label": 0
+  },
+  {
+    "id": "Q0233",
+    "question": "Who painted the Mona Lisa?",
+    "label": 0
+  },
+  {
+    "id": "Q0234",
+    "question": "What is the most spoken language in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0235",
+    "question": "What is the process of photosynthesis in plants?",
+    "label": 0
+  },
+  {
+    "id": "Q0236",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0237",
+    "question": "What is the difference between a simile and a metaphor in literature?",
+    "label": 0
+  },
+  {
+    "id": "Q0238",
+    "question": "What is the largest mammal on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0239",
+    "question": "What is the syntax for a while loop in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0240",
+    "question": "What is the smallest country in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0241",
+    "question": "Who is the main character in The Great Gatsby?",
+    "label": 0
+  },
+  {
+    "id": "Q0242",
+    "question": "What is the chemical equation for respiration?",
+    "label": 0
+  },
+  {
+    "id": "Q0243",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0244",
+    "question": "What is the process of mitosis in cell biology?",
+    "label": 0
+  },
+  {
+    "id": "Q0245",
+    "question": "What is the definition of a vector in physics?",
+    "label": 0
+  },
+  {
+    "id": "Q0246",
+    "question": "What is the largest mountain range in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0247",
+    "question": "What is the difference between a hypothesis and a theory in science?",
+    "label": 0
+  },
+  {
+    "id": "Q0248",
+    "question": "What is the most popular social media platform?",
+    "label": 0
+  },
+  {
+    "id": "Q0249",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0250",
+    "question": "What is the syntax for a switch statement in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0251",
+    "question": "Who won the most Oscars in a single year?",
+    "label": 0
+  },
+  {
+    "id": "Q0252",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0253",
+    "question": "What is the largest city in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0254",
+    "question": "What is the process of meiosis in cell biology?",
+    "label": 0
+  },
+  {
+    "id": "Q0255",
+    "question": "What is the definition of a fractal in mathematics?",
+    "label": 0
+  },
+  {
+    "id": "Q0256",
+    "question": "What is the largest river in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0257",
+    "question": "What is the difference between a byte and a bit in computer science?",
+    "label": 0
+  },
+  {
+    "id": "Q0258",
+    "question": "What is the most popular programming language?",
+    "label": 0
+  },
+  {
+    "id": "Q0259",
+    "question": "What is the largest city in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0260",
+    "question": "What is the syntax for a try-catch block in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0261",
+    "question": "Who wrote the first dictionary?",
+    "label": 0
+  },
+  {
+    "id": "Q0262",
+    "question": "What is the chemical equation for combustion?",
+    "label": 0
+  },
+  {
+    "id": "Q0263",
+    "question": "What is the largest waterfall in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0264",
+    "question": "What is the process of transcription in genetics?",
+    "label": 0
+  },
+  {
+    "id": "Q0265",
+    "question": "What is the definition of a algorithm in computer science?",
+    "label": 0
+  },
+  {
+    "id": "Q0266",
+    "question": "What is the largest lake in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0267",
+    "question": "What is the syntax for a lambda function in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0268",
+    "question": "What is the most popular book of all time?",
+    "label": 0
+  },
+  {
+    "id": "Q0269",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0270",
+    "question": "What is the largest mountain peak in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0271",
+    "question": "Colorless green ideas sleep furiously on Tuesdays",
+    "label": 0
+  },
+  {
+    "id": "Q0272",
+    "question": "What is the airspeed velocity of an unladen swallow?",
+    "label": 0
+  },
+  {
+    "id": "Q0273",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0274",
+    "question": "Who wrote To Kill a Mockingbird?",
+    "label": 0
+  },
+  {
+    "id": "Q0275",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0276",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0277",
+    "question": "Which programming language is known for its simplicity and readability, Python or Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0278",
+    "question": "What is the difference between a while loop and a for loop in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0279",
+    "question": "In what year did the first Olympic Games take place?",
+    "label": 0
+  },
+  {
+    "id": "Q0280",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0281",
+    "question": "Who painted the Starry Night?",
+    "label": 0
+  },
+  {
+    "id": "Q0282",
+    "question": "What is the process by which water moves through a plant, from the roots to the leaves?",
+    "label": 0
+  },
+  {
+    "id": "Q0283",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0284",
+    "question": "What is the syntax for declaring a variable in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0285",
+    "question": "What is the smallest country in the world, both in terms of population and land area?",
+    "label": 0
+  },
+  {
+    "id": "Q0286",
+    "question": "Who is the main character in The Great Gatsby?",
+    "label": 0
+  },
+  {
+    "id": "Q0287",
+    "question": "What is the largest mammal on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0288",
+    "question": "What is the process of photosynthesis?",
+    "label": 0
+  },
+  {
+    "id": "Q0289",
+    "question": "What is the deepest part of the ocean?",
+    "label": 0
+  },
+  {
+    "id": "Q0290",
+    "question": "What is the most widely spoken language in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0291",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0292",
+    "question": "What is the difference between a list and a tuple in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0293",
+    "question": "Who wrote the play Romeo and Juliet?",
+    "label": 0
+  },
+  {
+    "id": "Q0294",
+    "question": "What is the largest city in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0295",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0296",
+    "question": "What is the process by which the universe became transparent to light?",
+    "label": 0
+  },
+  {
+    "id": "Q0297",
+    "question": "What is the largest mountain range in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0298",
+    "question": "What is the most popular sport in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0299",
+    "question": "What is the largest city in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0300",
+    "question": "What is the syntax for creating a class in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0301",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0302",
+    "question": "Who is the author of the book The Hitchhiker's Guide to the Galaxy?",
+    "label": 0
+  },
+  {
+    "id": "Q0303",
+    "question": "What is the largest waterfall in the world, by volume of water?",
+    "label": 0
+  },
+  {
+    "id": "Q0304",
+    "question": "What is the process by which water freezes into ice?",
+    "label": 0
+  },
+  {
+    "id": "Q0305",
+    "question": "What is the largest city in Australia?",
+    "label": 0
+  },
+  {
+    "id": "Q0306",
+    "question": "What is the difference between a static method and an instance method in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0307",
+    "question": "What is the largest lake in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0308",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0309",
+    "question": "What is the most widely used database management system?",
+    "label": 0
+  },
+  {
+    "id": "Q0310",
+    "question": "What is the largest city in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0311",
+    "question": "What is the syntax for using a lambda function in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0312",
+    "question": "What is the largest volcano in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0313",
+    "question": "What is the process by which the Earth's climate is changing?",
+    "label": 0
+  },
+  {
+    "id": "Q0314",
+    "question": "What is the largest city in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0315",
+    "question": "What is the difference between a dictionary and a set in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0316",
+    "question": "What is the largest river in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0317",
+    "question": "Flumplenooks are a type of what?",
+    "label": 0
+  },
+  {
+    "id": "Q0318",
+    "question": "What is the chemical symbol for flibberdigibbet?",
+    "label": 0
+  },
+  {
+    "id": "Q0319",
+    "question": "What is the most popular type of glizzle?",
+    "label": 0
+  },
+  {
+    "id": "Q0320",
+    "question": "What is the syntax for declaring a wizzle in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0321",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0322",
+    "question": "Who wrote 'To Kill a Mockingbird'?",
+    "label": 0
+  },
+  {
+    "id": "Q0323",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0324",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0325",
+    "question": "Which programming language is used for web development, Python or Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0326",
+    "question": "What is the syntax for a for loop in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0327",
+    "question": "Who was the first president of the United States?",
+    "label": 0
+  },
+  {
+    "id": "Q0328",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0329",
+    "question": "What is the difference between a keyword and an identifier in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0330",
+    "question": "What is the plot of 'Romeo and Juliet'?",
+    "label": 0
+  },
+  {
+    "id": "Q0331",
+    "question": "What is the chemical equation for photosynthesis?",
+    "label": 0
+  },
+  {
+    "id": "Q0332",
+    "question": "Who won the FIFA World Cup in 2018?",
+    "label": 0
+  },
+  {
+    "id": "Q0333",
+    "question": "What is the definition of a namespace in programming?",
+    "label": 0
+  },
+  {
+    "id": "Q0334",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0335",
+    "question": "What is the syntax for a while loop in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0336",
+    "question": "Who painted the 'Starry Night'?",
+    "label": 0
+  },
+  {
+    "id": "Q0337",
+    "question": "What is the largest mammal on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0338",
+    "question": "What is the difference between a class and an object in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0339",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0340",
+    "question": "What is the plot of 'The Great Gatsby'?",
+    "label": 0
+  },
+  {
+    "id": "Q0341",
+    "question": "What is the capital of Australia?",
+    "label": 0
+  },
+  {
+    "id": "Q0342",
+    "question": "What is the syntax for a switch statement in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0343",
+    "question": "Who was the main character in 'The Catcher in the Rye'?",
+    "label": 0
+  },
+  {
+    "id": "Q0344",
+    "question": "What is the chemical equation for respiration?",
+    "label": 0
+  },
+  {
+    "id": "Q0345",
+    "question": "What is the largest bird of prey?",
+    "label": 0
+  },
+  {
+    "id": "Q0346",
+    "question": "What is the definition of inheritance in programming?",
+    "label": 0
+  },
+  {
+    "id": "Q0347",
+    "question": "What is the largest city in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0348",
+    "question": "What is the syntax for a try-catch block in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0349",
+    "question": "Who wrote 'The Lord of the Rings'?",
+    "label": 0
+  },
+  {
+    "id": "Q0350",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0351",
+    "question": "What is the plot of 'Pride and Prejudice'?",
+    "label": 0
+  },
+  {
+    "id": "Q0352",
+    "question": "What is the capital of China?",
+    "label": 0
+  },
+  {
+    "id": "Q0353",
+    "question": "What is the syntax for a lambda function in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0354",
+    "question": "Who was the first woman to walk in space?",
+    "label": 0
+  },
+  {
+    "id": "Q0355",
+    "question": "What is the largest fish in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0356",
+    "question": "What is the difference between a list and a tuple in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0357",
+    "question": "What is the chemical symbol for tin?",
+    "label": 0
+  },
+  {
+    "id": "Q0358",
+    "question": "What is the plot of 'The Hunger Games'?",
+    "label": 0
+  },
+  {
+    "id": "Q0359",
+    "question": "What is the largest mountain range in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0360",
+    "question": "What is the syntax for a dictionary in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0361",
+    "question": "Who painted the 'Mona Lisa'?",
+    "label": 0
+  },
+  {
+    "id": "Q0362",
+    "question": "What is the largest insect on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0363",
+    "question": "What is the definition of polymorphism in programming?",
+    "label": 0
+  },
+  {
+    "id": "Q0364",
+    "question": "What is the capital of Brazil?",
+    "label": 0
+  },
+  {
+    "id": "Q0365",
+    "question": "What is the syntax for a set in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0366",
+    "question": "Who wrote 'The Picture of Dorian Gray'?",
+    "label": 0
+  },
+  {
+    "id": "Q0367",
+    "question": "What is the chemical symbol for mercury?",
+    "label": 0
+  },
+  {
+    "id": "Q0368",
+    "question": "What is the plot of 'The Count of Monte Cristo'?",
+    "label": 0
+  },
+  {
+    "id": "Q0369",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0370",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0371",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0372",
+    "question": "Who wrote the novel 'To Kill a Mockingbird'?",
+    "label": 0
+  },
+  {
+    "id": "Q0373",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0374",
+    "question": "What is the syntax for declaring a variable in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0375",
+    "question": "Which team won the FIFA World Cup in 2018?",
+    "label": 0
+  },
+  {
+    "id": "Q0376",
+    "question": "What is the process of photosynthesis in plants?",
+    "label": 0
+  },
+  {
+    "id": "Q0377",
+    "question": "What is the difference between a while loop and a for loop in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0378",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0379",
+    "question": "Can you write a program to sort a list of integers using the merge sort algorithm?",
+    "label": 0
+  },
+  {
+    "id": "Q0380",
+    "question": "What is the definition of a palindrome?",
+    "label": 0
+  },
+  {
+    "id": "Q0381",
+    "question": "Who was the first president of the United States?",
+    "label": 0
+  },
+  {
+    "id": "Q0382",
+    "question": "What is the boiling point of water in Celsius?",
+    "label": 0
+  },
+  {
+    "id": "Q0383",
+    "question": "What is the most popular social media platform?",
+    "label": 0
+  },
+  {
+    "id": "Q0384",
+    "question": "What is the plot of the movie 'Inception'?",
+    "label": 0
+  },
+  {
+    "id": "Q0385",
+    "question": "How do you implement a hash table in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0386",
+    "question": "What is the most widely spoken language in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0387",
+    "question": "What is the formula for calculating the area of a circle?",
+    "label": 0
+  },
+  {
+    "id": "Q0388",
+    "question": "What is the history of the pyramids of Giza?",
+    "label": 0
+  },
+  {
+    "id": "Q0389",
+    "question": "Can you explain the concept of object-oriented programming?",
+    "label": 0
+  },
+  {
+    "id": "Q0390",
+    "question": "What is the largest mammal on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0391",
+    "question": "What is the difference between a list and a tuple in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0392",
+    "question": "What is the process of mitosis in cell biology?",
+    "label": 0
+  },
+  {
+    "id": "Q0393",
+    "question": "What is the most popular programming language used in web development?",
+    "label": 0
+  },
+  {
+    "id": "Q0394",
+    "question": "What is the definition of a prime number?",
+    "label": 0
+  },
+  {
+    "id": "Q0395",
+    "question": "Who was the author of the book '1984'?",
+    "label": 0
+  },
+  {
+    "id": "Q0396",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0397",
+    "question": "What is the syntax for creating a class in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0398",
+    "question": "What is the most popular sport in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0399",
+    "question": "What is the history of the ancient city of Pompeii?",
+    "label": 0
+  },
+  {
+    "id": "Q0400",
+    "question": "Can you write a program to generate a random password?",
+    "label": 0
+  },
+  {
+    "id": "Q0401",
+    "question": "What is the process of meiosis in cell biology?",
+    "label": 0
+  },
+  {
+    "id": "Q0402",
+    "question": "What is the difference between a dictionary and a set in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0403",
+    "question": "What is the most popular music genre?",
+    "label": 0
+  },
+  {
+    "id": "Q0404",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0405",
+    "question": "What is the definition of a fractal?",
+    "label": 0
+  },
+  {
+    "id": "Q0406",
+    "question": "Who was the first person to walk on the moon?",
+    "label": 0
+  },
+  {
+    "id": "Q0407",
+    "question": "What is the most popular type of database?",
+    "label": 0
+  },
+  {
+    "id": "Q0408",
+    "question": "What is the history of the Renaissance period?",
+    "label": 0
+  },
+  {
+    "id": "Q0409",
+    "question": "Can you explain the concept of recursion in programming?",
+    "label": 0
+  },
+  {
+    "id": "Q0410",
+    "question": "What is the largest mountain range in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0411",
+    "question": "What is the most popular type of computer network?",
+    "label": 0
+  },
+  {
+    "id": "Q0412",
+    "question": "What is the definition of a nanometer?",
+    "label": 0
+  },
+  {
+    "id": "Q0413",
+    "question": "What is the process of electrolysis in chemistry?",
+    "label": 0
+  },
+  {
+    "id": "Q0414",
+    "question": "What is the most popular type of artificial intelligence?",
+    "label": 0
+  },
+  {
+    "id": "Q0415",
+    "question": "What is the history of the ancient Olympic Games?",
+    "label": 0
+  },
+  {
+    "id": "Q0416",
+    "question": "Can you write a program to solve a Sudoku puzzle?",
+    "label": 0
+  },
+  {
+    "id": "Q0417",
+    "question": "What is the difference between a function and a method in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0418",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0419",
+    "question": "What is the syntax for creating a thread in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0420",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0421",
+    "question": "Who wrote 'To Kill a Mockingbird'?",
+    "label": 0
+  },
+  {
+    "id": "Q0422",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0423",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0424",
+    "question": "What is the difference between a for loop and a while loop in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0425",
+    "question": "Who won the FIFA World Cup in 2018?",
+    "label": 0
+  },
+  {
+    "id": "Q0426",
+    "question": "What is the formula for calculating the area of a circle?",
+    "label": 0
+  },
+  {
+    "id": "Q0427",
+    "question": "What is the main character's name in 'The Great Gatsby'?",
+    "label": 0
+  },
+  {
+    "id": "Q0428",
+    "question": "What is the smallest country in the world by land area?",
+    "label": 0
+  },
+  {
+    "id": "Q0429",
+    "question": "What is the purpose of the 'finally' block in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0430",
+    "question": "Who painted the Mona Lisa?",
+    "label": 0
+  },
+  {
+    "id": "Q0431",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0432",
+    "question": "What is the process by which plants convert sunlight into energy?",
+    "label": 0
+  },
+  {
+    "id": "Q0433",
+    "question": "What is the name of the largest star known to science?",
+    "label": 0
+  },
+  {
+    "id": "Q0434",
+    "question": "What is the chemical equation for photosynthesis?",
+    "label": 0
+  },
+  {
+    "id": "Q0435",
+    "question": "What is the difference between a list and a tuple in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0436",
+    "question": "Who wrote the poem 'The Road Not Taken'?",
+    "label": 0
+  },
+  {
+    "id": "Q0437",
+    "question": "What is the deepest part of the ocean?",
+    "label": 0
+  },
+  {
+    "id": "Q0438",
+    "question": "What is the name of the largest volcano on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0439",
+    "question": "What is the syntax for declaring a variable in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0440",
+    "question": "What is the most widely spoken language in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0441",
+    "question": "What is the process by which water moves through a plant, from the roots to the leaves?",
+    "label": 0
+  },
+  {
+    "id": "Q0442",
+    "question": "What is the name of the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0443",
+    "question": "What is the formula for calculating the volume of a sphere?",
+    "label": 0
+  },
+  {
+    "id": "Q0444",
+    "question": "What is the main theme of the novel '1984'?",
+    "label": 0
+  },
+  {
+    "id": "Q0445",
+    "question": "What is the largest living species of mammal?",
+    "label": 0
+  },
+  {
+    "id": "Q0446",
+    "question": "What is the purpose of the 'import' statement in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0447",
+    "question": "Who is the main character in the novel 'The Catcher in the Rye'?",
+    "label": 0
+  },
+  {
+    "id": "Q0448",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0449",
+    "question": "What is the name of the highest mountain peak in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0450",
+    "question": "What is the difference between a class and an object in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0451",
+    "question": "What is the largest city in South America by population?",
+    "label": 0
+  },
+  {
+    "id": "Q0452",
+    "question": "What is the process by which the Earth's plates move?",
+    "label": 0
+  },
+  {
+    "id": "Q0453",
+    "question": "What is the name of the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0454",
+    "question": "What is the formula for calculating the area of a rectangle?",
+    "label": 0
+  },
+  {
+    "id": "Q0455",
+    "question": "What is the main character's name in the novel 'Pride and Prejudice'?",
+    "label": 0
+  },
+  {
+    "id": "Q0456",
+    "question": "What is the chemical equation for combustion?",
+    "label": 0
+  },
+  {
+    "id": "Q0457",
+    "question": "What is the name of the largest river in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0458",
+    "question": "What is the purpose of the 'try' block in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0459",
+    "question": "What is the largest city in Europe by population?",
+    "label": 0
+  },
+  {
+    "id": "Q0460",
+    "question": "What is the process by which the human body regulates its internal temperature?",
+    "label": 0
+  },
+  {
+    "id": "Q0461",
+    "question": "What is the name of the largest lake in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0462",
+    "question": "What is the formula for calculating the circumference of a circle?",
+    "label": 0
+  },
+  {
+    "id": "Q0463",
+    "question": "What is the main theme of the novel 'The Hunger Games'?",
+    "label": 0
+  },
+  {
+    "id": "Q0464",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0465",
+    "question": "What is the name of the highest mountain peak in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0466",
+    "question": "What is the difference between a function and a method in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0467",
+    "question": "Flumplenooks are known for their ability to fly, but what is their average airspeed?",
+    "label": 0
+  },
+  {
+    "id": "Q0468",
+    "question": "What is the purpose of the 'finally' block in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0469",
+    "question": "Groggle wuggle wum wum, what is the answer to life, the universe, and everything?",
+    "label": 0
+  },
+  {
+    "id": "Q0470",
+    "question": "What is the name of the largest city on the planet Zorgon?",
+    "label": 0
+  },
+  {
+    "id": "Q0471",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0472",
+    "question": "Who wrote the novel 'To Kill a Mockingbird'?",
+    "label": 0
+  },
+  {
+    "id": "Q0473",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0474",
+    "question": "Which planet in our solar system is known as the 'Red Planet'?",
+    "label": 0
+  },
+  {
+    "id": "Q0475",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0476",
+    "question": "In what year did the first Apple iPhone release?",
+    "label": 0
+  },
+  {
+    "id": "Q0477",
+    "question": "What is the smallest country in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0478",
+    "question": "What is the largest mammal on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0479",
+    "question": "What is the process by which water moves through a plant?",
+    "label": 0
+  },
+  {
+    "id": "Q0480",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0481",
+    "question": "What is the most widely spoken language in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0482",
+    "question": "Who is the main character in 'The Catcher in the Rye'?",
+    "label": 0
+  },
+  {
+    "id": "Q0483",
+    "question": "What is the boiling point of water in Celsius?",
+    "label": 0
+  },
+  {
+    "id": "Q0484",
+    "question": "What is the largest state in the United States by land area?",
+    "label": 0
+  },
+  {
+    "id": "Q0485",
+    "question": "What is the most popular sport in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0486",
+    "question": "What is the deepest part of the ocean?",
+    "label": 0
+  },
+  {
+    "id": "Q0487",
+    "question": "In what year did the first humans land on the moon?",
+    "label": 0
+  },
+  {
+    "id": "Q0488",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0489",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0490",
+    "question": "What is the process of converting sunlight into energy?",
+    "label": 0
+  },
+  {
+    "id": "Q0491",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0492",
+    "question": "What is the highest mountain peak in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0493",
+    "question": "What is the largest lake in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0494",
+    "question": "What is the most popular programming language used for web development?",
+    "label": 0
+  },
+  {
+    "id": "Q0495",
+    "question": "What is the syntax for declaring a variable in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0496",
+    "question": "What is the purpose of the 'finally' block in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0497",
+    "question": "What is the most popular social media platform in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0498",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0499",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0500",
+    "question": "What is the process by which the Earth's plates move?",
+    "label": 0
+  },
+  {
+    "id": "Q0501",
+    "question": "What is the largest waterfall in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0502",
+    "question": "What is the highest recorded temperature on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0503",
+    "question": "What is the most popular video game console of all time?",
+    "label": 0
+  },
+  {
+    "id": "Q0504",
+    "question": "What is the chemical symbol for oxygen?",
+    "label": 0
+  },
+  {
+    "id": "Q0505",
+    "question": "What is the largest city in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0506",
+    "question": "What is the most popular music genre in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0507",
+    "question": "What is the process of converting food into energy?",
+    "label": 0
+  },
+  {
+    "id": "Q0508",
+    "question": "What is the largest river in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0509",
+    "question": "What is the chemical symbol for nitrogen?",
+    "label": 0
+  },
+  {
+    "id": "Q0510",
+    "question": "What is the purpose of the 'except' block in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0511",
+    "question": "What is the highest mountain peak in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0512",
+    "question": "What is the most popular book series of all time?",
+    "label": 0
+  },
+  {
+    "id": "Q0513",
+    "question": "What is the chemical symbol for carbon?",
+    "label": 0
+  },
+  {
+    "id": "Q0514",
+    "question": "What is the process by which plants make their own food?",
+    "label": 0
+  },
+  {
+    "id": "Q0515",
+    "question": "Flumplenooks are known for their ability to jump high, but what is their average weight?",
+    "label": 0
+  },
+  {
+    "id": "Q0516",
+    "question": "What is the largest type of shark?",
+    "label": 0
+  },
+  {
+    "id": "Q0517",
+    "question": "In what year did the first website launch?",
+    "label": 0
+  },
+  {
+    "id": "Q0518",
+    "question": "What is the chemical symbol for tin?",
+    "label": 0
+  },
+  {
+    "id": "Q0519",
+    "question": "What is the most popular type of computer network?",
+    "label": 0
+  },
+  {
+    "id": "Q0520",
+    "question": "What is the purpose of the 'import' statement in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0521",
+    "question": "Blorple squirts are a type of fruit, but what is their nutritional value?",
+    "label": 0
+  },
+  {
+    "id": "Q0522",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0523",
+    "question": "Who wrote 'To Kill a Mockingbird'?",
+    "label": 0
+  },
+  {
+    "id": "Q0524",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0525",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0526",
+    "question": "Write a Python function to reverse a string.",
+    "label": 0
+  },
+  {
+    "id": "Q0527",
+    "question": "What is the smallest country in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0528",
+    "question": "What is the syntax for a for loop in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0529",
+    "question": "Who painted the Mona Lisa?",
+    "label": 0
+  },
+  {
+    "id": "Q0530",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0531",
+    "question": "What is the difference between a simile and a metaphor?",
+    "label": 0
+  },
+  {
+    "id": "Q0532",
+    "question": "What is the boiling point of water in Celsius?",
+    "label": 0
+  },
+  {
+    "id": "Q0533",
+    "question": "Who won the FIFA World Cup in 2018?",
+    "label": 0
+  },
+  {
+    "id": "Q0534",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0535",
+    "question": "What is the most spoken language in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0536",
+    "question": "What is the formula for calculating the area of a circle?",
+    "label": 0
+  },
+  {
+    "id": "Q0537",
+    "question": "Who is the main character in 'The Great Gatsby'?",
+    "label": 0
+  },
+  {
+    "id": "Q0538",
+    "question": "What is the largest mammal on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0539",
+    "question": "What is the highest mountain peak in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0540",
+    "question": "What is the chemical equation for photosynthesis?",
+    "label": 0
+  },
+  {
+    "id": "Q0541",
+    "question": "What is the most popular social media platform?",
+    "label": 0
+  },
+  {
+    "id": "Q0542",
+    "question": "What is the largest city in Scandinavia?",
+    "label": 0
+  },
+  {
+    "id": "Q0543",
+    "question": "What is the syntax for a while loop in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0544",
+    "question": "Who is the author of 'The Hitchhiker's Guide to the Galaxy'?",
+    "label": 0
+  },
+  {
+    "id": "Q0545",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0546",
+    "question": "What is the difference between a tuple and a list in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0547",
+    "question": "What is the most popular sport in the United States?",
+    "label": 0
+  },
+  {
+    "id": "Q0548",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0549",
+    "question": "What is the largest city in Australia?",
+    "label": 0
+  },
+  {
+    "id": "Q0550",
+    "question": "What is the syntax for a switch statement in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0551",
+    "question": "Who won the Super Bowl in 2020?",
+    "label": 0
+  },
+  {
+    "id": "Q0552",
+    "question": "What is the largest river in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0553",
+    "question": "What is the most popular music genre in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0554",
+    "question": "What is the formula for calculating the volume of a sphere?",
+    "label": 0
+  },
+  {
+    "id": "Q0555",
+    "question": "Who is the main character in 'The Catcher in the Rye'?",
+    "label": 0
+  },
+  {
+    "id": "Q0556",
+    "question": "What is the largest city in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0557",
+    "question": "What is the chemical equation for respiration?",
+    "label": 0
+  },
+  {
+    "id": "Q0558",
+    "question": "What is the most popular video game of all time?",
+    "label": 0
+  },
+  {
+    "id": "Q0559",
+    "question": "What is the largest lake in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0560",
+    "question": "What is the syntax for a try-except block in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0561",
+    "question": "Who painted 'The Starry Night'?",
+    "label": 0
+  },
+  {
+    "id": "Q0562",
+    "question": "What is the largest city in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0563",
+    "question": "What is the difference between a dictionary and a set in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0564",
+    "question": "What is the most popular tourist destination in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0565",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0566",
+    "question": "What is the largest ocean on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0567",
+    "question": "What is the syntax for a class in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0568",
+    "question": "Who wrote 'The Lord of the Rings'?",
+    "label": 0
+  },
+  {
+    "id": "Q0569",
+    "question": "What is the largest city in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0570",
+    "question": "What is the formula for calculating the area of a rectangle?",
+    "label": 0
+  },
+  {
+    "id": "Q0571",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0572",
+    "question": "Who wrote the novel 'To Kill a Mockingbird'?",
+    "label": 0
+  },
+  {
+    "id": "Q0573",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0574",
+    "question": "Which planet in our solar system is known as the 'Red Planet'?",
+    "label": 0
+  },
+  {
+    "id": "Q0575",
+    "question": "What is the largest mammal on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0576",
+    "question": "What is the syntax for declaring a variable in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0577",
+    "question": "Who was the first president of the United States?",
+    "label": 0
+  },
+  {
+    "id": "Q0578",
+    "question": "What is the smallest country in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0579",
+    "question": "What is the most popular sport in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0580",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0581",
+    "question": "What is the process of photosynthesis in plants?",
+    "label": 0
+  },
+  {
+    "id": "Q0582",
+    "question": "Who painted the famous artwork 'The Starry Night'?",
+    "label": 0
+  },
+  {
+    "id": "Q0583",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0584",
+    "question": "What is the highest mountain peak in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0585",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0586",
+    "question": "What is the most widely spoken language in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0587",
+    "question": "What is the chemical formula for water?",
+    "label": 0
+  },
+  {
+    "id": "Q0588",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0589",
+    "question": "What is the most popular social media platform?",
+    "label": 0
+  },
+  {
+    "id": "Q0590",
+    "question": "What is the largest waterfall in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0591",
+    "question": "What is the process of mitosis in cell biology?",
+    "label": 0
+  },
+  {
+    "id": "Q0592",
+    "question": "What is the most popular programming language used in web development?",
+    "label": 0
+  },
+  {
+    "id": "Q0593",
+    "question": "What is the largest lake in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0594",
+    "question": "What is the most popular type of music in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0595",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0596",
+    "question": "What is the largest city in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0597",
+    "question": "What is the most popular type of cuisine in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0598",
+    "question": "What is the process of meiosis in cell biology?",
+    "label": 0
+  },
+  {
+    "id": "Q0599",
+    "question": "What is the largest river in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0600",
+    "question": "What is the most popular type of book genre?",
+    "label": 0
+  },
+  {
+    "id": "Q0601",
+    "question": "What is the chemical formula for carbon dioxide?",
+    "label": 0
+  },
+  {
+    "id": "Q0602",
+    "question": "What is the largest mountain range in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0603",
+    "question": "What is the most popular type of sport in the United States?",
+    "label": 0
+  },
+  {
+    "id": "Q0604",
+    "question": "What is the largest city in Australia?",
+    "label": 0
+  },
+  {
+    "id": "Q0605",
+    "question": "What is the process of decomposition in ecology?",
+    "label": 0
+  },
+  {
+    "id": "Q0606",
+    "question": "What is the most popular type of video game genre?",
+    "label": 0
+  },
+  {
+    "id": "Q0607",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0608",
+    "question": "What is the largest island in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0609",
+    "question": "What is the most popular type of music festival?",
+    "label": 0
+  },
+  {
+    "id": "Q0610",
+    "question": "What is the process of transcription in genetics?",
+    "label": 0
+  },
+  {
+    "id": "Q0611",
+    "question": "What is the largest city in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0612",
+    "question": "What is the most popular type of social media influencer?",
+    "label": 0
+  },
+  {
+    "id": "Q0613",
+    "question": "What is the chemical formula for ammonia?",
+    "label": 0
+  },
+  {
+    "id": "Q0614",
+    "question": "What is the largest waterfall in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0615",
+    "question": "What is the process of translation in genetics?",
+    "label": 0
+  },
+  {
+    "id": "Q0616",
+    "question": "What is the most popular type of programming language used in artificial intelligence?",
+    "label": 0
+  },
+  {
+    "id": "Q0617",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0618",
+    "question": "Who wrote the book 'To Kill a Mockingbird'?",
+    "label": 0
+  },
+  {
+    "id": "Q0619",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0620",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0621",
+    "question": "Which programming language is known for its simplicity and readability, and is often used for beginner programmers?",
+    "label": 0
+  },
+  {
+    "id": "Q0622",
+    "question": "What is the smallest country in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0623",
+    "question": "Who won the FIFA World Cup in 2018?",
+    "label": 0
+  },
+  {
+    "id": "Q0624",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0625",
+    "question": "What is the process by which water moves through a plant, from the roots to the leaves?",
+    "label": 0
+  },
+  {
+    "id": "Q0626",
+    "question": "Who is the main character in the novel 'The Great Gatsby'?",
+    "label": 0
+  },
+  {
+    "id": "Q0627",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0628",
+    "question": "What is the most widely spoken language in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0629",
+    "question": "Who painted the famous artwork 'The Starry Night'?",
+    "label": 0
+  },
+  {
+    "id": "Q0630",
+    "question": "What is the boiling point of water in Celsius?",
+    "label": 0
+  },
+  {
+    "id": "Q0631",
+    "question": "What is the largest mammal on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0632",
+    "question": "What is the most popular social media platform in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0633",
+    "question": "What is the smallest bone in the human body?",
+    "label": 0
+  },
+  {
+    "id": "Q0634",
+    "question": "Who wrote the famous play 'Romeo and Juliet'?",
+    "label": 0
+  },
+  {
+    "id": "Q0635",
+    "question": "What is the largest city in Australia?",
+    "label": 0
+  },
+  {
+    "id": "Q0636",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0637",
+    "question": "What is the process by which plants convert sunlight into energy?",
+    "label": 0
+  },
+  {
+    "id": "Q0638",
+    "question": "Who is the author of the popular book series 'Harry Potter'?",
+    "label": 0
+  },
+  {
+    "id": "Q0639",
+    "question": "What is the largest river in the world by discharge volume?",
+    "label": 0
+  },
+  {
+    "id": "Q0640",
+    "question": "What is the most popular sport in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0641",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0642",
+    "question": "What is the famous prehistoric monument located in England?",
+    "label": 0
+  },
+  {
+    "id": "Q0643",
+    "question": "What is the largest city in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0644",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0645",
+    "question": "What is the largest mountain range in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0646",
+    "question": "What is the most popular music genre in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0647",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0648",
+    "question": "What is the process by which the universe became transparent to light?",
+    "label": 0
+  },
+  {
+    "id": "Q0649",
+    "question": "What is the most widely used programming language for web development?",
+    "label": 0
+  },
+  {
+    "id": "Q0650",
+    "question": "What is the largest waterfall in the world by volume?",
+    "label": 0
+  },
+  {
+    "id": "Q0651",
+    "question": "What is the chemical symbol for tin?",
+    "label": 0
+  },
+  {
+    "id": "Q0652",
+    "question": "What is the most popular type of computer network?",
+    "label": 0
+  },
+  {
+    "id": "Q0653",
+    "question": "What is the largest city in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0654",
+    "question": "What is the process by which the human body regulates its internal temperature?",
+    "label": 0
+  },
+  {
+    "id": "Q0655",
+    "question": "What is the most popular type of database management system?",
+    "label": 0
+  },
+  {
+    "id": "Q0656",
+    "question": "What is the largest lake in the world by surface area?",
+    "label": 0
+  },
+  {
+    "id": "Q0657",
+    "question": "What is the chemical symbol for lead?",
+    "label": 0
+  },
+  {
+    "id": "Q0658",
+    "question": "What is the most popular type of computer software?",
+    "label": 0
+  },
+  {
+    "id": "Q0659",
+    "question": "What is the largest city in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0660",
+    "question": "What is the process by which the human body converts food into energy?",
+    "label": 0
+  },
+  {
+    "id": "Q0661",
+    "question": "What is the most popular type of artificial intelligence algorithm?",
+    "label": 0
+  },
+  {
+    "id": "Q0662",
+    "question": "What is the largest city in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0663",
+    "question": "What is the chemical symbol for mercury?",
+    "label": 0
+  },
+  {
+    "id": "Q0664",
+    "question": "Flumplenooks are a type of what?",
+    "label": 0
+  },
+  {
+    "id": "Q0665",
+    "question": "What is the most popular type of data structure in computer science?",
+    "label": 0
+  },
+  {
+    "id": "Q0666",
+    "question": "Groggle wuggle wum wum is a famous quote from which book?",
+    "label": 0
+  },
+  {
+    "id": "Q0667",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0668",
+    "question": "Who wrote To Kill a Mockingbird?",
+    "label": 0
+  },
+  {
+    "id": "Q0669",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0670",
+    "question": "In what year did the first Olympic Games take place?",
+    "label": 0
+  },
+  {
+    "id": "Q0671",
+    "question": "What is the syntax for a for loop in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0672",
+    "question": "Who is the main character in The Great Gatsby?",
+    "label": 0
+  },
+  {
+    "id": "Q0673",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0674",
+    "question": "What is the difference between a tuple and a list in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0675",
+    "question": "Who painted the Starry Night?",
+    "label": 0
+  },
+  {
+    "id": "Q0676",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0677",
+    "question": "What is the plot of Shakespeare's Romeo and Juliet?",
+    "label": 0
+  },
+  {
+    "id": "Q0678",
+    "question": "In what country was the first FIFA World Cup held?",
+    "label": 0
+  },
+  {
+    "id": "Q0679",
+    "question": "What is the process of photosynthesis?",
+    "label": 0
+  },
+  {
+    "id": "Q0680",
+    "question": "Who is the author of the Harry Potter series?",
+    "label": 0
+  },
+  {
+    "id": "Q0681",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0682",
+    "question": "What is the chemical equation for the combustion of methane?",
+    "label": 0
+  },
+  {
+    "id": "Q0683",
+    "question": "What is the definition of a polynomial in algebra?",
+    "label": 0
+  },
+  {
+    "id": "Q0684",
+    "question": "Who is the lead singer of the rock band Queen?",
+    "label": 0
+  },
+  {
+    "id": "Q0685",
+    "question": "What is the smallest country in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0686",
+    "question": "What is the syntax for a while loop in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0687",
+    "question": "What is the process of mitosis?",
+    "label": 0
+  },
+  {
+    "id": "Q0688",
+    "question": "Who wrote the famous poem The Road Not Taken?",
+    "label": 0
+  },
+  {
+    "id": "Q0689",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0690",
+    "question": "What is the difference between a function and a method in programming?",
+    "label": 0
+  },
+  {
+    "id": "Q0691",
+    "question": "What is the plot of the movie Inception?",
+    "label": 0
+  },
+  {
+    "id": "Q0692",
+    "question": "Who is the main character in The Catcher in the Rye?",
+    "label": 0
+  },
+  {
+    "id": "Q0693",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0694",
+    "question": "What is the definition of a vector in physics?",
+    "label": 0
+  },
+  {
+    "id": "Q0695",
+    "question": "What is the largest mountain range in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0696",
+    "question": "What is the process of meiosis?",
+    "label": 0
+  },
+  {
+    "id": "Q0697",
+    "question": "Who is the author of the book The Hitchhiker's Guide to the Galaxy?",
+    "label": 0
+  },
+  {
+    "id": "Q0698",
+    "question": "What is the largest city in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0699",
+    "question": "What is the syntax for a switch statement in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0700",
+    "question": "What is the chemical equation for the reaction between hydrogen and oxygen?",
+    "label": 0
+  },
+  {
+    "id": "Q0701",
+    "question": "What is the definition of a neural network in machine learning?",
+    "label": 0
+  },
+  {
+    "id": "Q0702",
+    "question": "What is the plot of the movie The Matrix?",
+    "label": 0
+  },
+  {
+    "id": "Q0703",
+    "question": "Who is the lead singer of the rock band Guns N' Roses?",
+    "label": 0
+  },
+  {
+    "id": "Q0704",
+    "question": "What is the smallest state in the United States?",
+    "label": 0
+  },
+  {
+    "id": "Q0705",
+    "question": "What is the syntax for a try-catch block in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0706",
+    "question": "What is the process of transcription in genetics?",
+    "label": 0
+  },
+  {
+    "id": "Q0707",
+    "question": "What is the definition of a hash table in data structures?",
+    "label": 0
+  },
+  {
+    "id": "Q0708",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0709",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0710",
+    "question": "What is the definition of a recursion in programming?",
+    "label": 0
+  },
+  {
+    "id": "Q0711",
+    "question": "What is the plot of the book 1984?",
+    "label": 0
+  },
+  {
+    "id": "Q0712",
+    "question": "Who is the author of the book The Lord of the Rings?",
+    "label": 0
+  },
+  {
+    "id": "Q0713",
+    "question": "What is the largest city in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0714",
+    "question": "What is the syntax for a lambda function in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0715",
+    "question": "What is the definition of a big-O notation in algorithms?",
+    "label": 0
+  },
+  {
+    "id": "Q0716",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0717",
+    "question": "Who wrote the book 'To Kill a Mockingbird'?",
+    "label": 0
+  },
+  {
+    "id": "Q0718",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0719",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0720",
+    "question": "Who won the FIFA World Cup in 2018?",
+    "label": 0
+  },
+  {
+    "id": "Q0721",
+    "question": "What is the syntax for declaring a variable in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0722",
+    "question": "Who painted the famous painting 'The Starry Night'?",
+    "label": 0
+  },
+  {
+    "id": "Q0723",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0724",
+    "question": "What is the formula for calculating the area of a circle?",
+    "label": 0
+  },
+  {
+    "id": "Q0725",
+    "question": "Who was the first president of the United States?",
+    "label": 0
+  },
+  {
+    "id": "Q0726",
+    "question": "What is the name of the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0727",
+    "question": "Who wrote the famous play 'Romeo and Juliet'?",
+    "label": 0
+  },
+  {
+    "id": "Q0728",
+    "question": "What is the process by which plants convert sunlight into energy?",
+    "label": 0
+  },
+  {
+    "id": "Q0729",
+    "question": "Who won the Olympic gold medal in basketball in 2012?",
+    "label": 0
+  },
+  {
+    "id": "Q0730",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0731",
+    "question": "What is the difference between a compiler and an interpreter in programming?",
+    "label": 0
+  },
+  {
+    "id": "Q0732",
+    "question": "Who was the ancient Greek philosopher who taught that 'know thyself' was the most important maxim?",
+    "label": 0
+  },
+  {
+    "id": "Q0733",
+    "question": "What is the name of the famous music group that sang 'I Want to Hold Your Hand'?",
+    "label": 0
+  },
+  {
+    "id": "Q0734",
+    "question": "What is the chemical equation for the reaction between hydrogen and oxygen to form water?",
+    "label": 0
+  },
+  {
+    "id": "Q0735",
+    "question": "Who was the author of the famous novel 'Pride and Prejudice'?",
+    "label": 0
+  },
+  {
+    "id": "Q0736",
+    "question": "What is the name of the largest city in Australia?",
+    "label": 0
+  },
+  {
+    "id": "Q0737",
+    "question": "What is the syntax for creating a for loop in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0738",
+    "question": "Who was the first person to walk on the moon?",
+    "label": 0
+  },
+  {
+    "id": "Q0739",
+    "question": "What is the process by which the human body regulates its internal temperature?",
+    "label": 0
+  },
+  {
+    "id": "Q0740",
+    "question": "What is the name of the famous prehistoric monument located in England?",
+    "label": 0
+  },
+  {
+    "id": "Q0741",
+    "question": "Who was the leader of the Soviet Union during World War II?",
+    "label": 0
+  },
+  {
+    "id": "Q0742",
+    "question": "What is the formula for calculating the volume of a rectangular prism?",
+    "label": 0
+  },
+  {
+    "id": "Q0743",
+    "question": "What is the name of the largest city in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0744",
+    "question": "What is the difference between a linked list and an array in data structures?",
+    "label": 0
+  },
+  {
+    "id": "Q0745",
+    "question": "Who was the ancient Egyptian pharaoh who built the Great Pyramid of Giza?",
+    "label": 0
+  },
+  {
+    "id": "Q0746",
+    "question": "What is the name of the famous painting 'The Scream'?",
+    "label": 0
+  },
+  {
+    "id": "Q0747",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0748",
+    "question": "What is the process by which water moves through a plant, from the roots to the leaves?",
+    "label": 0
+  },
+  {
+    "id": "Q0749",
+    "question": "Who won the Tour de France in 2019?",
+    "label": 0
+  },
+  {
+    "id": "Q0750",
+    "question": "What is the name of the largest city in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0751",
+    "question": "What is the syntax for creating a class in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0752",
+    "question": "Who was the author of the famous novel 'The Great Gatsby'?",
+    "label": 0
+  },
+  {
+    "id": "Q0753",
+    "question": "What is the name of the famous music festival held in California?",
+    "label": 0
+  },
+  {
+    "id": "Q0754",
+    "question": "What is the formula for calculating the surface area of a sphere?",
+    "label": 0
+  },
+  {
+    "id": "Q0755",
+    "question": "What is the name of the largest living species of turtle?",
+    "label": 0
+  },
+  {
+    "id": "Q0756",
+    "question": "Who was the first woman to fly solo across the Atlantic Ocean?",
+    "label": 0
+  },
+  {
+    "id": "Q0757",
+    "question": "What is the difference between a queue and a stack in data structures?",
+    "label": 0
+  },
+  {
+    "id": "Q0758",
+    "question": "What is the name of the famous ancient city located in Jordan?",
+    "label": 0
+  },
+  {
+    "id": "Q0759",
+    "question": "What is the chemical equation for the reaction between sodium and chlorine to form table salt?",
+    "label": 0
+  },
+  {
+    "id": "Q0760",
+    "question": "Who was the leader of the Chinese Communist Party during the Chinese Civil War?",
+    "label": 0
+  },
+  {
+    "id": "Q0761",
+    "question": "What is the name of the largest city in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0762",
+    "question": "What is the syntax for declaring a function in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0763",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0764",
+    "question": "Who wrote the Great Gatsby?",
+    "label": 0
+  },
+  {
+    "id": "Q0765",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0766",
+    "question": "What is the largest planet in our solar system?",
+    "label": 0
+  },
+  {
+    "id": "Q0767",
+    "question": "What is the syntax for a for loop in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0768",
+    "question": "Who won the Super Bowl in 2020?",
+    "label": 0
+  },
+  {
+    "id": "Q0769",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0770",
+    "question": "What is the difference between a tuple and a list in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0771",
+    "question": "Who painted the Starry Night?",
+    "label": 0
+  },
+  {
+    "id": "Q0772",
+    "question": "What is the smallest country in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0773",
+    "question": "What is the largest mammal on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0774",
+    "question": "What is the most popular social media platform?",
+    "label": 0
+  },
+  {
+    "id": "Q0775",
+    "question": "Who wrote the first book of the Harry Potter series?",
+    "label": 0
+  },
+  {
+    "id": "Q0776",
+    "question": "What is the boiling point of water in Celsius?",
+    "label": 0
+  },
+  {
+    "id": "Q0777",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0778",
+    "question": "What is the syntax for a while loop in JavaScript?",
+    "label": 0
+  },
+  {
+    "id": "Q0779",
+    "question": "What is the largest mountain range in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0780",
+    "question": "Who won the World Cup in 2018?",
+    "label": 0
+  },
+  {
+    "id": "Q0781",
+    "question": "What is the most widely spoken language in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0782",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0783",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0784",
+    "question": "What is the syntax for a class in C++?",
+    "label": 0
+  },
+  {
+    "id": "Q0785",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0786",
+    "question": "Who wrote the plays of Shakespeare?",
+    "label": 0
+  },
+  {
+    "id": "Q0787",
+    "question": "What is the deepest part of the ocean?",
+    "label": 0
+  },
+  {
+    "id": "Q0788",
+    "question": "What is the largest city in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0789",
+    "question": "What is the syntax for a function in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0790",
+    "question": "What is the most popular video game of all time?",
+    "label": 0
+  },
+  {
+    "id": "Q0791",
+    "question": "What is the largest waterfall in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0792",
+    "question": "Who is the main character in the book To Kill a Mockingbird?",
+    "label": 0
+  },
+  {
+    "id": "Q0793",
+    "question": "What is the chemical symbol for copper?",
+    "label": 0
+  },
+  {
+    "id": "Q0794",
+    "question": "What is the largest city in Europe?",
+    "label": 0
+  },
+  {
+    "id": "Q0795",
+    "question": "What is the syntax for a switch statement in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0796",
+    "question": "What is the largest river in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0797",
+    "question": "Who won the Nobel Prize in Literature in 2019?",
+    "label": 0
+  },
+  {
+    "id": "Q0798",
+    "question": "What is the largest city in Australia?",
+    "label": 0
+  },
+  {
+    "id": "Q0799",
+    "question": "What is the syntax for a lambda function in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0800",
+    "question": "What is the most popular sport in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0801",
+    "question": "What is the largest city in Africa?",
+    "label": 0
+  },
+  {
+    "id": "Q0802",
+    "question": "What is the chemical symbol for iron?",
+    "label": 0
+  },
+  {
+    "id": "Q0803",
+    "question": "What is the largest mountain peak in North America?",
+    "label": 0
+  },
+  {
+    "id": "Q0804",
+    "question": "What is the syntax for a try-catch block in JavaScript?",
+    "label": 0
+  },
+  {
+    "id": "Q0805",
+    "question": "What is the largest lake in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0806",
+    "question": "What is the most popular music genre?",
+    "label": 0
+  },
+  {
+    "id": "Q0807",
+    "question": "What is the largest city in Asia?",
+    "label": 0
+  },
+  {
+    "id": "Q0808",
+    "question": "What is the syntax for a dictionary in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0809",
+    "question": "Blorple squirts wizzle whim wham?",
+    "label": 0
+  },
+  {
+    "id": "Q0810",
+    "question": "Purple elephants danced on the moon?",
+    "label": 0
+  },
+  {
+    "id": "Q0811",
+    "question": "Flumplenooks ate all the cheese?",
+    "label": 0
+  },
+  {
+    "id": "Q0812",
+    "question": "What is the capital of France?",
+    "label": 0
+  },
+  {
+    "id": "Q0813",
+    "question": "Who wrote To Kill a Mockingbird?",
+    "label": 0
+  },
+  {
+    "id": "Q0814",
+    "question": "What is the chemical symbol for gold?",
+    "label": 0
+  },
+  {
+    "id": "Q0815",
+    "question": "In Python, what is the purpose of the 'self' parameter?",
+    "label": 0
+  },
+  {
+    "id": "Q0816",
+    "question": "Which planet in our solar system is known as the 'Red Planet'?",
+    "label": 0
+  },
+  {
+    "id": "Q0817",
+    "question": "What is the largest living species of lizard?",
+    "label": 0
+  },
+  {
+    "id": "Q0818",
+    "question": "Who painted the Starry Night?",
+    "label": 0
+  },
+  {
+    "id": "Q0819",
+    "question": "What is the difference between a while loop and a for loop in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0820",
+    "question": "What is the smallest country in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0821",
+    "question": "Who was the first president of the United States?",
+    "label": 0
+  },
+  {
+    "id": "Q0822",
+    "question": "What is the process by which water moves through a plant?",
+    "label": 0
+  },
+  {
+    "id": "Q0823",
+    "question": "What is the largest mammal on Earth?",
+    "label": 0
+  },
+  {
+    "id": "Q0824",
+    "question": "In what year did the first iPhone release?",
+    "label": 0
+  },
+  {
+    "id": "Q0825",
+    "question": "What is the most widely spoken language in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0826",
+    "question": "What is the largest desert in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0827",
+    "question": "Who wrote the famous poem 'The Road Not Taken'?",
+    "label": 0
+  },
+  {
+    "id": "Q0828",
+    "question": "What is the chemical equation for photosynthesis?",
+    "label": 0
+  },
+  {
+    "id": "Q0829",
+    "question": "What is the name of the largest volcano in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0830",
+    "question": "Who is the main character in The Great Gatsby?",
+    "label": 0
+  },
+  {
+    "id": "Q0831",
+    "question": "What is the purpose of the 'finally' block in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0832",
+    "question": "What is the deepest part of the ocean?",
+    "label": 0
+  },
+  {
+    "id": "Q0833",
+    "question": "What is the largest city in South America?",
+    "label": 0
+  },
+  {
+    "id": "Q0834",
+    "question": "Who was the ancient Greek philosopher who taught that 'know thyself'?",
+    "label": 0
+  },
+  {
+    "id": "Q0835",
+    "question": "What is the process of converting a string to an integer in Python?",
+    "label": 0
+  },
+  {
+    "id": "Q0836",
+    "question": "What is the name of the famous prehistoric monument in England?",
+    "label": 0
+  },
+  {
+    "id": "Q0837",
+    "question": "What is the largest island in the Mediterranean Sea?",
+    "label": 0
+  },
+  {
+    "id": "Q0838",
+    "question": "Who wrote the book 'The Hitchhiker's Guide to the Galaxy'?",
+    "label": 0
+  },
+  {
+    "id": "Q0839",
+    "question": "What is the chemical symbol for silver?",
+    "label": 0
+  },
+  {
+    "id": "Q0840",
+    "question": "What is the most popular social media platform in the world?",
+    "label": 0
+  },
+  {
+    "id": "Q0841",
+    "question": "What is the name of the famous music group that sang 'Yesterday'?",
+    "label": 0
+  },
+  {
+    "id": "Q0842",
+    "question": "What is the purpose of the 'try' block in Java?",
+    "label": 0
+  },
+  {
+    "id": "Q0843",
+    "question": "What is the largest waterfall in the world by volume of water?",
+    "label": 0
+  },
+  {
+    "id": "Q0844",
+    "question": "Flumplenooks are known for their ability to fly, what color are their wings?",
+    "label": 0
+  },
+  {
+    "id": "Q0845",
+    "question": "What is the primary role of an operating system as an intermediary?",
+    "label": 1
+  },
+  {
+    "id": "Q0846",
+    "question": "Define the term 'bootstrap program' in the context of system startup.",
+    "label": 1
+  },
+  {
+    "id": "Q0847",
+    "question": "Where is the bootstrap program typically stored in computer hardware?",
+    "label": 1
+  },
+  {
+    "id": "Q0848",
+    "question": "What are the common features of a 'system daemon'?",
+    "label": 1
+  },
+  {
+    "id": "Q0849",
+    "question": "Compare hardware interrupts and software interrupts (system calls).",
+    "label": 1
+  },
+  {
+    "id": "Q0850",
+    "question": "What is the purpose of an Interrupt Service Routine (ISR)?",
+    "label": 1
+  },
+  {
+    "id": "Q0851",
+    "question": "Describe the function of an Interrupt Vector Table (IVT).",
+    "label": 1
+  },
+  {
+    "id": "Q0852",
+    "question": "Explain the difference between volatile and non-volatile storage.",
+    "label": 1
+  },
+  {
+    "id": "Q0853",
+    "question": "What are the components of the 'Von Neumann architecture' execution cycle?",
+    "label": 1
+  },
+  {
+    "id": "Q0854",
+    "question": "Describe the storage hierarchy in terms of speed and cost.",
+    "label": 1
+  },
+  {
+    "id": "Q0855",
+    "question": "Compare the performance characteristics of SSDs and HDDs.",
+    "label": 1
+  },
+  {
+    "id": "Q0856",
+    "question": "What is the role of a 'device driver' in an I/O subsystem?",
+    "label": 1
+  },
+  {
+    "id": "Q0857",
+    "question": "How does Direct Memory Access (DMA) reduce CPU overhead?",
+    "label": 1
+  },
+  {
+    "id": "Q0858",
+    "question": "What is the difference between a bus system and a switch-based architecture?",
+    "label": 1
+  },
+  {
+    "id": "Q0859",
+    "question": "Define a 'single-processor system' according to the sources.",
+    "label": 1
+  },
+  {
+    "id": "Q0860",
+    "question": "What are the three main advantages of multiprocessor systems?",
+    "label": 1
+  },
+  {
+    "id": "Q0861",
+    "question": "Compare Asymmetric Multiprocessing (AMP) and Symmetric Multiprocessing (SMP).",
+    "label": 1
+  },
+  {
+    "id": "Q0862",
+    "question": "Explain the concept of 'Graceful Degradation' in multiprocessor systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0863",
+    "question": "What is the difference between UMA and NUMA memory access models?",
+    "label": 1
+  },
+  {
+    "id": "Q0864",
+    "question": "Describe the structure of a 'blade server'.",
+    "label": 1
+  },
+  {
+    "id": "Q0865",
+    "question": "What is the primary objective of multiprogramming?",
+    "label": 1
+  },
+  {
+    "id": "Q0866",
+    "question": "Define 'time-sharing' or 'multitasking' in operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0867",
+    "question": "Explain how dual-mode operation protects the system using a mode bit.",
+    "label": 1
+  },
+  {
+    "id": "Q0868",
+    "question": "What occurs when a user application invokes a system call?",
+    "label": 1
+  },
+  {
+    "id": "Q0869",
+    "question": "What is the purpose of a system timer in preventing infinite loops?",
+    "label": 1
+  },
+  {
+    "id": "Q0870",
+    "question": "How does the operating system manage the transition from user to kernel mode?",
+    "label": 1
+  },
+  {
+    "id": "Q0871",
+    "question": "List five standard services provided by an operating system.",
+    "label": 1
+  },
+  {
+    "id": "Q0872",
+    "question": "Compare Command Line Interfaces (CLI) and Graphical User Interfaces (GUI).",
+    "label": 1
+  },
+  {
+    "id": "Q0873",
+    "question": "What are 'shell scripts' and why are they used?",
+    "label": 1
+  },
+  {
+    "id": "Q0874",
+    "question": "Explain the concept of an Application Programming Interface (API).",
+    "label": 1
+  },
+  {
+    "id": "Q0875",
+    "question": "Describe the three methods for passing parameters to the OS during system calls.",
+    "label": 1
+  },
+  {
+    "id": "Q0876",
+    "question": "What are the six major categories of system calls?",
+    "label": 1
+  },
+  {
+    "id": "Q0877",
+    "question": "Compare 'fork()' in Unix with 'CreateProcess()' in Windows.",
+    "label": 1
+  },
+  {
+    "id": "Q0878",
+    "question": "What is the purpose of a 'system program' or 'system utility'?",
+    "label": 1
+  },
+  {
+    "id": "Q0879",
+    "question": "Define the 'policy vs mechanism' separation principle.",
+    "label": 1
+  },
+  {
+    "id": "Q0880",
+    "question": "What are the advantages of writing an OS in a high-level language like C?",
+    "label": 1
+  },
+  {
+    "id": "Q0881",
+    "question": "Describe the 'monolithic' structure of an operating system.",
+    "label": 1
+  },
+  {
+    "id": "Q0882",
+    "question": "Explain the 'layered approach' to system design.",
+    "label": 1
+  },
+  {
+    "id": "Q0883",
+    "question": "What is a 'microkernel' and what are its benefits?",
+    "label": 1
+  },
+  {
+    "id": "Q0884",
+    "question": "How do loadable kernel modules (LKMs) improve flexibility?",
+    "label": 1
+  },
+  {
+    "id": "Q0885",
+    "question": "Describe the hybrid structure of Mac OS X.",
+    "label": 1
+  },
+  {
+    "id": "Q0886",
+    "question": "What is virtualization in the context of operating systems?",
+    "label": 1
+  },
+  {
+    "id": "Q0887",
+    "question": "Compare 'Type 0', 'Type 1', and 'Type 2' hypervisors.",
+    "label": 1
+  },
+  {
+    "id": "Q0888",
+    "question": "Explain the concept of 'paravirtualization'.",
+    "label": 1
+  },
+  {
+    "id": "Q0889",
+    "question": "What is 'live migration' of a virtual machine?",
+    "label": 1
+  },
+  {
+    "id": "Q0890",
+    "question": "Describe 'Cloud Computing' as a service delivery model.",
+    "label": 1
+  },
+  {
+    "id": "Q0891",
+    "question": "Compare SaaS, PaaS, and IaaS cloud services.",
+    "label": 1
+  },
+  {
+    "id": "Q0892",
+    "question": "What is the role of a 'Virtual Machine Manager' (VMM)?",
+    "label": 1
+  },
+  {
+    "id": "Q0893",
+    "question": "Explain 'binary translation' in virtualization.",
+    "label": 1
+  },
+  {
+    "id": "Q0894",
+    "question": "What is a 'trap-and-emulate' approach in hypervisors?",
+    "label": 1
+  },
+  {
+    "id": "Q0895",
+    "question": "Define 'core dump' and 'crash dump'.",
+    "label": 1
+  },
+  {
+    "id": "Q0896",
+    "question": "What is the purpose of the 'DTrace' facility in Solaris?",
+    "label": 1
+  },
+  {
+    "id": "Q0897",
+    "question": "Describe the process of 'System Generation' (SYSGEN).",
+    "label": 1
+  },
+  {
+    "id": "Q0898",
+    "question": "What is an 'open-source' operating system?",
+    "label": 1
+  },
+  {
+    "id": "Q0899",
+    "question": "What is the historical significance of the 'GNU' project?",
+    "label": 1
+  },
+  {
+    "id": "Q0900",
+    "question": "How do 'mobile' operating systems differ from traditional ones?",
+    "label": 1
+  },
+  {
+    "id": "Q0901",
+    "question": "What is the function of the 'init' process in Linux?",
+    "label": 1
+  },
+  {
+    "id": "Q0902",
+    "question": "Explain 'Program Counter' (PC) in a process context.",
+    "label": 1
+  },
+  {
+    "id": "Q0903",
+    "question": "What are 'registers' in the CPU hierarchy?",
+    "label": 1
+  },
+  {
+    "id": "Q0904",
+    "question": "Define 'cache coherency' in multiprocessor systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0905",
+    "question": "What is a 'distributed system'?",
+    "label": 1
+  },
+  {
+    "id": "Q0906",
+    "question": "Compare 'Client-Server' and 'Peer-to-Peer' models.",
+    "label": 1
+  },
+  {
+    "id": "Q0907",
+    "question": "What are the common features of the 'Android' stack?",
+    "label": 1
+  },
+  {
+    "id": "Q0908",
+    "question": "Define 'middleware' in mobile operating systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0909",
+    "question": "What is the purpose of the 'Hardware Abstraction Layer' (HAL)?",
+    "label": 1
+  },
+  {
+    "id": "Q0910",
+    "question": "Describe the 'micro TLB' in ARM architecture.",
+    "label": 1
+  },
+  {
+    "id": "Q0911",
+    "question": "Explain 'Section' vs 'Page' in ARM memory management.",
+    "label": 1
+  },
+  {
+    "id": "Q0912",
+    "question": "What is the 'working set model' used for?",
+    "label": 1
+  },
+  {
+    "id": "Q0913",
+    "question": "Describe 'Kernel Data Structures' like linked lists and trees.",
+    "label": 1
+  },
+  {
+    "id": "Q0914",
+    "question": "What is the significance of 'Moore's Law' for operating systems?",
+    "label": 1
+  },
+  {
+    "id": "Q0915",
+    "question": "Explain 'System Boot' sequence on a PC.",
+    "label": 1
+  },
+  {
+    "id": "Q0916",
+    "question": "What is 'Protection' vs 'Security' in OS terminology?",
+    "label": 1
+  },
+  {
+    "id": "Q0917",
+    "question": "What are the 'Coffman Conditions' related to?",
+    "label": 1
+  },
+  {
+    "id": "Q0918",
+    "question": "Define 'Throughput' as a performance metric.",
+    "label": 1
+  },
+  {
+    "id": "Q0919",
+    "question": "What is 'Turnaround Time' in scheduling?",
+    "label": 1
+  },
+  {
+    "id": "Q0920",
+    "question": "Describe 'Response Time' in interactive systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0921",
+    "question": "What is 'Effective Memory Access Time' (EMAT)?",
+    "label": 1
+  },
+  {
+    "id": "Q0922",
+    "question": "How does 'caching' improve system performance?",
+    "label": 1
+  },
+  {
+    "id": "Q0923",
+    "question": "What is 'virtual memory' and why is it used?",
+    "label": 1
+  },
+  {
+    "id": "Q0924",
+    "question": "Explain the role of the 'Object Manager' in Windows.",
+    "label": 1
+  },
+  {
+    "id": "Q0925",
+    "question": "What is 'Active Directory' in Windows environments?",
+    "label": 0
+  },
+  {
+    "id": "Q0926",
+    "question": "Describe the 'POSIX' standard.",
+    "label": 1
+  },
+  {
+    "id": "Q0927",
+    "question": "What is 'Mach' and how does it relate to Mac OS X?",
+    "label": 1
+  },
+  {
+    "id": "Q0928",
+    "question": "What are 'system services' in the context of Windows?",
+    "label": 1
+  },
+  {
+    "id": "Q0929",
+    "question": "Compare 'interpreted' vs 'compiled' language support in OS.",
+    "label": 1
+  },
+  {
+    "id": "Q0930",
+    "question": "What is the 'User Account Control' (UAC) in Windows?",
+    "label": 0
+  },
+  {
+    "id": "Q0931",
+    "question": "Describe the function of the 'Windows Executive'.",
+    "label": 1
+  },
+  {
+    "id": "Q0932",
+    "question": "What is a 'Kernel Thread' in Windows?",
+    "label": 1
+  },
+  {
+    "id": "Q0933",
+    "question": "What are 'environment variables' used for?",
+    "label": 0
+  },
+  {
+    "id": "Q0934",
+    "question": "Explain 'Process Synchronization' briefly.",
+    "label": 1
+  },
+  {
+    "id": "Q0935",
+    "question": "What is 'privileged mode'?",
+    "label": 1
+  },
+  {
+    "id": "Q0936",
+    "question": "What is 'Real-Time' computing?",
+    "label": 1
+  },
+  {
+    "id": "Q0937",
+    "question": "How does 'paging' differ from 'segmentation'?",
+    "label": 1
+  },
+  {
+    "id": "Q0938",
+    "question": "What is 'Fragmentation' in memory?",
+    "label": 1
+  },
+  {
+    "id": "Q0939",
+    "question": "Define 'File System' at a high level.",
+    "label": 1
+  },
+  {
+    "id": "Q0940",
+    "question": "What is 'I/O Scheduling'?",
+    "label": 1
+  },
+  {
+    "id": "Q0941",
+    "question": "Compare '32-bit' vs '64-bit' addressing.",
+    "label": 1
+  },
+  {
+    "id": "Q0942",
+    "question": "What is the 'TLB' in paging hardware?",
+    "label": 1
+  },
+  {
+    "id": "Q0943",
+    "question": "Describe 'Swap Space'.",
+    "label": 1
+  },
+  {
+    "id": "Q0944",
+    "question": "What is the most common programming language for OS kernels?",
+    "label": 1
+  },
+  {
+    "id": "Q0945",
+    "question": "What is the formal definition of a 'process'?",
+    "label": 1
+  },
+  {
+    "id": "Q0946",
+    "question": "How does a process differ from a program?",
+    "label": 1
+  },
+  {
+    "id": "Q0947",
+    "question": "Describe the five states a process can be in during its lifecycle.",
+    "label": 1
+  },
+  {
+    "id": "Q0948",
+    "question": "What information is typically stored in a Process Control Block (PCB)?",
+    "label": 1
+  },
+  {
+    "id": "Q0949",
+    "question": "Explain the role of the 'Short-term Scheduler' (CPU Scheduler).",
+    "label": 1
+  },
+  {
+    "id": "Q0950",
+    "question": "What is the difference between a Long-term and a Medium-term scheduler?",
+    "label": 1
+  },
+  {
+    "id": "Q0951",
+    "question": "Define 'Context Switch' and the overhead associated with it.",
+    "label": 1
+  },
+  {
+    "id": "Q0952",
+    "question": "What is a 'Parent Process' and a 'Child Process'?",
+    "label": 1
+  },
+  {
+    "id": "Q0953",
+    "question": "Describe the 'fork()' system call in UNIX-like systems.",
+    "label": 1
+  },
+  {
+    "id": "Q0954",
+    "question": "What does the 'exec()' system call do?",
+    "label": 1
+  },
+  {
+    "id": "Q0955",
+    "question": "Explain the purpose of the 'wait()' system call for a parent process.",
+    "label": 1
+  },
+  {
+    "id": "Q0956",
+    "question": "What is a 'Zombie Process' and an 'Orphan Process'?",
+    "label": 1
+  },
+  {
+    "id": "Q0957",
+    "question": "Describe the two main models of Inter-Process Communication (IPC).",
+    "label": 1
+  },
+  {
+    "id": "Q0958",
+    "question": "What are the advantages of 'Shared Memory' as an IPC mechanism?",
+    "label": 1
+  },
+  {
+    "id": "Q0959",
+    "question": "Explain 'Message Passing' and its 'send/receive' primitives.",
+    "label": 1
+  },
+  {
+    "id": "Q0960",
+    "question": "What is the 'Producer-Consumer' problem?",
+    "label": 1
+  },
+  {
+    "id": "Q0961",
+    "question": "Define 'Direct Communication' vs 'Indirect Communication' (Mailboxes).",
+    "label": 1
+  },
+  {
+    "id": "Q0962",
+    "question": "What is a 'Blocking' vs 'Non-blocking' IPC call?",
+    "label": 1
+  },
+  {
+    "id": "Q0963",
+    "question": "Describe 'Remote Procedure Calls' (RPC).",
+    "label": 1
+  },
+  {
+    "id": "Q0964",
+    "question": "What is a 'Socket' in network communication?",
+    "label": 1
+  },
+  {
+    "id": "Q0965",
+    "question": "Define 'CPU Burst' and 'I/O Burst'.",
+    "label": 1
+  },
+  {
+    "id": "Q0966",
+    "question": "What are the primary criteria for CPU scheduling?",
+    "label": 1
+  },
+  {
+    "id": "Q0967",
+    "question": "Explain the 'First-Come, First-Served' (FCFS) scheduling algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q0968",
+    "question": "What is the 'Convoy Effect' in FCFS scheduling?",
+    "label": 1
+  },
+  {
+    "id": "Q0969",
+    "question": "Describe the 'Shortest-Job-First' (SJF) scheduling algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q0970",
+    "question": "Explain 'Preemptive' vs 'Non-preemptive' SJF (SRTF).",
+    "label": 1
+  },
+  {
+    "id": "Q0971",
+    "question": "What is 'Round-Robin' (RR) scheduling?",
+    "label": 1
+  },
+  {
+    "id": "Q0972",
+    "question": "How does the 'Time Quantum' affect RR scheduling performance?",
+    "label": 1
+  },
+  {
+    "id": "Q0973",
+    "question": "Describe 'Priority Scheduling' and the problem of 'Starvation'.",
+    "label": 1
+  },
+  {
+    "id": "Q0974",
+    "question": "Explain 'Aging' as a solution to starvation.",
+    "label": 1
+  },
+  {
+    "id": "Q0975",
+    "question": "What is 'Multilevel Queue Scheduling'?",
+    "label": 1
+  },
+  {
+    "id": "Q0976",
+    "question": "Explain 'Multilevel Feedback Queue Scheduling' (MLFQ).",
+    "label": 1
+  },
+  {
+    "id": "Q0977",
+    "question": "What are the parameters used to define an MLFQ scheduler?",
+    "label": 1
+  },
+  {
+    "id": "Q0978",
+    "question": "Describe 'Multiple-Processor Scheduling' challenges.",
+    "label": 1
+  },
+  {
+    "id": "Q0979",
+    "question": "What is 'Processor Affinity'?",
+    "label": 1
+  },
+  {
+    "id": "Q0980",
+    "question": "Explain 'Load Balancing' (Push vs Pull migration).",
+    "label": 1
+  },
+  {
+    "id": "Q0981",
+    "question": "What are 'Symmetric Multiprocessing' (SMP) scheduling issues?",
+    "label": 1
+  },
+  {
+    "id": "Q0982",
+    "question": "What is a 'Thread' and how does it differ from a process?",
+    "label": 1
+  },
+  {
+    "id": "Q0983",
+    "question": "Describe 'User-level Threads' vs 'Kernel-level Threads'.",
+    "label": 1
+  },
+  {
+    "id": "Q0984",
+    "question": "Explain the 'Many-to-One' multithreading model.",
+    "label": 1
+  },
+  {
+    "id": "Q0985",
+    "question": "Explain the 'One-to-One' multithreading model.",
+    "label": 1
+  },
+  {
+    "id": "Q0986",
+    "question": "Explain the 'Many-to-Many' multithreading model.",
+    "label": 1
+  },
+  {
+    "id": "Q0987",
+    "question": "What is a 'Lightweight Process' (LWP)?",
+    "label": 1
+  },
+  {
+    "id": "Q0988",
+    "question": "Describe the benefits of multithreaded programming.",
+    "label": 1
+  },
+  {
+    "id": "Q0989",
+    "question": "What is 'Pthreads'?",
+    "label": 1
+  },
+  {
+    "id": "Q0990",
+    "question": "Describe thread creation in Java.",
+    "label": 1
+  },
+  {
+    "id": "Q0991",
+    "question": "Explain the 'Completely Fair Scheduler' (CFS) in Linux.",
+    "label": 1
+  },
+  {
+    "id": "Q0992",
+    "question": "What is 'vruntime' in the Linux CFS?",
+    "label": 1
+  },
+  {
+    "id": "Q0993",
+    "question": "How does Windows handle thread scheduling priorities?",
+    "label": 1
+  },
+  {
+    "id": "Q0994",
+    "question": "What is 'Real-time' scheduling in Solaris?",
+    "label": 1
+  },
+  {
+    "id": "Q0995",
+    "question": "Define 'Throughput' in CPU scheduling.",
+    "label": 1
+  },
+  {
+    "id": "Q0996",
+    "question": "What is 'CPU Utilization'?",
+    "label": 1
+  },
+  {
+    "id": "Q0997",
+    "question": "Describe the 'Dispatcher' module's functions.",
+    "label": 1
+  },
+  {
+    "id": "Q0998",
+    "question": "What is 'Dispatch Latency'?",
+    "label": 1
+  },
+  {
+    "id": "Q0999",
+    "question": "What is the relationship between 'in' and 'out' pointers in a bounded buffer?",
+    "label": 1
+  },
+  {
+    "id": "Q1000",
+    "question": "Explain 'Marshalling' in RPC.",
+    "label": 1
+  },
+  {
+    "id": "Q1001",
+    "question": "What is 'Idempotent' operation in the context of RPC?",
+    "label": 1
+  },
+  {
+    "id": "Q1002",
+    "question": "How does the 'pipe()' system call work in UNIX?",
+    "label": 1
+  },
+  {
+    "id": "Q1003",
+    "question": "What are 'Ordinary Pipes' vs 'Named Pipes'?",
+    "label": 1
+  },
+  {
+    "id": "Q1004",
+    "question": "What is 'Zero Capacity' buffering?",
+    "label": 1
+  },
+  {
+    "id": "Q1005",
+    "question": "Define 'Multicore' systems.",
+    "label": 1
+  },
+  {
+    "id": "Q1006",
+    "question": "What is 'Data Parallelism'?",
+    "label": 1
+  },
+  {
+    "id": "Q1007",
+    "question": "What is 'Task Parallelism'?",
+    "label": 1
+  },
+  {
+    "id": "Q1008",
+    "question": "Explain 'Amdahl's Law'.",
+    "label": 1
+  },
+  {
+    "id": "Q1009",
+    "question": "What are 'Hyper-threads' (Hardware threads)?",
+    "label": 1
+  },
+  {
+    "id": "Q1010",
+    "question": "Describe 'Thread Pools'.",
+    "label": 1
+  },
+  {
+    "id": "Q1011",
+    "question": "What is 'Implicit Threading'?",
+    "label": 1
+  },
+  {
+    "id": "Q1012",
+    "question": "Describe 'OpenMP'.",
+    "label": 1
+  },
+  {
+    "id": "Q1013",
+    "question": "What is 'Grand Central Dispatch' (GCD)?",
+    "label": 1
+  },
+  {
+    "id": "Q1014",
+    "question": "Explain 'Thread Cancellation' (Asynchronous vs Deferred).",
+    "label": 1
+  },
+  {
+    "id": "Q1015",
+    "question": "What is 'Thread Local Storage' (TLS)?",
+    "label": 1
+  },
+  {
+    "id": "Q1016",
+    "question": "Define 'Scheduler Activations'.",
+    "label": 1
+  },
+  {
+    "id": "Q1017",
+    "question": "What is the 'Upcall' mechanism?",
+    "label": 1
+  },
+  {
+    "id": "Q1018",
+    "question": "Compare Unix 'wait()' with Windows 'WaitForSingleObject()'.",
+    "label": 1
+  },
+  {
+    "id": "Q1019",
+    "question": "Explain 'Task Struct' in Linux.",
+    "label": 1
+  },
+  {
+    "id": "Q1020",
+    "question": "Describe the 'Chrome Multiprocess Architecture'.",
+    "label": 1
+  },
+  {
+    "id": "Q1021",
+    "question": "What are 'Renderer' processes in Chrome?",
+    "label": 1
+  },
+  {
+    "id": "Q1022",
+    "question": "What is 'Message Passing' in the Mach OS?",
+    "label": 1
+  },
+  {
+    "id": "Q1023",
+    "question": "What is 'ALPC' in Windows?",
+    "label": 1
+  },
+  {
+    "id": "Q1024",
+    "question": "Describe the 'Producer' loop in shared memory.",
+    "label": 1
+  },
+  {
+    "id": "Q1025",
+    "question": "Describe the 'Consumer' loop in shared memory.",
+    "label": 1
+  },
+  {
+    "id": "Q1026",
+    "question": "What is 'Unbounded Buffer' vs 'Bounded Buffer'?",
+    "label": 1
+  },
+  {
+    "id": "Q1027",
+    "question": "Define 'Response Time' for CPU scheduling.",
+    "label": 1
+  },
+  {
+    "id": "Q1028",
+    "question": "Explain 'Wait Time' for CPU scheduling.",
+    "label": 1
+  },
+  {
+    "id": "Q1029",
+    "question": "What is the 'Gantt Chart' used for?",
+    "label": 1
+  },
+  {
+    "id": "Q1030",
+    "question": "How do you calculate 'Average Waiting Time'?",
+    "label": 1
+  },
+  {
+    "id": "Q1031",
+    "question": "What is 'Determinant Scheduling'?",
+    "label": 0
+  },
+  {
+    "id": "Q1032",
+    "question": "Describe 'Soft Real-time' vs 'Hard Real-time' scheduling.",
+    "label": 1
+  },
+  {
+    "id": "Q1033",
+    "question": "What is 'Interrupt Latency' in real-time systems?",
+    "label": 1
+  },
+  {
+    "id": "Q1034",
+    "question": "What is 'Priority Inversion'?",
+    "label": 1
+  },
+  {
+    "id": "Q1035",
+    "question": "Explain 'Priority Inheritance Protocol'.",
+    "label": 1
+  },
+  {
+    "id": "Q1036",
+    "question": "What is 'Rate-Monotonic Scheduling'?",
+    "label": 1
+  },
+  {
+    "id": "Q1037",
+    "question": "What is 'Earliest Deadline First' (EDF) scheduling?",
+    "label": 1
+  },
+  {
+    "id": "Q1038",
+    "question": "Define 'Proportional Share Scheduling'.",
+    "label": 1
+  },
+  {
+    "id": "Q1039",
+    "question": "What is 'Pthread_attr_setscope' used for?",
+    "label": 1
+  },
+  {
+    "id": "Q1040",
+    "question": "Explain 'System Contention Scope' (SCS).",
+    "label": 1
+  },
+  {
+    "id": "Q1041",
+    "question": "Explain 'Process Contention Scope' (PCS).",
+    "label": 1
+  },
+  {
+    "id": "Q1042",
+    "question": "What are 'Real-time Threads' in POSIX?",
+    "label": 1
+  },
+  {
+    "id": "Q1043",
+    "question": "Describe the 'Solaris Dispatch Table'.",
+    "label": 1
+  },
+  {
+    "id": "Q1044",
+    "question": "What are the scheduling classes in Solaris?",
+    "label": 1
+  },
+  {
+    "id": "Q1045",
+    "question": "What is a 'cooperating process'?",
+    "label": 1
+  },
+  {
+    "id": "Q1046",
+    "question": "Define 'race condition' with an example from the sources.",
+    "label": 1
+  },
+  {
+    "id": "Q1047",
+    "question": "What is the 'critical section' of a process?",
+    "label": 1
+  },
+  {
+    "id": "Q1048",
+    "question": "List the three requirements for a solution to the critical-section problem.",
+    "label": 1
+  },
+  {
+    "id": "Q1049",
+    "question": "Explain the 'mutual exclusion' requirement.",
+    "label": 1
+  },
+  {
+    "id": "Q1050",
+    "question": "Explain the 'progress' requirement in synchronization.",
+    "label": 1
+  },
+  {
+    "id": "Q1051",
+    "question": "What is 'bounded waiting' in the context of critical sections?",
+    "label": 1
+  },
+  {
+    "id": "Q1052",
+    "question": "Compare preemptive and nonpreemptive kernels regarding synchronization.",
+    "label": 1
+  },
+  {
+    "id": "Q1053",
+    "question": "What are the benefits of a preemptive kernel over a nonpreemptive one?",
+    "label": 1
+  },
+  {
+    "id": "Q1054",
+    "question": "Describe Peterson\u2019s solution for two processes.",
+    "label": 1
+  },
+  {
+    "id": "Q1055",
+    "question": "What shared variables are used in Peterson\u2019s solution?",
+    "label": 1
+  },
+  {
+    "id": "Q1056",
+    "question": "Why is Peterson\u2019s solution not guaranteed on modern architectures?",
+    "label": 1
+  },
+  {
+    "id": "Q1057",
+    "question": "Define the 'test_and_set' hardware instruction.",
+    "label": 1
+  },
+  {
+    "id": "Q1058",
+    "question": "How does the 'compare_and_swap' instruction provide mutual exclusion?",
+    "label": 1
+  },
+  {
+    "id": "Q1059",
+    "question": "What is the meaning of 'atomicity' in synchronization instructions?",
+    "label": 1
+  },
+  {
+    "id": "Q1060",
+    "question": "What is a 'mutex lock'?",
+    "label": 1
+  },
+  {
+    "id": "Q1061",
+    "question": "Describe the 'acquire()' and 'release()' functions of a mutex.",
+    "label": 1
+  },
+  {
+    "id": "Q1062",
+    "question": "What is 'busy waiting' or 'spinning' in a lock?",
+    "label": 1
+  },
+  {
+    "id": "Q1063",
+    "question": "Define a 'spinlock' and its use cases.",
+    "label": 1
+  },
+  {
+    "id": "Q1064",
+    "question": "What is a 'semaphore' and who suggested the concept?",
+    "label": 1
+  },
+  {
+    "id": "Q1065",
+    "question": "Compare 'counting semaphores' and 'binary semaphores'.",
+    "label": 1
+  },
+  {
+    "id": "Q1066",
+    "question": "Explain the atomic operations 'wait()' and 'signal()' for semaphores.",
+    "label": 1
+  },
+  {
+    "id": "Q1067",
+    "question": "How can semaphores be used to solve synchronization ordering (e.g., S1 before S2)?",
+    "label": 1
+  },
+  {
+    "id": "Q1068",
+    "question": "Describe a semaphore implementation that avoids busy waiting.",
+    "label": 1
+  },
+  {
+    "id": "Q1069",
+    "question": "What is the function of 'block()' and 'wakeup()' in semaphore logic?",
+    "label": 1
+  },
+  {
+    "id": "Q1070",
+    "question": "Explain the 'deadlock' situation using two semaphores S and Q.",
+    "label": 1
+  },
+  {
+    "id": "Q1071",
+    "question": "Define 'indefinite blocking' or 'starvation' in semaphores.",
+    "label": 1
+  },
+  {
+    "id": "Q1072",
+    "question": "What is 'priority inversion' in real-time systems?",
+    "label": 1
+  },
+  {
+    "id": "Q1073",
+    "question": "Explain the 'priority-inheritance protocol'.",
+    "label": 1
+  },
+  {
+    "id": "Q1074",
+    "question": "Describe the Martian Pathfinder priority inversion incident.",
+    "label": 1
+  },
+  {
+    "id": "Q1075",
+    "question": "What is the 'bounded-buffer problem'?",
+    "label": 1
+  },
+  {
+    "id": "Q1076",
+    "question": "Describe the 'readers\u2013writers problem'.",
+    "label": 1
+  },
+  {
+    "id": "Q1077",
+    "question": "Compare 'first' and 'second' readers-writers problems.",
+    "label": 1
+  },
+  {
+    "id": "Q1078",
+    "question": "What are 'reader\u2013writer locks' and when are they most useful?",
+    "label": 1
+  },
+  {
+    "id": "Q1079",
+    "question": "Describe the 'dining-philosophers problem'.",
+    "label": 1
+  },
+  {
+    "id": "Q1080",
+    "question": "How can a deadlock occur in the dining-philosophers problem?",
+    "label": 1
+  },
+  {
+    "id": "Q1081",
+    "question": "What is a 'monitor' in process synchronization?",
+    "label": 1
+  },
+  {
+    "id": "Q1082",
+    "question": "Explain 'condition variables' within a monitor.",
+    "label": 1
+  },
+  {
+    "id": "Q1083",
+    "question": "What is the difference between 'signal and wait' and 'signal and continue' in monitors?",
+    "label": 1
+  },
+  {
+    "id": "Q1084",
+    "question": "Describe a monitor-based solution to the dining-philosophers problem.",
+    "label": 1
+  },
+  {
+    "id": "Q1085",
+    "question": "How can a monitor be implemented using semaphores?",
+    "label": 1
+  },
+  {
+    "id": "Q1086",
+    "question": "What is 'conditional-wait' or 'wait(c)' in a monitor?",
+    "label": 1
+  },
+  {
+    "id": "Q1087",
+    "question": "How does Java support monitors and synchronization?",
+    "label": 1
+  },
+  {
+    "id": "Q1088",
+    "question": "Describe 'dispatcher objects' in Windows synchronization.",
+    "label": 1
+  },
+  {
+    "id": "Q1089",
+    "question": "Explain 'signaled' vs 'nonsignaled' states in Windows.",
+    "label": 1
+  },
+  {
+    "id": "Q1090",
+    "question": "What is a 'critical-section object' in Windows?",
+    "label": 1
+  },
+  {
+    "id": "Q1091",
+    "question": "How does Linux handle kernel synchronization on single-processor systems?",
+    "label": 1
+  },
+  {
+    "id": "Q1092",
+    "question": "Explain 'adaptive mutexes' in Solaris.",
+    "label": 1
+  },
+  {
+    "id": "Q1093",
+    "question": "What is a 'turnstile' in Solaris?",
+    "label": 1
+  },
+  {
+    "id": "Q1094",
+    "question": "List the synchronization tools available in Pthreads.",
+    "label": 1
+  },
+  {
+    "id": "Q1095",
+    "question": "What are 'named' and 'unnamed' semaphores in POSIX?",
+    "label": 1
+  },
+  {
+    "id": "Q1096",
+    "question": "Define 'transactional memory'.",
+    "label": 1
+  },
+  {
+    "id": "Q1097",
+    "question": "How does OpenMP support critical sections?",
+    "label": 1
+  },
+  {
+    "id": "Q1098",
+    "question": "Explain how functional programming avoid race conditions.",
+    "label": 1
+  },
+  {
+    "id": "Q1099",
+    "question": "What is 'deadlock' in a multiprogramming environment?",
+    "label": 1
+  },
+  {
+    "id": "Q1100",
+    "question": "List the four Coffman conditions for deadlock.",
+    "label": 1
+  },
+  {
+    "id": "Q1101",
+    "question": "Define 'mutual exclusion' as a deadlock condition.",
+    "label": 1
+  },
+  {
+    "id": "Q1102",
+    "question": "Define 'hold and wait' as a deadlock condition.",
+    "label": 1
+  },
+  {
+    "id": "Q1103",
+    "question": "Define 'no preemption' as a deadlock condition.",
+    "label": 1
+  },
+  {
+    "id": "Q1104",
+    "question": "Define 'circular wait' as a deadlock condition.",
+    "label": 1
+  },
+  {
+    "id": "Q1105",
+    "question": "Describe the 'resource-allocation graph'.",
+    "label": 1
+  },
+  {
+    "id": "Q1106",
+    "question": "In a graph, what does an edge from a process to a resource indicate?",
+    "label": 1
+  },
+  {
+    "id": "Q1107",
+    "question": "In a graph, what does an edge from a resource to a process indicate?",
+    "label": 1
+  },
+  {
+    "id": "Q1108",
+    "question": "If a resource-allocation graph contains no cycles, is the system deadlocked?",
+    "label": 1
+  },
+  {
+    "id": "Q1109",
+    "question": "When does a cycle in the graph NOT imply a deadlock?",
+    "label": 1
+  },
+  {
+    "id": "Q1110",
+    "question": "List three methods for handling deadlocks.",
+    "label": 1
+  },
+  {
+    "id": "Q1111",
+    "question": "What is 'deadlock ignorance' (The Ostrich Algorithm)?",
+    "label": 1
+  },
+  {
+    "id": "Q1112",
+    "question": "What is the primary goal of 'deadlock prevention'?",
+    "label": 1
+  },
+  {
+    "id": "Q1113",
+    "question": "How can we prevent 'hold and wait'?",
+    "label": 1
+  },
+  {
+    "id": "Q1114",
+    "question": "How can we prevent 'circular wait' by resource ordering?",
+    "label": 1
+  },
+  {
+    "id": "Q1115",
+    "question": "What is 'deadlock avoidance'?",
+    "label": 1
+  },
+  {
+    "id": "Q1116",
+    "question": "Define a 'safe state' in avoidance theory.",
+    "label": 1
+  },
+  {
+    "id": "Q1117",
+    "question": "Is an unsafe state always deadlocked?",
+    "label": 1
+  },
+  {
+    "id": "Q1118",
+    "question": "What is a 'safe sequence'?",
+    "label": 1
+  },
+  {
+    "id": "Q1119",
+    "question": "Describe the 'claim edge' in a resource-allocation graph.",
+    "label": 1
+  },
+  {
+    "id": "Q1120",
+    "question": "Explain the 'Banker\u2019s Algorithm'.",
+    "label": 1
+  },
+  {
+    "id": "Q1121",
+    "question": "List the four data structures used in the Banker\u2019s Algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q1122",
+    "question": "How is the 'Need' matrix calculated in the Banker\u2019s Algorithm?",
+    "label": 1
+  },
+  {
+    "id": "Q1123",
+    "question": "Describe the safety algorithm used to check for a safe state.",
+    "label": 1
+  },
+  {
+    "id": "Q1124",
+    "question": "Explain the 'Resource-Request Algorithm' in Banker\u2019s context.",
+    "label": 1
+  },
+  {
+    "id": "Q1125",
+    "question": "What is 'deadlock detection'?",
+    "label": 1
+  },
+  {
+    "id": "Q1126",
+    "question": "Describe the 'wait-for graph' for single-instance resource types.",
+    "label": 1
+  },
+  {
+    "id": "Q1127",
+    "question": "When should the deadlock-detection algorithm be invoked?",
+    "label": 1
+  },
+  {
+    "id": "Q1128",
+    "question": "List two options for 'deadlock recovery'.",
+    "label": 1
+  },
+  {
+    "id": "Q1129",
+    "question": "Describe 'process termination' as a recovery method.",
+    "label": 1
+  },
+  {
+    "id": "Q1130",
+    "question": "Describe 'resource preemption' as a recovery method.",
+    "label": 1
+  },
+  {
+    "id": "Q1131",
+    "question": "What is 'rollback' in the context of deadlock recovery?",
+    "label": 1
+  },
+  {
+    "id": "Q1132",
+    "question": "How can starvation be prevented during resource preemption?",
+    "label": 1
+  },
+  {
+    "id": "Q1133",
+    "question": "Which of the Coffman conditions is broken by requiring all resources at once?",
+    "label": 1
+  },
+  {
+    "id": "Q1134",
+    "question": "What are the common mnemonics for deadlock according to the notes?",
+    "label": 1
+  },
+  {
+    "id": "Q1135",
+    "question": "Explain 'atomic_t' in Linux synchronization.",
+    "label": 1
+  },
+  {
+    "id": "Q1136",
+    "question": "What are 'memory-mapped files' in IPC?",
+    "label": 1
+  },
+  {
+    "id": "Q1137",
+    "question": "Describe 'barrier' synchronization.",
+    "label": 1
+  },
+  {
+    "id": "Q1138",
+    "question": "What is 'confinement problem'?",
+    "label": 1
+  },
+  {
+    "id": "Q1139",
+    "question": "Define 'livelock' and how it differs from deadlock.",
+    "label": 0
+  },
+  {
+    "id": "Q1140",
+    "question": "How many bits are in a UNIX file permission mask?",
+    "label": 1
+  },
+  {
+    "id": "Q1141",
+    "question": "Explain 'maskable' and 'non-maskable' interrupts.",
+    "label": 1
+  },
+  {
+    "id": "Q1142",
+    "question": "What is 'software interrupt' or 'trap'?",
+    "label": 1
+  },
+  {
+    "id": "Q1143",
+    "question": "Define 'atomic transaction' in databases.",
+    "label": 1
+  },
+  {
+    "id": "Q1144",
+    "question": "Which programming language is most associated with the monitor concept?",
+    "label": 1
+  },
+  {
+    "id": "Q1145",
+    "question": "What is 'main memory' and its relation to the CPU?",
+    "label": 1
+  },
+  {
+    "id": "Q1146",
+    "question": "Explain 'address binding' at compile time.",
+    "label": 1
+  },
+  {
+    "id": "Q1147",
+    "question": "Explain 'address binding' at load time.",
+    "label": 1
+  },
+  {
+    "id": "Q1148",
+    "question": "Explain 'address binding' at execution time.",
+    "label": 1
+  },
+  {
+    "id": "Q1149",
+    "question": "Define 'logical address' and 'physical address'.",
+    "label": 1
+  },
+  {
+    "id": "Q1150",
+    "question": "What is the 'Memory-Management Unit' (MMU)?",
+    "label": 1
+  },
+  {
+    "id": "Q1151",
+    "question": "Describe 'dynamic relocation' using a relocation register.",
+    "label": 1
+  },
+  {
+    "id": "Q1152",
+    "question": "What is 'dynamic loading'?",
+    "label": 1
+  },
+  {
+    "id": "Q1153",
+    "question": "What are 'dynamically linked libraries' (DLLs)?",
+    "label": 1
+  },
+  {
+    "id": "Q1154",
+    "question": "Define 'swapping' and its purpose.",
+    "label": 1
+  },
+  {
+    "id": "Q1155",
+    "question": "What is 'backing store' in the context of swapping?",
+    "label": 1
+  },
+  {
+    "id": "Q1156",
+    "question": "What is 'standard swapping' vs 'swapping in mobile systems'?",
+    "label": 1
+  },
+  {
+    "id": "Q1157",
+    "question": "Describe 'contiguous memory allocation'.",
+    "label": 1
+  },
+  {
+    "id": "Q1158",
+    "question": "Explain 'fixed partitioning' vs 'variable partitioning'.",
+    "label": 1
+  },
+  {
+    "id": "Q1159",
+    "question": "Define 'internal fragmentation'.",
+    "label": 1
+  },
+  {
+    "id": "Q1160",
+    "question": "Define 'external fragmentation'.",
+    "label": 1
+  },
+  {
+    "id": "Q1161",
+    "question": "Explain the 'first-fit' allocation strategy.",
+    "label": 1
+  },
+  {
+    "id": "Q1162",
+    "question": "Explain the 'best-fit' allocation strategy.",
+    "label": 1
+  },
+  {
+    "id": "Q1163",
+    "question": "Explain the 'worst-fit' allocation strategy.",
+    "label": 1
+  },
+  {
+    "id": "Q1164",
+    "question": "What is 'compaction' and how does it solve external fragmentation?",
+    "label": 1
+  },
+  {
+    "id": "Q1165",
+    "question": "Define 'paging' as a memory-management scheme.",
+    "label": 1
+  },
+  {
+    "id": "Q1166",
+    "question": "What is a 'frame' in paging?",
+    "label": 1
+  },
+  {
+    "id": "Q1167",
+    "question": "What is a 'page' in paging?",
+    "label": 1
+  },
+  {
+    "id": "Q1168",
+    "question": "Describe the 'page table' structure.",
+    "label": 1
+  },
+  {
+    "id": "Q1169",
+    "question": "What are the two parts of an address generated by the CPU in paging?",
+    "label": 1
+  },
+  {
+    "id": "Q1170",
+    "question": "How is page size determined?",
+    "label": 1
+  },
+  {
+    "id": "Q1171",
+    "question": "What is the 'Translation Look-aside Buffer' (TLB)?",
+    "label": 1
+  },
+  {
+    "id": "Q1172",
+    "question": "Define 'TLB hit' and 'TLB miss'.",
+    "label": 1
+  },
+  {
+    "id": "Q1173",
+    "question": "What is 'Effective Memory Access Time' (EMAT)?",
+    "label": 1
+  },
+  {
+    "id": "Q1174",
+    "question": "Describe 'memory protection' using protection bits in page tables.",
+    "label": 1
+  },
+  {
+    "id": "Q1175",
+    "question": "What is the 'valid-invalid' bit in a page table entry?",
+    "label": 1
+  },
+  {
+    "id": "Q1176",
+    "question": "Describe the 'shared pages' concept.",
+    "label": 1
+  },
+  {
+    "id": "Q1177",
+    "question": "What are 'hierarchical page tables'?",
+    "label": 1
+  },
+  {
+    "id": "Q1178",
+    "question": "Describe 'hashed page tables'.",
+    "label": 1
+  },
+  {
+    "id": "Q1179",
+    "question": "Describe 'inverted page tables'.",
+    "label": 1
+  },
+  {
+    "id": "Q1180",
+    "question": "What is 'Oracle SPARC Solaris' memory management approach?",
+    "label": 1
+  },
+  {
+    "id": "Q1181",
+    "question": "Define 'segmentation'.",
+    "label": 1
+  },
+  {
+    "id": "Q1182",
+    "question": "Describe the 'segment table' components (base and limit).",
+    "label": 1
+  },
+  {
+    "id": "Q1183",
+    "question": "Compare paging and segmentation regarding the user\u2019s view.",
+    "label": 1
+  },
+  {
+    "id": "Q1184",
+    "question": "What is 'virtual memory'?",
+    "label": 1
+  },
+  {
+    "id": "Q1185",
+    "question": "What is 'demand paging'?",
+    "label": 1
+  },
+  {
+    "id": "Q1186",
+    "question": "Describe the steps in handling a 'page fault'.",
+    "label": 1
+  },
+  {
+    "id": "Q1187",
+    "question": "What is 'pure demand paging'?",
+    "label": 1
+  },
+  {
+    "id": "Q1188",
+    "question": "Explain 'locality of reference'.",
+    "label": 1
+  },
+  {
+    "id": "Q1189",
+    "question": "What is the impact of page-fault rate on performance?",
+    "label": 1
+  },
+  {
+    "id": "Q1190",
+    "question": "What is 'copy-on-write' (COW)?",
+    "label": 1
+  },
+  {
+    "id": "Q1191",
+    "question": "Describe the 'vfork()' system call.",
+    "label": 1
+  },
+  {
+    "id": "Q1192",
+    "question": "What is 'page replacement' and when is it needed?",
+    "label": 1
+  },
+  {
+    "id": "Q1193",
+    "question": "What is a 'modify bit' or 'dirty bit'?",
+    "label": 1
+  },
+  {
+    "id": "Q1194",
+    "question": "Describe the 'FIFO' page-replacement algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q1195",
+    "question": "What is 'Belady\u2019s anomaly'?",
+    "label": 1
+  },
+  {
+    "id": "Q1196",
+    "question": "Describe the 'Optimal' page-replacement algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q1197",
+    "question": "Describe the 'Least Recently Used' (LRU) algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q1198",
+    "question": "What are 'stack algorithms' in page replacement?",
+    "label": 1
+  },
+  {
+    "id": "Q1199",
+    "question": "Explain 'LRU-approximation' algorithms.",
+    "label": 1
+  },
+  {
+    "id": "Q1200",
+    "question": "Describe the 'additional-reference-bits' algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q1201",
+    "question": "What is the 'second-chance' (clock) algorithm?",
+    "label": 1
+  },
+  {
+    "id": "Q1202",
+    "question": "What is the 'enhanced second-chance' algorithm?",
+    "label": 1
+  },
+  {
+    "id": "Q1203",
+    "question": "Describe 'counting-based' page replacement (LFU and MFU).",
+    "label": 1
+  },
+  {
+    "id": "Q1204",
+    "question": "What is 'page buffering'?",
+    "label": 1
+  },
+  {
+    "id": "Q1205",
+    "question": "Define 'allocation of frames'.",
+    "label": 1
+  },
+  {
+    "id": "Q1206",
+    "question": "What is the 'minimum number of frames' requirement?",
+    "label": 1
+  },
+  {
+    "id": "Q1207",
+    "question": "Compare 'fixed' vs 'priority' allocation.",
+    "label": 1
+  },
+  {
+    "id": "Q1208",
+    "question": "Compare 'global' vs 'local' replacement.",
+    "label": 1
+  },
+  {
+    "id": "Q1209",
+    "question": "What is 'Non-Uniform Memory Access' (NUMA) in frame allocation?",
+    "label": 1
+  },
+  {
+    "id": "Q1210",
+    "question": "Define 'thrashing'.",
+    "label": 1
+  },
+  {
+    "id": "Q1211",
+    "question": "What causes thrashing?",
+    "label": 1
+  },
+  {
+    "id": "Q1212",
+    "question": "Describe the 'working-set model'.",
+    "label": 1
+  },
+  {
+    "id": "Q1213",
+    "question": "What is 'Page-Fault Frequency' (PFF) strategy?",
+    "label": 1
+  },
+  {
+    "id": "Q1214",
+    "question": "What are 'memory-mapped files' and their benefits?",
+    "label": 1
+  },
+  {
+    "id": "Q1215",
+    "question": "Describe 'shared memory' using memory-mapped files.",
+    "label": 1
+  },
+  {
+    "id": "Q1216",
+    "question": "How is kernel memory allocated?",
+    "label": 1
+  },
+  {
+    "id": "Q1217",
+    "question": "Describe the 'buddy system' allocator.",
+    "label": 1
+  },
+  {
+    "id": "Q1218",
+    "question": "Describe 'slab allocation' in the Linux kernel.",
+    "label": 1
+  },
+  {
+    "id": "Q1219",
+    "question": "Define 'prepaging'.",
+    "label": 1
+  },
+  {
+    "id": "Q1220",
+    "question": "Explain 'TLB reach'.",
+    "label": 0
+  },
+  {
+    "id": "Q1221",
+    "question": "What is the 'I/O interlock' or 'pinning'?",
+    "label": 1
+  },
+  {
+    "id": "Q1222",
+    "question": "Describe 'Windows 7' memory management features.",
+    "label": 1
+  },
+  {
+    "id": "Q1223",
+    "question": "What is 'Solaris' page scanner behavior?",
+    "label": 1
+  },
+  {
+    "id": "Q1224",
+    "question": "Define 'raw disk' and 'raw I/O'.",
+    "label": 1
+  },
+  {
+    "id": "Q1225",
+    "question": "What is '50-percent rule'?",
+    "label": 1
+  },
+  {
+    "id": "Q1226",
+    "question": "Describe 'internal fragmentation' in paging.",
+    "label": 1
+  },
+  {
+    "id": "Q1227",
+    "question": "What are 'ASIDs' in TLB entries?",
+    "label": 0
+  },
+  {
+    "id": "Q1228",
+    "question": "Explain 'sparse address spaces'.",
+    "label": 1
+  },
+  {
+    "id": "Q1229",
+    "question": "What is 'virtual address' translation process?",
+    "label": 1
+  },
+  {
+    "id": "Q1230",
+    "question": "Define 'Demand Zeroing'.",
+    "label": 1
+  },
+  {
+    "id": "Q1231",
+    "question": "Explain 'Program Structure' influence on paging performance.",
+    "label": 1
+  },
+  {
+    "id": "Q1232",
+    "question": "What is the typical page size in modern systems?",
+    "label": 1
+  },
+  {
+    "id": "Q1233",
+    "question": "Describe 'segmented paging'.",
+    "label": 1
+  },
+  {
+    "id": "Q1234",
+    "question": "What is 'one-level' vs 'two-level' paging?",
+    "label": 1
+  },
+  {
+    "id": "Q1235",
+    "question": "What is a 'PTBR' (Page Table Base Register)?",
+    "label": 1
+  },
+  {
+    "id": "Q1236",
+    "question": "What is a 'PRLR' (Page Table Length Register)?",
+    "label": 0
+  },
+  {
+    "id": "Q1237",
+    "question": "Explain 'Copy-on-write' in Linux fork.",
+    "label": 1
+  },
+  {
+    "id": "Q1238",
+    "question": "Define 'Free-Frame List'.",
+    "label": 1
+  },
+  {
+    "id": "Q1239",
+    "question": "What is 'Swap space' management?",
+    "label": 1
+  },
+  {
+    "id": "Q1240",
+    "question": "Describe 'ZFS' pooled storage model.",
+    "label": 1
+  },
+  {
+    "id": "Q1241",
+    "question": "What is 'Working Set Size' (WSS)?",
+    "label": 1
+  },
+  {
+    "id": "Q1242",
+    "question": "Explain 'Memory Mapped I/O'.",
+    "label": 1
+  },
+  {
+    "id": "Q1243",
+    "question": "What is 'Intel IA-32' segmentation model?",
+    "label": 1
+  },
+  {
+    "id": "Q1244",
+    "question": "Define 'Logical Address Space'.",
+    "label": 1
+  },
+  {
+    "id": "Q1245",
+    "question": "What is a 'file' as an abstract data type?",
+    "label": 1
+  },
+  {
+    "id": "Q1246",
+    "question": "List typical 'file attributes' (Name, Identifier, Type, etc.).",
+    "label": 1
+  },
+  {
+    "id": "Q1247",
+    "question": "What are the six basic file operations?",
+    "label": 1
+  },
+  {
+    "id": "Q1248",
+    "question": "What is the purpose of the 'open()' system call?",
+    "label": 1
+  },
+  {
+    "id": "Q1249",
+    "question": "What is the 'open-file table'?",
+    "label": 1
+  },
+  {
+    "id": "Q1250",
+    "question": "Describe 'file locking' (Shared and Exclusive).",
+    "label": 1
+  },
+  {
+    "id": "Q1251",
+    "question": "Compare 'advisory' vs 'mandatory' file locking.",
+    "label": 1
+  },
+  {
+    "id": "Q1252",
+    "question": "What are 'file types' and why are extensions used?",
+    "label": 1
+  },
+  {
+    "id": "Q1253",
+    "question": "Explain 'internal file structure' and packing records into blocks.",
+    "label": 1
+  },
+  {
+    "id": "Q1254",
+    "question": "Describe 'sequential access' method.",
+    "label": 1
+  },
+  {
+    "id": "Q1255",
+    "question": "Describe 'direct access' (relative access) method.",
+    "label": 1
+  },
+  {
+    "id": "Q1256",
+    "question": "What is a 'relative block number'?",
+    "label": 1
+  },
+  {
+    "id": "Q1257",
+    "question": "What is 'indexed sequential-access method' (ISAM)?",
+    "label": 1
+  },
+  {
+    "id": "Q1258",
+    "question": "Define 'partition' and 'volume'.",
+    "label": 1
+  },
+  {
+    "id": "Q1259",
+    "question": "What is the role of a 'directory'?",
+    "label": 1
+  },
+  {
+    "id": "Q1260",
+    "question": "Describe the 'single-level directory' structure.",
+    "label": 1
+  },
+  {
+    "id": "Q1261",
+    "question": "Describe the 'two-level directory' structure.",
+    "label": 1
+  },
+  {
+    "id": "Q1262",
+    "question": "What is a 'user file directory' (UFD) vs 'master file directory' (MFD)?",
+    "label": 1
+  },
+  {
+    "id": "Q1263",
+    "question": "What is a 'path name' and its types (absolute vs relative)?",
+    "label": 1
+  },
+  {
+    "id": "Q1264",
+    "question": "Describe the 'tree-structured directory' structure.",
+    "label": 1
+  },
+  {
+    "id": "Q1265",
+    "question": "What is a 'current directory'?",
+    "label": 1
+  },
+  {
+    "id": "Q1266",
+    "question": "Describe 'acyclic-graph directories' and sharing.",
+    "label": 1
+  },
+  {
+    "id": "Q1267",
+    "question": "What is a 'link' or 'symbolic link'?",
+    "label": 1
+  },
+  {
+    "id": "Q1268",
+    "question": "How are deletions handled in shared files using 'hard links'?",
+    "label": 1
+  },
+  {
+    "id": "Q1269",
+    "question": "Describe the 'general graph directory' and cycles.",
+    "label": 1
+  },
+  {
+    "id": "Q1270",
+    "question": "What is 'file-system mounting'?",
+    "label": 1
+  },
+  {
+    "id": "Q1271",
+    "question": "Define 'mount point'.",
+    "label": 1
+  },
+  {
+    "id": "Q1272",
+    "question": "Describe 'file sharing' among multiple users.",
+    "label": 1
+  },
+  {
+    "id": "Q1273",
+    "question": "What is 'Access-Control List' (ACL)?",
+    "label": 1
+  },
+  {
+    "id": "Q1274",
+    "question": "Describe the UNIX protection model (Owner, Group, Universe).",
+    "label": 1
+  },
+  {
+    "id": "Q1275",
+    "question": "What is a 'Distributed File System' (DFS)?",
+    "label": 1
+  },
+  {
+    "id": "Q1276",
+    "question": "Explain 'consistency semantics' in file sharing.",
+    "label": 1
+  },
+  {
+    "id": "Q1277",
+    "question": "What are 'UNIX semantics' vs 'Session semantics'?",
+    "label": 1
+  },
+  {
+    "id": "Q1278",
+    "question": "Describe 'file-system implementation' layers.",
+    "label": 1
+  },
+  {
+    "id": "Q1279",
+    "question": "What is a 'File-Control Block' (FCB)?",
+    "label": 1
+  },
+  {
+    "id": "Q1280",
+    "question": "Describe 'Virtual File System' (VFS).",
+    "label": 1
+  },
+  {
+    "id": "Q1281",
+    "question": "What is a 'vnode'?",
+    "label": 1
+  },
+  {
+    "id": "Q1282",
+    "question": "Describe 'directory implementation' (Linear list vs Hash table).",
+    "label": 1
+  },
+  {
+    "id": "Q1283",
+    "question": "Explain 'contiguous allocation' of disk blocks.",
+    "label": 1
+  },
+  {
+    "id": "Q1284",
+    "question": "Explain 'linked allocation' of disk blocks.",
+    "label": 1
+  },
+  {
+    "id": "Q1285",
+    "question": "What is 'File-Allocation Table' (FAT)?",
+    "label": 1
+  },
+  {
+    "id": "Q1286",
+    "question": "Explain 'indexed allocation' of disk blocks.",
+    "label": 1
+  },
+  {
+    "id": "Q1287",
+    "question": "Describe 'multilevel index' in indexed allocation.",
+    "label": 1
+  },
+  {
+    "id": "Q1288",
+    "question": "Explain the 'UNIX inode' combined scheme.",
+    "label": 1
+  },
+  {
+    "id": "Q1289",
+    "question": "What is 'free-space management'?",
+    "label": 1
+  },
+  {
+    "id": "Q1290",
+    "question": "Describe 'bit vector' or 'bit map' for free space.",
+    "label": 1
+  },
+  {
+    "id": "Q1291",
+    "question": "Describe 'linked list' for free space.",
+    "label": 1
+  },
+  {
+    "id": "Q1292",
+    "question": "What is 'grouping' and 'counting' in free-space management?",
+    "label": 1
+  },
+  {
+    "id": "Q1293",
+    "question": "Explain 'ZFS space maps'.",
+    "label": 1
+  },
+  {
+    "id": "Q1294",
+    "question": "Describe 'disk structure' and 'Disk Bandwidth'.",
+    "label": 1
+  },
+  {
+    "id": "Q1295",
+    "question": "Define 'Seek Time' and 'Rotational Latency'.",
+    "label": 1
+  },
+  {
+    "id": "Q1296",
+    "question": "Describe the 'FCFS' disk scheduling algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q1297",
+    "question": "Describe the 'SSTF' disk scheduling algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q1298",
+    "question": "Describe the 'SCAN' (elevator) disk scheduling algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q1299",
+    "question": "Describe the 'C-SCAN' disk scheduling algorithm.",
+    "label": 1
+  },
+  {
+    "id": "Q1300",
+    "question": "Describe the 'LOOK' and 'C-LOOK' disk scheduling algorithms.",
+    "label": 1
+  },
+  {
+    "id": "Q1301",
+    "question": "What is 'boot block' and 'master boot record' (MBR)?",
+    "label": 1
+  },
+  {
+    "id": "Q1302",
+    "question": "What is 'RAID' and its purpose?",
+    "label": 1
+  },
+  {
+    "id": "Q1303",
+    "question": "Describe 'RAID level 0' (Striping).",
+    "label": 1
+  },
+  {
+    "id": "Q1304",
+    "question": "Describe 'RAID level 1' (Mirroring).",
+    "label": 1
+  },
+  {
+    "id": "Q1305",
+    "question": "Describe 'RAID level 5' (Distributed parity).",
+    "label": 1
+  },
+  {
+    "id": "Q1306",
+    "question": "What is 'RAID level 0+1' vs 'RAID level 1+0'?",
+    "label": 1
+  },
+  {
+    "id": "Q1307",
+    "question": "Explain 'stable-storage implementation'.",
+    "label": 1
+  },
+  {
+    "id": "Q1308",
+    "question": "What is 'Network-Attached Storage' (NAS)?",
+    "label": 1
+  },
+  {
+    "id": "Q1309",
+    "question": "What is 'Storage-Area Network' (SAN)?",
+    "label": 1
+  },
+  {
+    "id": "Q1310",
+    "question": "Describe 'iSCSI' protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q1311",
+    "question": "What is 'Disk Formatting' (Low-level vs Logical)?",
+    "label": 1
+  },
+  {
+    "id": "Q1312",
+    "question": "Define 'sector sparing' (forwarding).",
+    "label": 1
+  },
+  {
+    "id": "Q1313",
+    "question": "Describe 'WAFL' file system concepts.",
+    "label": 1
+  },
+  {
+    "id": "Q1314",
+    "question": "Explain 'journaling' (log-based transaction) file systems.",
+    "label": 1
+  },
+  {
+    "id": "Q1315",
+    "question": "What is 'snapshot' in WAFL/ZFS?",
+    "label": 1
+  },
+  {
+    "id": "Q1316",
+    "question": "Describe 'unified buffer cache'.",
+    "label": 1
+  },
+  {
+    "id": "Q1317",
+    "question": "Explain 'asynchronous' vs 'synchronous' file writes.",
+    "label": 1
+  },
+  {
+    "id": "Q1318",
+    "question": "What is 'fsck' in UNIX?",
+    "label": 1
+  },
+  {
+    "id": "Q1319",
+    "question": "Describe 'NFS' mount protocol.",
+    "label": 1
+  },
+  {
+    "id": "Q1320",
+    "question": "Explain 'stateless' property of NFS.",
+    "label": 1
+  },
+  {
+    "id": "Q1321",
+    "question": "What is 'automount' feature?",
+    "label": 1
+  },
+  {
+    "id": "Q1322",
+    "question": "Describe 'immutable shared files'.",
+    "label": 1
+  },
+  {
+    "id": "Q1323",
+    "question": "Define 'checksum' in file systems.",
+    "label": 1
+  },
+  {
+    "id": "Q1324",
+    "question": "What is 'sector slipping'?",
+    "label": 1
+  },
+  {
+    "id": "Q1325",
+    "question": "Explain 'clustered' block allocation.",
+    "label": 1
+  },
+  {
+    "id": "Q1326",
+    "question": "What is 'garbage collection' in file systems?",
+    "label": 1
+  },
+  {
+    "id": "Q1327",
+    "question": "Describe 'active directory' in Windows networking.",
+    "label": 1
+  },
+  {
+    "id": "Q1328",
+    "question": "What is 'CIFS' (Common Internet File System)?",
+    "label": 1
+  },
+  {
+    "id": "Q1329",
+    "question": "Define 'idempotent' operations in NFS.",
+    "label": 1
+  },
+  {
+    "id": "Q1330",
+    "question": "Explain 'path-name translation' in NFS.",
+    "label": 1
+  },
+  {
+    "id": "Q1331",
+    "question": "What are 'file handles'?",
+    "label": 1
+  },
+  {
+    "id": "Q1332",
+    "question": "Describe 'incremental' vs 'full' backup.",
+    "label": 1
+  },
+  {
+    "id": "Q1333",
+    "question": "What is a 'Superblock'?",
+    "label": 1
+  },
+  {
+    "id": "Q1334",
+    "question": "Explain 'double caching' and how to avoid it.",
+    "label": 1
+  },
+  {
+    "id": "Q1335",
+    "question": "What is 'direct I/O'?",
+    "label": 1
+  },
+  {
+    "id": "Q1336",
+    "question": "Describe 'ext3' block groups.",
+    "label": 1
+  },
+  {
+    "id": "Q1337",
+    "question": "Explain 'ZFS pool' and file systems.",
+    "label": 1
+  },
+  {
+    "id": "Q1338",
+    "question": "What are 'extended file attributes'?",
+    "label": 1
+  },
+  {
+    "id": "Q1339",
+    "question": "Define 'raw I/O'.",
+    "label": 1
+  },
+  {
+    "id": "Q1340",
+    "question": "Describe 'Solaris UFS' performance tuning.",
+    "label": 1
+  },
+  {
+    "id": "Q1341",
+    "question": "What is 'consistency checker'?",
+    "label": 1
+  },
+  {
+    "id": "Q1342",
+    "question": "Explain 'shadow copies' or 'volume shadow copies'.",
+    "label": 1
+  },
+  {
+    "id": "Q1343",
+    "question": "What is 'bit-level striping' in RAID?",
+    "label": 1
+  },
+  {
+    "id": "Q1344",
+    "question": "What is the most popular distributed file system used in clusters?",
+    "label": 1
+  }
+]

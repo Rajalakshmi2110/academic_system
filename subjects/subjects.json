@@ -13,10 +13,10 @@
       "id": "operating_system",
       "name": "Operating System",
       "code": "BX3004",
-      "active": false,
+      "active": true,
       "created_at": "2026-02-21T22:30:47.405541",
-      "document_count": 1,
-      "model_trained": false
+      "document_count": 9,
+      "model_trained": true
     }
   ]
 }

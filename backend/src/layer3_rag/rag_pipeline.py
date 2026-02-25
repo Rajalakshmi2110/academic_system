@@ -10,38 +10,32 @@ class RAGPipeline:
         
         self.subject_id = subject_id
         
-        # Use provided path or construct from subject_id
+        # Use provided path or default to subjects/{subject_id}/vector_db
         if vector_db_path:
             self.vector_db_path = vector_db_path
         else:
-            # Default: subjects/{subject_id}/vector_db
             base_dir = Path(__file__).parent.parent.parent.parent
             self.vector_db_path = str(base_dir / 'subjects' / subject_id / 'vector_db')
         
-        # Load FAISS index and chunks
+        # Load FAISS index and text chunks
         self.index = faiss.read_index(f"{self.vector_db_path}/faiss_index.bin")
         with open(f"{self.vector_db_path}/chunks.pkl", 'rb') as f:
             self.chunks = pickle.load(f)
         
-        # Try to load metadata (source info)
         try:
             with open(f"{self.vector_db_path}/metadata.json", 'r') as f:
                 self.metadata = json.load(f)
         except:
-            # Create default metadata if not exists
             self.metadata = [{"source": f"{subject_id} materials", "page": i} for i in range(len(self.chunks))]
         
-        # Load embedding model
         self.embedder = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
         
-        # Ollama configuration
         self.ollama_url = ollama_url
         self.model_name = "llama3.1:8b"
         
         print(f"RAG Pipeline loaded for {subject_id} with {len(self.chunks)} chunks")
     
     def validate_question(self, question):
-        """Validate question using LLM"""
         prompt = f"""Is this a valid, clear question? Answer only 'VALID' or 'INVALID: reason'
 
 Question: {question}"""
@@ -63,26 +57,22 @@ Question: {question}"""
             return False, f"Validation error: {str(e)}"
     
     def retrieve_context(self, question, top_k=5):
-        # Check if user mentioned a specific PDF/source
         specific_source = None
         question_lower = question.lower()
         
-        # Extract PDF name if mentioned
+        # Extract PDF name if mentioned in question
         if '.pdf' in question_lower:
-            # Extract the PDF name (word before .pdf)
             import re
             match = re.search(r'([\w_]+)\.pdf', question_lower)
             if match:
                 specific_source = match.group(1)
         
-        # Embed question
+        # Embed question and search FAISS
         query_embedding = self.embedder.encode([question]).astype('float32')
         
-        # Search FAISS with more results if filtering by source
         search_k = top_k * 5 if specific_source else top_k
         distances, indices = self.index.search(query_embedding, search_k)
         
-        # Get relevant chunks with source info
         context_chunks = []
         sources = []
         for idx in indices[0]:
@@ -97,18 +87,16 @@ Question: {question}"""
             context_chunks.append(chunk_text)
             sources.append(meta)
             
-            # Stop when we have enough chunks
             if len(context_chunks) >= top_k:
                 break
         
         return "\n\n".join(context_chunks), sources
     
     def generate_answer(self, question, context, is_follow_up=False):
-        # Detect if asking to explain/summarize a document
+        # Detect question type to customize prompt
         doc_keywords = ['.pdf', 'explain unit', 'summarize', 'what is covered in', 'topics in']
         is_doc_summary = any(keyword in question.lower() for keyword in doc_keywords)
         
-        # Only generate code if explicitly asking for algorithm/pseudocode/function
         code_keywords = ['algorithm', 'pseudocode', 'function', 'procedure', 'implementation']
         needs_code = any(keyword in question.lower() for keyword in code_keywords)
         
@@ -146,7 +134,7 @@ Using ONLY the context provided above, answer the question in 2-3 sentences. Do 
 
 Answer:"""
         
-        # Call Ollama API
+        # Call Ollama Llama 3.1 for answer generation
         try:
             response = requests.post(
                 f"{self.ollama_url}/api/generate",
@@ -163,12 +151,8 @@ Answer:"""
             return f"Error generating answer: {str(e)}"
     
     def answer_question(self, question, is_follow_up=False):
-        # Skip validation - already validated by Layer 1 & 2
-        
-        # Step 1: Retrieve context
         context, sources = self.retrieve_context(question, top_k=10)
         
-        # Step 2: Generate answer
         answer = self.generate_answer(question, context, is_follow_up)
         
         return {

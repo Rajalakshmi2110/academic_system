@@ -15,7 +15,10 @@ def load_syllabus(syllabus_path):
 
 def generate_valid_questions(client, topic, subtopics, count=30):
     """Generate valid questions for a topic using LLM"""
-    prompt = f"""Generate {count} diverse questions about the topic: {topic}
+    # Limit to 25 questions per call (Groq works better with smaller batches)
+    count = min(count, 25)
+    
+    prompt = f"""Generate exactly {count} diverse questions about the topic: {topic}
 Subtopics: {', '.join(subtopics[:5])}
 
 Requirements:
@@ -43,7 +46,10 @@ Example format:
 
 def generate_invalid_questions(client, subject_name, count=20):
     """Generate out-of-scope/invalid questions"""
-    prompt = f"""Generate {count} questions that are NOT related to {subject_name}.
+    # Limit to 20 questions per call
+    count = min(count, 20)
+    
+    prompt = f"""Generate exactly {count} questions that are NOT related to {subject_name}.
 Include questions about:
 - Other academic subjects (history, chemistry, literature)
 - General knowledge (geography, sports, entertainment)
@@ -125,14 +131,25 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
         unit_name = unit.get('title', unit.get('unit_name', 'Unknown'))
         topics = unit['topics']
         
-        # Generate questions for this unit
         questions_per_unit = valid_target // len(syllabus['units'])
         
-        print(f"  Unit {unit['unit_number']}: {unit_name} ({questions_per_unit} questions)")
+        print(f"  Unit {unit['unit_number']}: {unit_name} (target: {questions_per_unit} questions)")
         
-        generated = generate_valid_questions(client, unit_name, topics, questions_per_unit)
+        # Generate in batches of 25 (Groq works better with smaller requests)
+        unit_questions = []
+        batches_needed = (questions_per_unit // 25) + 1
         
-        for q in generated:
+        for batch in range(batches_needed):
+            if len(unit_questions) >= questions_per_unit:
+                break
+            
+            batch_size = min(25, questions_per_unit - len(unit_questions))
+            generated = generate_valid_questions(client, unit_name, topics, batch_size)
+            unit_questions.extend(generated)
+            time.sleep(0.5)  # Rate limiting
+        
+        # Add to dataset
+        for q in unit_questions[:questions_per_unit]:  # Limit to target
             dataset.append({
                 "id": f"Q{question_id:04d}",
                 "question": q,
@@ -140,28 +157,34 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
             })
             question_id += 1
         
-        time.sleep(0.5)  # Rate limiting
+        print(f"    Generated: {len(unit_questions[:questions_per_unit])} questions")
     
     # Generate invalid questions
-    print(f"\n[2/3] Generating invalid questions ({invalid_target} questions)...")
-    batches = (invalid_target // 50) + 1
-    for i in range(batches):
-        batch_size = min(50, invalid_target - len([d for d in dataset if d['label'] == 0]))
-        if batch_size <= 0:
+    print(f"\n[2/3] Generating invalid questions (target: {invalid_target} questions)...")
+    invalid_questions = []
+    batches_needed = (invalid_target // 20) + 1
+    
+    for i in range(batches_needed):
+        if len(invalid_questions) >= invalid_target:
             break
-            
-        print(f"  Batch {i+1}/{batches}")
+        
+        batch_size = min(20, invalid_target - len(invalid_questions))
+        print(f"  Batch {i+1}/{batches_needed}")
+        
         invalid_qs = generate_invalid_questions(client, subject_name, batch_size)
-        
-        for q in invalid_qs:
-            dataset.append({
-                "id": f"Q{question_id:04d}",
-                "question": q,
-                "label": 0
-            })
-            question_id += 1
-        
+        invalid_questions.extend(invalid_qs)
         time.sleep(0.5)
+    
+    # Add to dataset
+    for q in invalid_questions[:invalid_target]:  # Limit to target
+        dataset.append({
+            "id": f"Q{question_id:04d}",
+            "question": q,
+            "label": 0
+        })
+        question_id += 1
+    
+    print(f"  Generated: {len(invalid_questions[:invalid_target])} invalid questions")
     
     # Verify labels using LLM (sample check)
     print(f"\n[3/3] Verifying labels (sampling 10%)...")

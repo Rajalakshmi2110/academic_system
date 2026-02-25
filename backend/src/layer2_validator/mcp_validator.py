@@ -7,19 +7,17 @@ from dotenv import load_dotenv
 
 class MCPValidator:
     def __init__(self, subject_id='data_structures'):
-        # Load environment variables from .env file
-        load_dotenv()
+        load_dotenv()  # Load GROQ_API_KEY from .env
         
         self.subject_id = subject_id
         
-        # Get API key from environment variable
         api_key = os.getenv('GROQ_API_KEY')
         if not api_key:
             raise ValueError("GROQ_API_KEY environment variable not set. Get free key from: https://console.groq.com/keys")
         
         self.client = Groq(api_key=api_key)
         
-        # Load syllabus from new location: subjects/{subject_id}/syllabus.json
+        # Load syllabus from subjects/{subject_id}/syllabus.json
         base_dir = Path(__file__).parent.parent.parent.parent
         syllabus_path = base_dir / 'subjects' / subject_id / 'syllabus.json'
         
@@ -33,105 +31,126 @@ class MCPValidator:
         print(f"MCP-based validator initialized for {self.subject_name} with Groq (Llama 3.3 70B)")
     
     def get_syllabus_topics(self):
-        """MCP Tool: Get allowed topics from CA3101 syllabus"""
         topics = []
         for unit in self.syllabus['units']:
             topics.extend(unit['topics'])
         return topics
     
     def validate_question(self, question):
-        """Validate question using Groq Llama 3.1 with function calling (MCP-style)"""
         start_time = time.time()
         
-        # Define MCP-style tool
+        # Get syllabus topics for validation
+        syllabus_topics = self.get_syllabus_topics()
+        syllabus_topics_lower = [topic.lower() for topic in syllabus_topics]
+        question_lower = question.lower()
+        
+        found_in_syllabus = any(topic_word in question_lower for topic in syllabus_topics_lower for topic_word in topic.split())
+        
         tools = [{
             "type": "function",
             "function": {
                 "name": "get_syllabus_topics",
-                "description": "Get the list of allowed topics in CA3101 Data Structures syllabus",
+                "description": f"Get the list of allowed topics in {self.subject_name} syllabus",
                 "parameters": {"type": "object", "properties": {}}
             }
         }]
         
         try:
-            # Call Groq with MCP tool
             response = self.client.chat.completions.create(
                 model="llama-3.3-70b-versatile",  # Updated model
                 messages=[
-                    {"role": "system", "content": """You are a validator for CA3101 Data Structures course.
+                    {"role": "system", "content": f"""You are a strict syllabus validator for {self.subject_name} course.
+
+IMPORTANT: You MUST call get_syllabus_topics() tool first to check the exact syllabus topics.
 
 Your job: Categorize questions into 4 types:
 
-1. REJECTED ❌ - Gibberish OR Non-DS topics:
+1. REJECTED ❌ - Gibberish OR Non-{self.subject_name} topics:
    - Gibberish: asdfasdf, ?????, qwertyuiop
-   - Non-DS topics: AWS, cloud, React, SQL, databases, Docker, MongoDB
-   Action: Stop processing, don't call Layer 3
+   - Completely unrelated topics (e.g., cooking, sports, other subjects)
+   Action: Return REJECTED immediately
 
-2. OUT_OF_SYLLABUS 🚫 - DS topics NOT in CA3101:
-   - Advanced DS: Skip lists, Fibonacci heaps, Red-black trees, Splay trees, Suffix trees, Segment trees
-   Action: Show "Not in CA3101" message with optional "Answer Anyway" button
+2. OUT_OF_SYLLABUS 🚫 - {self.subject_name} topics NOT in the syllabus:
+   - CRITICAL: Call get_syllabus_topics() to get exact syllabus topics
+   - If topic is related to {self.subject_name} but NOT in the syllabus list → OUT_OF_SYLLABUS
+   - Example: "Red-Black tree" is a DS topic, but if not in syllabus → OUT_OF_SYLLABUS
+   - Example: "Fibonacci heap" is a DS topic, but if not in syllabus → OUT_OF_SYLLABUS
+   Action: Show "Not in syllabus but covered in materials" with "Answer Anyway" button
 
 3. WARNING ⚠️ - Contains incorrect facts (but still answer it!):
-   - "Stack is FIFO right?" → WARNING (wrong fact, Layer 3 will correct)
-   - "Is binary search O(n^2)?" → WARNING (wrong complexity)
-   - "Queue is LIFO correct?" → WARNING (wrong fact)
-   - "Trees can have cycles?" → WARNING (wrong concept)
+   - Questions with wrong assumptions or facts
+   - Only use if question is IN syllabus but has wrong facts
    Action: Proceed to Layer 3 with warning badge
 
-4. VALID ✅ - Correct DS questions in CA3101:
-   - Correct questions about arrays, linked lists, stacks, queues, trees, graphs, heaps, hashing, sorting
-   - Questions with typos are still VALID
-   - Vague or short questions are VALID
-   - AVL trees, 2-3 trees, B-trees are in syllabus (VALID)
+4. VALID ✅ - Questions about topics IN the syllabus:
+   - MUST match topics from get_syllabus_topics()
+   - Questions with typos are still VALID if topic is in syllabus
+   - Vague questions are VALID if topic is in syllabus
    Action: Proceed to Layer 3
 
+STRICT RULE: Always call get_syllabus_topics() first, then check if question topic matches ANY topic in the list.
+
 Respond with JSON:
-{"status": "VALID", "reason": "Question is clear"}
+{{"status": "VALID", "reason": "Topic found in syllabus: [topic name]"}}
 or
-{"status": "WARNING", "reason": "Contains incorrect fact: [what's wrong]"}
+{{"status": "WARNING", "reason": "Contains incorrect fact: [what's wrong]"}}
 or
-{"status": "OUT_OF_SYLLABUS", "reason": "Topic X is DS but not in CA3101"}
+{{"status": "OUT_OF_SYLLABUS", "reason": "[Topic] is a {self.subject_name} topic but not in this course syllabus"}}
 or
-{"status": "REJECTED", "reason": "Gibberish or non-DS topic"}"""},
+{{"status": "REJECTED", "reason": "Gibberish or unrelated to {self.subject_name}"}}"""},
                     {"role": "user", "content": f"Validate: {question}"}
                 ],
                 tools=tools,
-                tool_choice="auto",
+                tool_choice={"type": "function", "function": {"name": "get_syllabus_topics"}},  # Force calling the tool
                 temperature=0,
                 max_tokens=200
             )
             
             message = response.choices[0].message
             
-            # Check if LLM wants to call the tool
+            # LLM called the tool - send syllabus topics back
             if message.tool_calls:
-                # LLM called get_syllabus_topics
                 topics = self.get_syllabus_topics()
                 
-                # Send tool result back to LLM
                 response = self.client.chat.completions.create(
                     model="llama-3.3-70b-versatile",
                     messages=[
-                        {"role": "system", "content": "Validate the question against these topics."},
-                        {"role": "user", "content": f"Question: {question}"},
+                        {"role": "system", "content": f"""You received the COMPLETE syllabus topics list for {self.subject_name}.
+
+IMPORTANT: The question topic MUST be explicitly listed in the syllabus topics to be VALID.
+
+Validation rules:
+1. Extract the main topic from the question (e.g., "Fibonacci heap", "Red-Black tree", "RAID")
+2. Check if that EXACT topic (or very close match) exists in the syllabus topics list
+3. If YES → VALID
+4. If NO but it's a {self.subject_name} topic → OUT_OF_SYLLABUS
+5. If completely unrelated → REJECTED
+
+Examples:
+- Question: "what is fibonacci heap" + Topics: ["Binary Heaps", "Min Max Heaps"] → OUT_OF_SYLLABUS (Fibonacci heap ≠ Binary heap)
+- Question: "what is red black tree" + Topics: ["AVL Trees", "2-3 Trees"] → OUT_OF_SYLLABUS (Red-Black tree not in list)
+- Question: "what is AVL tree" + Topics: ["AVL Trees"] → VALID (exact match)
+- Question: "explain RAID" + Topics: ["Disk Structures", "Disk Scheduling"] → OUT_OF_SYLLABUS (RAID not explicitly listed)
+
+Be STRICT: Different tree types are different topics. Different heap types are different topics.
+
+Respond with JSON only: {{"status": "VALID/OUT_OF_SYLLABUS/REJECTED", "reason": "..."}}"""},
+                        {"role": "user", "content": f"Question: {question}\n\nSyllabus topics: {json.dumps(syllabus_topics)}"},
                         {"role": "assistant", "content": None, "tool_calls": message.tool_calls},
-                        {"role": "tool", "tool_call_id": message.tool_calls[0].id, "content": json.dumps(topics)}
+                        {"role": "tool", "tool_call_id": message.tool_calls[0].id, "content": json.dumps(syllabus_topics)}
                     ],
                     temperature=0,
                     max_tokens=200
                 )
                 message = response.choices[0].message
             
-            # Parse LLM response
             result_text = message.content.strip()
             
-            # Try to parse as JSON
             try:
                 result = json.loads(result_text)
                 status = result.get('status', 'VALID')
                 reason = result.get('reason', '')
             except:
-                # Fallback parsing
                 if 'WARNING' in result_text or 'warning' in result_text.lower():
                     status = 'WARNING'
                     reason = result_text
@@ -156,7 +175,6 @@ or
                     'inference_time_ms': inference_time
                 }
             elif status == 'WARNING':
-                # WARNING: Question has incorrect facts but still proceed to Layer 3
                 return {
                     'question': question,
                     'status': 'WARNING',
@@ -169,11 +187,11 @@ or
                     'question': question,
                     'final_status': 'OUT_OF_SYLLABUS',
                     'explanation': reason,
-                    'suggestion': 'Please ask about CA3101 topics: arrays, linked lists, stacks, queues, trees, graphs, heaps, hashing, sorting.',
+                    'suggestion': f'Please ask about {self.subject_name} topics covered in the syllabus.',
                     'confidence': 0.90,
                     'inference_time_ms': inference_time
                 }
-            else:  # REJECTED
+            else:
                 return {
                     'question': question,
                     'final_status': 'REJECTED',

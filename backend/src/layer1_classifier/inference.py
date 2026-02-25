@@ -8,18 +8,15 @@ class Layer1Classifier:
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.subject_id = subject_id
         
-        # Use provided path or construct from subject_id
         if model_path:
             self.model_path = Path(model_path)
         else:
-            # Default: subjects/{subject_id}/models/layer1_distilbert
             base_dir = Path(__file__).parent.parent.parent.parent
             self.model_path = base_dir / 'subjects' / subject_id / 'models' / 'layer1_distilbert'
         
         if not self.model_path.exists():
             raise FileNotFoundError(f"Model not found at {self.model_path}. Train model for {subject_id} first.")
         
-        # Load model and tokenizer
         self.tokenizer = DistilBertTokenizer.from_pretrained(self.model_path)
         self.model = DistilBertForSequenceClassification.from_pretrained(self.model_path)
         self.model.to(self.device)
@@ -28,19 +25,8 @@ class Layer1Classifier:
         print(f"Layer 1 classifier loaded for {subject_id} on {self.device}")
     
     def predict(self, question, return_confidence=False):
-        """
-        Predict if a question is relevant to the syllabus.
-        
-        Args:
-            question (str): The question text to classify
-            return_confidence (bool): Whether to return confidence scores
-            
-        Returns:
-            dict: Prediction result with label, confidence, and timing
-        """
         start_time = time.time()
         
-        # Tokenize input
         encoding = self.tokenizer(
             question,
             truncation=True,
@@ -52,7 +38,6 @@ class Layer1Classifier:
         input_ids = encoding['input_ids'].to(self.device)
         attention_mask = encoding['attention_mask'].to(self.device)
         
-        # Inference
         with torch.no_grad():
             outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
             logits = outputs.logits
@@ -60,7 +45,7 @@ class Layer1Classifier:
             predicted_label = torch.argmax(logits, dim=-1).item()
             confidence = probabilities[0][predicted_label].item()
         
-        inference_time = (time.time() - start_time) * 1000  # Convert to milliseconds
+        inference_time = (time.time() - start_time) * 1000
         
         result = {
             'question': question,
@@ -79,18 +64,8 @@ class Layer1Classifier:
         return result
     
     def batch_predict(self, questions):
-        """
-        Predict multiple questions at once for better efficiency.
-        
-        Args:
-            questions (list): List of question strings
-            
-        Returns:
-            list: List of prediction results
-        """
         start_time = time.time()
         
-        # Tokenize all questions
         encodings = self.tokenizer(
             questions,
             truncation=True,
@@ -102,7 +77,6 @@ class Layer1Classifier:
         input_ids = encodings['input_ids'].to(self.device)
         attention_mask = encodings['attention_mask'].to(self.device)
         
-        # Batch inference
         with torch.no_grad():
             outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
             logits = outputs.logits

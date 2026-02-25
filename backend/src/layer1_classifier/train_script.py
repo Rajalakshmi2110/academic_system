@@ -6,7 +6,8 @@ import sys
 from pathlib import Path
 import torch
 from torch.utils.data import Dataset, DataLoader
-from transformers import DistilBertTokenizer, DistilBertForSequenceClassification, AdamW
+from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+from torch.optim import AdamW
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 

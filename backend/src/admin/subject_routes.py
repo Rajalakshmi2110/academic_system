@@ -11,6 +11,9 @@ from werkzeug.utils import secure_filename
 # Add parent directory to path
 sys.path.append(str(Path(__file__).parent.parent))
 from subject_manager import SubjectManager
+
+# Import training pipeline from scripts
+sys.path.append(str(Path(__file__).parent.parent.parent / 'scripts'))
 from training_pipeline import TrainingPipeline
 
 subject_bp = Blueprint('subjects', __name__)

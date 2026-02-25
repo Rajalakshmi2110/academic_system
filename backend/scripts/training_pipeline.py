@@ -7,6 +7,9 @@ import os
 import sys
 import subprocess
 from pathlib import Path
+
+# Add parent directory to path
+sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
 from subject_manager import SubjectManager
 
 class TrainingPipeline:
@@ -16,7 +19,6 @@ class TrainingPipeline:
         self.scripts_dir = self.backend_root / 'scripts'
         
     def generate_training_data(self, subject_id, target_count=1800):
-        """Generate labeled training data from syllabus"""
         syllabus_path = self.subject_manager.get_syllabus_path(subject_id)
         output_path = self.subject_manager.get_documents_path(subject_id) / 'training_data.json'
         
@@ -36,13 +38,11 @@ class TrainingPipeline:
         return output_path
     
     def train_layer1_model(self, subject_id, training_data_path):
-        """Train Layer 1 DistilBERT classifier"""
         model_output_path = self.subject_manager.get_model_path(subject_id)
         
         print(f"[2/3] Training Layer 1 model...")
         
-        # Run training script
-        script_path = self.scripts_dir / 'train_layer1.py'
+        script_path = self.backend_root / 'src' / 'layer1_classifier' / 'train_script.py'
         result = subprocess.run([
             sys.executable, str(script_path),
             str(training_data_path), str(model_output_path)
@@ -55,19 +55,16 @@ class TrainingPipeline:
         return model_output_path
     
     def build_vector_db(self, subject_id):
-        """Build FAISS vector database from documents"""
         print(f"[3/3] Building vector database...")
         
         docs_path = self.subject_manager.get_documents_path(subject_id)
         vector_db_path = self.subject_manager.get_vector_db_path(subject_id)
         
-        # Get all PDF files
         pdf_files = list(docs_path.rglob('*.pdf'))
         if not pdf_files:
             print("⚠ No PDF files found, skipping vector DB creation")
             return None
         
-        # Run vector DB build script
         script_path = self.scripts_dir / 'build_vector_db.py'
         result = subprocess.run([
             sys.executable, str(script_path),
@@ -82,22 +79,17 @@ class TrainingPipeline:
         return vector_db_path
     
     def run_full_pipeline(self, subject_id):
-        """Execute complete training pipeline"""
         try:
             print(f"\n{'='*60}")
             print(f"Starting training pipeline for: {subject_id}")
             print(f"{'='*60}\n")
             
-            # Step 1: Generate training data
             training_data_path = self.generate_training_data(subject_id)
             
-            # Step 2: Train Layer 1 model
             self.train_layer1_model(subject_id, training_data_path)
             
-            # Step 3: Build vector DB
             self.build_vector_db(subject_id)
             
-            # Update subject status
             self.subject_manager.update_subject(subject_id, model_trained=True)
             
             print(f"\n{'='*60}")

@@ -158,10 +158,13 @@ def rebuild_vector_db():
         data = request.json or {}
         subject_id = data.get('subject_id', 'data_structures')
         
-        script_path = Path(__file__).parent.parent.parent / 'scripts' / 'rebuild_vector_db.py'
+        # Use build_vector_db.py (same as rebuild)
+        script_path = Path(__file__).parent.parent.parent / 'scripts' / 'build_vector_db.py'
+        docs_path = subject_manager.get_documents_path(subject_id)
+        vector_db_path = subject_manager.get_vector_db_path(subject_id)
         
         result = subprocess.run(
-            ['python', str(script_path), subject_id],
+            [sys.executable, str(script_path), str(docs_path), str(vector_db_path)],
             capture_output=True,
             text=True,
             timeout=300
