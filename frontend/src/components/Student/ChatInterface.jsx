@@ -552,6 +552,19 @@ const ChatInterface = () => {
                                 <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
                                   Layer 3 - {msg.data.intermediate_steps.layer3.name || 'RAG Pipeline'}
                                 </Typography>
+                                {msg.data.confidence_score !== undefined && (
+                                  <Chip 
+                                    label={`${(msg.data.confidence_score * 100).toFixed(0)}% Confidence`}
+                                    size="small"
+                                    sx={{ 
+                                      ml: 'auto',
+                                      bgcolor: msg.data.confidence_score >= 0.8 ? '#4CAF50' : msg.data.confidence_score >= 0.6 ? '#FF9800' : '#F44336',
+                                      color: 'white',
+                                      fontWeight: 'bold',
+                                      fontSize: '0.7rem'
+                                    }}
+                                  />
+                                )}
                               </Box>
                               <Typography variant="caption" sx={{ display: 'block', color: '#666' }}>
                                 {msg.data.intermediate_steps.layer3.description}
@@ -560,6 +573,13 @@ const ChatInterface = () => {
                                 Status: {msg.data.intermediate_steps.layer3.status} | 
                                 Latency: {msg.data.intermediate_steps.layer3.latency_ms?.toFixed(2)}ms
                               </Typography>
+                              {msg.data.confidence_score !== undefined && msg.data.confidence_score < 0.6 && (
+                                <Box sx={{ mt: 1, p: 1, bgcolor: '#FFEBEE', borderRadius: 1, border: '1px solid #F44336' }}>
+                                  <Typography variant="caption" sx={{ color: '#C62828', fontWeight: 'bold' }}>
+                                    ⚠️ Low confidence - Please verify with professor or textbook
+                                  </Typography>
+                                </Box>
+                              )}
                             </Box>
                           )}
                           
@@ -625,18 +645,6 @@ const ChatInterface = () => {
                                 • {source}
                               </Typography>
                             ))}
-                          </Box>
-                        )}
-                        
-                        {msg.data.confidence_score !== undefined && (
-                          <Box sx={{ mt: 2, p: 1.5, bgcolor: msg.data.confidence_score >= 0.8 ? '#E8F5E9' : msg.data.confidence_score >= 0.6 ? '#FFF3E0' : '#FFEBEE', borderRadius: 1, border: '1px solid', borderColor: msg.data.confidence_score >= 0.8 ? '#4CAF50' : msg.data.confidence_score >= 0.6 ? '#FF9800' : '#F44336' }}>
-                            <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', mb: 0.5 }}>
-                              {msg.data.confidence_score >= 0.8 ? '🟢 High Confidence' : msg.data.confidence_score >= 0.6 ? '🟡 Medium Confidence' : '🔴 Low Confidence'}
-                            </Typography>
-                            <Typography variant="caption" sx={{ color: '#666' }}>
-                              Confidence Score: {(msg.data.confidence_score * 100).toFixed(0)}%
-                              {msg.data.confidence_score < 0.6 && ' - Please verify with professor or textbook'}
-                            </Typography>
                           </Box>
                         )}
                       </Box>
