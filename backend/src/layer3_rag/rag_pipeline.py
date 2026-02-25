@@ -56,7 +56,7 @@ Question: {question}"""
         except Exception as e:
             return False, f"Validation error: {str(e)}"
     
-    def retrieve_context(self, question, top_k=5):
+    def retrieve_context(self, question, top_k=3):
         specific_source = None
         question_lower = question.lower()
         
@@ -84,6 +84,9 @@ Question: {question}"""
                     continue
             
             chunk_text = self.chunks[idx]
+            # Limit chunk size to prevent timeout
+            if len(chunk_text) > 1500:
+                chunk_text = chunk_text[:1500] + "..."
             context_chunks.append(chunk_text)
             sources.append(meta)
             
@@ -141,17 +144,25 @@ Answer:"""
                 json={
                     "model": self.model_name,
                     "prompt": prompt,
-                    "stream": False
+                    "stream": False,
+                    "options": {
+                        "num_predict": 500,
+                        "temperature": 0.7
+                    }
                 },
-                timeout=120
+                timeout=180
             )
             response.raise_for_status()
             return response.json()['response']
+        except requests.exceptions.Timeout:
+            return "The answer is taking too long to generate. Please try a simpler question or restart Ollama."
+        except requests.exceptions.ConnectionError:
+            return "Cannot connect to Ollama. Please ensure Ollama is running (ollama serve)."
         except Exception as e:
             return f"Error generating answer: {str(e)}"
     
     def answer_question(self, question, is_follow_up=False):
-        context, sources = self.retrieve_context(question, top_k=10)
+        context, sources = self.retrieve_context(question, top_k=3)
         
         answer = self.generate_answer(question, context, is_follow_up)
         

@@ -1,0 +1,134 @@
+📚 DATA STRUCTURES Test Questions
+✅ VALID (In Syllabus)
+"What is a binary search tree and how does it work?"
+
+"Explain the difference between stack and queue"
+
+"How does AVL tree rotation maintain balance?"
+
+"What is the time complexity of quicksort?"
+
+"Describe hash collision resolution techniques"
+
+🚫 OUT OF SYLLABUS (DS topic but not in syllabus)
+"What is a Red-Black tree?"
+
+"Explain Fibonacci heap operations"
+
+"How does a skip list work?"
+
+"What is a splay tree?"
+
+"Describe segment tree implementation"
+
+❌ REJECTED (Gibberish or completely unrelated)
+"asdfghjkl"
+
+"What is AWS Lambda?"
+
+"How to cook pasta?"
+
+"Explain React hooks"
+
+"?????"
+
+🔧 PROBLEM-BASED (DS)
+"Given an array [5, 2, 8, 1, 9], how would you sort it using merge sort?"
+
+"How do you detect a cycle in a linked list?"
+
+"Find the maximum element in a binary search tree"
+
+"Implement a stack using two queues"
+
+"How to check if a binary tree is balanced?"
+
+📖 SCENARIO-BASED (DS)
+"You need to implement an undo feature in a text editor. Which data structure would you use and why?"
+
+"A company needs to process customer requests in the order they arrive. What data structure is most suitable?"
+
+"You're building a file system with folders and subfolders. Which data structure represents this best?"
+
+"Design a system to find the shortest path between two cities. What algorithm would you use?"
+
+"You need to store student records with fast lookup by ID. Which data structure is optimal?"
+
+💻 ALGORITHM (DS)
+"Write the algorithm for binary search"
+
+"Explain the Dijkstra's shortest path algorithm step by step"
+
+"Show the pseudocode for BFS traversal"
+
+"Describe the quicksort algorithm with an example"
+
+"Write the algorithm for inserting a node in AVL tree"
+
+🖥️ OPERATING SYSTEM Test Questions
+✅ VALID (In Syllabus)
+"What is a process and how is it different from a thread?"
+
+"Explain the concept of virtual memory"
+
+"What is deadlock and how can it be prevented?"
+
+"Describe the difference between preemptive and non-preemptive scheduling"
+
+"What is paging in memory management?"
+
+🚫 OUT OF SYLLABUS (OS topic but not in syllabus)
+"Explain RAID levels in detail"
+
+"What is microkernel architecture?"
+
+"Describe real-time operating systems"
+
+"What is container orchestration?"
+
+"Explain distributed file systems"
+
+❌ REJECTED (Gibberish or completely unrelated)
+"qwertyuiop"
+
+"What is machine learning?"
+
+"How to bake a cake?"
+
+"Explain CSS flexbox"
+
+"!!!!!!"
+
+🔧 PROBLEM-BASED (OS)
+"Given 3 processes with arrival times [0, 1, 2] and burst times [5, 3, 8], calculate average waiting time using FCFS"
+
+"How would you solve the dining philosophers problem?"
+
+"A system has 4 resources and 3 processes. Detect if deadlock exists using resource allocation graph"
+
+"Calculate page faults for reference string [1, 2, 3, 4, 1, 2, 5] using FIFO with 3 frames"
+
+"Implement producer-consumer problem using semaphores"
+
+📖 SCENARIO-BASED (OS)
+"Your application is running slow due to excessive page faults. What could be the cause and how would you fix it?"
+
+"A multi-user system needs to ensure fair CPU time for all users. Which scheduling algorithm would you recommend?"
+
+"You're designing a banking system where multiple transactions access the same account. How do you prevent race conditions?"
+
+"A server is experiencing thrashing. What steps would you take to diagnose and resolve it?"
+
+"You need to design a file system for a USB drive. What considerations are important?"
+
+💻 ALGORITHM (OS)
+"Write the algorithm for Round Robin scheduling"
+
+"Explain the Banker's algorithm for deadlock avoidance"
+
+"Show the pseudocode for LRU page replacement"
+
+"Describe the algorithm for priority scheduling with aging"
+
+"Write the algorithm for disk scheduling using SCAN"
+

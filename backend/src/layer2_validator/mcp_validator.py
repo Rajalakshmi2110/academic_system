@@ -117,22 +117,28 @@ or
                     messages=[
                         {"role": "system", "content": f"""You received the COMPLETE syllabus topics list for {self.subject_name}.
 
-IMPORTANT: The question topic MUST be explicitly listed in the syllabus topics to be VALID.
+IMPORTANT: Check if the question is RELATED to any syllabus topic, not just exact matches.
 
 Validation rules:
-1. Extract the main topic from the question (e.g., "Fibonacci heap", "Red-Black tree", "RAID")
-2. Check if that EXACT topic (or very close match) exists in the syllabus topics list
-3. If YES → VALID
+1. Extract the main concept from the question
+2. Check if it's related to ANY syllabus topic (including examples, problems, or applications)
+3. If YES (related) → VALID
 4. If NO but it's a {self.subject_name} topic → OUT_OF_SYLLABUS
 5. If completely unrelated → REJECTED
 
-Examples:
-- Question: "what is fibonacci heap" + Topics: ["Binary Heaps", "Min Max Heaps"] → OUT_OF_SYLLABUS (Fibonacci heap ≠ Binary heap)
-- Question: "what is red black tree" + Topics: ["AVL Trees", "2-3 Trees"] → OUT_OF_SYLLABUS (Red-Black tree not in list)
-- Question: "what is AVL tree" + Topics: ["AVL Trees"] → VALID (exact match)
-- Question: "explain RAID" + Topics: ["Disk Structures", "Disk Scheduling"] → OUT_OF_SYLLABUS (RAID not explicitly listed)
+Examples for Operating Systems:
+- Question: "dining philosophers problem" + Topics: ["Semaphores", "Deadlock"] → VALID (classic example for semaphores/deadlock)
+- Question: "producer-consumer problem" + Topics: ["Process Synchronization"] → VALID (classic synchronization example)
+- Question: "banker's algorithm" + Topics: ["Deadlock Avoidance"] → VALID (algorithm for deadlock avoidance)
+- Question: "RAID levels" + Topics: ["Disk Structures"] → OUT_OF_SYLLABUS (RAID not covered)
 
-Be STRICT: Different tree types are different topics. Different heap types are different topics.
+Examples for Data Structures:
+- Question: "fibonacci heap" + Topics: ["Binary Heaps"] → OUT_OF_SYLLABUS (different heap type)
+- Question: "red-black tree" + Topics: ["AVL Trees", "Binary Search Trees"] → OUT_OF_SYLLABUS (different tree type)
+- Question: "AVL tree rotation" + Topics: ["AVL Trees"] → VALID (related to AVL trees)
+
+Be FLEXIBLE: If the question is about a classic problem/example/algorithm that teaches a syllabus topic, mark it VALID.
+Be STRICT: Only mark OUT_OF_SYLLABUS if it's a different specific data structure/algorithm not covered.
 
 Respond with JSON only: {{"status": "VALID/OUT_OF_SYLLABUS/REJECTED", "reason": "..."}}"""},
                         {"role": "user", "content": f"Question: {question}\n\nSyllabus topics: {json.dumps(syllabus_topics)}"},
