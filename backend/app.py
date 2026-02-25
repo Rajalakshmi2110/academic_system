@@ -16,6 +16,7 @@ from src.layer3_rag.inference import generate_answer, format_answer
 from src.admin import admin_bp
 from src.admin.subject_routes import subject_bp
 from src.session_manager import SessionManager
+from src.metrics_tracker import MetricsTracker
 
 def calculate_confidence(question, context, answer):
     """Calculate confidence score based on context-answer overlap and relevance"""
@@ -72,6 +73,7 @@ def get_pipeline(subject_id='data_structures'):
     return pipelines[subject_id]
 
 session_manager = SessionManager()
+metrics_tracker = MetricsTracker()
 
 app.register_blueprint(admin_bp, url_prefix='/api/admin')
 app.register_blueprint(subject_bp, url_prefix='/api/subjects')
@@ -193,6 +195,9 @@ def chat():
             session_manager.add_message(session_id, {'type': 'user', 'text': question})
             session_manager.add_message(session_id, {'type': 'bot', 'data': response})
         
+        # Track metrics
+        metrics_tracker.track_question(subject_id, response)
+        
         return jsonify(response)
     except Exception as e:
         return jsonify({
@@ -256,11 +261,22 @@ def health():
 @app.route('/api/metrics', methods=['GET'])
 def metrics():
     try:
-        import json
-        metrics_path = base_dir / 'evaluation_results.json'
-        with open(metrics_path, 'r') as f:
-            data = json.load(f)
-        return jsonify(data)
+        subject_id = request.args.get('subject_id', 'data_structures')
+        
+        # Get usage metrics
+        usage_metrics = metrics_tracker.get_metrics(subject_id)
+        
+        # Get feedback metrics
+        feedback_metrics = metrics_tracker.get_feedback_metrics(subject_id)
+        
+        return jsonify({
+            'usage': usage_metrics['usage'],
+            'layer1': usage_metrics['layer1'],
+            'layer2': usage_metrics['layer2'],
+            'feedback': feedback_metrics,
+            'daily_stats': usage_metrics['daily_stats'],
+            'last_updated': usage_metrics['last_updated']
+        })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
