@@ -147,6 +147,10 @@ def chat():
             response = validation_result.copy()
             if show_steps:
                 response['intermediate_steps'] = steps
+            
+            # Track rejected/out-of-syllabus questions too
+            metrics_tracker.track_question(subject_id, response)
+            
             return jsonify(response)
     
     # Layer 3: Generate answer using RAG (FAISS + Llama 3.1)

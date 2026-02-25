@@ -1,0 +1,17 @@
+{
+  "total_questions": 1,
+  "layer1_pass": 0,
+  "layer1_fail": 1,
+  "layer2_valid": 1,
+  "layer2_warning": 0,
+  "layer2_out_of_syllabus": 0,
+  "layer2_rejected": 0,
+  "confidence_scores": [
+    0.72
+  ],
+  "latencies": [],
+  "daily_stats": {
+    "2026-02-25": 1
+  },
+  "last_updated": "2026-02-25T08:40:39.416607"
+}
