@@ -15,5 +15,10 @@ faiss-cpu>=1.7.0
 sentence-transformers>=2.2.0
 flask>=2.3.0
 
+# Document processing
+python-docx
+python-pptx
+
+# Environment and API
 python-dotenv>=1.0.0
 groq>=0.4.0

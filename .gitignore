@@ -2,12 +2,14 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
 *.so
 .Python
 env/
 venv/
 ENV/
 *.egg-info/
+*.egg
 .pytest_cache/
 
 # Node
@@ -20,14 +22,23 @@ yarn-error.log*
 
 # Models (too large for git)
 backend/models/
+subjects/*/models/layer1_distilbert/*.bin
+subjects/*/models/layer1_distilbert/pytorch_model.bin
 *.safetensors
-*.bin
 *.pt
 *.pth
 *.ckpt
 
-# PDFs (uploaded via UI, not needed in git)
+# Vector DB (binary files)
+subjects/*/vector_db/*.bin
+subjects/*/vector_db/*.pkl
+
+# Training data (generated files)
+subjects/*/documents/training_data.json
+
+# PDFs (uploaded via UI)
 *.pdf
+subjects/*/documents/*.pdf
 
 # IDE
 .vscode/
@@ -47,19 +58,12 @@ Thumbs.db
 # Build
 build/
 dist/
-*.egg
 
 # Logs
 *.log
 logs/
-*.pyc
-__pycache__/
-.DS_Store
-*.log
-.env
-node_modules/
-.vscode/
-.idea/
 
-# Feedback data
+# Runtime data
 backend/feedback.json
+backend/evaluation_results.json
+backend/training_errors.log
