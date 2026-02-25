@@ -17,6 +17,50 @@ from src.admin import admin_bp
 from src.admin.subject_routes import subject_bp
 from src.session_manager import SessionManager
 
+def calculate_confidence(question, context, answer):
+    """Calculate confidence score based on context-answer overlap and relevance"""
+    if not context or not answer:
+        return 0.5
+    
+    # Normalize text
+    answer_lower = answer.lower()
+    context_lower = context.lower()
+    question_lower = question.lower()
+    
+    # 1. Context-Answer Word Overlap (50% weight)
+    answer_words = set(word for word in answer_lower.split() if len(word) > 3)
+    context_words = set(word for word in context_lower.split() if len(word) > 3)
+    
+    if len(answer_words) == 0:
+        overlap_score = 0.5
+    else:
+        overlap = len(answer_words & context_words) / len(answer_words)
+        overlap_score = min(overlap, 1.0)
+    
+    # 2. Question-Context Relevance (30% weight)
+    question_words = set(word for word in question_lower.split() if len(word) > 3)
+    if len(question_words) == 0:
+        relevance_score = 0.5
+    else:
+        relevance = len(question_words & context_words) / len(question_words)
+        relevance_score = min(relevance, 1.0)
+    
+    # 3. Answer Length Check (20% weight)
+    # Penalize very short or very long answers
+    answer_length = len(answer.split())
+    if 20 <= answer_length <= 300:
+        length_score = 1.0
+    elif answer_length < 20:
+        length_score = answer_length / 20
+    else:
+        length_score = max(0.5, 1.0 - (answer_length - 300) / 500)
+    
+    # Calculate weighted confidence
+    confidence = (overlap_score * 0.5) + (relevance_score * 0.3) + (length_score * 0.2)
+    
+    return round(confidence, 2)
+
+
 app = Flask(__name__)
 CORS(app)
 
@@ -127,6 +171,12 @@ def chat():
             'question': question,
             'answer': rag_result.get('answer', rag_result) if isinstance(rag_result, dict) else rag_result,
             'sources': rag_result.get('sources', []) if isinstance(rag_result, dict) else [],
+            'context': rag_result.get('context', '') if isinstance(rag_result, dict) else '',
+            'confidence_score': calculate_confidence(
+                question,
+                rag_result.get('context', '') if isinstance(rag_result, dict) else '',
+                rag_result.get('answer', rag_result) if isinstance(rag_result, dict) else rag_result
+            ),
             'final_status': 'VALID',
             'warning': validation_result.get('warning'),
             'out_of_syllabus_answered': force_answer

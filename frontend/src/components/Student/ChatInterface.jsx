@@ -611,6 +611,36 @@ const ChatInterface = () => {
                             ))}
                           </Box>
                         )}
+                        
+                        {msg.data.confidence_score !== undefined && (
+                          <Box sx={{ mt: 2, p: 1.5, bgcolor: msg.data.confidence_score >= 0.8 ? '#E8F5E9' : msg.data.confidence_score >= 0.6 ? '#FFF3E0' : '#FFEBEE', borderRadius: 1, border: '1px solid', borderColor: msg.data.confidence_score >= 0.8 ? '#4CAF50' : msg.data.confidence_score >= 0.6 ? '#FF9800' : '#F44336' }}>
+                            <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', mb: 0.5 }}>
+                              {msg.data.confidence_score >= 0.8 ? '🟢 High Confidence' : msg.data.confidence_score >= 0.6 ? '🟡 Medium Confidence' : '🔴 Low Confidence'}
+                            </Typography>
+                            <Typography variant="caption" sx={{ color: '#666' }}>
+                              Confidence Score: {(msg.data.confidence_score * 100).toFixed(0)}%
+                              {msg.data.confidence_score < 0.6 && ' - Please verify with professor or textbook'}
+                            </Typography>
+                          </Box>
+                        )}
+                        
+                        {msg.data.context && (
+                          <Accordion sx={{ mt: 2, boxShadow: 'none', border: '1px solid #E0E0E0' }}>
+                            <AccordionSummary expandIcon={<ExpandMore />}>
+                              <Typography variant="caption" sx={{ fontWeight: 'bold' }}>📄 Show Retrieved Context</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                              <Typography variant="caption" sx={{ color: '#666', mb: 1, display: 'block', fontStyle: 'italic' }}>
+                                This is the actual text from course materials used to generate the answer:
+                              </Typography>
+                              <Box sx={{ bgcolor: '#F5F5F5', p: 2, borderRadius: 1, maxHeight: 300, overflow: 'auto' }}>
+                                <Typography variant="caption" sx={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace', fontSize: '0.75rem' }}>
+                                  {msg.data.context}
+                                </Typography>
+                              </Box>
+                            </AccordionDetails>
+                          </Accordion>
+                        )}
                       </Box>
                       {(msg.data.answer || msg.data.explanation) && (
                         <IconButton 
@@ -687,6 +717,11 @@ const ChatInterface = () => {
           ))}
         </Box>
         <Box sx={{ p: 2, bgcolor: 'white', borderTop: '1px solid #E0E0E0' }}>
+          <Box sx={{ mb: 1.5, p: 1, bgcolor: '#FFF3E0', borderRadius: 1, border: '1px solid #FFE0B2' }}>
+            <Typography variant="caption" sx={{ color: '#E65100', display: 'flex', alignItems: 'center', gap: 0.5 }}>
+              ⚠️ AI-generated answers are based on uploaded course materials. Always verify important concepts with your professor or textbook.
+            </Typography>
+          </Box>
           {loading && loadingStage && (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.5, p: 1.5, bgcolor: '#E3F2FD', borderRadius: 2, border: '1px solid #BBDEFB' }}>
               <Box sx={{ 
