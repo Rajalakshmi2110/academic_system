@@ -546,7 +546,7 @@ const ChatInterface = () => {
                           )}
                           
                           {msg.data.intermediate_steps.layer3 && (
-                            <Box sx={{ p: 1.5, bgcolor: '#F5F5F5', borderRadius: 1 }}>
+                            <Box sx={{ mb: 2, p: 1.5, bgcolor: '#F5F5F5', borderRadius: 1 }}>
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                                 {getStepIcon(msg.data.intermediate_steps.layer3.status)}
                                 <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
@@ -560,6 +560,22 @@ const ChatInterface = () => {
                                 Status: {msg.data.intermediate_steps.layer3.status} | 
                                 Latency: {msg.data.intermediate_steps.layer3.latency_ms?.toFixed(2)}ms
                               </Typography>
+                            </Box>
+                          )}
+                          
+                          {msg.data.context && (
+                            <Box sx={{ mb: 2, p: 1.5, bgcolor: '#E3F2FD', borderRadius: 1, border: '1px solid #BBDEFB' }}>
+                              <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#1565C0' }}>
+                                📄 Retrieved Context from PDFs
+                              </Typography>
+                              <Typography variant="caption" sx={{ color: '#666', mb: 1, display: 'block', fontStyle: 'italic' }}>
+                                Actual text from course materials used to generate the answer:
+                              </Typography>
+                              <Box sx={{ bgcolor: 'white', p: 1.5, borderRadius: 1, maxHeight: 250, overflow: 'auto', border: '1px solid #BBDEFB' }}>
+                                <Typography variant="caption" sx={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace', fontSize: '0.7rem', lineHeight: 1.5 }}>
+                                  {msg.data.context}
+                                </Typography>
+                              </Box>
                             </Box>
                           )}
                           
@@ -622,24 +638,6 @@ const ChatInterface = () => {
                               {msg.data.confidence_score < 0.6 && ' - Please verify with professor or textbook'}
                             </Typography>
                           </Box>
-                        )}
-                        
-                        {msg.data.context && (
-                          <Accordion sx={{ mt: 2, boxShadow: 'none', border: '1px solid #E0E0E0' }}>
-                            <AccordionSummary expandIcon={<ExpandMore />}>
-                              <Typography variant="caption" sx={{ fontWeight: 'bold' }}>📄 Show Retrieved Context</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                              <Typography variant="caption" sx={{ color: '#666', mb: 1, display: 'block', fontStyle: 'italic' }}>
-                                This is the actual text from course materials used to generate the answer:
-                              </Typography>
-                              <Box sx={{ bgcolor: '#F5F5F5', p: 2, borderRadius: 1, maxHeight: 300, overflow: 'auto' }}>
-                                <Typography variant="caption" sx={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace', fontSize: '0.75rem' }}>
-                                  {msg.data.context}
-                                </Typography>
-                              </Box>
-                            </AccordionDetails>
-                          </Accordion>
                         )}
                       </Box>
                       {(msg.data.answer || msg.data.explanation) && (
