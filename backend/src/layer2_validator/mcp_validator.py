@@ -79,6 +79,9 @@ Your job: Categorize questions into 4 types:
 
 3. WARNING ⚠️ - Contains incorrect facts (but still answer it!):
    - Questions with wrong assumptions or facts
+   - Examples: "Is binary search O(1)?" (wrong - it's O(log n))
+   - Examples: "Queue is LIFO correct?" (wrong - Queue is FIFO)
+   - Examples: "Bubble sort is O(n log n) right?" (wrong - it's O(n²))
    - Only use if question is IN syllabus but has wrong facts
    Action: Proceed to Layer 3 with warning badge
 
@@ -89,6 +92,7 @@ Your job: Categorize questions into 4 types:
    Action: Proceed to Layer 3
 
 STRICT RULE: Always call get_syllabus_topics() first, then check if question topic matches ANY topic in the list.
+CRITICAL: If question contains wrong facts (wrong complexity, wrong definition, wrong property), mark as WARNING!
 
 Respond with JSON:
 {{"status": "VALID", "reason": "Topic found in syllabus: [topic name]"}}
