@@ -124,11 +124,19 @@ or
 IMPORTANT: Check if the question is RELATED to any syllabus topic, not just exact matches.
 
 Validation rules:
-1. Extract the main concept from the question
-2. Check if it's related to ANY syllabus topic (including examples, problems, or applications)
-3. If YES (related) → VALID
-4. If NO but it's a {self.subject_name} topic → OUT_OF_SYLLABUS
-5. If completely unrelated → REJECTED
+1. FIRST: Check if question contains WRONG FACTS → WARNING
+2. Extract the main concept from the question
+3. Check if it's related to ANY syllabus topic (including examples, problems, or applications)
+4. If YES (related) → VALID (or WARNING if wrong facts)
+5. If NO but it's a {self.subject_name} topic → OUT_OF_SYLLABUS
+6. If completely unrelated → REJECTED
+
+CRITICAL - Detect WRONG FACTS (mark as WARNING):
+- "Is binary search O(1)?" → WARNING (binary search is O(log n), not O(1))
+- "Is stack FIFO?" → WARNING (stack is LIFO, not FIFO)
+- "Queue is LIFO correct?" → WARNING (queue is FIFO, not LIFO)
+- "Bubble sort is O(n log n) right?" → WARNING (bubble sort is O(n²), not O(n log n))
+- Any question with incorrect complexity, wrong definition, or wrong property → WARNING
 
 Examples for Operating Systems:
 - Question: "dining philosophers problem" + Topics: ["Semaphores", "Deadlock"] → VALID (classic example for semaphores/deadlock)
@@ -144,7 +152,7 @@ Examples for Data Structures:
 Be FLEXIBLE: If the question is about a classic problem/example/algorithm that teaches a syllabus topic, mark it VALID.
 Be STRICT: Only mark OUT_OF_SYLLABUS if it's a different specific data structure/algorithm not covered.
 
-Respond with JSON only: {{"status": "VALID/OUT_OF_SYLLABUS/REJECTED", "reason": "..."}}"""},
+Respond with JSON only: {{"status": "VALID/WARNING/OUT_OF_SYLLABUS/REJECTED", "reason": "..."}}"""},
                         {"role": "user", "content": f"Question: {question}\n\nSyllabus topics: {json.dumps(syllabus_topics)}"},
                         {"role": "assistant", "content": None, "tool_calls": message.tool_calls},
                         {"role": "tool", "tool_call_id": message.tool_calls[0].id, "content": json.dumps(syllabus_topics)}
