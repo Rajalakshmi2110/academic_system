@@ -22,14 +22,21 @@ def extract_text_from_pdf(pdf_path):
         print(f"Error reading {pdf_path}: {e}")
         return ""
 
-def chunk_text(text, chunk_size=800, overlap=100):
-    """Split text into overlapping chunks"""
-    words = text.split()
+def chunk_text(text, chunk_size=1500, overlap=200):
+    """Split text into overlapping chunks by characters"""
     chunks = []
-    for i in range(0, len(words), chunk_size - overlap):
-        chunk = ' '.join(words[i:i + chunk_size])
+    start = 0
+    text_length = len(text)
+    
+    while start < text_length:
+        end = start + chunk_size
+        chunk = text[start:end]
+        
         if chunk.strip():
-            chunks.append(chunk)
+            chunks.append(chunk.strip())
+        
+        start += (chunk_size - overlap)
+    
     return chunks
 
 def build_vector_db(docs_path, output_path):
@@ -89,9 +96,24 @@ def build_vector_db(docs_path, output_path):
     with open(output_path / 'metadata.json', 'w') as f:
         json.dump(metadata, f, indent=2)
     
+    # Save all_chunks.txt for intermediate output visibility
+    print("Saving all_chunks.txt for review...")
+    with open(output_path / 'all_chunks.txt', 'w', encoding='utf-8') as f:
+        f.write(f"Total Chunks: {len(all_chunks)}\n")
+        f.write(f"Embedding Dimension: {dimension}\n")
+        f.write(f"Source PDFs: {len(pdf_files)}\n")
+        f.write("=" * 80 + "\n\n")
+        
+        for i, (chunk, meta) in enumerate(zip(all_chunks, metadata), 1):
+            f.write(f"Chunk {i}:\n")
+            f.write(f"Source: {meta['source']}\n")
+            f.write(f"Content:\n{chunk}\n")
+            f.write("-" * 80 + "\n\n")
+    
     print(f"\n✓ Vector database saved to: {output_path}")
     print(f"  - Index: {len(all_chunks)} vectors")
     print(f"  - Dimension: {dimension}")
+    print(f"  - all_chunks.txt: {len(all_chunks)} chunks saved for review")
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:

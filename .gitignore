@@ -32,6 +32,8 @@ subjects/*/models/layer1_distilbert/pytorch_model.bin
 # Vector DB (binary files)
 subjects/*/vector_db/*.bin
 subjects/*/vector_db/*.pkl
+# Keep all_chunks.txt for demo purposes
+!subjects/*/vector_db/all_chunks.txt
 
 # Training data (generated files)
 subjects/*/documents/training_data.json
