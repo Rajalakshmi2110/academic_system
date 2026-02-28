@@ -1,0 +1,78 @@
+<mxfile host="65bd71144e">
+    <diagram name="Module 1: Content Ingestion" id="module1">
+        <mxGraphModel dx="1047" dy="819" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="MODULE 1: ACADEMIC CONTENT INGESTION &amp; PREPROCESSING" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="200.5" y="150" width="450" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="admin" value="Admin Dashboard (React UI)&lt;br&gt;PDF Upload Interface&lt;div&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Input: PDF Textbooks, Faculty Notes&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="200" width="250" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="flask" value="Flask Upload API&lt;br&gt;/api/admin/subjects/{id}/upload" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="290" width="250" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="storage" value="PDF Storage&lt;div&gt;subjects/{subject_id}/documents/&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+                    <mxGeometry x="328" y="370" width="195" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="extraction" value="PyPDF2 Text Extraction&lt;br&gt;reader.pages[i].extract_text()" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="480" width="250" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="output" value="Output: Text Chunks Array&lt;br&gt;(Ready for embedding)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="690" width="250" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="admin" target="flask" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="flask" target="storage" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="422" y="350"/>
+                            <mxPoint x="422" y="350"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="arrow5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="extraction" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="425" y="570" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="label1" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Upload&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="1" vertex="1">
+                    <mxGeometry x="420" y="250" width="50" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="label3" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Save files&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="1" vertex="1">
+                    <mxGeometry x="415" y="335" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="label4" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Read PDFs&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="1" vertex="1">
+                    <mxGeometry x="415" y="450" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="label5" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Raw text&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="1" vertex="1">
+                    <mxGeometry x="425" y="530" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="label6" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;1500-char chunks&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="1" vertex="1">
+                    <mxGeometry x="415" y="650" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.488;entryY=0.013;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.479;exitY=1.013;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="storage" target="extraction">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="422.36" y="460" as="sourcePoint"/>
+                        <mxPoint x="422.36" y="500" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="421" y="470"/>
+                            <mxPoint x="422" y="470"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4" value="Character-based Chunking&lt;br&gt;• Chunk size: 1500 chars&lt;br&gt;• Overlap: 200 chars&lt;br&gt;• Filter empty chunks" style="rounded=1;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="570" width="250" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="420" y="650" as="sourcePoint"/>
+                        <mxPoint x="420" y="690" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

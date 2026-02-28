@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Academic QA Architecture" id="0">
-        <mxGraphModel dx="2391" dy="994" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="2391" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0">
                     <Object background="&quot;#ffffff&quot;" as="view"/>
@@ -156,7 +156,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="17" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;color: rgb(63, 63, 63); font-size: 14px; background-color: transparent;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;Vector Database&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; (Sentence - Transformer, FAISS)&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; Multi Subject Isolation&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#0C0C0C;align=left;" parent="1" vertex="1">
+                <mxCell id="17" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Vector Database&lt;/font&gt;&lt;div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;(Sentence - Transformer, FAISS)&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;Multi Subject Isolation&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#0C0C0C;" parent="1" vertex="1">
                     <mxGeometry x="580" y="580" width="360" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="25" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0;entryDx=0;entryDy=75;entryPerimeter=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="9" target="17" edge="1">
@@ -212,7 +212,7 @@
                     <mxGeometry x="760" y="310" width="80" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="89" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Chunks per subject&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;faiss_index.bin + chunks.pkl&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;subjects/{subject_id}/vector_db/&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="790" y="610" width="150" height="60" as="geometry"/>
+                    <mxGeometry x="680" y="520" width="150" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
