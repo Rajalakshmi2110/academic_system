@@ -1,0 +1,220 @@
+<mxfile host="65bd71144e">
+    <diagram name="Academic QA Architecture" id="0">
+        <mxGraphModel dx="2391" dy="994" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0">
+                    <Object background="&quot;#ffffff&quot;" as="view"/>
+                </mxCell>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="qbox" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;Question Processing&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;arcSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="70" width="300" height="340" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Layer 1: Distil BERT Classification&lt;div&gt;(Related / Not Related Subject)&lt;/div&gt;" style="rounded=1;html=1" parent="qbox" vertex="1">
+                    <mxGeometry x="20" y="18.88888888888889" width="260" height="37.77777777777778" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Reject Question&amp;nbsp;&lt;div&gt;(Out of syllabus /&amp;nbsp;&lt;/div&gt;&lt;div&gt;invalid)&lt;/div&gt;" style="rounded=1;html=1" parent="qbox" vertex="1">
+                    <mxGeometry x="20" y="220" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Related&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="qbox">
+                    <mxGeometry x="150" y="69.99666666666667" width="50" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="62" value="Layer 2: Groq Llama 3.3 70B&amp;nbsp;&lt;div&gt;MCP Validator&lt;div&gt;(VALID/WARNING/REJECTED)&lt;/div&gt;&lt;/div&gt;" style="rounded=1;html=1" vertex="1" parent="qbox">
+                    <mxGeometry x="80" y="120" width="200" height="47.22222222222222" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="" style="edgeStyle=none;html=1;exitX=0.491;exitY=1.014;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.342;entryY=-0.01;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="qbox" source="4" target="62">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="148" y="85" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="68" value="" style="edgeStyle=none;html=1;exitX=0.156;exitY=0.987;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.334;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="qbox" target="5">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="58.53999999999994" y="56.665555555555606" as="sourcePoint"/>
+                        <mxPoint x="59.99999999999998" y="222.34000000000003" as="targetPoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="69" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Not&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;Related&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="qbox">
+                    <mxGeometry x="10" y="90.00222222222222" width="50" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="" style="edgeStyle=none;html=1;entryX=0.481;entryY=-0.001;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="qbox" source="62" target="5">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="144.66666666666674" y="147.22" as="sourcePoint"/>
+                        <mxPoint x="130" y="257.22" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="71" value="Warning Question&lt;div&gt;(Wrong facts)&lt;/div&gt;" style="rounded=1;html=1" vertex="1" parent="qbox">
+                    <mxGeometry x="170" y="220" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="" style="edgeStyle=none;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitX=0.537;exitY=1.003;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="qbox" source="62" target="71">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="189.99666666666678" y="149.11" as="sourcePoint"/>
+                        <mxPoint x="118.33000000000004" y="190.89" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="73" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Rejected&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="qbox">
+                    <mxGeometry x="90" y="179.99666666666667" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Warning&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="qbox">
+                    <mxGeometry x="170" y="179.99666666666667" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="kbox" value="Academic Knowledge&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="40" y="80" width="410" height="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="" style="edgeStyle=none;html=1;" parent="kbox" source="6" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Academic Data Ingestion&amp;nbsp;&lt;div&gt;(PyMuPDF)&lt;/div&gt;" style="rounded=1;html=1" parent="kbox" vertex="1">
+                    <mxGeometry x="20" y="40" width="360" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="edgeStyle=none;html=1;" parent="kbox" source="7" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Text Chunking&lt;div&gt;(Char Based)&lt;/div&gt;" style="rounded=1;html=1" parent="kbox" vertex="1">
+                    <mxGeometry x="20" y="110" width="360" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Embedding Generation&amp;nbsp;&lt;div&gt;(Sentence Transformer: all-MiniLM-L6_v2)&lt;/div&gt;" style="rounded=1;html=1" parent="kbox" vertex="1">
+                    <mxGeometry x="20" y="180" width="360" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="kbox" source="10" target="11" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Vector Database Build&lt;div&gt;(FAISS Index)&lt;/div&gt;" style="rounded=1;html=1" parent="kbox" vertex="1">
+                    <mxGeometry x="20" y="260" width="360" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="edgeStyle=none;html=1;entryX=0.486;entryY=0.059;entryDx=0;entryDy=0;entryPerimeter=0;" parent="kbox" source="11" target="75" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Training Data Generation&lt;div&gt;(Q &amp;amp; Label pairs Datasets - from TextBooks)&lt;/div&gt;" style="rounded=1;html=1" parent="kbox" vertex="1">
+                    <mxGeometry x="20" y="320" width="360" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Model Evaluation&amp;nbsp;&lt;div&gt;(Accuracy, Precision, Recall)&lt;/div&gt;" style="rounded=1;html=1" parent="kbox" vertex="1">
+                    <mxGeometry x="25" y="445" width="360" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Raw academic&amp;nbsp;&lt;span style=&quot;color: rgb(63, 63, 63); background-color: transparent;&quot;&gt;content&lt;/span&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="kbox" vertex="1">
+                    <mxGeometry x="200" y="80" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;1500 - Char&amp;nbsp;&lt;span style=&quot;color: rgb(63, 63, 63); background-color: transparent;&quot;&gt;chunks&lt;/span&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="kbox" vertex="1">
+                    <mxGeometry x="200" y="150" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" value="" style="edgeStyle=none;html=1;" edge="1" parent="kbox" source="75" target="12">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" value="Distil BERT Fine Tuning&lt;div&gt;(Layer 1 Classifier)&lt;br&gt;&lt;/div&gt;" style="rounded=1;html=1" vertex="1" parent="kbox">
+                    <mxGeometry x="25" y="380" width="360" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" value="&lt;b&gt;Training Core&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="kbox">
+                    <mxGeometry x="155" y="230" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="80" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Trained Distil BERT Weights&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="kbox">
+                    <mxGeometry x="200" y="415" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Automated Pipeline: (Data Generation -&amp;gt; Training -&amp;gt; Vector DB)&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="kbox">
+                    <mxGeometry x="60" y="480" width="280" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="abox" value="Answer Retrieval &amp;amp; Generation&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="835" y="120" width="320" height="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="abox" source="13" target="14" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Layer 3 : Context Retrieval&lt;div&gt;(FAISS Top - 5 Chunks, Cosine Similarity)&lt;/div&gt;" style="rounded=1;html=1" parent="abox" vertex="1">
+                    <mxGeometry x="20" y="70" width="280" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="abox" source="14" target="15" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Answer Generation&amp;nbsp;&lt;div&gt;&lt;span style=&quot;color: rgb(63, 63, 63);&quot;&gt;(Ollama Llama 3.2 3B + RAG)&lt;/span&gt;&lt;/div&gt;" style="rounded=1;html=1" parent="abox" vertex="1">
+                    <mxGeometry x="20" y="140" width="280" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Evaluation&lt;div&gt;&lt;span style=&quot;color: rgb(63, 63, 63);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;(Confidence Scoring)&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=1;html=1" parent="abox" vertex="1">
+                    <mxGeometry x="20" y="230" width="280" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Top 5 Relevant chunks&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="abox" vertex="1">
+                    <mxGeometry x="160" y="110" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Grounded Answer&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="abox" vertex="1">
+                    <mxGeometry x="160" y="190" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Answer &amp;amp; Confidence Score&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="abox" vertex="1">
+                    <mxGeometry x="150" y="280" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="" style="edgeStyle=none;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="17" target="13" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="930" y="685" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1190" y="630"/>
+                            <mxPoint x="1190" y="320"/>
+                            <mxPoint x="1190" y="220"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="42" style="edgeStyle=none;html=1;exitX=-0.007;exitY=0.391;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="17" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="10" y="620"/>
+                            <mxPoint x="10" y="360"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;color: rgb(63, 63, 63); font-size: 14px; background-color: transparent;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;Vector Database&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; (Sentence - Transformer, FAISS)&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; Multi Subject Isolation&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#0C0C0C;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="580" width="360" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0;entryDx=0;entryDy=75;entryPerimeter=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="9" target="17" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint y="280"/>
+                            <mxPoint y="655"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="45" value="&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;Vector&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;embeddings + text Chunks&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="600" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;Valid&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="190" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Top 5 Semantic Matches&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="995" y="600" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="61" value="Chunks for training Data Generation" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="185" y="650" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="User Question Input" style="rounded=1;html=1" parent="1" vertex="1">
+                    <mxGeometry x="490" width="260" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="610" y="180" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="16" value="Final Answer + Confidence Score + Context Viewer" style="rounded=1;html=1" parent="1" vertex="1">
+                    <mxGeometry x="855" y="510" width="280" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="" style="edgeStyle=none;html=1;" parent="1" source="15" target="16" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;User query&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="40" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="62" target="13">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="83" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="71" target="13">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="880" y="350" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="810" y="310"/>
+                            <mxPoint x="810" y="220"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="84" value="&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;Facts rectified&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="760" y="310" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="89" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Chunks per subject&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;faiss_index.bin + chunks.pkl&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;subjects/{subject_id}/vector_db/&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="790" y="610" width="150" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
