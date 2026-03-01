@@ -3,10 +3,10 @@ import { Box, Paper, Typography, Grid, Card, CardContent, Button, Drawer, List, 
 import { TrendingUp, Assessment, Speed, Logout, Dashboard as DashboardIcon, Add } from '@mui/icons-material';
 import axios from 'axios';
 
-const MetricsPage = ({ onSwitchTab, onLogout }) => {
+const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
   const [metrics, setMetrics] = useState(null);
   const [subjects, setSubjects] = useState([]);
-  const [currentSubject, setCurrentSubject] = useState('data_structures');
+  const [currentSubject, setCurrentSubject] = useState(selectedSubject || 'data_structures');
 
   useEffect(() => {
     loadSubjects();
@@ -22,7 +22,7 @@ const MetricsPage = ({ onSwitchTab, onLogout }) => {
     try {
       const res = await axios.get('http://localhost:5000/api/subjects/list');
       setSubjects(res.data.subjects || []);
-      if (res.data.subjects.length > 0) {
+      if (res.data.subjects.length > 0 && !currentSubject) {
         setCurrentSubject(res.data.subjects[0].id);
       }
     } catch (err) {
@@ -221,70 +221,55 @@ const MetricsPage = ({ onSwitchTab, onLogout }) => {
         
         <Grid container spacing={3}>
           <Grid item xs={6}>
-            <Typography variant="subtitle2" sx={{ mb: 2, fontWeight: 600 }}>Layer 1 - Classifier</Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={4}>
-                <Card elevation={0} sx={{ bgcolor: '#ECFDF5', border: '1px solid #D1FAE5', borderRadius: 2, textAlign: 'center' }}>
-                  <CardContent>
-                    <Typography variant="h3" sx={{ color: '#10B981', fontWeight: 700 }}>{metrics.layer1?.pass || 0}</Typography>
-                    <Typography variant="caption" sx={{ color: '#065F46', fontWeight: 600 }}>PASS</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={4}>
-                <Card elevation={0} sx={{ bgcolor: '#FEE2E2', border: '1px solid #FECACA', borderRadius: 2, textAlign: 'center' }}>
-                  <CardContent>
-                    <Typography variant="h3" sx={{ color: '#EF4444', fontWeight: 700 }}>{metrics.layer1?.fail || 0}</Typography>
-                    <Typography variant="caption" sx={{ color: '#991B1B', fontWeight: 600 }}>FAIL</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={4}>
-                <Card elevation={0} sx={{ bgcolor: '#EFF6FF', border: '1px solid #DBEAFE', borderRadius: 2, textAlign: 'center' }}>
-                  <CardContent>
-                    <Typography variant="h3" sx={{ color: '#3B82F6', fontWeight: 700 }}>{metrics.layer1?.pass_rate || 0}%</Typography>
-                    <Typography variant="caption" sx={{ color: '#1E40AF', fontWeight: 600 }}>Pass Rate</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
+            <Typography variant="subtitle2" sx={{ mb: 2, fontWeight: 600, color: '#1A202C' }}>Layer 1 - Subject Classifier</Typography>
+            <Box sx={{ mb: 1, p: 2, bgcolor: '#F8FAFC', borderRadius: 2, border: '1px solid #E2E8F0' }}>
+              <Typography variant="caption" sx={{ color: '#64748B', display: 'block', mb: 1 }}>Filters out irrelevant questions</Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Typography variant="h4" sx={{ color: '#10B981', fontWeight: 700 }}>{metrics.layer1?.pass || 0}</Typography>
+                <Typography variant="body2" sx={{ color: '#065F46' }}>relevant questions passed</Typography>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 0.5 }}>
+                <Typography variant="h4" sx={{ color: '#64748B', fontWeight: 700 }}>{metrics.layer1?.fail || 0}</Typography>
+                <Typography variant="body2" sx={{ color: '#475569' }}>off-topic questions filtered</Typography>
+              </Box>
+              <Box sx={{ mt: 2, p: 1.5, bgcolor: metrics.layer1?.pass_rate >= 50 ? '#ECFDF5' : '#FEF3C7', borderRadius: 1, border: `1px solid ${metrics.layer1?.pass_rate >= 50 ? '#D1FAE5' : '#FDE68A'}` }}>
+                <Typography variant="h5" sx={{ color: metrics.layer1?.pass_rate >= 50 ? '#10B981' : '#F59E0B', fontWeight: 700, textAlign: 'center' }}>
+                  {metrics.layer1?.pass_rate || 0}% Accuracy
+                </Typography>
+              </Box>
+            </Box>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="subtitle2" sx={{ mb: 2, fontWeight: 600 }}>Layer 2 - Validator</Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={3}>
-                <Card elevation={0} sx={{ bgcolor: '#ECFDF5', border: '1px solid #D1FAE5', borderRadius: 2, textAlign: 'center' }}>
-                  <CardContent sx={{ p: 1.5 }}>
+            <Typography variant="subtitle2" sx={{ mb: 2, fontWeight: 600, color: '#1A202C' }}>Layer 2 - Syllabus Validator</Typography>
+            <Box sx={{ mb: 1, p: 2, bgcolor: '#F8FAFC', borderRadius: 2, border: '1px solid #E2E8F0' }}>
+              <Typography variant="caption" sx={{ color: '#64748B', display: 'block', mb: 1 }}>Validates syllabus alignment</Typography>
+              <Grid container spacing={1}>
+                <Grid item xs={6}>
+                  <Box sx={{ p: 1.5, bgcolor: '#ECFDF5', borderRadius: 1, border: '1px solid #D1FAE5', textAlign: 'center' }}>
                     <Typography variant="h4" sx={{ color: '#10B981', fontWeight: 700 }}>{metrics.layer2?.valid || 0}</Typography>
-                    <Typography variant="caption" sx={{ color: '#065F46', fontWeight: 600, fontSize: '0.65rem' }}>VALID</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={3}>
-                <Card elevation={0} sx={{ bgcolor: '#FEF3C7', border: '1px solid #FDE68A', borderRadius: 2, textAlign: 'center' }}>
-                  <CardContent sx={{ p: 1.5 }}>
+                    <Typography variant="caption" sx={{ color: '#065F46', fontWeight: 600 }}>✓ VALID</Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Box sx={{ p: 1.5, bgcolor: '#FEF3C7', borderRadius: 1, border: '1px solid #FDE68A', textAlign: 'center' }}>
                     <Typography variant="h4" sx={{ color: '#F59E0B', fontWeight: 700 }}>{metrics.layer2?.warning || 0}</Typography>
-                    <Typography variant="caption" sx={{ color: '#92400E', fontWeight: 600, fontSize: '0.65rem' }}>WARNING</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={3}>
-                <Card elevation={0} sx={{ bgcolor: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: 2, textAlign: 'center' }}>
-                  <CardContent sx={{ p: 1.5 }}>
+                    <Typography variant="caption" sx={{ color: '#92400E', fontWeight: 600 }}>⚠ WARNING</Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Box sx={{ p: 1.5, bgcolor: '#F1F5F9', borderRadius: 1, border: '1px solid #E2E8F0', textAlign: 'center' }}>
                     <Typography variant="h4" sx={{ color: '#64748B', fontWeight: 700 }}>{metrics.layer2?.out_of_syllabus || 0}</Typography>
-                    <Typography variant="caption" sx={{ color: '#475569', fontWeight: 600, fontSize: '0.65rem' }}>OUT</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={3}>
-                <Card elevation={0} sx={{ bgcolor: '#FEE2E2', border: '1px solid #FECACA', borderRadius: 2, textAlign: 'center' }}>
-                  <CardContent sx={{ p: 1.5 }}>
+                    <Typography variant="caption" sx={{ color: '#475569', fontWeight: 600 }}>○ OUT</Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Box sx={{ p: 1.5, bgcolor: '#FEE2E2', borderRadius: 1, border: '1px solid #FECACA', textAlign: 'center' }}>
                     <Typography variant="h4" sx={{ color: '#EF4444', fontWeight: 700 }}>{metrics.layer2?.rejected || 0}</Typography>
-                    <Typography variant="caption" sx={{ color: '#991B1B', fontWeight: 600, fontSize: '0.65rem' }}>REJECT</Typography>
-                  </CardContent>
-                </Card>
+                    <Typography variant="caption" sx={{ color: '#991B1B', fontWeight: 600 }}>✕ REJECT</Typography>
+                  </Box>
+                </Grid>
               </Grid>
-            </Grid>
+            </Box>
           </Grid>
         </Grid>
       </Paper>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import ChatInterface from './components/Student/ChatInterface';
+import StudentLanding from './components/Student/StudentLanding';
 import AdminPage from './components/Admin/AdminPage';
 
 const theme = createTheme({
@@ -15,6 +16,7 @@ const theme = createTheme({
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [showChat, setShowChat] = useState(false);
 
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -23,10 +25,19 @@ function App() {
     }
   }, []);
 
+  if (isAdmin) {
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <AdminPage />
+      </ThemeProvider>
+    );
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {isAdmin ? <AdminPage /> : <ChatInterface />}
+      {showChat ? <ChatInterface onBackToHome={() => setShowChat(false)} openSubjectModal={true} /> : <StudentLanding onGetStarted={() => setShowChat(true)} />}
     </ThemeProvider>
   );
 }

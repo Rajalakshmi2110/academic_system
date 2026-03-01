@@ -3,7 +3,7 @@ import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSu
 import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu, School, ExpandLess } from '@mui/icons-material';
 import axios from 'axios';
 
-const ChatInterface = () => {
+const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
   const [conversations, setConversations] = useState([]);
   const [currentConvId, setCurrentConvId] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -15,7 +15,7 @@ const ChatInterface = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [comparisonMode, setComparisonMode] = useState(false);
   const [subjects, setSubjects] = useState([]);
-  const [subjectModalOpen, setSubjectModalOpen] = useState(false);
+  const [subjectModalOpen, setSubjectModalOpen] = useState(openSubjectModal);
   const [expandedSubjects, setExpandedSubjects] = useState({});
 
   useEffect(() => {
@@ -30,22 +30,15 @@ const ChatInterface = () => {
       .catch(err => console.error('Failed to load subjects:', err));
 
     const saved = localStorage.getItem('conversations');
-    const hasVisited = localStorage.getItem('hasVisited');
     
     if (saved) {
       const convs = JSON.parse(saved);
       setConversations(convs);
       
-      if (!hasVisited) {
-        setSubjectModalOpen(true);
-        localStorage.setItem('hasVisited', 'true');
-      } else if (convs.length > 0) {
+      if (convs.length > 0) {
         setCurrentConvId(convs[0].id);
         setMessages(convs[0].messages);
       }
-    } else {
-      setSubjectModalOpen(true);
-      localStorage.setItem('hasVisited', 'true');
     }
   }, []);
 
@@ -66,7 +59,7 @@ const ChatInterface = () => {
   const createNewConversation = (subjectId, subjectName) => {
     const newConv = {
       id: Date.now(),
-      title: 'New Chat',
+      title: 'New Conversation',
       subjectId: subjectId,
       subjectName: subjectName,
       messages: [{
@@ -134,7 +127,7 @@ const ChatInterface = () => {
 
   const updateConversationTitle = (convId, firstQuestion) => {
     setConversations(prev => prev.map(conv => 
-      conv.id === convId && conv.title === 'New Chat' 
+      conv.id === convId && conv.title === 'New Conversation' 
         ? { ...conv, title: firstQuestion.slice(0, 30) + (firstQuestion.length > 30 ? '...' : '') }
         : conv
     ));
@@ -313,6 +306,11 @@ const ChatInterface = () => {
             ))}
           </Box>
         </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setSubjectModalOpen(false)} color="inherit">
+            Cancel
+          </Button>
+        </DialogActions>
       </Dialog>
 
       <Drawer
@@ -332,7 +330,7 @@ const ChatInterface = () => {
             onClick={() => setSubjectModalOpen(true)}
             sx={{ color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}
           >
-            New Chat
+            Select Subject
           </Button>
         </Box>
         <Divider />
@@ -408,7 +406,7 @@ const ChatInterface = () => {
             <IconButton onClick={() => setSidebarOpen(!sidebarOpen)} sx={{ color: 'white' }}>
               <Menu />
             </IconButton>
-            <Typography variant="h6">Academic Doubt Clarification</Typography>
+            <Typography variant="h6" sx={{ cursor: 'pointer' }} onClick={onBackToHome}>Academic Doubt Clarification</Typography>
             {getCurrentSubject() && (
               <Chip
                 icon={<School />}

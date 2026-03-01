@@ -23,7 +23,7 @@ const AdminPage = () => {
   return (
     <Box>
       {currentTab === 0 && <AdminHome onLogout={() => setIsLoggedIn(false)} onSwitchTab={setCurrentTab} onSelectSubject={handleSelectSubject} />}
-      {currentTab === 1 && <MetricsPage onSwitchTab={setCurrentTab} onLogout={() => setIsLoggedIn(false)} />}
+      {currentTab === 1 && <MetricsPage onSwitchTab={setCurrentTab} onLogout={() => setIsLoggedIn(false)} selectedSubject={selectedSubject} />}
       {currentTab === 2 && <AddSubjectPage onSwitchTab={setCurrentTab} onLogout={() => setIsLoggedIn(false)} />}
       {currentTab === 3 && selectedSubject && <AdminDashboard onLogout={() => setIsLoggedIn(false)} onSwitchTab={setCurrentTab} initialSubject={selectedSubject} />}
     </Box>
