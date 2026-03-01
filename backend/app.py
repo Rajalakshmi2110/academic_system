@@ -123,7 +123,6 @@ def chat():
     
     # Layer 1 & 2: Validate question relevance and syllabus coverage
     validation_result = pipeline.process_question(question)
-    
     steps = {
         'layer1': {
             'name': 'DS Classifier',

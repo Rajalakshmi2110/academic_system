@@ -218,6 +218,9 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
     print(f"Valid (label=1): {valid_count} ({valid_count/len(dataset)*100:.1f}%)")
     print(f"Invalid (label=0): {invalid_count} ({invalid_count/len(dataset)*100:.1f}%)")
     print(f"Saved to: {output_file}")
+    print(f"\nSample questions:")
+    print(f"  Valid: {dataset[0]['question'][:80]}...")
+    print(f"  Invalid: {dataset[valid_count]['question'][:80]}...")
     
     return dataset
 

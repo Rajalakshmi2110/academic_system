@@ -553,17 +553,35 @@ const ChatInterface = () => {
                                   Layer 3 - {msg.data.intermediate_steps.layer3.name || 'RAG Pipeline'}
                                 </Typography>
                                 {msg.data.confidence_score !== undefined && (
-                                  <Chip 
-                                    label={`${(msg.data.confidence_score * 100).toFixed(0)}% Confidence`}
-                                    size="small"
-                                    sx={{ 
-                                      ml: 'auto',
-                                      bgcolor: msg.data.confidence_score >= 0.8 ? '#4CAF50' : msg.data.confidence_score >= 0.6 ? '#FF9800' : '#F44336',
-                                      color: 'white',
-                                      fontWeight: 'bold',
-                                      fontSize: '0.7rem'
-                                    }}
-                                  />
+                                  <Box sx={{ ml: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 0.5 }}>
+                                    <Box sx={{ display: 'flex', gap: 0.3 }}>
+                                      {[1, 2, 3, 4, 5].map((block) => {
+                                        const score = msg.data.confidence_score;
+                                        const filled = score > ((block - 1) * 0.2);
+                                        let color = '#E0E0E0';
+                                        if (filled) {
+                                          if (score >= 0.8) color = '#4CAF50';
+                                          else if (score >= 0.6) color = '#FF9800';
+                                          else color = '#F44336';
+                                        }
+                                        return (
+                                          <Box
+                                            key={block}
+                                            sx={{
+                                              width: 12,
+                                              height: 24,
+                                              bgcolor: color,
+                                              borderRadius: 0.5,
+                                              transition: 'all 0.3s'
+                                            }}
+                                          />
+                                        );
+                                      })}
+                                    </Box>
+                                    <Typography variant="caption" sx={{ fontSize: '0.65rem', color: '#666', fontWeight: 'bold' }}>
+                                      {msg.data.confidence_score >= 0.8 ? 'High' : msg.data.confidence_score >= 0.6 ? 'Medium' : 'Low'} Confidence
+                                    </Typography>
+                                  </Box>
                                 )}
                               </Box>
                               <Typography variant="caption" sx={{ display: 'block', color: '#666' }}>

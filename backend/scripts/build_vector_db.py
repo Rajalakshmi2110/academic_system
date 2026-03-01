@@ -96,7 +96,7 @@ def build_vector_db(docs_path, output_path):
     with open(output_path / 'metadata.json', 'w') as f:
         json.dump(metadata, f, indent=2)
     
-    # Save all_chunks.txt for intermediate output visibility
+    # Save all_chunks.txt for demo visibility
     print("Saving all_chunks.txt for review...")
     with open(output_path / 'all_chunks.txt', 'w', encoding='utf-8') as f:
         f.write(f"Total Chunks: {len(all_chunks)}\n")
@@ -111,9 +111,11 @@ def build_vector_db(docs_path, output_path):
             f.write("-" * 80 + "\n\n")
     
     print(f"\n✓ Vector database saved to: {output_path}")
-    print(f"  - Index: {len(all_chunks)} vectors")
-    print(f"  - Dimension: {dimension}")
-    print(f"  - all_chunks.txt: {len(all_chunks)} chunks saved for review")
+    print(f"  - faiss_index.bin: {len(all_chunks)} vectors")
+    print(f"  - chunks.pkl: Text chunks")
+    print(f"  - metadata.json: Source tracking")
+    print(f"  - Embedding dimension: {dimension}")
+    print(f"  - all_chunks.txt: {len(all_chunks)} chunks saved for demo review")
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
