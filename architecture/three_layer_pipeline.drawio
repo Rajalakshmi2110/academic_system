@@ -1,16 +1,13 @@
 <mxfile host="65bd71144e">
     <diagram name="Module 5: Three-Layer Pipeline" id="module5">
-        <mxGraphModel dx="989" dy="773" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="809" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="title" value="MODULE 5: THREE-LAYER QUESTION PROCESSING PIPELINE" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=14;" parent="1" vertex="1">
-                    <mxGeometry x="200" y="50" width="450" height="40" as="geometry"/>
-                </mxCell>
                 <mxCell id="input" value="Input: User Question" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="325" y="140" width="200" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="layer1box" value="LAYER 1: DISTILBERT CLASSIFICATION" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" parent="1" vertex="1">
+                <mxCell id="layer1box" value="STAGE 1: DISTILBERT CLASSIFICATION" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" parent="1" vertex="1">
                     <mxGeometry x="260" y="100" width="350" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="layer1" value="DistilBERT Binary Classifier&lt;br&gt;• Load model from cache&lt;br&gt;• Tokenize question&lt;br&gt;• Predict: Related / Not Related Subject&lt;br&gt;• Latency: ~20ms" style="rounded=1;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
@@ -19,7 +16,7 @@
                 <mxCell id="out" value="OUT OF SYLLABUS&lt;br&gt;Reject Question" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="90" y="225" width="140" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="layer2box" value="LAYER 2: GROQ LLAMA 3.3 70B MCP VALIDATOR" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" parent="1" vertex="1">
+                <mxCell id="layer2box" value="STAGE 2: GROQ LLAMA 3.3 70B MCP VALIDATOR" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" parent="1" vertex="1">
                     <mxGeometry x="250" y="330" width="350" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="layer2" value="MCP Validator (Model Context Protocol)&lt;br&gt;• Call get_syllabus_topics() tool&lt;br&gt;• Validate against syllabus&lt;br&gt;• Detect wrong facts&lt;br&gt;• Output: VALID/WARNING/REJECTED&lt;br&gt;• Latency: ~1-2s" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
@@ -31,7 +28,7 @@
                 <mxCell id="warning" value="WARNING&lt;br&gt;Wrong Facts Detected" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="630" y="405" width="140" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="layer3box" value="LAYER 3: RAG PIPELINE (FAISS + OLLAMA)" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" parent="1" vertex="1">
+                <mxCell id="layer3box" value="STAGE 3: RAG PIPELINE (FAISS + OLLAMA)" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" parent="1" vertex="1">
                     <mxGeometry x="250" y="520" width="350" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="layer3a" value="Context Retrieval&lt;br&gt;• FAISS semantic search&lt;br&gt;• Top-5 chunks&lt;br&gt;• Cosine similarity&lt;br&gt;• Latency: ~1-2s" style="rounded=1;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">

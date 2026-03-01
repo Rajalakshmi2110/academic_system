@@ -1,0 +1,45 @@
+<mxfile host="65bd71144e">
+    <diagram name="Module 6: Answer Generation" id="module6">
+        <mxGraphModel dx="434" dy="326" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="MODULE 6: RAG ANSWER GENERATION &amp; CONFIDENCE SCORING" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="175" y="70" width="500" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="input" value="Input: Validated Question from Module 5&lt;br&gt;(VALID or WARNING status)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="130" width="250" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage3_title" value="STAGE 3: RAG PIPELINE" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="200" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="retrieval" value="Retrieval (FAISS + SBERT)&lt;br&gt;• Embed question: 384-dim vector&lt;br&gt;• FAISS semantic search&lt;br&gt;• Retrieve top-5 chunks&lt;br&gt;• Aggregate context: ~7500 chars&lt;br&gt;• Latency: ~50ms" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="250" width="250" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="generation" value="Generation (Ollama Llama 3.2 3B)&lt;br&gt;• Build RAG prompt with context&lt;br&gt;• Local inference (max 500 tokens)&lt;br&gt;• Context-grounded answer&lt;br&gt;• Clean response (HTML/markdown)&lt;br&gt;• Latency: ~29,500ms" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="400" width="250" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="confidence" value="Confidence Scoring (Hybrid)&lt;br&gt;• 50%: Context-Answer overlap&lt;br&gt;• 30%: Question-Context relevance&lt;br&gt;• 20%: Answer length (20-300 words)&lt;br&gt;• Score: 0-100%" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="550" width="250" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="output" value="Output: Complete Response&lt;br&gt;• Answer text&lt;br&gt;• Confidence score (0-100%)&lt;br&gt;• Source PDFs&lt;br&gt;• Retrieved context chunks&lt;br&gt;• WARNING badge (if applicable)" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="690" width="250" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="input" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="425" y="200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="retrieval" target="generation" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="generation" target="confidence" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="confidence" target="output" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

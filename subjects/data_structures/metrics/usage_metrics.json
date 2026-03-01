@@ -1,8 +1,8 @@
 {
-  "total_questions": 14,
+  "total_questions": 15,
   "layer1_pass": 0,
-  "layer1_fail": 14,
-  "layer2_valid": 13,
+  "layer1_fail": 15,
+  "layer2_valid": 14,
   "layer2_warning": 0,
   "layer2_out_of_syllabus": 0,
   "layer2_rejected": 1,
@@ -19,7 +19,8 @@
     0.53,
     0.64,
     0.77,
-    0.81
+    0.81,
+    0.64
   ],
   "latencies": [
     23119.994163513184,
@@ -36,7 +37,7 @@
   "daily_stats": {
     "2026-02-25": 1,
     "2026-02-26": 6,
-    "2026-03-01": 7
+    "2026-03-01": 8
   },
-  "last_updated": "2026-03-01T12:16:03.844800"
+  "last_updated": "2026-03-01T13:55:35.550495"
 }
