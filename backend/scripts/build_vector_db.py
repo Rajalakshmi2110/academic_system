@@ -10,6 +10,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from PyPDF2 import PdfReader
 
+#MODULE 1
 def extract_text_from_pdf(pdf_path):
     """Extract text from PDF file"""
     try:
@@ -39,6 +40,7 @@ def chunk_text(text, chunk_size=1500, overlap=200):
     
     return chunks
 
+#MODULE 2
 def build_vector_db(docs_path, output_path):
     """Build FAISS vector database from documents"""
     

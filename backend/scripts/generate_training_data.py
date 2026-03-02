@@ -8,6 +8,8 @@ from groq import Groq
 from pathlib import Path
 import time
 
+
+#MODULE 3
 def load_syllabus(syllabus_path):
     """Load syllabus JSON file"""
     with open(syllabus_path, 'r', encoding='utf-8') as f:
@@ -100,7 +102,7 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
     api_key = os.getenv('GROQ_API_KEY')
     if not api_key:
         error_msg = "GROQ_API_KEY not found in environment. Please set it in .env file or export it."
-        print(f"\n❌ ERROR: {error_msg}")
+        print(f"\nERROR: {error_msg}")
         raise ValueError(error_msg)
     
     client = Groq(api_key=api_key)
@@ -213,7 +215,7 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
     valid_count = sum(1 for d in dataset if d['label'] == 1)
     invalid_count = len(dataset) - valid_count
     
-    print(f"\n✅ Dataset generated successfully!")
+    print(f"\nDataset generated successfully!")
     print(f"Total samples: {len(dataset)}")
     print(f"Valid (label=1): {valid_count} ({valid_count/len(dataset)*100:.1f}%)")
     print(f"Invalid (label=0): {invalid_count} ({invalid_count/len(dataset)*100:.1f}%)")

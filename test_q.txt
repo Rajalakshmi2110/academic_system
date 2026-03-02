@@ -1,5 +1,5 @@
 📚 DATA STRUCTURES Test Questions
-✅ VALID (In Syllabus)
+VALID (In Syllabus)
 "What is a binary search tree and how does it work?"
 
 "Explain the difference between stack and queue"
@@ -105,8 +105,6 @@
 "How would you solve the dining philosophers problem?"
 
 "A system has 4 resources and 3 processes. Detect if deadlock exists using resource allocation graph"
-
-"Calculate page faults for reference string [1, 2, 3, 4, 1, 2, 5] using FIFO with 3 frames"
 
 "Implement producer-consumer problem using semaphores"
 

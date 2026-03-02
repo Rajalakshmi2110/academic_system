@@ -1,6 +1,6 @@
-Total Chunks: 1850
+Total Chunks: 1864
 Embedding Dimension: 384
-Source PDFs: 9
+Source PDFs: 10
 ================================================================================
 
 Chunk 1:
@@ -51610,6 +51610,428 @@ California. Derived with permission of the authors.
 --------------------------------------------------------------------------------
 
 Chunk 1742:
+Source: OS_Introduction.pdf
+Content:
+HomeReadSign in
+CONTENTS OPERATING SYSTEM
+Operating System by In ibnet Centre is licensed under a Creative Commons Attribution-NonCommercial 4.0
+International License, except where otherwise noted.
+ 
+ Search in book …
+1 .    O p e r a t i n g  S y s t e m  :  I n t r o d u c t i o n
+ 
+1.  Introduction to Operating Systems 
+ 
+This module discusses about what an operating system is, the different de nitions
+of operating systems and the features of different operating systems that evolved
+over time.
+ 
+1.1  What is an operating system? 
+An operating system is a program that acts as an intermediary between a user
+of a computer and the computer hardware.
+It is a software. It acts as an interface between the user who is using the
+computer and the hardware that is present in the computer. So for users to
+easily use the computer, the operating system plays a role. Users may not know
+what’s happening inside a computer and how the hardware is actually working.
+So we have the operating system that sits between the user and hardware and
+does the interfacing work.
+An  operating  system  manages  a  computer’s  resources  for  users  and
+applications. 
+There are a number of resources in the computer like the CPU, I/O devices,
+memory etc. These resources have to be utilized properly by the different
+applications of different/same users/user that are running in the computer.
+There can be many applications running in the computer and each application
+may have to use different resources of the
+--------------------------------------------------------------------------------
+
+Chunk 1743:
+Source: OS_Introduction.pdf
+Content:
+rent
+applications of different/same users/user that are running in the computer.
+There can be many applications running in the computer and each application
+may have to use different resources of the computer. Hence the resources have
+to be managed properly by allocating them properly to different applications.
+An operating system is a control program 
+An operating system acts like a control program that controls the execution of
+user programs and operations of I/O devices.
+An operating system is one program that is running at all times in the
+computer.
+ 
+1.2  Goals of an operating system:
+Execute user programs and make solving user problems easier.
+Convenience
+Ef ciency
+ 
+One of the goals of an operating system is to execute the users’ programs in an
+easier way. Convenience is another criterion that has been looked at for the design
+of the operating system. For example, the Windows operating system was designed
+in a way that it is easier for the users to use. But in the earlier UNIX systems,
+ef ciency was the main concern while designing the operating system. But these
+days, UNIX systems have a user interface which is easier and convenient for people
+to use. So, depending on the kind of application for which the system is used for,
+convenience or ef ciency can be taken as the criterion during the design of the
+operating system.
+ 
+1.3  Evolution of operating systems 
+ 
+Different operating systems have evolved over time. Right from when operating
+systems came into existence, d
+--------------------------------------------------------------------------------
+
+Chunk 1744:
+Source: OS_Introduction.pdf
+Content:
+iterion during the design of the
+operating system.
+ 
+1.3  Evolution of operating systems 
+ 
+Different operating systems have evolved over time. Right from when operating
+systems came into existence, different functionalities have been gradually added to
+operating systems.
+ 
+1.3.1  Mainframe Systems 
+ 
+Initially, computers were mainframe systems. The computers were very large,
+sometimes occupying one full  oor in a building. The computers were very
+expensive and could be used only by a single person. Users had to take their
+programs in cards and handover to the person who is in-charge of the computer.
+The users could then collect the results the next day. So, users had to wait one after
+the other to submit the input and wait till the next day to collect the results.
+Fig 1.1 Mainframe Systems (Source: Ref. [1])
+ 
+Hence the operating system in this case had to just transfer control from one
+job to another in a sequential manner. This sequential execution causes unnecessary
+time consumption. The operating system can reduce set up time by matching similar
+jobs together. It is seen that the operating system in this type of systems has very
+limited functionalities. As seen in Figure 1.1, there is a resident monitor/operating
+system that resides in the system. Initially the control will be with the monitor. Then
+the control is transferred to a job. After completion of the job, control is transferred
+to the monitor. So, there is a possibility for the CPU to remain idle for a lot of ti
+--------------------------------------------------------------------------------
+
+Chunk 1745:
+Source: OS_Introduction.pdf
+Content:
+be with the monitor. Then
+the control is transferred to a job. After completion of the job, control is transferred
+to the monitor. So, there is a possibility for the CPU to remain idle for a lot of time.
+ 
+When disk technology was introduced, jobs could be put into a disk and could be
+read from the disk rather than being read from the input card reader. Hence, it was
+possible to place multiple jobs into the disk at the same. Thus, the multi-
+programmed batch systems came into existence.
+ 
+1.3.2  Multi-programmed batch systems 
+Fig 1.2 Multiprogrammed batch systems (Source: Ref. [1])
+ 
+In a multiprogrammed batch system, multiple programs can be brought into the
+main memory from the disk simultaneously at a particular time as shown in Figure
+1.2. One of the jobs in the main memory will be given the CPU. The operating system
+now has additional functionalities of selecting jobs from the disk to be brought into
+the main memory and selecting one of the jobs in the main memory to be given to
+the CPU. If there are 10 jobs in the disk and there is space in the main memory for
+only 3, 3 out of the 10 jobs must be chosen to be brought into the main memory. This
+is done by the job scheduler. As only one job can be given to the CPU at a particular
+time, choosing one of the different jobs present in the main memory to be given to
+the CPU is done by the CPU scheduler. When the 3 jobs are placed in the main
+memory, decision has to be made as to where to place the jobs in the main memory.
+Hen
+--------------------------------------------------------------------------------
+
+Chunk 1746:
+Source: OS_Introduction.pdf
+Content:
+ent in the main memory to be given to
+the CPU is done by the CPU scheduler. When the 3 jobs are placed in the main
+memory, decision has to be made as to where to place the jobs in the main memory.
+Hence memory management was added as a functionality of the operating system.
+I/O devices also have to be allocated to processes. Hence I/O management was
+included as a functionality to the operating system.
+ 
+In  these  systems,  multiple  programs  can  be  kept  in  the  memory.  But  a one-
+to-one interaction between the user and computer was missing. Hence, a
+new system was developed called the time-sharing systems. These time-sharing
+systems are basically an extension of multiprogramming systems and are called
+multitasking systems.
+ 
+1.3.3  Time Sharing / Multitasking Systems 
+ 
+The operating systems like Windows, MacOS and Linux that we see today are all
+time sharing systems. A time sharing system is a logical extension of
+multiprogramming systems. In these systems, the CPU is multiplexed among several
+jobs that are kept in memory and on disk and hence job scheduling and CPU
+scheduling are included in the functions of the operating system. Here, a direct
+communication between the user and the system is provided. It is possible for many
+users to use the system at a particular time. Since the speed of users is much less
+than the speed of the CPU, CPU time can be shared among the different users’
+programs. Since many jobs can be brought into the main memory, memory
+management is
+--------------------------------------------------------------------------------
+
+Chunk 1747:
+Source: OS_Introduction.pdf
+Content:
+. Since the speed of users is much less
+than the speed of the CPU, CPU time can be shared among the different users’
+programs. Since many jobs can be brought into the main memory, memory
+management is needed.
+ 
+It may be necessary for some process to wait for I/O to happen (say read an input
+from the user). Then this process may be moved/swapped from the main memory to
+the disk. Another partially executed process which was moved to the disk earlier can
+be brought into the main memory. Thus partially executed jobs can be moved in and
+out of memory to the disk. Hence the concept of virtual memory is introduced.
+Virtual memory also allows programs to be larger than the physical memory.
+ 
+Since many users are using the computer, each user will have his/her own  les
+and these  les have to be placed in the secondary storage device / disks. When
+there are many  les, the  les have to be arranged in a logical manner. Hence,  le
+systems were included as a part of operating systems. Since  les are present in disks,
+disk management was also needed.
+ 
+It is possible to have many processes of a particular user or different users to run
+concurrently. At a particular time, only one process can use the CPU. When one
+process is waiting for I/O, another process may use the CPU and vice versa. This
+may not be felt by the users using the computer. Thus concurrent execution of
+processes is possible.
+ 
+When many processes execute concurrently, they may have to communicate
+among themselves or may ha
+--------------------------------------------------------------------------------
+
+Chunk 1748:
+Source: OS_Introduction.pdf
+Content:
+may not be felt by the users using the computer. Thus concurrent execution of
+processes is possible.
+ 
+When many processes execute concurrently, they may have to communicate
+among themselves or may have to share common variables or data structures. Hence
+job synchronization and communication are needed. Similarly, when processes
+execute concurrently and share resources of the computer, it is possible that
+deadlocks may occur. Hence the operating system must have the capability to
+handle deadlocks.
+ 
+1.3.4  Desktop Systems 
+ 
+Initially, the CPUs in PCs lacked the features needed to protect an operating
+system from user programs. PC operating systems therefore were neither multiuser
+nor multitasking. The goals of these operating systems have changed with time;
+instead of maximizing CPU and peripheral utilization, the systems opt for
+maximizing user convenience and responsiveness. Initially,  le protection was not
+needed in a personal machine. But since computers are connected to other
+networks these days, other computers and other users can access the  les on a PC
+and hence  le protection again has become a necessary feature of the operating
+system. The lack of such protection has made it easy for malicious programs to
+destroy data on systems such as MS-DOS and the Macintosh operating system.
+These programs may be self-replicating, and may spread rapidly via worm or virus
+mechanisms and disrupt entire companies or even worldwide networks.
+ 
+1.3.5  Multiprocessor Systems / Paral
+--------------------------------------------------------------------------------
+
+Chunk 1749:
+Source: OS_Introduction.pdf
+Content:
+ing system.
+These programs may be self-replicating, and may spread rapidly via worm or virus
+mechanisms and disrupt entire companies or even worldwide networks.
+ 
+1.3.5  Multiprocessor Systems / Parallel Systems 
+ 
+The systems discussed in the earlier sections had only one CPU. But
+multiprocessor systems have more than one processor in close communication,
+sharing the computer bus, the clock, and sometimes memory and peripheral
+devices. These systems are also called as tightly coupled systems.
+ 
+The advantages of multiprocessor systems are increased throughput, economy of
+scale and increased reliability. When there are more number of processors, more
+work is done in less time. Multiprocessor systems can save more money than
+multiple single-processor systems, because they can share peripherals, storage and
+power supplies. If several programs operate on the same set of data, it is cheaper to
+store those data on one disk and to have all the processors share them, than to have
+many computers with local disks and many copies of the data. If functions can be
+distributed properly among several processors, then the failure of one processor will
+not halt the system, only slow it down. Hence the system becomes more reliable.
+ 
+There are two types of multiprocessing systems: symmetric and asymmetric
+multiprocessing. In symmetric multiprocessing (SMP), each processor runs an
+identical copy of the operating system, and these copies communicate with one
+another as needed. In asymmetric mul
+--------------------------------------------------------------------------------
+
+Chunk 1750:
+Source: OS_Introduction.pdf
+Content:
+symmetric
+multiprocessing. In symmetric multiprocessing (SMP), each processor runs an
+identical copy of the operating system, and these copies communicate with one
+another as needed. In asymmetric multiprocessing, each processor is assigned a
+speci c task. Each processor can have different capabilities as well. A master
+processor controls the system; the other processors either look to the master for
+instructions or have prede ned tasks. This scheme de nes a master-slave
+relationship. The master processor schedules and allocates work to the slave
+processors.
+ 
+1.3.6  Distributed Systems
+ 
+Distributed systems depend on networking for their functionality. Distributed
+systems communicate among themselves using high–speed communication lines.
+Hence they are able to share computational tasks and provide a lot of features for
+the users. These systems do not share memory or a clock. Instead, each processor
+has its own local memory. Hence these systems are usually referred to as loosely
+coupled systems (or distributed systems).
+ 
+Client-Server Systems:Earlier, terminals which were connected to a centralized
+system provided the user interface for the user. Now, personal computers (PCs) have
+replaced the terminals. In client-server systems, multiple clients connect to a server
+and the server provides the necessary service for the clients. Client-server systems
+can be either compute-server systems or  le-server systems. In compute-server
+systems, the server provides computational servic
+--------------------------------------------------------------------------------
+
+Chunk 1751:
+Source: OS_Introduction.pdf
+Content:
+er provides the necessary service for the clients. Client-server systems
+can be either compute-server systems or  le-server systems. In compute-server
+systems, the server provides computational services to the user. In  le-server
+systems, a  le-system interface is provided where clients can create, update, read,
+and delete  les.
+ 
+Peer-to-peer Systems:In this type of systems, all computers are peers. Each
+computer can communicate with the other computers using communication lines or
+a network. Different  processes  on  different  computers  can  exchange  messages.
+ A  network operating system which is an operating system that provides features
+such as  le sharing across the network and communication, can help in this kind of
+communication. A computer  running a network operating system acts
+autonomously from all other computers on the network, although it is aware of the
+network and is able to communicate with other networked computers. The different
+operating systems present in different computers communicate closely enough to
+provide the illusion that only a single operating system controls the network.
+ 
+1.3.7  Real-time operating systems
+ 
+A real-time system is used when rigid time requirements have been placed on the
+operation of a processor or the  ow of data; thus, it is often used as a control device
+in a dedicated application. A real-time system has well-de ned,  xed time
+constraints. Processing must be done within the de ned constraints, or the system
+will fail. Fo
+--------------------------------------------------------------------------------
+
+Chunk 1752:
+Source: OS_Introduction.pdf
+Content:
+often used as a control device
+in a dedicated application. A real-time system has well-de ned,  xed time
+constraints. Processing must be done within the de ned constraints, or the system
+will fail. For instance, it would not do for a robot arm to be instructed to halt after it
+had smashed into the car it was building. A real-time system functions correctly only
+if it returns the correct result within its time constraints. There are two types of
+real-time systems: hard real-time systems and soft real-time systems.
+ 
+In hard real-time systems, the time constraint is very rigid. All delays in the system
+must be bounded, from the retrieval of stored data to the time that it takes the
+operating system to  nish any request made of it. Because of this, facilities that are
+available in hard real-time systems are less. Secondary storage of any sort is usually
+limited or missing, with data instead being stored in short-term memory or in read-
+only memory (ROM). Most advanced operating-system features are also absent, since
+they tend to separate the user from the hardware, and that separation results in
+uncertainty about the amount of time an operation will take. For instance, virtual
+memory is almost never found on real-time systems.
+ 
+In soft real-time systems, the restrictions are less. A real-time processes get a
+higher priority over the other processes. Hence, other non-critical processes can
+also run in the computer. The real-time processes are not made to wait for a long
+amount o
+--------------------------------------------------------------------------------
+
+Chunk 1753:
+Source: OS_Introduction.pdf
+Content:
+A real-time processes get a
+higher priority over the other processes. Hence, other non-critical processes can
+also run in the computer. The real-time processes are not made to wait for a long
+amount of time. These systems need advanced operating-system features that
+cannot be supported by hard real-time systems.
+ 
+1.3.8  Handheld Systems
+ 
+Handheld systems include PDAs, cellular phones etc. The main issues with these
+systems are that they have a small size, small amount of memory, include slow
+processors, and feature small display screens. Examples of handheld operating
+systems are Android, iOS, Symbian etc.
+ 
+As the size of memory is small, the operating system and applications must manage
+memory ef ciently. This includes returning all allocated memory back to the
+memory manager once the memory is no longer being used.
+ 
+Processors for most handheld devices often run at a fraction of the speed of a
+processor in a PC. Faster processors require more power. To include a faster
+processor in a handheld device would require a larger battery that would have to be
+replaced (or recharged) more frequently. To minimize the size of most handheld
+devices, smaller, slower processors which consume less power are typically used.
+Therefore, the operating system and applications must be designed not to tax the
+processor.
+ 
+As the size of the display is small, familiar tasks, such as reading e-mail or browsing
+web pages, must be condensed onto smaller displays. One approach for displaying
+the
+--------------------------------------------------------------------------------
+
+Chunk 1754:
+Source: OS_Introduction.pdf
+Content:
+not to tax the
+processor.
+ 
+As the size of the display is small, familiar tasks, such as reading e-mail or browsing
+web pages, must be condensed onto smaller displays. One approach for displaying
+the content in web pages is web clipping, where only a small subset of a web page is
+delivered and displayed on the handheld device.
+ 
+Since it is possible to access the internet using handheld devices, security is also
+an issue that has to be considered by the operating systems of handheld devices.
+ 
+1.3.9  Embedded Systems
+ 
+A number of machines are being used these days like the microwave oven, washing
+machine, set-top boxes, cars, medical devices etc. These machines need customized
+operating systems developed speci cally for those particular machines. These
+operating systems must be developed very cautiously such that they do not lead to
+failure of the task-speci c application that is running, because software errors can
+have devastating effects.
+ 
+1.4  Future of operating systems
+ 
+The future of operating systems also depends of the future of hardware. In the
+future, there will be very large scale data centers coordinating thousands of
+computers to  support  some  essential  service,  very  large scale  multicore
+ systems  –  many processors  per  machine,  ubiquitous  portable  devices,
+ heterogeneous systems  and supercomputers to refrigerators to light switches.
+Operating systems may have to be designed looking into all these developments.
+ 
+References
+   Abraham Silberschatz
+--------------------------------------------------------------------------------
+
+Chunk 1755:
+Source: OS_Introduction.pdf
+Content:
+ices,
+ heterogeneous systems  and supercomputers to refrigerators to light switches.
+Operating systems may have to be designed looking into all these developments.
+ 
+References
+   Abraham Silberschatz,  Peter  B.  Galvin,  Greg  Gagne,  “Operating  System
+Concepts”, Ninth Edition, John Wiley & Sons Inc., 2012.
+   Thomas Anderson,   Michael   Dahlin,   “Operating    Systems:    Principles   and
+Practice”, Recursive Books, 2012.Increase Font Size
+--------------------------------------------------------------------------------
+
+Chunk 1756:
 Source: OS_Unit_5_Notes.pdf
 Content:
 Disk Structure  
@@ -51651,7 +52073,7 @@ requests  to a disk.
 • The goal is to minimize seek time  (moving the head betwe
 --------------------------------------------------------------------------------
 
-Chunk 1743:
+Chunk 1757:
 Source: OS_Unit_5_Notes.pdf
 Content:
 s . 
@@ -51691,7 +52113,7 @@ movement.
 • Head moves in one direction, servicing requests u
 --------------------------------------------------------------------------------
 
-Chunk 1744:
+Chunk 1758:
 Source: OS_Unit_5_Notes.pdf
 Content:
 rrent head position . 
@@ -51736,7 +52158,7 @@ Movement :
 2. SSTF (Shortest
 --------------------------------------------------------------------------------
 
-Chunk 1745:
+Chunk 1759:
 Source: OS_Unit_5_Notes.pdf
 Content:
 rder . 
@@ -51788,7 +52210,7 @@ Order :
 Alg
 --------------------------------------------------------------------------------
 
-Chunk 1746:
+Chunk 1760:
 Source: OS_Unit_5_Notes.pdf
 Content:
 arthest request, then jumps to the other end’s first request . 
@@ -51832,7 +52254,7 @@ o Hard to extend in -place if neighboring blocks are occupied.
 • Allocates file in c
 --------------------------------------------------------------------------------
 
-Chunk 1747:
+Chunk 1761:
 Source: OS_Unit_5_Notes.pdf
 Content:
 occupied.  
@@ -51877,7 +52299,7 @@ in the file.
 • St
 --------------------------------------------------------------------------------
 
-Chunk 1748:
+Chunk 1762:
 Source: OS_Unit_5_Notes.pdf
 Content:
 ✅ Advantages:  
@@ -51922,7 +52344,7 @@ a. Index block → second -level index blocks → data blocks.
 b. Example: 4 KB
 --------------------------------------------------------------------------------
 
-Chunk 1749:
+Chunk 1763:
 Source: OS_Unit_5_Notes.pdf
 Content:
 a. Chain multiple index blocks.  
@@ -51962,7 +52384,7 @@ Rename  Update file name in the directory; may affect structure in some systems.
 Traverse  Visit all files/dir
 --------------------------------------------------------------------------------
 
-Chunk 1750:
+Chunk 1764:
 Source: OS_Unit_5_Notes.pdf
 Content:
 ce.  
@@ -52008,7 +52430,7 @@ o Still not flexible for complex applications.
 • Stru
 --------------------------------------------------------------------------------
 
-Chunk 1751:
+Chunk 1765:
 Source: OS_Unit_5_Notes.pdf
 Content:
 ages : 
@@ -52052,7 +52474,7 @@ o Garbage collection  and reference count maintenance become essential.
      Used in : Advanced file systems supporting complex sharing.
 --------------------------------------------------------------------------------
 
-Chunk 1752:
+Chunk 1766:
 Source: OS_Unit_5_Notes.pdf
 Content:
 r infinite loops  during traversal (need cycle detection).  
@@ -52069,7 +52491,7 @@ Acyclic Graph  Yes  Managed  High  Shared file systems
 General Graph  Yes (more)  Managed  Very High  Complex file systems
 --------------------------------------------------------------------------------
 
-Chunk 1753:
+Chunk 1767:
 Source: OS_IA2_NOTES.pdf
 Content:
 Multilevel Queue Scheduling  
@@ -52119,7 +52541,7 @@ Example: 5 -Level Queue (Highest to Lowest Priority)
 5. Stud
 --------------------------------------------------------------------------------
 
-Chunk 1754:
+Chunk 1768:
 Source: OS_IA2_NOTES.pdf
 Content:
 verage turnaround time.  
@@ -52172,7 +52594,7 @@ o Quantum = 8 ms
 o If not finished → moved to q
 --------------------------------------------------------------------------------
 
-Chunk 1755:
+Chunk 1769:
 Source: OS_IA2_NOTES.pdf
 Content:
 (Three -level queue system: queue 0 with quantum = 8, queue 1 with quantum = 16, queue 2 with FCFS)  
@@ -52215,7 +52637,7 @@ Producer –Consumer Problem with Race Condition
 • Bounded Bu
 --------------------------------------------------------------------------------
 
-Chunk 1756:
+Chunk 1770:
 Source: OS_IA2_NOTES.pdf
 Content:
 ughput in batch 
@@ -52273,7 +52695,7 @@ T0 Producer: register1 = counter  → 5
 T1 Producer: register1 = regist
 --------------------------------------------------------------------------------
 
-Chunk 1757:
+Chunk 1771:
 Source: OS_IA2_NOTES.pdf
 Content:
 er -- 
@@ -52319,7 +52741,7 @@ by protecting the critical section  using synchronization tools like:
 important in multithreade
 --------------------------------------------------------------------------------
 
-Chunk 1758:
+Chunk 1772:
 Source: OS_IA2_NOTES.pdf
 Content:
 synchronization . 
@@ -52356,7 +52778,7 @@ b. Prevents simultaneous access  to shared data.
 2. Progress
 --------------------------------------------------------------------------------
 
-Chunk 1759:
+Chunk 1773:
 Source: OS_IA2_NOTES.pdf
 Content:
 must satisfy three essential conditions : 
@@ -52391,7 +52813,7 @@ c.   Simple ,   Safe ,   Less responsive .
 a. Kernel -mode processes can be interrupted
 --------------------------------------------------------------------------------
 
-Chunk 1760:
+Chunk 1774:
 Source: OS_IA2_NOTES.pdf
 Content:
 . 
@@ -52424,7 +52846,7 @@ do {
     // --- Critical Section -
 --------------------------------------------------------------------------------
 
-Chunk 1761:
+Chunk 1775:
 Source: OS_IA2_NOTES.pdf
 Content:
 ering the critical section.  
@@ -52471,7 +52893,7 @@ Such a lock is called a spinlock .
 o One thread spins on one CPU while another runs the critical section on a different CPU.
 --------------------------------------------------------------------------------
 
-Chunk 1762:
+Chunk 1776:
 Source: OS_IA2_NOTES.pdf
 Content:
 slow.  
@@ -52524,7 +52946,7 @@ deadlocked state.
 • We can ignore the problem altogether and pretend that deadlocks never occ
 --------------------------------------------------------------------------------
 
-Chunk 1763:
+Chunk 1777:
 Source: OS_IA2_NOTES.pdf
 Content:
 tem will never enter a 
@@ -52576,7 +52998,7 @@ c. Need[i] -= Request[i]
 a.
 --------------------------------------------------------------------------------
 
-Chunk 1764:
+Chunk 1778:
 Source: OS_IA2_NOTES.pdf
 Content:
 er -request)  
@@ -52628,7 +53050,7 @@ Four Necessary Conditions (Coffman’s Conditions):
 1. Deadlock Prevention  – Ensure at least one of the four necessary conditi
 --------------------------------------------------------------------------------
 
-Chunk 1765:
+Chunk 1779:
 Source: OS_IA2_NOTES.pdf
 Content:
 4. Circular Wait  – A set of processes are waiting on each other in a circular chain.  
@@ -52665,7 +53087,7 @@ After detection, OS must recover by:
 2. Resource Preemption  – Tak
 --------------------------------------------------------------------------------
 
-Chunk 1766:
+Chunk 1780:
 Source: OS_IA2_NOTES.pdf
 Content:
 to check if a deadlock has 
@@ -52707,7 +53129,7 @@ a. Fixed Partitions : Memory is divided into fixed -size blocks.
 b. Variable Partitions : Al
 --------------------------------------------------------------------------------
 
-Chunk 1767:
+Chunk 1781:
 Source: OS_IA2_NOTES.pdf
 Content:
 ngle Partition Allocation : Only one process is loaded into memory.  
@@ -52753,7 +53175,7 @@ Benefits:
 Advantag
 --------------------------------------------------------------------------------
 
-Chunk 1768:
+Chunk 1782:
 Source: OS_IA2_NOTES.pdf
 Content:
 Definition : Pages are loaded into memory only when they are needed (not all at once).  
@@ -52794,7 +53216,7 @@ Page Replacement  Finds which page to remove on page fault
 Thrashing  Excessive swapping causing performance degradation
 --------------------------------------------------------------------------------
 
-Chunk 1769:
+Chunk 1783:
 Source: OS_IA2_NOTES.pdf
 Content:
 Loads pages only when needed  
@@ -52802,7 +53224,7 @@ Page Replacement  Finds which page to remove on page fault
 Thrashing  Excessive swapping causing performance degradation
 --------------------------------------------------------------------------------
 
-Chunk 1770:
+Chunk 1784:
 Source: OS_unit_3_Notes.pdf
 Content:
 Preemptive Scheduling  
@@ -52869,7 +53291,7 @@ Multilevel Queue Scheduling is used when processes can be divided into groups ba
 or resource needs. Each group is assigned to a separate queue, and each queue has its
 --------------------------------------------------------------------------------
 
-Chunk 1771:
+Chunk 1785:
 Source: OS_unit_3_Notes.pdf
 Content:
 g  
@@ -52919,7 +53341,7 @@ Example: 5 -Level Queue (Highest to Lowest Priority)
 Absolute priority:  Lower -priorit
 --------------------------------------------------------------------------------
 
-Chunk 1772:
+Chunk 1786:
 Source: OS_unit_3_Notes.pdf
 Content:
 (Highest to Lowest Priority)  
@@ -52972,7 +53394,7 @@ Explanation:
  If
 --------------------------------------------------------------------------------
 
-Chunk 1773:
+Chunk 1787:
 Source: OS_unit_3_Notes.pdf
 Content:
 tum = 8, queue 1 with quantum = 16, queue 2 with FCFS)  
@@ -53006,13 +53428,13 @@ balances the need for responsiveness in interactive systems with fairness and th
 systems. However, it is also the most complex  to implement due to its many parameters.
 --------------------------------------------------------------------------------
 
-Chunk 1774:
+Chunk 1788:
 Source: OS_unit_3_Notes.pdf
 Content:
 most complex  to implement due to its many parameters.
 --------------------------------------------------------------------------------
 
-Chunk 1775:
+Chunk 1789:
 Source: OS_Notes_1.pdf
 Content:
 Bootstrapping and Interrupt Handling in Operating Systems  
@@ -53048,7 +53470,7 @@ as networking, logging, and process scheduling.
 Once the OS is running, it waits for interrupts —signals that tell the
 --------------------------------------------------------------------------------
 
-Chunk 1776:
+Chunk 1790:
 Source: OS_Notes_1.pdf
 Content:
 system process init  starts essential services such 
@@ -53085,7 +53507,7 @@ are handled using interrupt dispatchers  that map them to the correct service ro
 •
 --------------------------------------------------------------------------------
 
-Chunk 1777:
+Chunk 1791:
 Source: OS_Notes_1.pdf
 Content:
 ival) 
@@ -53124,7 +53546,7 @@ Programmable ROM)  Non -volatile,
 r
 --------------------------------------------------------------------------------
 
-Chunk 1778:
+Chunk 1792:
 Source: OS_Notes_1.pdf
 Content:
 Memory Type  Characteristics  Example Uses  
@@ -53167,7 +53589,7 @@ Feature  SSD  HDD
 Speed
 --------------------------------------------------------------------------------
 
-Chunk 1779:
+Chunk 1793:
 Source: OS_Notes_1.pdf
 Content:
 Slow  Low  Non -volatile  
@@ -53210,7 +53632,7 @@ A general -purpose computer system  consists of:
 3. Common Bus or Switch  – Connects CPU, memory, and I/O devices.
 --------------------------------------------------------------------------------
 
-Chunk 1780:
+Chunk 1794:
 Source: OS_Notes_1.pdf
 Content:
 :  
@@ -53245,7 +53667,7 @@ sends an interrupt  to notify the OS.
 • Instead of generati
 --------------------------------------------------------------------------------
 
-Chunk 1781:
+Chunk 1795:
 Source: OS_Notes_1.pdf
 Content:
 le : When a mouse moves, each movement update  triggers an interrupt.  
@@ -53282,7 +53704,7 @@ instructions.
 operations
 --------------------------------------------------------------------------------
 
-Chunk 1782:
+Chunk 1796:
 Source: OS_Notes_1.pdf
 Content:
 -purpose 
@@ -53316,7 +53738,7 @@ o I/O processors  execute data transfers under OS supervision.
 • Other special processors work
 --------------------------------------------------------------------------------
 
-Chunk 1783:
+Chunk 1797:
 Source: OS_Notes_1.pdf
 Content:
 processors are managed by the OS : 
@@ -53350,7 +53772,7 @@ separate machines.
 3. Increased Reliability (Graceful Degradation &
 --------------------------------------------------------------------------------
 
-Chunk 1784:
+Chunk 1798:
 Source: OS_Notes_1.pdf
 Content:
 essors share  resources like memory, storage, power . 
@@ -53391,7 +53813,7 @@ c. OS must optimize memory allocation  to minimize NUMA delays .
 • Multicore CPUs  have multiple proc
 --------------------------------------------------------------------------------
 
-Chunk 1785:
+Chunk 1799:
 Source: OS_Notes_1.pdf
 Content:
 must optimize memory allocation  to minimize NUMA delays . 
@@ -53426,7 +53848,7 @@ How Multiprogramming Works:
 4. When I/O completes, the OS resumes the first job .
 --------------------------------------------------------------------------------
 
-Chunk 1786:
+Chunk 1800:
 Source: OS_Notes_1.pdf
 Content:
 he OS keeps several jobs in memory . 
@@ -53463,7 +53885,7 @@ o The OS must allocate and deallocate memory  efficiently.
 o Vi
 --------------------------------------------------------------------------------
 
-Chunk 1787:
+Chunk 1801:
 Source: OS_Notes_1.pdf
 Content:
 cess . 
@@ -53505,7 +53927,7 @@ Process Management in Operating Systems
 Program Type  Process Examp
 --------------------------------------------------------------------------------
 
-Chunk 1788:
+Chunk 1802:
 Source: OS_Notes_1.pdf
 Content:
 execution . 
@@ -53553,7 +53975,7 @@ handles spell check .
 A pro
 --------------------------------------------------------------------------------
 
-Chunk 1789:
+Chunk 1803:
 Source: OS_Notes_1.pdf
 Content:
 , allowing concurrent 
@@ -53594,7 +54016,7 @@ communicate).
 •
 --------------------------------------------------------------------------------
 
-Chunk 1790:
+Chunk 1804:
 Source: OS_Notes_1.pdf
 Content:
 s runs next).  
@@ -53630,7 +54052,7 @@ simultaneously  without conflicts.
 Function  Descripti
 --------------------------------------------------------------------------------
 
-Chunk 1791:
+Chunk 1805:
 Source: OS_Notes_1.pdf
 Content:
 another's memory . 
@@ -53670,7 +54092,7 @@ segments) .
 7. Virtual M
 --------------------------------------------------------------------------------
 
-Chunk 1792:
+Chunk 1806:
 Source: OS_Notes_1.pdf
 Content:
 ed pages  to prevent fragmentation.  
@@ -53707,7 +54129,7 @@ Directory Management  Organizes files into folders/directories .
 File Mani
 --------------------------------------------------------------------------------
 
-Chunk 1793:
+Chunk 1807:
 Source: OS_Notes_1.pdf
 Content:
 sibilities of OS in File Management  
@@ -53747,7 +54169,7 @@ Media  Allows the system to access removable storage .
 Device Allocation  Ensures
 --------------------------------------------------------------------------------
 
-Chunk 1794:
+Chunk 1808:
 Source: OS_Notes_1.pdf
 Content:
 sed for multimedia storage ). 
@@ -53788,7 +54210,7 @@ CPU Cache (L1,
 L2, L3)
 --------------------------------------------------------------------------------
 
-Chunk 1795:
+Chunk 1809:
 Source: OS_Notes_1.pdf
 Content:
 ading.  
@@ -53834,7 +54256,7 @@ pages.
 • Main memory (RAM) acts as a cache for seconda
 --------------------------------------------------------------------------------
 
-Chunk 1796:
+Chunk 1810:
 Source: OS_Notes_1.pdf
 Content:
 domly removes any entry.  
@@ -53872,7 +54294,7 @@ mobile devices .
 • This shift has led to client–server computing , whe
 --------------------------------------------------------------------------------
 
-Chunk 1797:
+Chunk 1811:
 Source: OS_Notes_1.pdf
 Content:
 mputing in Operating Systems  
@@ -53913,7 +54335,7 @@ Efficient Resource
 Use  Clients handle UI, while serve
 --------------------------------------------------------------------------------
 
-Chunk 1798:
+Chunk 1812:
 Source: OS_Notes_1.pdf
 Content:
 zed 
@@ -53952,7 +54374,7 @@ Features
 • Peers commu
 --------------------------------------------------------------------------------
 
-Chunk 1799:
+Chunk 1813:
 Source: OS_Notes_1.pdf
 Content:
 l where each node (peer) can 
@@ -53988,7 +54410,7 @@ traditional client -server model, making it widely used in various applications 
 sharing, blockchain, and distributed computing.
 --------------------------------------------------------------------------------
 
-Chunk 1800:
+Chunk 1814:
 Source: OS_Notes_1.pdf
 Content:
 o the 
@@ -53996,7 +54418,7 @@ traditional client -server model, making it widely used in various applications 
 sharing, blockchain, and distributed computing.
 --------------------------------------------------------------------------------
 
-Chunk 1801:
+Chunk 1815:
 Source: OS_IA12_2024.pdf
 Content:
 1. Challenges in Scheduling in Symmetric Multiprocessing 
@@ -54038,7 +54460,7 @@ task holding the resource to that of the highest waiting task.
 • Helps  in deadlock
 --------------------------------------------------------------------------------
 
-Chunk 1802:
+Chunk 1816:
 Source: OS_IA12_2024.pdf
 Content:
 Handling Mechanism : 
@@ -54075,7 +54497,7 @@ wasted)  100KB free but in 4 scattered
 25KB
 --------------------------------------------------------------------------------
 
-Chunk 1803:
+Chunk 1817:
 Source: OS_IA12_2024.pdf
 Content:
 blocks  Free memory scattered in small 
@@ -54119,7 +54541,7 @@ o Create a pipe using pipe(fd)  before fork() .
 o fork()  creates a
 --------------------------------------------------------------------------------
 
-Chunk 1804:
+Chunk 1818:
 Source: OS_IA12_2024.pdf
 Content:
 ommunication Using Pipe After 
@@ -54163,7 +54585,7 @@ run on a single physical machine.
 Preemptive SJF because of context switching ov
 --------------------------------------------------------------------------------
 
-Chunk 1805:
+Chunk 1819:
 Source: OS_IA12_2024.pdf
 Content:
 icient utilization . 
@@ -54209,7 +54631,7 @@ improving modularity and maintainability.
 • Other services run in user sp
 --------------------------------------------------------------------------------
 
-Chunk 1806:
+Chunk 1820:
 Source: OS_IA12_2024.pdf
 Content:
 ds only on the one below it.  
@@ -54249,7 +54671,7 @@ core vs Multicore Processors (4 Marks)
 🔹 Mult
 --------------------------------------------------------------------------------
 
-Chunk 1807:
+Chunk 1821:
 Source: OS_IA12_2024.pdf
 Content:
 Single -core:  
@@ -54299,7 +54721,7 @@ a. Small secure part of the OS kernel.
 • Tracks events and access patterns for in
 --------------------------------------------------------------------------------
 
-Chunk 1808:
+Chunk 1822:
 Source: OS_IA12_2024.pdf
 Content:
 s Access Control Lists (ACLs)  or Capabilities . 
@@ -54349,7 +54771,7 @@ Preemptive (4 Marks)
 o Long -term, short -term,
 --------------------------------------------------------------------------------
 
-Chunk 1809:
+Chunk 1823:
 Source: OS_IA12_2024.pdf
 Content:
 ems without shared memory.  
@@ -54374,7 +54796,7 @@ Complexity  More complex  Simpler to implement
 Example  Round Robin, SRTF  FCFS, Priority (non -preemptive)
 --------------------------------------------------------------------------------
 
-Chunk 1810:
+Chunk 1824:
 Source: os_notes_prep.pdf
 Content:
 CHAPT 3 BOOK  
@@ -54409,7 +54831,7 @@ b. Sequential Execution : The parent waits for the child to finish.
 a. Duplicate of Parent : The child i
 --------------------------------------------------------------------------------
 
-Chunk 1811:
+Chunk 1825:
 Source: os_notes_prep.pdf
 Content:
 ent Execution : The parent and child run simultaneously.  
@@ -54446,7 +54868,7 @@ b. Once the child terminates ( exit() ), the parent resumes execution .
 #include <sys/
 --------------------------------------------------------------------------------
 
-Chunk 1812:
+Chunk 1826:
 Source: os_notes_prep.pdf
 Content:
 onization:  
@@ -54484,7 +54906,7 @@ o The child executes exec() , replacing itself with a new program.
 o Once execution is complete, the child process exits .
 --------------------------------------------------------------------------------
 
-Chunk 1813:
+Chunk 1827:
 Source: OS_Notes.pdf
 Content:
 Bootstrapping and Interrupt Handling in Operating Systems  
@@ -54520,7 +54942,7 @@ as networking, logging, and process scheduling.
 Once the OS is running, it waits for interrupts —signals that tell the
 --------------------------------------------------------------------------------
 
-Chunk 1814:
+Chunk 1828:
 Source: OS_Notes.pdf
 Content:
 system process init  starts essential services such 
@@ -54557,7 +54979,7 @@ are handled using interrupt dispatchers  that map them to the correct service ro
 •
 --------------------------------------------------------------------------------
 
-Chunk 1815:
+Chunk 1829:
 Source: OS_Notes.pdf
 Content:
 ival) 
@@ -54596,7 +55018,7 @@ Programmable ROM)  Non -volatile,
 r
 --------------------------------------------------------------------------------
 
-Chunk 1816:
+Chunk 1830:
 Source: OS_Notes.pdf
 Content:
 Memory Type  Characteristics  Example Uses  
@@ -54639,7 +55061,7 @@ Feature  SSD  HDD
 Speed
 --------------------------------------------------------------------------------
 
-Chunk 1817:
+Chunk 1831:
 Source: OS_Notes.pdf
 Content:
 Slow  Low  Non -volatile  
@@ -54682,7 +55104,7 @@ A general -purpose computer system  consists of:
 3. Common Bus or Switch  – Connects CPU, memory, and I/O devices.
 --------------------------------------------------------------------------------
 
-Chunk 1818:
+Chunk 1832:
 Source: OS_Notes.pdf
 Content:
 :  
@@ -54717,7 +55139,7 @@ sends an interrupt  to notify the OS.
 • Instead of generati
 --------------------------------------------------------------------------------
 
-Chunk 1819:
+Chunk 1833:
 Source: OS_Notes.pdf
 Content:
 le : When a mouse moves, each movement update  triggers an interrupt.  
@@ -54754,7 +55176,7 @@ instructions.
 operations
 --------------------------------------------------------------------------------
 
-Chunk 1820:
+Chunk 1834:
 Source: OS_Notes.pdf
 Content:
 -purpose 
@@ -54788,7 +55210,7 @@ o I/O processors  execute data transfers under OS supervision.
 • Other special processors work
 --------------------------------------------------------------------------------
 
-Chunk 1821:
+Chunk 1835:
 Source: OS_Notes.pdf
 Content:
 processors are managed by the OS : 
@@ -54822,7 +55244,7 @@ separate machines.
 3. Increased Reliability (Graceful Degradation &
 --------------------------------------------------------------------------------
 
-Chunk 1822:
+Chunk 1836:
 Source: OS_Notes.pdf
 Content:
 essors share  resources like memory, storage, power . 
@@ -54863,7 +55285,7 @@ c. OS must optimize memory allocation  to minimize NUMA delays .
 • Multicore CPUs  have multiple proc
 --------------------------------------------------------------------------------
 
-Chunk 1823:
+Chunk 1837:
 Source: OS_Notes.pdf
 Content:
 must optimize memory allocation  to minimize NUMA delays . 
@@ -54898,7 +55320,7 @@ How Multiprogramming Works:
 4. When I/O completes, the OS resumes the first job .
 --------------------------------------------------------------------------------
 
-Chunk 1824:
+Chunk 1838:
 Source: OS_Notes.pdf
 Content:
 he OS keeps several jobs in memory . 
@@ -54935,7 +55357,7 @@ o The OS must allocate and deallocate memory  efficiently.
 o Vi
 --------------------------------------------------------------------------------
 
-Chunk 1825:
+Chunk 1839:
 Source: OS_Notes.pdf
 Content:
 cess . 
@@ -54977,7 +55399,7 @@ Process Management in Operating Systems
 Program Type  Process Examp
 --------------------------------------------------------------------------------
 
-Chunk 1826:
+Chunk 1840:
 Source: OS_Notes.pdf
 Content:
 execution . 
@@ -55025,7 +55447,7 @@ handles spell check .
 A pro
 --------------------------------------------------------------------------------
 
-Chunk 1827:
+Chunk 1841:
 Source: OS_Notes.pdf
 Content:
 , allowing concurrent 
@@ -55066,7 +55488,7 @@ communicate).
 •
 --------------------------------------------------------------------------------
 
-Chunk 1828:
+Chunk 1842:
 Source: OS_Notes.pdf
 Content:
 s runs next).  
@@ -55102,7 +55524,7 @@ simultaneously  without conflicts.
 Function  Descripti
 --------------------------------------------------------------------------------
 
-Chunk 1829:
+Chunk 1843:
 Source: OS_Notes.pdf
 Content:
 another's memory . 
@@ -55142,7 +55564,7 @@ segments) .
 7. Virtual M
 --------------------------------------------------------------------------------
 
-Chunk 1830:
+Chunk 1844:
 Source: OS_Notes.pdf
 Content:
 ed pages  to prevent fragmentation.  
@@ -55179,7 +55601,7 @@ Directory Management  Organizes files into folders/directories .
 File Mani
 --------------------------------------------------------------------------------
 
-Chunk 1831:
+Chunk 1845:
 Source: OS_Notes.pdf
 Content:
 sibilities of OS in File Management  
@@ -55219,7 +55641,7 @@ Media  Allows the system to access removable storage .
 Device Allocation  Ensures
 --------------------------------------------------------------------------------
 
-Chunk 1832:
+Chunk 1846:
 Source: OS_Notes.pdf
 Content:
 sed for multimedia storage ). 
@@ -55260,7 +55682,7 @@ CPU Cache (L1,
 L2, L3)
 --------------------------------------------------------------------------------
 
-Chunk 1833:
+Chunk 1847:
 Source: OS_Notes.pdf
 Content:
 ading.  
@@ -55306,7 +55728,7 @@ pages.
 • Main memory (RAM) acts as a cache for seconda
 --------------------------------------------------------------------------------
 
-Chunk 1834:
+Chunk 1848:
 Source: OS_Notes.pdf
 Content:
 domly removes any entry.  
@@ -55344,7 +55766,7 @@ mobile devices .
 • This shift has led to client–server computing , whe
 --------------------------------------------------------------------------------
 
-Chunk 1835:
+Chunk 1849:
 Source: OS_Notes.pdf
 Content:
 mputing in Operating Systems  
@@ -55385,7 +55807,7 @@ Efficient Resource
 Use  Clients handle UI, while serve
 --------------------------------------------------------------------------------
 
-Chunk 1836:
+Chunk 1850:
 Source: OS_Notes.pdf
 Content:
 zed 
@@ -55424,7 +55846,7 @@ Features
 • Peers commu
 --------------------------------------------------------------------------------
 
-Chunk 1837:
+Chunk 1851:
 Source: OS_Notes.pdf
 Content:
 l where each node (peer) can 
@@ -55460,7 +55882,7 @@ traditional client -server model, making it widely used in various applications 
 sharing, blockchain, and distributed computing.
 --------------------------------------------------------------------------------
 
-Chunk 1838:
+Chunk 1852:
 Source: OS_Notes.pdf
 Content:
 o the 
@@ -55468,7 +55890,7 @@ traditional client -server model, making it widely used in various applications 
 sharing, blockchain, and distributed computing.
 --------------------------------------------------------------------------------
 
-Chunk 1839:
+Chunk 1853:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 💀 DEADLOCK  
@@ -55509,7 +55931,7 @@ state  to ensure the system will not enter an unsafe state.
 • Banker’s A
 --------------------------------------------------------------------------------
 
-Chunk 1840:
+Chunk 1854:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 ncreasing order.  
@@ -55555,7 +55977,7 @@ holding a resource and waiting for another.
 (Coffm
 --------------------------------------------------------------------------------
 
-Chunk 1841:
+Chunk 1855:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 ***********  
@@ -55599,7 +56021,7 @@ Safe sequence:
 P1 → P3 → P
 --------------------------------------------------------------------------------
 
-Chunk 1842:
+Chunk 1856:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 le  Free resources  
@@ -55655,7 +56077,7 @@ temporary storage directly accessed by the CPU.
 | User Process
 --------------------------------------------------------------------------------
 
-Chunk 1843:
+Chunk 1857:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 Diagram: Memory Layout  
@@ -55711,7 +56133,7 @@ Memory is divided into fixed -size blocks  called pages  and physical memory int
 🔸 Address Translation Diagram:
 --------------------------------------------------------------------------------
 
-Chunk 1844:
+Chunk 1858:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 External  
@@ -55773,7 +56195,7 @@ Only required pages are loaded → others stay on disk
 ➡ Minimizes memory usa
 --------------------------------------------------------------------------------
 
-Chunk 1845:
+Chunk 1859:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 6. Demand Paging  
@@ -55827,7 +56249,7 @@ CPU
 Concept  Key
 --------------------------------------------------------------------------------
 
-Chunk 1846:
+Chunk 1860:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 Rate →  
@@ -55872,7 +56294,7 @@ quickly.
 In this method, each process is allocated a
 --------------------------------------------------------------------------------
 
-Chunk 1847:
+Chunk 1861:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 :  
@@ -55916,7 +56338,7 @@ Physical Address:   Frame Number + Offset
 • Easy to allocat
 --------------------------------------------------------------------------------
 
-Chunk 1848:
+Chunk 1862:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 Address:    | Page Number | Offset |  
@@ -55964,7 +56386,7 @@ required , not at the start of execution.
 1. A process starts with none (or few) of its pages in memory.
 --------------------------------------------------------------------------------
 
-Chunk 1849:
+Chunk 1863:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 In demand paging, pages of a program are loaded into memory only when they are 
@@ -56009,7 +56431,7 @@ executing actual processes.
 • Very high p
 --------------------------------------------------------------------------------
 
-Chunk 1850:
+Chunk 1864:
 Source: OS_IA_2_NOTES2.pdf
 Content:
 an 
