@@ -43,7 +43,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
 
   const loadSubjects = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/subjects/list');
+      const res = await axios.get('http://localhost:5001/api/subjects/list');
       setSubjects(res.data.subjects || []);
     } catch (err) {
       console.error('Failed to load subjects:', err);
@@ -52,7 +52,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
 
   const loadPdfs = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/admin/list-pdfs?subject_id=${currentSubject}`);
+      const res = await axios.get(`http://localhost:5001/api/admin/list-pdfs?subject_id=${currentSubject}`);
       setFolders(res.data.folders);
     } catch (err) {
       setMessage({ type: 'error', text: 'Failed to load PDFs' });
@@ -61,7 +61,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
 
   const loadStats = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/admin/stats?subject_id=${currentSubject}`);
+      const res = await axios.get(`http://localhost:5001/api/admin/stats?subject_id=${currentSubject}`);
       setStats(res.data);
     } catch (err) {
       console.error('Failed to load stats');
@@ -83,7 +83,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
         formData.append('file', file);
         formData.append('subject_id', currentSubject);
         if (folderToUse) formData.append('folder', folderToUse);
-        await axios.post('http://localhost:5000/api/admin/upload-pdf', formData);
+        await axios.post('http://localhost:5001/api/admin/upload-pdf', formData);
       }
       setMessage({ type: 'success', text: `${files.length} file(s) uploaded` });
       setSelectedFolder('');
@@ -101,7 +101,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
     if (!window.confirm(`Delete ${path}?`)) return;
 
     try {
-      await axios.delete('http://localhost:5000/api/admin/delete-pdf', { 
+      await axios.delete('http://localhost:5001/api/admin/delete-pdf', { 
         data: { path, subject_id: currentSubject } 
       });
       setMessage({ type: 'success', text: 'File deleted' });
@@ -114,7 +114,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
 
   const handleDownload = async (path, filename) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/admin/download-file', 
+      const res = await axios.post('http://localhost:5001/api/admin/download-file', 
         { path, subject_id: currentSubject }, 
         { responseType: 'blob' }
       );
@@ -138,7 +138,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
     setMessage(null);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/admin/rebuild-vector-db', {
+      const res = await axios.post('http://localhost:5001/api/admin/rebuild-vector-db', {
         subject_id: currentSubject
       });
       setMessage({ type: 'success', text: 'Vector database rebuilt successfully' });
@@ -153,7 +153,7 @@ const AdminDashboard = ({ onLogout, onSwitchTab, initialSubject }) => {
     if (!window.confirm('Start model training? This will take 4-6 minutes.')) return;
 
     try {
-      const res = await axios.post(`http://localhost:5000/api/subjects/train/${currentSubject}`);
+      const res = await axios.post(`http://localhost:5001/api/subjects/train/${currentSubject}`);
       setMessage({ type: 'success', text: res.data.message });
       loadSubjects();
     } catch (err) {

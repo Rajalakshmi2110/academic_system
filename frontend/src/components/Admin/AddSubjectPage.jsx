@@ -67,7 +67,7 @@ const AddSubjectPage = ({ onLogout, onSwitchTab }) => {
         formDataToSend.append('documents', file);
       });
 
-      const res = await axios.post('http://localhost:5000/api/subjects/add', formDataToSend, {
+      const res = await axios.post('http://localhost:5001/api/subjects/add', formDataToSend, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

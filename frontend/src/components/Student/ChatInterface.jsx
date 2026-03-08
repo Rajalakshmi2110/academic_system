@@ -21,7 +21,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
   const [expandedSubjects, setExpandedSubjects] = useState({});
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/subjects/active')
+    axios.get('http://localhost:5001/api/subjects/active')
       .then(res => {
         const activeSubjects = res.data.subjects || [];
         setSubjects(activeSubjects);
@@ -165,14 +165,14 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
       if (comparisonMode) {
         setLoadingStage('Processing both modes...');
         const [validatedRes, directRes] = await Promise.all([
-          axios.post('http://localhost:5000/api/chat', { 
+          axios.post('http://localhost:5001/api/chat', { 
             question: currentInput, 
             show_steps: showSteps, 
             force_answer: forceAnswer,
             history: messages,
             subject_id: currentSubject?.id
           }),
-          axios.post('http://localhost:5000/api/chat/direct', { 
+          axios.post('http://localhost:5001/api/chat/direct', { 
             question: currentInput,
             history: messages,
             subject_id: currentSubject?.id
@@ -182,7 +182,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
       } else {
         setTimeout(() => setLoadingStage('Checking syllabus...'), 100);
         setTimeout(() => setLoadingStage('Generating answer...'), 1500);
-        const res = await axios.post('http://localhost:5000/api/chat', { 
+        const res = await axios.post('http://localhost:5001/api/chat', { 
           question: currentInput, 
           show_steps: showSteps, 
           force_answer: forceAnswer,
@@ -206,7 +206,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
 
     try {
       const currentSubject = getCurrentSubject();
-      const res = await axios.post('http://localhost:5000/api/chat', { 
+      const res = await axios.post('http://localhost:5001/api/chat', { 
         question: question,
         show_steps: showSteps,
         force_answer: true,
@@ -227,7 +227,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
 
     try {
       const currentSubject = getCurrentSubject();
-      const res = await axios.post('http://localhost:5000/api/chat/direct', { 
+      const res = await axios.post('http://localhost:5001/api/chat/direct', { 
         question: rejectedQuestion,
         history: messages,
         subject_id: currentSubject?.id
@@ -247,7 +247,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
 
   const handleFeedback = async (question, answer, feedback) => {
     try {
-      await axios.post('http://localhost:5000/api/feedback', {
+      await axios.post('http://localhost:5001/api/feedback', {
         question,
         answer,
         feedback
@@ -277,7 +277,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
 
     setVoiceLoading(msgIdx);
     try {
-      const res = await axios.post('http://localhost:5000/api/voice/explain', {
+      const res = await axios.post('http://localhost:5001/api/voice/explain', {
         question,
         answer
       }, { responseType: 'blob' });

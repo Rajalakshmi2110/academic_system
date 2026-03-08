@@ -20,7 +20,7 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
 
   const loadSubjects = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/subjects/list');
+      const res = await axios.get('http://localhost:5001/api/subjects/list');
       setSubjects(res.data.subjects || []);
       if (res.data.subjects.length > 0 && !currentSubject) {
         setCurrentSubject(res.data.subjects[0].id);
@@ -32,7 +32,7 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
 
   const fetchMetrics = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/metrics?subject_id=${currentSubject}`);
+      const res = await axios.get(`http://localhost:5001/api/metrics?subject_id=${currentSubject}`);
       setMetrics(res.data);
     } catch (error) {
       console.error('Failed to fetch metrics:', error);

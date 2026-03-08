@@ -13,7 +13,7 @@ const AdminLogin = ({ onLogin }) => {
     setError('');
     
     try {
-      const res = await axios.post('http://localhost:5000/api/admin/login', { password });
+      const res = await axios.post('http://localhost:5001/api/admin/login', { password });
       if (res.data.status === 'success') {
         onLogin();
       }

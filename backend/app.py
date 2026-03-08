@@ -64,7 +64,7 @@ def calculate_confidence(question, context, answer):
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 pipelines = {}  # Cache pipelines per subject to avoid reloading models
 
@@ -317,9 +317,6 @@ def submit_feedback():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
-
 @app.route('/api/session', methods=['POST'])
 def create_session():
     session_id = session_manager.create_session()
@@ -353,3 +350,6 @@ def voice_explain():
         return send_file(audio_path, mimetype='audio/mpeg')
     except Exception as e:
         return jsonify({'error': f'Voice generation failed: {str(e)}'}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5001)

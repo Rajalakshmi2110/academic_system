@@ -1,9 +1,13 @@
-import edge_tts
 import asyncio
 import requests
 import hashlib
 import os
 from pathlib import Path
+
+try:
+    import edge_tts
+except ImportError:
+    edge_tts = None
 
 AUDIO_DIR = Path(__file__).parent.parent.parent / "audio_cache"
 AUDIO_DIR.mkdir(exist_ok=True)
@@ -49,6 +53,8 @@ Rules:
 
 async def _text_to_speech(text, output_path):
     """Convert text to MP3 using edge-tts."""
+    if edge_tts is None:
+        raise RuntimeError("edge-tts is not installed. Run: pip install edge-tts")
     communicate = edge_tts.Communicate(text, VOICE, rate="-5%")
     await communicate.save(str(output_path))
 

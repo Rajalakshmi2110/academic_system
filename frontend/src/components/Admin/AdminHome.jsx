@@ -17,7 +17,7 @@ const AdminHome = ({ onLogout, onSwitchTab, onSelectSubject }) => {
 
   const loadSubjects = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/subjects/list');
+      const res = await axios.get('http://localhost:5001/api/subjects/list');
       setSubjects(res.data.subjects || []);
     } catch (err) {
       console.error('Failed to load subjects:', err);
@@ -32,7 +32,7 @@ const AdminHome = ({ onLogout, onSwitchTab, onSelectSubject }) => {
 
   const handleDeleteConfirm = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/subjects/delete/${subjectToDelete.id}?permanent=true`);
+      await axios.delete(`http://localhost:5001/api/subjects/delete/${subjectToDelete.id}?permanent=true`);
       setDeleteModalOpen(false);
       setSubjectToDelete(null);
       loadSubjects();
