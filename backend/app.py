@@ -17,6 +17,7 @@ from src.admin import admin_bp
 from src.admin.subject_routes import subject_bp
 from src.session_manager import SessionManager
 from src.metrics_tracker import MetricsTracker
+from src.voice.tts_service import generate_voice_explanation
 
 def calculate_confidence(question, context, answer):
     """Calculate confidence score based on context-answer overlap and relevance"""
@@ -335,3 +336,20 @@ def get_session(session_id):
 def clear_session(session_id):
     session_manager.clear_session(session_id)
     return jsonify({'status': 'success'})
+
+@app.route('/api/voice/explain', methods=['POST'])
+def voice_explain():
+    """Generate voice explanation for an answer"""
+    from flask import send_file
+    data = request.json
+    question = data.get('question', '')
+    answer = data.get('answer', '')
+
+    if not question or not answer:
+        return jsonify({'error': 'Question and answer are required'}), 400
+
+    try:
+        audio_path, explanation = generate_voice_explanation(question, answer)
+        return send_file(audio_path, mimetype='audio/mpeg')
+    except Exception as e:
+        return jsonify({'error': f'Voice generation failed: {str(e)}'}), 500

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, IconButton, Snackbar, Drawer, List, ListItem, ListItemText, ListItemButton, Divider, Dialog, DialogTitle, DialogContent, DialogActions, Collapse } from '@mui/material';
-import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu, School, ExpandLess } from '@mui/icons-material';
+import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu, School, ExpandLess, VolumeUp } from '@mui/icons-material';
 import axios from 'axios';
 
 const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
@@ -14,6 +14,8 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
   const [copySuccess, setCopySuccess] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [comparisonMode, setComparisonMode] = useState(false);
+  const [voiceLoading, setVoiceLoading] = useState(null);
+  const [playingAudio, setPlayingAudio] = useState(null);
   const [subjects, setSubjects] = useState([]);
   const [subjectModalOpen, setSubjectModalOpen] = useState(openSubjectModal);
   const [expandedSubjects, setExpandedSubjects] = useState({});
@@ -264,6 +266,37 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
     });
   };
 
+  const handleVoiceExplain = async (question, answer, msgIdx) => {
+    if (playingAudio) {
+      playingAudio.pause();
+      playingAudio.currentTime = 0;
+      setPlayingAudio(null);
+      setVoiceLoading(null);
+      return;
+    }
+
+    setVoiceLoading(msgIdx);
+    try {
+      const res = await axios.post('http://localhost:5000/api/voice/explain', {
+        question,
+        answer
+      }, { responseType: 'blob' });
+
+      const audioUrl = URL.createObjectURL(res.data);
+      const audio = new Audio(audioUrl);
+      audio.onended = () => {
+        setPlayingAudio(null);
+        setVoiceLoading(null);
+        URL.revokeObjectURL(audioUrl);
+      };
+      setPlayingAudio(audio);
+      audio.play();
+    } catch (error) {
+      console.error('Voice generation failed:', error);
+    }
+    setVoiceLoading(null);
+  };
+
   const getStepIcon = (status) => {
     if (status === 'PASS' || status === 'IN_SYLLABUS' || status === 'SUCCESS') return <CheckCircle sx={{ color: '#4CAF50' }} />;
     if (status === 'WARNING') return <Warning sx={{ color: '#FFC107' }} />;
@@ -485,6 +518,16 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                     <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#2E7D32' }}>3-Layer Validated System</Typography>
                     <Chip label={msg.data.final_status} sx={{ bgcolor: getStatusColor(msg.data.final_status), color: 'white', mb: 1 }} size="small" />
                     <Typography sx={{ mb: 2 }}>{msg.data.answer || msg.data.explanation || msg.data.message}</Typography>
+                    {msg.data.answer && (
+                      <Button
+                        size="small"
+                        startIcon={voiceLoading === idx ? null : <VolumeUp />}
+                        onClick={() => handleVoiceExplain(msg.data.question || '', msg.data.answer, idx)}
+                        sx={{ mb: 1, color: '#2E7D32' }}
+                      >
+                        {voiceLoading === idx ? 'Generating...' : playingAudio ? 'Stop' : '🔊 Explain'}
+                      </Button>
+                    )}
                     {msg.data.sources && msg.data.sources.length > 0 && (
                       <Box sx={{ mt: 2, p: 1.5, bgcolor: '#F1F8E9', borderRadius: 1 }}>
                         <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', mb: 1, color: '#2E7D32' }}>📚 Sources:</Typography>
@@ -675,13 +718,27 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                         )}
                       </Box>
                       {(msg.data.answer || msg.data.explanation) && (
-                        <IconButton 
-                          size="small" 
-                          onClick={() => copyToClipboard(msg.data.answer || msg.data.explanation)}
-                          sx={{ ml: 1 }}
-                        >
-                          <ContentCopy fontSize="small" />
-                        </IconButton>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', ml: 1, gap: 0.5 }}>
+                          <IconButton 
+                            size="small" 
+                            onClick={() => copyToClipboard(msg.data.answer || msg.data.explanation)}
+                          >
+                            <ContentCopy fontSize="small" />
+                          </IconButton>
+                          {(msg.data.status === 'success' || msg.data.final_status === 'VALID') && msg.data.answer && (
+                            <IconButton
+                              size="small"
+                              onClick={() => handleVoiceExplain(msg.data.question || '', msg.data.answer, idx)}
+                              sx={{ color: playingAudio && voiceLoading === null && idx === messages.indexOf(msg) ? '#4CAF50' : '#1976D2' }}
+                            >
+                              {voiceLoading === idx ? (
+                                <Box sx={{ width: 18, height: 18, border: '2px solid #BBDEFB', borderTop: '2px solid #1976D2', borderRadius: '50%', animation: 'spin 0.8s linear infinite', '@keyframes spin': { '0%': { transform: 'rotate(0deg)' }, '100%': { transform: 'rotate(360deg)' } } }} />
+                              ) : (
+                                <VolumeUp fontSize="small" />
+                              )}
+                            </IconButton>
+                          )}
+                        </Box>
                       )}
                     </Box>
                     

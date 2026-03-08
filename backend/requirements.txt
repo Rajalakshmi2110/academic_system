@@ -22,3 +22,6 @@ python-pptx
 # Environment and API
 python-dotenv>=1.0.0
 groq>=0.4.0
+
+# Voice response
+edge-tts>=7.0.0
