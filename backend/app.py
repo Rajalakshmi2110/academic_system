@@ -248,6 +248,7 @@ def chat_direct():
             'status': 'success',
             'question': question,
             'answer': rag_result.get('answer', rag_result) if isinstance(rag_result, dict) else rag_result,
+            'sources': rag_result.get('sources', []) if isinstance(rag_result, dict) else [],
             'latency_ms': latency,
             'mode': 'direct'
         })

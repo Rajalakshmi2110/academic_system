@@ -1,0 +1,130 @@
+================================================================================
+SAMPLE QUESTIONS TO TEST PAGE NUMBER FEATURE
+================================================================================
+
+DATA STRUCTURES QUESTIONS:
+================================================================================
+
+1. BASIC CONCEPT QUESTIONS:
+   - What is a stack?
+   - Explain linked list
+   - Define binary search tree
+   - What is a queue?
+
+2. COMPARISON QUESTIONS:
+   - Compare stack and queue
+   - Difference between array and linked list
+   - Compare BFS and DFS
+
+3. ALGORITHM QUESTIONS:
+   - Explain quicksort algorithm
+   - How does merge sort work?
+   - Describe heap sort
+
+4. IMPLEMENTATION QUESTIONS:
+   - How to implement a stack using array?
+   - Explain AVL tree insertion
+   - How to traverse a binary tree?
+
+5. APPLICATION QUESTIONS:
+   - What are applications of graphs?
+   - Where is hashing used?
+   - Real world examples of trees
+
+6. COMPLEX QUESTIONS:
+   - Explain minimum spanning tree with Kruskal's algorithm
+   - How does collision resolution work in hashing?
+   - What is the time complexity of binary search?
+
+7. OUT OF SYLLABUS QUESTIONS (Should be rejected):
+   - What is a red-black tree?
+   - Explain B+ trees
+   - What is a skip list?
+   - Describe Fibonacci heap
+   - What is a trie data structure?
+   - Explain suffix trees
+   - What is a splay tree?
+
+
+OPERATING SYSTEM QUESTIONS:
+================================================================================
+
+1. BASIC CONCEPT QUESTIONS:
+   - What is an operating system?
+   - Define process
+   - What is a thread?
+   - Explain deadlock
+
+2. COMPARISON QUESTIONS:
+   - Difference between process and thread
+   - Compare FCFS and SJF scheduling
+   - Multiprogramming vs multitasking
+
+3. ALGORITHM QUESTIONS:
+   - Explain round robin scheduling
+   - How does page replacement work?
+   - Describe banker's algorithm
+
+4. IMPLEMENTATION QUESTIONS:
+   - How does semaphore work?
+   - Explain mutex implementation
+   - How to prevent deadlock?
+
+5. MEMORY MANAGEMENT QUESTIONS:
+   - What is virtual memory?
+   - Explain paging
+   - What is segmentation?
+
+6. FILE SYSTEM QUESTIONS:
+   - How does file allocation work?
+   - Explain directory structure
+   - What is inode?
+
+7. OUT OF SYLLABUS QUESTIONS (Should be rejected):
+   - What is real-time operating system?
+   - Explain distributed operating systems
+   - What is microkernel architecture?
+   - Describe RAID levels
+   - What is virtualization?
+   - Explain container technology
+   - What is cloud computing?
+
+
+EXPECTED OUTPUT FORMAT:
+================================================================================
+For each question, the system should return:
+
+Answer: [Detailed answer from the documents]
+
+Sources:
+  1. Book_Name (Page X)
+  2. Another_Book (Page Y)
+  3. Third_Book (Page Z)
+
+This makes it easy for students to:
+✓ Find exact pages in reference books
+✓ Verify information from original sources
+✓ Study more details from the books
+✓ Cross-reference multiple sources
+
+
+TEST INSTRUCTIONS:
+================================================================================
+1. Start the backend: cd backend && python app.py
+2. Start the frontend: cd frontend && npm start
+3. Select a subject (Data Structures or Operating System)
+4. Ask any question from the list above
+5. Verify that sources show: "Book Name (Page Number)"
+6. Check that page numbers are actual PDF page numbers (not chunk indices)
+
+
+VALIDATION CHECKLIST:
+================================================================================
+☐ Page numbers are displayed in format: "Book Name (Page X)"
+☐ Page numbers are actual PDF pages (starting from 1)
+☐ Multiple sources show different page numbers
+☐ Page numbers help locate content in original PDFs
+☐ Sources are relevant to the question asked
+☐ Out of syllabus questions are properly rejected
+☐ "Answer Anyway" button works for rejected questions
+☐ Page numbers still show when forcing answers to out-of-syllabus questions

@@ -479,12 +479,22 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                   <Paper sx={{ p: 2, flex: 1, bgcolor: '#FFF3E0', borderRadius: 2, border: '2px solid #FF9800' }}>
                     <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#E65100' }}>Basic RAG (No Validation)</Typography>
                     <Typography sx={{ mb: 2 }}>{msg.comparison.answer}</Typography>
-                    <Typography variant="caption" sx={{ color: '#666' }}>Latency: {msg.comparison.latency_ms?.toFixed(0)}ms</Typography>
+                    <Typography variant="caption" sx={{ color: '#666', display: 'block', mt: 1 }}>Latency: {msg.comparison.latency_ms?.toFixed(0)}ms</Typography>
                   </Paper>
                   <Paper sx={{ p: 2, flex: 1, bgcolor: '#E8F5E9', borderRadius: 2, border: '2px solid #4CAF50' }}>
                     <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#2E7D32' }}>3-Layer Validated System</Typography>
                     <Chip label={msg.data.final_status} sx={{ bgcolor: getStatusColor(msg.data.final_status), color: 'white', mb: 1 }} size="small" />
                     <Typography sx={{ mb: 2 }}>{msg.data.answer || msg.data.explanation || msg.data.message}</Typography>
+                    {msg.data.sources && msg.data.sources.length > 0 && (
+                      <Box sx={{ mt: 2, p: 1.5, bgcolor: '#F1F8E9', borderRadius: 1 }}>
+                        <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', mb: 1, color: '#2E7D32' }}>📚 Sources:</Typography>
+                        {msg.data.sources.map((source, idx) => (
+                          <Typography key={idx} variant="caption" sx={{ display: 'block', color: '#666', mb: 0.5 }}>
+                            • {source}
+                          </Typography>
+                        ))}
+                      </Box>
+                    )}
                     {msg.data.warning && (
                       <Box sx={{ mb: 1, p: 1, bgcolor: '#FFF3E0', borderRadius: 1 }}>
                         <Typography variant="caption" sx={{ color: '#E65100' }}>⚠️ {msg.data.warning}</Typography>
@@ -654,10 +664,10 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                           </Typography>
                         )}
                         {msg.data.sources && msg.data.sources.length > 0 && (
-                          <Box sx={{ mt: 2, p: 1, bgcolor: '#F0F0F0', borderRadius: 1 }}>
-                            <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', mb: 0.5 }}>Sources:</Typography>
-                            {[...new Set(msg.data.sources.map(src => src.source))].map((source, idx) => (
-                              <Typography key={idx} variant="caption" sx={{ display: 'block', color: '#666' }}>
+                          <Box sx={{ mt: 2, p: 1.5, bgcolor: '#F0F0F0', borderRadius: 1 }}>
+                            <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', mb: 1, color: '#1976D2' }}>📚 Sources:</Typography>
+                            {msg.data.sources.map((source, idx) => (
+                              <Typography key={idx} variant="caption" sx={{ display: 'block', color: '#666', mb: 0.5 }}>
                                 • {source}
                               </Typography>
                             ))}

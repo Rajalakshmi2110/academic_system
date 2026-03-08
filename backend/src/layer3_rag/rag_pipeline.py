@@ -165,10 +165,14 @@ Answer:"""
         context, sources = self.retrieve_context(question, top_k=3)
         
         answer = self.generate_answer(question, context, is_follow_up)
+    
+        formatted_sources = []
+        for src in sources:
+            formatted_sources.append(f"{src['source']} (Page {src['page']})")
         
         return {
             "status": "success",
             "context": context,
             "answer": answer,
-            "sources": sources
+            "sources": formatted_sources
         }

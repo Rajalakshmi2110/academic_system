@@ -12,19 +12,19 @@ from PyPDF2 import PdfReader
 
 #MODULE 1
 def extract_text_from_pdf(pdf_path):
-    """Extract text from PDF file"""
     try:
         reader = PdfReader(pdf_path)
-        text = ""
-        for page in reader.pages:
-            text += page.extract_text() + "\n"
-        return text
+        pages_data = []
+        for page_num, page in enumerate(reader.pages, start=1):
+            text = page.extract_text()
+            if text.strip():
+                pages_data.append({"page_number": page_num, "text": text})
+        return pages_data
     except Exception as e:
         print(f"Error reading {pdf_path}: {e}")
-        return ""
+        return []
 
-def chunk_text(text, chunk_size=1500, overlap=200):
-    """Split text into overlapping chunks by characters"""
+def chunk_text(text, page_number, chunk_size=1500, overlap=200):
     chunks = []
     start = 0
     text_length = len(text)
@@ -34,7 +34,7 @@ def chunk_text(text, chunk_size=1500, overlap=200):
         chunk = text[start:end]
         
         if chunk.strip():
-            chunks.append(chunk.strip())
+            chunks.append({"text": chunk.strip(), "page": page_number})
         
         start += (chunk_size - overlap)
     
@@ -64,16 +64,18 @@ def build_vector_db(docs_path, output_path):
     
     for pdf_file in pdf_files:
         print(f"Processing: {pdf_file.name}")
-        text = extract_text_from_pdf(pdf_file)
-        chunks = chunk_text(text)
+        pages_data = extract_text_from_pdf(pdf_file)
         
-        for i, chunk in enumerate(chunks):
-            all_chunks.append(chunk)
-            metadata.append({
-                "source": pdf_file.name,
-                "page": i,
-                "path": str(pdf_file)
-            })
+        for page_data in pages_data:
+            page_chunks = chunk_text(page_data["text"], page_data["page_number"])
+            
+            for chunk_data in page_chunks:
+                all_chunks.append(chunk_data["text"])
+                metadata.append({
+                    "source": pdf_file.name.replace('.pdf', ''),
+                    "page": chunk_data["page"],
+                    "path": str(pdf_file)
+                })
     
     print(f"Total chunks: {len(all_chunks)}")
     
