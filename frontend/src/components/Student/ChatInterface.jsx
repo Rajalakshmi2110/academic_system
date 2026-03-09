@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, IconButton, Snackbar, Drawer, List, ListItem, ListItemText, ListItemButton, Divider, Dialog, DialogTitle, DialogContent, DialogActions, Collapse } from '@mui/material';
-import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu, School, ExpandLess, VolumeUp } from '@mui/icons-material';
+import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu, School, ExpandLess, VolumeUp, Mic, MicOff } from '@mui/icons-material';
 import axios from 'axios';
 
 const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
@@ -16,6 +16,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
   const [comparisonMode, setComparisonMode] = useState(false);
   const [voiceLoading, setVoiceLoading] = useState(null);
   const [playingAudio, setPlayingAudio] = useState(null);
+  const [isListening, setIsListening] = useState(false);
   const [subjects, setSubjects] = useState([]);
   const [subjectModalOpen, setSubjectModalOpen] = useState(openSubjectModal);
   const [expandedSubjects, setExpandedSubjects] = useState({});
@@ -162,6 +163,11 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
 
     try {
       const currentSubject = getCurrentSubject();
+      const trimmedHistory = messages.slice(-6).map(m => {
+        if (m.type === 'user') return { type: 'user', text: m.text };
+        if (m.type === 'bot') return { type: 'bot', data: { answer: (m.data?.answer || '').slice(0, 300) } };
+        return null;
+      }).filter(Boolean);
       if (comparisonMode) {
         setLoadingStage('Processing both modes...');
         const [validatedRes, directRes] = await Promise.all([
@@ -169,12 +175,12 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
             question: currentInput, 
             show_steps: showSteps, 
             force_answer: forceAnswer,
-            history: messages,
+            history: trimmedHistory,
             subject_id: currentSubject?.id
           }),
           axios.post('http://localhost:5001/api/chat/direct', { 
             question: currentInput,
-            history: messages,
+            history: trimmedHistory,
             subject_id: currentSubject?.id
           })
         ]);
@@ -186,7 +192,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
           question: currentInput, 
           show_steps: showSteps, 
           force_answer: forceAnswer,
-          history: messages,
+          history: trimmedHistory,
           format: 'structured',
           subject_id: currentSubject?.id
         });
@@ -264,6 +270,28 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
     }).catch(err => {
       console.error('Failed to copy:', err);
     });
+  };
+
+  const handleVoiceInput = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert('Speech recognition not supported in this browser. Use Chrome.');
+      return;
+    }
+
+    if (isListening) return;
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    recognition.onstart = () => setIsListening(true);
+    recognition.onresult = (e) => {
+      const transcript = e.results[0][0].transcript;
+      setInput(prev => prev ? prev + ' ' + transcript : transcript);
+    };
+    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => setIsListening(false);
+    recognition.start();
   };
 
   const handleVoiceExplain = async (question, answer, msgIdx) => {
@@ -830,6 +858,9 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
           )}
           <Box sx={{ display: 'flex', gap: 1 }}>
             <TextField fullWidth value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && sendMessage()} placeholder="Ask your doubt..." disabled={loading} sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }} />
+            <IconButton onClick={handleVoiceInput} disabled={loading} sx={{ color: isListening ? '#F44336' : '#1976D2', animation: isListening ? 'pulse 1s infinite' : 'none', '@keyframes pulse': { '0%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.2)' }, '100%': { transform: 'scale(1)' } } }}>
+              {isListening ? <MicOff /> : <Mic />}
+            </IconButton>
             <Button variant="contained" onClick={sendMessage} disabled={loading} sx={{ borderRadius: 2, bgcolor: '#1976D2' }}><Send /></Button>
           </Box>
         </Box>

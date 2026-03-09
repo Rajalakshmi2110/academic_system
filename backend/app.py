@@ -100,30 +100,34 @@ def chat():
         if session:
             history = session['history']
     
-    follow_up_keywords = ['it', 'that', 'this', 'explain more', 'elaborate', 'what about', 'how about', 'also', 'and']
-    is_follow_up = any(question.lower().startswith(kw) for kw in ['it', 'that', 'this', 'what about it', 'how about that']) or \
-                   (len(question.split()) < 5 and any(kw in question.lower() for kw in ['more', 'also', 'too']))
+    follow_up_starters = ['it', 'that', 'this', 'its', 'their', 'them', 'those', 'these']
+    follow_up_verbs = ['explain', 'elaborate', 'describe', 'tell', 'give', 'show', 'list', 'compare', 'define']
+    q_lower = question.lower().strip()
+    q_words = q_lower.split()
     
-    # Add conversation history for follow-up questions
+    is_follow_up = (
+        any(q_lower.startswith(kw) for kw in follow_up_starters) or
+        (len(q_words) < 6 and any(kw in q_lower for kw in ['more', 'also', 'too', 'types', 'example', 'its', 'their'])) or
+        (len(q_words) < 6 and any(q_lower.startswith(v) for v in follow_up_verbs))
+    ) and len(history) > 0
+    
+    # Build context-enriched question for follow-ups
+    full_question = question
     if is_follow_up and history:
-        context_prefix = "Previous conversation:\n"
-        recent_history = history[-2:]  # Only last Q&A
-        for msg in recent_history:
-            if msg.get('type') == 'user':
-                context_prefix += f"User: {msg.get('text', '')}\n"
-            elif msg.get('type') == 'bot':
-                bot_data = msg.get('data', {})
-                answer = bot_data.get('answer', '')
-                if answer:
-                    answer_short = answer[:200] + '...' if len(answer) > 200 else answer
-                    context_prefix += f"Assistant: {answer_short}\n"
-        context_prefix += "\nCurrent question: "
-        full_question = context_prefix + question
-    else:
-        full_question = question
+        last_q = ''
+        last_a = ''
+        for msg in reversed(history):
+            if msg.get('type') == 'bot' and not last_a:
+                last_a = (msg.get('data', {}).get('answer', ''))[:200]
+            elif msg.get('type') == 'user' and not last_q:
+                last_q = msg.get('text', '')
+            if last_q and last_a:
+                break
+        if last_q:
+            full_question = f"Regarding '{last_q}': {question}"
     
-    # Layer 1 & 2: Validate question relevance and syllabus coverage
-    validation_result = pipeline.process_question(question)
+    # Layer 1 & 2: Validate with enriched question for follow-ups
+    validation_result = pipeline.process_question(full_question if is_follow_up else question)
     steps = {
         'layer1': {
             'name': 'DS Classifier',
