@@ -22,7 +22,12 @@ class MetricsTracker:
         metrics_file = self._get_metrics_file(subject_id)
         if metrics_file.exists():
             with open(metrics_file, 'r') as f:
-                return json.load(f)
+                data = json.load(f)
+            if data:
+                # Merge with defaults to ensure all keys exist
+                defaults = self._init_metrics()
+                defaults.update(data)
+                return defaults
         return self._init_metrics()
     
     def _init_metrics(self):
@@ -197,6 +202,101 @@ class MetricsTracker:
             'last_updated': metrics['last_updated']
         }
     
+    def get_overall_metrics(self, subject_ids):
+        """Get aggregated metrics across all subjects"""
+        from datetime import timedelta
+        combined = self._init_metrics()
+        all_confidence = []
+        all_latencies = []
+        all_l1_lat = []
+        all_l2_lat = []
+        all_l3_lat = []
+        all_daily = {}
+        all_hourly = {}
+
+        for sid in subject_ids:
+            m = self._load_metrics(sid)
+            combined['total_questions'] += m.get('total_questions', 0)
+            combined['layer1_pass'] += m.get('layer1_pass', 0)
+            combined['layer1_fail'] += m.get('layer1_fail', 0)
+            combined['layer2_valid'] += m.get('layer2_valid', 0)
+            combined['layer2_warning'] += m.get('layer2_warning', 0)
+            combined['layer2_out_of_syllabus'] += m.get('layer2_out_of_syllabus', 0)
+            combined['layer2_rejected'] += m.get('layer2_rejected', 0)
+            combined['layer3_success'] = combined.get('layer3_success', 0) + m.get('layer3_success', 0)
+            combined['layer3_error'] = combined.get('layer3_error', 0) + m.get('layer3_error', 0)
+            all_confidence.extend(m.get('confidence_scores', []))
+            all_latencies.extend(m.get('latencies', []))
+            all_l1_lat.extend(m.get('layer1_latencies', []))
+            all_l2_lat.extend(m.get('layer2_latencies', []))
+            all_l3_lat.extend(m.get('layer3_latencies', []))
+            for d, c in m.get('daily_stats', {}).items():
+                all_daily[d] = all_daily.get(d, 0) + c
+            for h, c in m.get('hourly_stats', {}).items():
+                all_hourly[h] = all_hourly.get(h, 0) + c
+
+        def _avg(lst):
+            return round(sum(lst) / len(lst), 2) if lst else 0
+
+        total = combined['total_questions']
+        avg_confidence = _avg(all_confidence)
+        avg_latency = _avg(all_latencies)
+        low_confidence_count = sum(1 for s in all_confidence if s < 0.6)
+
+        today = datetime.now().strftime('%Y-%m-%d')
+        today_count = all_daily.get(today, 0)
+        week_count = sum(all_daily.get((datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d'), 0) for i in range(7))
+
+        # Per-subject breakdown
+        per_subject = {}
+        for sid in subject_ids:
+            m = self._load_metrics(sid)
+            per_subject[sid] = {
+                'total_questions': m.get('total_questions', 0),
+                'layer3_success': m.get('layer3_success', 0),
+                'avg_confidence': _avg(m.get('confidence_scores', []))
+            }
+
+        # Combine feedback across all subjects
+        all_feedback = {'helpful': 0, 'not_helpful': 0, 'total': 0}
+        fb = self.get_feedback_metrics(None)
+        all_feedback = fb
+
+        return {
+            'usage': {
+                'total_questions': total,
+                'today': today_count,
+                'this_week': week_count,
+                'avg_confidence': avg_confidence,
+                'avg_latency_ms': avg_latency,
+                'low_confidence_count': low_confidence_count
+            },
+            'layer1': {
+                'pass': combined['layer1_pass'],
+                'fail': combined['layer1_fail'],
+                'pass_rate': round(combined['layer1_pass'] / total * 100, 1) if total > 0 else 0,
+                'avg_latency_ms': _avg(all_l1_lat)
+            },
+            'layer2': {
+                'valid': combined['layer2_valid'],
+                'warning': combined['layer2_warning'],
+                'out_of_syllabus': combined['layer2_out_of_syllabus'],
+                'rejected': combined['layer2_rejected'],
+                'avg_latency_ms': _avg(all_l2_lat)
+            },
+            'layer3': {
+                'success': combined.get('layer3_success', 0),
+                'error': combined.get('layer3_error', 0),
+                'success_rate': round(combined.get('layer3_success', 0) / total * 100, 1) if total > 0 else 0,
+                'avg_latency_ms': _avg(all_l3_lat)
+            },
+            'daily_stats': all_daily,
+            'hourly_stats': all_hourly,
+            'per_subject': per_subject,
+            'feedback': all_feedback,
+            'last_updated': datetime.now().isoformat()
+        }
+
     def get_feedback_metrics(self, subject_id):
         """Get feedback metrics from feedback.json"""
         feedback_file = self.base_path.parent / 'backend' / 'feedback.json'

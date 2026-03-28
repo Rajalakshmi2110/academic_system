@@ -6,7 +6,7 @@ import axios from 'axios';
 const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
   const [metrics, setMetrics] = useState(null);
   const [subjects, setSubjects] = useState([]);
-  const [currentSubject, setCurrentSubject] = useState(selectedSubject || 'data_structures');
+  const [currentSubject, setCurrentSubject] = useState(selectedSubject || 'overall');
 
   useEffect(() => {
     loadSubjects();
@@ -60,6 +60,7 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
               onChange={(e) => setCurrentSubject(e.target.value)}
               sx={{ bgcolor: 'white', borderRadius: 1 }}
             >
+              <MenuItem value="overall"><strong>📊 Overall</strong></MenuItem>
               {subjects.map(subject => (
                 <MenuItem key={subject.id} value={subject.id}>
                   {subject.name}
@@ -95,7 +96,7 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
 
       <Box sx={{ flex: 1, bgcolor: '#F5F7FA' }}>
         <Box sx={{ bgcolor: 'white', p: 2, borderBottom: '1px solid #E0E0E0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h5">Metrics - {subjects.find(s => s.id === currentSubject)?.name || 'Loading...'}</Typography>
+          <Typography variant="h5">Metrics - {currentSubject === 'overall' ? 'Overall (All Subjects)' : (subjects.find(s => s.id === currentSubject)?.name || 'Loading...')}</Typography>
           <Button variant="outlined" size="small" onClick={fetchMetrics}>Refresh</Button>
         </Box>
         <Box sx={{ p: 4 }}>
@@ -371,6 +372,39 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
         <Typography variant="caption" sx={{ display: 'block', textAlign: 'center', color: 'text.secondary', mt: 2 }}>
           Last updated: {new Date(metrics.last_updated).toLocaleString()}
         </Typography>
+      )}
+
+      {/* Per-Subject Breakdown (only in Overall view) */}
+      {currentSubject === 'overall' && metrics.per_subject && (
+        <Paper elevation={0} sx={{ p: 4, mb: 3, mt: 3, borderRadius: 3, border: '1px solid #E2E8F0' }}>
+          <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, color: '#1A202C' }}>Per-Subject Breakdown</Typography>
+          <Grid container spacing={2}>
+            {Object.entries(metrics.per_subject).map(([sid, data]) => {
+              const subjectName = subjects.find(s => s.id === sid)?.name || sid;
+              return (
+                <Grid item xs={4} key={sid}>
+                  <Card elevation={0} sx={{ p: 2, border: '1px solid #E2E8F0', borderRadius: 2, cursor: 'pointer', '&:hover': { borderColor: '#1976D2', bgcolor: '#F8FAFC' } }} onClick={() => setCurrentSubject(sid)}>
+                    <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>{subjectName}</Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <Box>
+                        <Typography variant="h4" sx={{ color: '#3B82F6', fontWeight: 700 }}>{data.total_questions}</Typography>
+                        <Typography variant="caption" sx={{ color: '#64748B' }}>Questions</Typography>
+                      </Box>
+                      <Box>
+                        <Typography variant="h4" sx={{ color: '#10B981', fontWeight: 700 }}>{data.layer3_success}</Typography>
+                        <Typography variant="caption" sx={{ color: '#64748B' }}>Answered</Typography>
+                      </Box>
+                      <Box>
+                        <Typography variant="h4" sx={{ color: '#8B5CF6', fontWeight: 700 }}>{data.avg_confidence ? (data.avg_confidence * 100).toFixed(0) + '%' : 'N/A'}</Typography>
+                        <Typography variant="caption" sx={{ color: '#64748B' }}>Confidence</Typography>
+                      </Box>
+                    </Box>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Paper>
       )}
         </Box>
       </Box>

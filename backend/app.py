@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sys
 import os
+import json
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -272,18 +273,24 @@ def metrics():
     try:
         subject_id = request.args.get('subject_id', 'data_structures')
         
-        # Get usage metrics
-        usage_metrics = metrics_tracker.get_metrics(subject_id)
+        if subject_id == 'overall':
+            subjects_file = Path(__file__).parent.parent / 'subjects' / 'subjects.json'
+            with open(subjects_file, 'r') as f:
+                all_subjects = json.load(f).get('subjects', [])
+            subject_ids = [s['id'] for s in all_subjects]
+            return jsonify(metrics_tracker.get_overall_metrics(subject_ids))
         
-        # Get feedback metrics
+        usage_metrics = metrics_tracker.get_metrics(subject_id)
         feedback_metrics = metrics_tracker.get_feedback_metrics(subject_id)
         
         return jsonify({
             'usage': usage_metrics['usage'],
             'layer1': usage_metrics['layer1'],
             'layer2': usage_metrics['layer2'],
+            'layer3': usage_metrics.get('layer3', {}),
             'feedback': feedback_metrics,
             'daily_stats': usage_metrics['daily_stats'],
+            'hourly_stats': usage_metrics.get('hourly_stats', {}),
             'last_updated': usage_metrics['last_updated']
         })
     except Exception as e:
