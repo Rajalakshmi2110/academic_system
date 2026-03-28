@@ -8,6 +8,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
   const [currentConvId, setCurrentConvId] = useState(null);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const inputRef = React.useRef('');
   const [loading, setLoading] = useState(false);
   const [loadingStage, setLoadingStage] = useState('');
   const [showSteps, setShowSteps] = useState(false);
@@ -59,7 +60,27 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
     }
   }, [messages, currentConvId]);
 
+  const subjectSuggestions = {
+    data_structures: [
+      'What is a binary search tree?',
+      'Explain heap sort algorithm',
+      'Compare stack and queue',
+      'How does hashing work?'
+    ],
+    operating_system: [
+      'What is process scheduling?',
+      'Explain deadlock prevention',
+      'Compare paging and segmentation',
+      'How does virtual memory work?'
+    ]
+  };
+
   const createNewConversation = (subjectId, subjectName) => {
+    const suggestions = subjectSuggestions[subjectId] || [
+      `What are the key topics in ${subjectName}?`,
+      `Explain a core concept in ${subjectName}`,
+      'Give me an example with explanation'
+    ];
     const newConv = {
       id: Date.now(),
       title: 'New Conversation',
@@ -72,11 +93,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
           final_status: 'VALID',
           title: `Welcome to ${subjectName}`,
           subtitle: 'Ask me anything covered in your syllabus',
-          suggestions: [
-            'Explain the main concepts',
-            'What topics are covered?',
-            'Help me understand this subject'
-          ]
+          suggestions: suggestions
         }
       }],
       createdAt: Date.now(),
@@ -148,9 +165,9 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
   };
 
   const sendMessage = async (forceAnswer = false) => {
-    if (!input.trim()) return;
-    const userMsg = { type: 'user', text: input };
-    const currentInput = input;
+    const currentInput = inputRef.current || input;
+    if (!currentInput.trim()) return;
+    const userMsg = { type: 'user', text: currentInput };
     
     if (messages.length === 0) {
       updateConversationTitle(currentConvId, currentInput);
@@ -158,16 +175,19 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
     
     setMessages(prev => [...prev, userMsg]);
     setInput('');
+    inputRef.current = '';
     setLoading(true);
     setLoadingStage('Validating question...');
 
     try {
       const currentSubject = getCurrentSubject();
-      const trimmedHistory = messages.slice(-6).map(m => {
-        if (m.type === 'user') return { type: 'user', text: m.text };
-        if (m.type === 'bot') return { type: 'bot', data: { answer: (m.data?.answer || '').slice(0, 300) } };
-        return null;
-      }).filter(Boolean);
+      const trimmedHistory = messages
+        .filter(m => (m.type === 'user' && m.text) || (m.type === 'bot' && m.data?.answer && typeof m.data.answer === 'string'))
+        .slice(-6)
+        .map(m => {
+          if (m.type === 'user') return { type: 'user', text: String(m.text || '') };
+          return { type: 'bot', data: { answer: String(m.data.answer).slice(0, 300) } };
+        });
       if (comparisonMode) {
         setLoadingStage('Processing both modes...');
         const [validatedRes, directRes] = await Promise.all([
@@ -199,7 +219,9 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
         setMessages(prev => [...prev, { type: 'bot', data: res.data }]);
       }
     } catch (error) {
-      setMessages(prev => [...prev, { type: 'bot', data: { final_status: 'ERROR', explanation: 'Failed to connect to backend' } }]);
+      console.error('Chat error:', error?.response?.status, error?.message, error);
+      const errMsg = error?.response?.data?.message || error?.message || 'Failed to connect to backend';
+      setMessages(prev => [...prev, { type: 'bot', data: { final_status: 'ERROR', explanation: errMsg } }]);
     }
     setLoading(false);
     setLoadingStage('');
@@ -287,7 +309,11 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
     recognition.onstart = () => setIsListening(true);
     recognition.onresult = (e) => {
       const transcript = e.results[0][0].transcript;
-      setInput(prev => prev ? prev + ' ' + transcript : transcript);
+      setInput(prev => {
+        const newVal = prev ? prev + ' ' + transcript : transcript;
+        inputRef.current = newVal;
+        return newVal;
+      });
     };
     recognition.onerror = () => setIsListening(false);
     recognition.onend = () => setIsListening(false);
@@ -561,7 +587,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                         <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', mb: 1, color: '#2E7D32' }}>📚 Sources:</Typography>
                         {msg.data.sources.map((source, idx) => (
                           <Typography key={idx} variant="caption" sx={{ display: 'block', color: '#666', mb: 0.5 }}>
-                            • {source}
+                            • {typeof source === 'string' ? source : source.source || source.path || JSON.stringify(source)}
                           </Typography>
                         ))}
                       </Box>
@@ -739,7 +765,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                             <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', mb: 1, color: '#1976D2' }}>📚 Sources:</Typography>
                             {msg.data.sources.map((source, idx) => (
                               <Typography key={idx} variant="caption" sx={{ display: 'block', color: '#666', mb: 0.5 }}>
-                                • {source}
+                                • {typeof source === 'string' ? source : source.source || source.path || JSON.stringify(source)}
                               </Typography>
                             ))}
                           </Box>
@@ -857,11 +883,11 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
             </Box>
           )}
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <TextField fullWidth value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && sendMessage()} placeholder="Ask your doubt..." disabled={loading} sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }} />
+            <TextField fullWidth value={input} onChange={(e) => { setInput(e.target.value); inputRef.current = e.target.value; }} onKeyPress={(e) => e.key === 'Enter' && sendMessage()} placeholder="Ask your doubt..." disabled={loading} sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }} />
             <IconButton onClick={handleVoiceInput} disabled={loading} sx={{ color: isListening ? '#F44336' : '#1976D2', animation: isListening ? 'pulse 1s infinite' : 'none', '@keyframes pulse': { '0%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.2)' }, '100%': { transform: 'scale(1)' } } }}>
               {isListening ? <MicOff /> : <Mic />}
             </IconButton>
-            <Button variant="contained" onClick={sendMessage} disabled={loading} sx={{ borderRadius: 2, bgcolor: '#1976D2' }}><Send /></Button>
+            <Button variant="contained" onClick={() => sendMessage()} disabled={loading} sx={{ borderRadius: 2, bgcolor: '#1976D2' }}><Send /></Button>
           </Box>
         </Box>
         <Snackbar
