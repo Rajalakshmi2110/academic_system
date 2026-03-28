@@ -70,3 +70,4 @@ backend/feedback.json
 backend/evaluation_results.json
 backend/training_errors.log
 backend/audio_cache/
+subjects/*/metrics/
