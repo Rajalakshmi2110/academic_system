@@ -63,7 +63,7 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
           <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>Admin Panel</Typography>
           <FormControl fullWidth size="small" sx={{ mb: 2 }}>
             <Select value={currentSubject} onChange={(e) => setCurrentSubject(e.target.value)} sx={{ bgcolor: 'white', borderRadius: 1 }}>
-              <MenuItem value="overall"><strong>📊 Overall</strong></MenuItem>
+              <MenuItem value="overall"><strong>Overall</strong></MenuItem>
               {subjects.map(s => <MenuItem key={s.id} value={s.id}>{s.name}</MenuItem>)}
             </Select>
           </FormControl>
@@ -82,7 +82,7 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
       <Box sx={{ flex: 1, bgcolor: '#F5F7FA' }}>
         <Box sx={{ bgcolor: 'white', p: 2, borderBottom: '1px solid #E0E0E0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography variant="h5" sx={{ fontWeight: 600 }}>
-            {currentSubject === 'overall' ? '📊 Overall Metrics' : `Metrics — ${subjects.find(s => s.id === currentSubject)?.name || ''}`}
+            {currentSubject === 'overall' ? 'Overall Metrics' : `Metrics — ${subjects.find(s => s.id === currentSubject)?.name || ''}`}
           </Typography>
           <Button variant="outlined" size="small" onClick={fetchMetrics}>Refresh</Button>
         </Box>
@@ -175,7 +175,7 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
 
             {/* Latency Breakdown */}
             <Box sx={{ mt: 3, p: 2.5, bgcolor: '#F8FAFC', borderRadius: 2, border: '1px solid #E2E8F0' }}>
-              <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 2, color: '#334155' }}>⚡ Latency Breakdown</Typography>
+              <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 2, color: '#334155' }}>Latency Breakdown</Typography>
               <LatencyBar label="Layer 1 — Classifier" ms={metrics.layer1?.avg_latency_ms} color="#16A34A" maxMs={maxLatency} />
               <LatencyBar label="Layer 2 — Validator" ms={metrics.layer2?.avg_latency_ms} color="#F59E0B" maxMs={maxLatency} />
               <LatencyBar label="Layer 3 — RAG" ms={metrics.layer3?.avg_latency_ms} color="#7C3AED" maxMs={maxLatency} />
@@ -199,13 +199,13 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
                   <Grid item xs={4}>
                     <Box sx={{ p: 1.5, bgcolor: '#ECFDF5', borderRadius: 1.5, textAlign: 'center' }}>
                       <Typography variant="h5" sx={{ color: '#10B981', fontWeight: 700 }}>{metrics.feedback?.helpful || 0}</Typography>
-                      <Typography variant="caption" sx={{ color: '#065F46' }}>👍</Typography>
+                      <Typography variant="caption" sx={{ color: '#065F46' }}>Helpful</Typography>
                     </Box>
                   </Grid>
                   <Grid item xs={4}>
                     <Box sx={{ p: 1.5, bgcolor: '#FEE2E2', borderRadius: 1.5, textAlign: 'center' }}>
                       <Typography variant="h5" sx={{ color: '#EF4444', fontWeight: 700 }}>{metrics.feedback?.not_helpful || 0}</Typography>
-                      <Typography variant="caption" sx={{ color: '#991B1B' }}>👎</Typography>
+                      <Typography variant="caption" sx={{ color: '#991B1B' }}>Not Helpful</Typography>
                     </Box>
                   </Grid>
                   <Grid item xs={4}>
