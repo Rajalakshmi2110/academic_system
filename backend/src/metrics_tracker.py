@@ -34,9 +34,15 @@ class MetricsTracker:
             'layer2_warning': 0,
             'layer2_out_of_syllabus': 0,
             'layer2_rejected': 0,
+            'layer3_success': 0,
+            'layer3_error': 0,
             'confidence_scores': [],
             'latencies': [],
+            'layer1_latencies': [],
+            'layer2_latencies': [],
+            'layer3_latencies': [],
             'daily_stats': {},
+            'hourly_stats': {},
             'last_updated': None
         }
     
@@ -45,22 +51,32 @@ class MetricsTracker:
         with open(metrics_file, 'w') as f:
             json.dump(metrics, f, indent=2)
     
+    def _cap_list(self, lst, limit=1000):
+        return lst[-limit:] if len(lst) > limit else lst
+
     def track_question(self, subject_id, result):
         """Track a question and its result"""
         metrics = self._load_metrics(subject_id)
         
-        # Update counters
+        # Ensure new fields exist for older metrics files
+        for key, default in [('layer3_success', 0), ('layer3_error', 0),
+                             ('layer1_latencies', []), ('layer2_latencies', []),
+                             ('layer3_latencies', []), ('hourly_stats', {})]:
+            if key not in metrics:
+                metrics[key] = default
+        
         metrics['total_questions'] += 1
         
-        # Track Layer 1
-        if result.get('layer1_result') == 'PASS':
+        # Track Layer 1 (pipeline returns 'IN_SYLLABUS' or 'OUT_OF_SYLLABUS')
+        l1 = result.get('layer1_result', '')
+        if l1 in ('PASS', 'IN_SYLLABUS'):
             metrics['layer1_pass'] += 1
         else:
             metrics['layer1_fail'] += 1
         
         # Track Layer 2
         layer2_status = result.get('layer2_result') or result.get('final_status')
-        if layer2_status == 'VALID' or layer2_status == 'IN_SYLLABUS':
+        if layer2_status in ('VALID', 'IN_SYLLABUS'):
             metrics['layer2_valid'] += 1
         elif layer2_status == 'WARNING':
             metrics['layer2_warning'] += 1
@@ -69,25 +85,48 @@ class MetricsTracker:
         elif layer2_status == 'REJECTED':
             metrics['layer2_rejected'] += 1
         
+        # Track Layer 3
+        if result.get('status') == 'success':
+            metrics['layer3_success'] += 1
+        elif result.get('final_status') in ('OUT_OF_SYLLABUS', 'REJECTED'):
+            pass  # didn't reach Layer 3
+        elif result.get('status') == 'error':
+            metrics['layer3_error'] += 1
+        
         # Track confidence score
         if result.get('confidence_score'):
             metrics['confidence_scores'].append(result['confidence_score'])
-            # Keep only last 1000 scores
-            if len(metrics['confidence_scores']) > 1000:
-                metrics['confidence_scores'] = metrics['confidence_scores'][-1000:]
+            metrics['confidence_scores'] = self._cap_list(metrics['confidence_scores'])
         
-        # Track latency
+        # Track per-layer latencies
+        steps = result.get('intermediate_steps', {})
+        if steps.get('layer1', {}).get('latency_ms'):
+            metrics['layer1_latencies'].append(steps['layer1']['latency_ms'])
+            metrics['layer1_latencies'] = self._cap_list(metrics['layer1_latencies'])
+        if steps.get('layer2', {}).get('latency_ms'):
+            metrics['layer2_latencies'].append(steps['layer2']['latency_ms'])
+            metrics['layer2_latencies'] = self._cap_list(metrics['layer2_latencies'])
+        if steps.get('layer3', {}).get('latency_ms'):
+            metrics['layer3_latencies'].append(steps['layer3']['latency_ms'])
+            metrics['layer3_latencies'] = self._cap_list(metrics['layer3_latencies'])
+        
+        # Track total latency
         if result.get('total_latency_ms'):
             metrics['latencies'].append(result['total_latency_ms'])
-            # Keep only last 1000 latencies
-            if len(metrics['latencies']) > 1000:
-                metrics['latencies'] = metrics['latencies'][-1000:]
+            metrics['latencies'] = self._cap_list(metrics['latencies'])
         
         # Track daily stats
-        today = datetime.now().strftime('%Y-%m-%d')
+        now = datetime.now()
+        today = now.strftime('%Y-%m-%d')
         if today not in metrics['daily_stats']:
             metrics['daily_stats'][today] = 0
         metrics['daily_stats'][today] += 1
+        
+        # Track hourly stats
+        hour = str(now.hour)
+        if hour not in metrics['hourly_stats']:
+            metrics['hourly_stats'][hour] = 0
+        metrics['hourly_stats'][hour] += 1
         
         # Keep only last 30 days
         if len(metrics['daily_stats']) > 30:
@@ -95,7 +134,7 @@ class MetricsTracker:
             for old_date in sorted_dates[:-30]:
                 del metrics['daily_stats'][old_date]
         
-        metrics['last_updated'] = datetime.now().isoformat()
+        metrics['last_updated'] = now.isoformat()
         
         self._save_metrics(subject_id, metrics)
     
@@ -121,9 +160,13 @@ class MetricsTracker:
             date = (datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d')
             week_count += metrics['daily_stats'].get(date, 0)
         
+        def _avg(lst):
+            return round(sum(lst) / len(lst), 2) if lst else 0
+
+        total = metrics['total_questions']
         return {
             'usage': {
-                'total_questions': metrics['total_questions'],
+                'total_questions': total,
                 'today': today_count,
                 'this_week': week_count,
                 'avg_confidence': round(avg_confidence, 2),
@@ -133,15 +176,24 @@ class MetricsTracker:
             'layer1': {
                 'pass': metrics['layer1_pass'],
                 'fail': metrics['layer1_fail'],
-                'pass_rate': round(metrics['layer1_pass'] / metrics['total_questions'] * 100, 1) if metrics['total_questions'] > 0 else 0
+                'pass_rate': round(metrics['layer1_pass'] / total * 100, 1) if total > 0 else 0,
+                'avg_latency_ms': _avg(metrics.get('layer1_latencies', []))
             },
             'layer2': {
                 'valid': metrics['layer2_valid'],
                 'warning': metrics['layer2_warning'],
                 'out_of_syllabus': metrics['layer2_out_of_syllabus'],
-                'rejected': metrics['layer2_rejected']
+                'rejected': metrics['layer2_rejected'],
+                'avg_latency_ms': _avg(metrics.get('layer2_latencies', []))
+            },
+            'layer3': {
+                'success': metrics.get('layer3_success', 0),
+                'error': metrics.get('layer3_error', 0),
+                'success_rate': round(metrics.get('layer3_success', 0) / total * 100, 1) if total > 0 else 0,
+                'avg_latency_ms': _avg(metrics.get('layer3_latencies', []))
             },
             'daily_stats': metrics['daily_stats'],
+            'hourly_stats': metrics.get('hourly_stats', {}),
             'last_updated': metrics['last_updated']
         }
     
