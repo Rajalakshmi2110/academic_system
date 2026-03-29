@@ -1,0 +1,44 @@
+{
+  "accuracy": 0.9851,
+  "precision": 0.9683,
+  "recall": 1.0,
+  "f1_score": 0.9839,
+  "confusion_matrix": [
+    [
+      143,
+      4
+    ],
+    [
+      0,
+      122
+    ]
+  ],
+  "classification_report": {
+    "Out-of-Syllabus": {
+      "precision": 1.0,
+      "recall": 0.9727891156462585,
+      "f1-score": 0.9862068965517241,
+      "support": 147.0
+    },
+    "In-Syllabus": {
+      "precision": 0.9682539682539683,
+      "recall": 1.0,
+      "f1-score": 0.9838709677419355,
+      "support": 122.0
+    },
+    "accuracy": 0.9851301115241635,
+    "macro avg": {
+      "precision": 0.9841269841269842,
+      "recall": 0.9863945578231292,
+      "f1-score": 0.9850389321468298,
+      "support": 269.0
+    },
+    "weighted avg": {
+      "precision": 0.9856021714757773,
+      "recall": 0.9851301115241635,
+      "f1-score": 0.985147479024608,
+      "support": 269.0
+    }
+  },
+  "val_samples": 269
+}

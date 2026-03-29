@@ -296,6 +296,18 @@ def metrics():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/metrics/model', methods=['GET'])
+def model_metrics():
+    try:
+        subject_id = request.args.get('subject_id', 'data_structures')
+        metrics_path = Path(__file__).parent.parent / 'subjects' / subject_id / 'models' / 'layer1_distilbert' / 'model_metrics.json'
+        if metrics_path.exists():
+            with open(metrics_path, 'r') as f:
+                return jsonify(json.load(f))
+        return jsonify({'error': 'No model metrics found. Run evaluate_model.py first.'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/feedback', methods=['POST'])
 def submit_feedback():
     try:

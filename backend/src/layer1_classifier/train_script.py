@@ -9,6 +9,7 @@ from torch.utils.data import Dataset, DataLoader
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 from torch.optim import AdamW
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix, classification_report
 from tqdm import tqdm
 
 class QuestionDataset(Dataset):
@@ -131,8 +132,46 @@ def train_model(training_data_path, output_model_path, epochs=2, batch_size=32):
     model.save_pretrained(output_path)
     tokenizer.save_pretrained(output_path)
     
-    print(f"✓ Model saved to {output_path}")
-    print(f"Final validation accuracy: {val_acc:.4f}")
+    # Compute precision, recall, F1, confusion matrix on validation set
+    model.eval()
+    all_preds = []
+    all_labels = []
+    with torch.no_grad():
+        for batch in val_loader:
+            input_ids = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            labels = batch['labels'].to(device)
+            outputs = model(input_ids, attention_mask=attention_mask)
+            preds = torch.argmax(outputs.logits, dim=1)
+            all_preds.extend(preds.cpu().tolist())
+            all_labels.extend(labels.cpu().tolist())
+    
+    precision = precision_score(all_labels, all_preds, average='binary')
+    recall = recall_score(all_labels, all_preds, average='binary')
+    f1 = f1_score(all_labels, all_preds, average='binary')
+    cm = confusion_matrix(all_labels, all_preds).tolist()
+    report = classification_report(all_labels, all_preds, target_names=['Out-of-Syllabus', 'In-Syllabus'], output_dict=True)
+    
+    model_metrics = {
+        'accuracy': round(val_acc, 4),
+        'precision': round(precision, 4),
+        'recall': round(recall, 4),
+        'f1_score': round(f1, 4),
+        'confusion_matrix': cm,
+        'classification_report': report,
+        'train_samples': len(train_q),
+        'val_samples': len(val_q),
+        'epochs': epochs
+    }
+    
+    metrics_path = output_path / 'model_metrics.json'
+    with open(metrics_path, 'w') as f:
+        json.dump(model_metrics, f, indent=2)
+    
+    print(f"\nModel saved to {output_path}")
+    print(f"Accuracy: {val_acc:.4f} | Precision: {precision:.4f} | Recall: {recall:.4f} | F1: {f1:.4f}")
+    print(f"Confusion Matrix: {cm}")
+    print(f"Metrics saved to {metrics_path}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:

@@ -8,8 +8,10 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
   const [subjects, setSubjects] = useState([]);
   const [currentSubject, setCurrentSubject] = useState(selectedSubject || 'overall');
 
+  const [modelMetrics, setModelMetrics] = useState(null);
+
   useEffect(() => { loadSubjects(); }, []);
-  useEffect(() => { if (currentSubject) fetchMetrics(); }, [currentSubject]);
+  useEffect(() => { if (currentSubject) { fetchMetrics(); fetchModelMetrics(); } }, [currentSubject]);
 
   const loadSubjects = async () => {
     try {
@@ -23,6 +25,14 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
       const res = await axios.get(`http://localhost:5001/api/metrics?subject_id=${currentSubject}`);
       setMetrics(res.data);
     } catch (error) { console.error('Failed to fetch metrics:', error); setMetrics(null); }
+  };
+
+  const fetchModelMetrics = async () => {
+    if (currentSubject === 'overall') { setModelMetrics(null); return; }
+    try {
+      const res = await axios.get(`http://localhost:5001/api/metrics/model?subject_id=${currentSubject}`);
+      setModelMetrics(res.data);
+    } catch (error) { setModelMetrics(null); }
   };
 
   const StatCard = ({ value, label, color, bgColor, borderColor, icon }) => (
@@ -248,6 +258,65 @@ const MetricsPage = ({ onSwitchTab, onLogout, selectedSubject }) => {
               </Paper>
             </Grid>
           </Grid>
+
+          {/* Model Evaluation Metrics (per-subject only) */}
+          {currentSubject !== 'overall' && modelMetrics && !modelMetrics.error && (
+            <Paper elevation={0} sx={{ p: 3, mb: 3, borderRadius: 3, border: '1px solid #E2E8F0' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 3 }}>
+                <Box sx={{ bgcolor: '#0891B2', p: 1, borderRadius: 1.5 }}><Assessment sx={{ color: 'white', fontSize: 22 }} /></Box>
+                <Box>
+                  <Typography variant="h6" sx={{ fontWeight: 600 }}>Layer 1 Model Evaluation</Typography>
+                  <Typography variant="caption" color="text.secondary">DistilBERT classifier performance on validation set ({modelMetrics.val_samples} samples)</Typography>
+                </Box>
+              </Box>
+
+              <Grid container spacing={2} sx={{ mb: 3 }}>
+                {[
+                  { label: 'Accuracy', value: (modelMetrics.accuracy * 100).toFixed(1) + '%', color: '#0891B2' },
+                  { label: 'Precision', value: (modelMetrics.precision * 100).toFixed(1) + '%', color: '#7C3AED' },
+                  { label: 'Recall', value: (modelMetrics.recall * 100).toFixed(1) + '%', color: '#16A34A' },
+                  { label: 'F1 Score', value: (modelMetrics.f1_score * 100).toFixed(1) + '%', color: '#EA580C' },
+                ].map((m, i) => (
+                  <Grid item xs={3} key={i}>
+                    <Box sx={{ p: 2, bgcolor: '#F8FAFC', borderRadius: 2, border: '1px solid #E2E8F0', textAlign: 'center' }}>
+                      <Typography variant="h3" sx={{ color: m.color, fontWeight: 700 }}>{m.value}</Typography>
+                      <Typography variant="body2" sx={{ color: '#64748B', fontWeight: 600 }}>{m.label}</Typography>
+                    </Box>
+                  </Grid>
+                ))}
+              </Grid>
+
+              {/* Confusion Matrix */}
+              {modelMetrics.confusion_matrix && (
+                <Box sx={{ p: 2.5, bgcolor: '#F8FAFC', borderRadius: 2, border: '1px solid #E2E8F0' }}>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 2, color: '#334155' }}>Confusion Matrix</Typography>
+                  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Box>
+                      <Box sx={{ display: 'flex', mb: 0.5, ml: 12 }}>
+                        <Typography variant="caption" sx={{ width: 100, textAlign: 'center', fontWeight: 600, color: '#64748B' }}>Pred: Out</Typography>
+                        <Typography variant="caption" sx={{ width: 100, textAlign: 'center', fontWeight: 600, color: '#64748B' }}>Pred: In</Typography>
+                      </Box>
+                      {modelMetrics.confusion_matrix.map((row, i) => (
+                        <Box key={i} sx={{ display: 'flex', alignItems: 'center' }}>
+                          <Typography variant="caption" sx={{ width: 96, fontWeight: 600, color: '#64748B', textAlign: 'right', pr: 1 }}>
+                            {i === 0 ? 'Actual: Out' : 'Actual: In'}
+                          </Typography>
+                          {row.map((val, j) => {
+                            const isCorrect = i === j;
+                            return (
+                              <Box key={j} sx={{ width: 100, height: 60, display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: isCorrect ? '#ECFDF5' : (val > 0 ? '#FEE2E2' : '#F8FAFC'), border: '1px solid', borderColor: isCorrect ? '#BBF7D0' : (val > 0 ? '#FECACA' : '#E2E8F0'), borderRadius: 1, m: 0.25 }}>
+                                <Typography variant="h5" sx={{ fontWeight: 700, color: isCorrect ? '#16A34A' : (val > 0 ? '#EF4444' : '#CBD5E1') }}>{val}</Typography>
+                              </Box>
+                            );
+                          })}
+                        </Box>
+                      ))}
+                    </Box>
+                  </Box>
+                </Box>
+              )}
+            </Paper>
+          )}
 
           {/* Per-Subject Breakdown (Overall view only) */}
           {currentSubject === 'overall' && metrics.per_subject && (

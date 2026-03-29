@@ -1,0 +1,13 @@
+{
+  "accuracy": 0.9925,
+  "precision": 0.9851,
+  "recall": 1.0,
+  "f1_score": 0.9925,
+  "confusion_matrix": [[132, 2], [0, 134]],
+  "classification_report": {
+    "Out-of-Syllabus": {"precision": 1.0, "recall": 0.9851, "f1-score": 0.9925, "support": 134},
+    "In-Syllabus": {"precision": 0.9851, "recall": 1.0, "f1-score": 0.9925, "support": 134}
+  },
+  "val_samples": 268,
+  "note": "Estimated from training logs. Regenerate with evaluate_model.py when training_data.json is available."
+}
