@@ -34,10 +34,10 @@ class TwoLayerPipeline:
             print(f"[ERROR] Layer 1 failed to load: {e}")
             raise
         
-        # Initialize Layer 2 (MCP Validator with Llama 3.3 70B via Groq)
+        # Initialize Layer 2 (Rule-Based Validator)
         try:
             self.layer2 = Layer2Validator(subject_id=subject_id)
-            print("[OK] Layer 2 (MCP Validator) loaded successfully")
+            print("[OK] Layer 2 (Rule-Based Validator) loaded successfully")
         except Exception as e:
             print(f"[ERROR] Layer 2 failed to load: {e}")
             raise

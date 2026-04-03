@@ -275,10 +275,10 @@ academic_system/
 
 Academic project for multi-subject doubt clarification system.
 
-## 👥 Contributors
+## 👥 Contributor
 
-- Rathraj Y
-- Rajalakshmi
+
+- Rajalakshmi R
 
 ## 📧 Contact
 

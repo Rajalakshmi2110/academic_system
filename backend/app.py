@@ -188,7 +188,9 @@ def chat():
                 rag_result.get('context', '') if isinstance(rag_result, dict) else '',
                 rag_result.get('answer', rag_result) if isinstance(rag_result, dict) else rag_result
             ),
-            'final_status': 'VALID',
+            'final_status': 'VALID', 'layer1_result': validation_result.get('layer1_result'),
+            'layer1_result': validation_result.get('layer1_result'),
+            'layer1_result': validation_result.get('layer1_result'),
             'warning': validation_result.get('warning'),
             'out_of_syllabus_answered': force_answer
         }

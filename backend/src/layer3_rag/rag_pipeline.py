@@ -129,11 +129,18 @@ Using ONLY the context provided above, provide the algorithm/pseudocode in tripl
 
 Answer:"""
         else:
-            prompt = f"""Context: {context}
+            prompt = f"""You are an academic tutor. Answer the student's question using ONLY the context below.
+
+Context: {context}
 
 Question: {question}
 
-Using ONLY the context provided above, answer the question in 2-3 sentences. Do NOT include code or algorithms.
+Rules:
+- Write a clear, well-structured answer in your own words (do NOT copy-paste from context)
+- Use short paragraphs with line breaks between them
+- If listing items, use numbered points (1. 2. 3.)
+- Keep the answer concise: 3-5 sentences for simple questions, up to 10 for complex ones
+- Do NOT include raw textbook formatting, headers, or figure references
 
 Answer:"""
         

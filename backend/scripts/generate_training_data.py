@@ -34,7 +34,7 @@ Example format:
 """
     
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.8,
         max_tokens=2000
@@ -63,7 +63,7 @@ Return ONLY a JSON array of questions, no other text.
 """
     
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.9,
         max_tokens=1500
@@ -86,7 +86,7 @@ Answer with ONLY "1" (relevant) or "0" (not relevant). No explanation.
 """
     
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.1,
         max_tokens=5
@@ -148,7 +148,7 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
             batch_size = min(25, questions_per_unit - len(unit_questions))
             generated = generate_valid_questions(client, unit_name, topics, batch_size)
             unit_questions.extend(generated)
-            time.sleep(0.5)  # Rate limiting
+            time.sleep(12)  # Rate limiting
         
         # Add to dataset
         for q in unit_questions[:questions_per_unit]:  # Limit to target
@@ -175,7 +175,7 @@ def generate_dataset(syllabus_path, output_path, target_count=2000):
         
         invalid_qs = generate_invalid_questions(client, subject_name, batch_size)
         invalid_questions.extend(invalid_qs)
-        time.sleep(0.5)
+        time.sleep(12)
     
     # Add to dataset
     for q in invalid_questions[:invalid_target]:  # Limit to target
