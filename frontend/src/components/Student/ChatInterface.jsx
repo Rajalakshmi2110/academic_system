@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Paper, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Switch, FormControlLabel, IconButton, Snackbar, Drawer, List, ListItem, ListItemText, ListItemButton, Divider, Dialog, DialogTitle, DialogContent, DialogActions, Collapse } from '@mui/material';
 import { Send, ThumbUp, ThumbDown, ExpandMore, CheckCircle, Warning, Cancel, Block, ContentCopy, Add, Delete, Chat, Menu, School, ExpandLess, VolumeUp, Mic, MicOff } from '@mui/icons-material';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 
 const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
   const [conversations, setConversations] = useState([]);
@@ -565,13 +566,17 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                 <Box sx={{ display: 'flex', gap: 2, width: '100%' }}>
                   <Paper sx={{ p: 2, flex: 1, bgcolor: '#FFF3E0', borderRadius: 2, border: '2px solid #FF9800' }}>
                     <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#E65100' }}>Basic RAG (No Validation)</Typography>
-                    <Typography sx={{ mb: 2 }}>{msg.comparison.answer}</Typography>
+                    <Box sx={{ mb: 2, '& p': { mb: 1, lineHeight: 1.7 }, '& ol, & ul': { pl: 3 }, '& li': { mb: 0.5 }, '& strong': { fontWeight: 600 } }}>
+                      <ReactMarkdown>{String(msg.comparison.answer || '')}</ReactMarkdown>
+                    </Box>
                     <Typography variant="caption" sx={{ color: '#666', display: 'block', mt: 1 }}>Latency: {msg.comparison.latency_ms?.toFixed(0)}ms</Typography>
                   </Paper>
                   <Paper sx={{ p: 2, flex: 1, bgcolor: '#E8F5E9', borderRadius: 2, border: '2px solid #4CAF50' }}>
                     <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, color: '#2E7D32' }}>3-Layer Validated System</Typography>
                     <Chip label={msg.data.final_status} sx={{ bgcolor: getStatusColor(msg.data.final_status), color: 'white', mb: 1 }} size="small" />
-                    <Typography sx={{ mb: 2 }}>{msg.data.answer || msg.data.explanation || msg.data.message}</Typography>
+                    <Box sx={{ mb: 2, '& p': { mb: 1, lineHeight: 1.7 }, '& ol, & ul': { pl: 3 }, '& li': { mb: 0.5 }, '& strong': { fontWeight: 600 } }}>
+                      <ReactMarkdown>{String(msg.data.answer || msg.data.explanation || msg.data.message || '')}</ReactMarkdown>
+                    </Box>
                     {msg.data.answer && (
                       <Button
                         size="small"
@@ -754,11 +759,11 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                             </Box>
                           ))
                         ) : (
-                          <Typography sx={{ whiteSpace: 'pre-wrap' }}>
-                            {typeof (msg.data.answer || msg.data.explanation || msg.data.message) === 'string' 
-                              ? (msg.data.answer || msg.data.explanation || msg.data.message)
-                              : JSON.stringify(msg.data.answer || msg.data.explanation || msg.data.message)}
-                          </Typography>
+                          <Box sx={{ '& p': { mb: 1.5, lineHeight: 1.7 }, '& ol, & ul': { pl: 3, mb: 1.5 }, '& li': { mb: 0.5 }, '& strong': { fontWeight: 600 }, '& code': { bgcolor: '#F5F5F5', px: 0.5, borderRadius: 0.5, fontFamily: 'monospace', fontSize: '0.85em' }, '& pre': { bgcolor: '#F5F5F5', p: 2, borderRadius: 1, fontFamily: 'monospace', whiteSpace: 'pre-wrap', overflowX: 'auto', my: 1.5 } }}>
+                            <ReactMarkdown>
+                              {String(msg.data.answer || msg.data.explanation || msg.data.message || '')}
+                            </ReactMarkdown>
+                          </Box>
                         )}
                         {msg.data.sources && msg.data.sources.length > 0 && (
                           <Box sx={{ mt: 2, p: 1.5, bgcolor: '#F0F0F0', borderRadius: 1 }}>
