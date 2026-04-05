@@ -671,7 +671,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                                         let color = '#E0E0E0';
                                         if (filled) {
                                           if (score >= 0.8) color = '#4CAF50';
-                                          else if (score >= 0.6) color = '#FF9800';
+                                          else if (score >= 0.4) color = '#FF9800';
                                           else color = '#F44336';
                                         }
                                         return (
@@ -689,7 +689,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                                       })}
                                     </Box>
                                     <Typography variant="caption" sx={{ fontSize: '0.65rem', color: '#666', fontWeight: 'bold' }}>
-                                      {msg.data.confidence_score >= 0.8 ? 'High' : msg.data.confidence_score >= 0.6 ? 'Medium' : 'Low'} Confidence
+                                      {msg.data.confidence_score >= 0.8 ? 'High' : msg.data.confidence_score >= 0.4 ? 'Medium' : 'Low'} Confidence
                                     </Typography>
                                   </Box>
                                 )}
@@ -701,7 +701,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                                 Status: {msg.data.intermediate_steps.layer3.status} | 
                                 Latency: {msg.data.intermediate_steps.layer3.latency_ms?.toFixed(2)}ms
                               </Typography>
-                              {msg.data.confidence_score !== undefined && msg.data.confidence_score < 0.6 && (
+                              {msg.data.confidence_score !== undefined && msg.data.confidence_score < 0.4 && (
                                 <Box sx={{ mt: 1, p: 1, bgcolor: '#FFEBEE', borderRadius: 1, border: '1px solid #F44336' }}>
                                   <Typography variant="caption" sx={{ color: '#C62828', fontWeight: 'bold' }}>
                                     ⚠️ Low confidence - Please verify with professor or textbook
