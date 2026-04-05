@@ -1,0 +1,64 @@
+<mxfile host="65bd71144e">
+    <diagram name="Module 8: Admin Dashboard &amp; Accessibility" id="module8">
+        <mxGraphModel dx="434" dy="326" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="MODULE 8: ADMIN DASHBOARD &amp; ACCESSIBILITY" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="175" y="40" width="500" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="section_a" value="A. ADMIN CONTROLS" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="100" width="250" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="admin" value="• Password-protected admin login&lt;br&gt;• PDF upload/delete per subject&lt;br&gt;• Rebuild FAISS vector database&lt;br&gt;• Trigger model retraining&lt;br&gt;• Subject selection dropdown&lt;br&gt;• Document count and status" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="135" width="250" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="section_b" value="B. REAL-TIME METRICS" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="100" width="250" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="metrics" value="• Total questions (daily/weekly)&lt;br&gt;• Per-layer pass/fail tracking&lt;br&gt;• Confidence score distribution&lt;br&gt;• Per-layer latency breakdown&lt;br&gt;• Hourly activity chart (0-23h)&lt;br&gt;• Overall vs per-subject views" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="135" width="250" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="section_c" value="C. MODEL EVALUATION" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="570" y="100" width="250" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="model_eval" value="• Accuracy per subject&lt;br&gt;• Precision, Recall, F1-Score&lt;br&gt;• Confusion matrix (color-coded)&lt;br&gt;• Validation set sample count" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="570" y="135" width="250" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="section_d" value="D. STUDENT FEEDBACK" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="290" width="250" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="feedback" value="• Helpful / Not Helpful per answer&lt;br&gt;• Helpful rate calculation&lt;br&gt;• Total feedback count&lt;br&gt;• Stored in feedback.json" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="325" width="250" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="section_e" value="E. VOICE ASSISTANT (STT)" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="290" width="250" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="stt" value="Speech-to-Text (Voice Input)&lt;br&gt;• Web Speech API (browser-based)&lt;br&gt;• Real-time transcription&lt;br&gt;• Language: en-US&lt;br&gt;• No server dependency" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="325" width="250" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="section_f" value="F. VOICE ASSISTANT (TTS)" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="570" y="290" width="250" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="tts" value="Text-to-Speech (Voice Output)&lt;br&gt;• edge-tts speech synthesis&lt;br&gt;• Server-side MP3 generation&lt;br&gt;• Audio caching for playback&lt;br&gt;• Play/stop controls in UI" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="570" y="325" width="250" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="storage" value="Storage: usage_metrics.json, feedback.json, model_metrics.json, audio_cache/" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="175" y="450" width="500" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="tools" value="Tools: Flask, React, Material-UI, Web Speech API, edge-tts, JSON storage&lt;br&gt;Files: metrics_tracker.py, tts_service.py, MetricsPage.jsx, AdminDashboard.jsx, ChatInterface.jsx" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="175" y="500" width="500" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="a1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="admin" target="storage" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="a2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="feedback" target="storage" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="a3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="tts" target="storage" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

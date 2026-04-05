@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Module 6: Answer Generation" id="module6">
-        <mxGraphModel dx="434" dy="326" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="490" dy="293" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -19,7 +19,7 @@
                 <mxCell id="generation" value="B. Generation (Ollama Llama 3.1 8B)&lt;br&gt;• Dynamic prompt template selection:&lt;br&gt;  - Document summary queries&lt;br&gt;  - Follow-up elaborations&lt;br&gt;  - Algorithm/pseudocode requests&lt;br&gt;  - General conceptual questions&lt;br&gt;• Local inference (max 500 tokens, temp 0.7)&lt;br&gt;• Context-grounded with grounding instructions&lt;br&gt;• Source page citations per response&lt;br&gt;• Latency: ~15-30s" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
                     <mxGeometry x="300" y="420" width="250" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="confidence" value="C. Confidence Scoring (Hybrid Multi-Factor)&lt;br&gt;• 50%: Context-Answer overlap (words &gt; 3 chars)&lt;br&gt;• 30%: Question-Context relevance&lt;br&gt;• 20%: Answer completeness (20-300 words)&lt;br&gt;• Score: 0-100%&lt;br&gt;• Visual: 5 color-coded blocks&lt;br&gt;  (green ≥80%, orange ≥40%, red &lt;40%)&lt;br&gt;• Low confidence warning when &lt;60%" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                <mxCell id="confidence" value="C. Confidence Scoring (Hybrid Multi-Factor)&lt;br&gt;• 50%: Context-Answer overlap (words &amp;gt; 3 chars)&lt;br&gt;• 30%: Question-Context relevance&lt;br&gt;• 20%: Answer completeness (20-300 words)&lt;br&gt;• Visual: 5 color-coded blocks&lt;br&gt;  (green ≥80%, orange ≥40%, red &amp;lt;40%)&lt;br&gt;• Low confidence warning when &amp;lt;40%" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
                     <mxGeometry x="300" y="630" width="250" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="output" value="Output: Complete Response&lt;br&gt;• Answer text (markdown formatted)&lt;br&gt;• Confidence score (0-100%)&lt;br&gt;• Source citations (book + page number)&lt;br&gt;• Retrieved context chunks&lt;br&gt;• WARNING badge (if applicable)" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
