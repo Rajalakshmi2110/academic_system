@@ -738,33 +738,11 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                     
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                       <Box sx={{ flex: 1 }}>
-                        {msg.data.formatted_answer ? (
-                          msg.data.formatted_answer.sections.map((section, i) => (
-                            <Box key={i} sx={{ mb: 2 }}>
-                              {section.type === 'code' && (
-                                <Box sx={{ bgcolor: '#F5F5F5', p: 2, borderRadius: 1, fontFamily: 'monospace', whiteSpace: 'pre-wrap', overflowX: 'auto' }}>
-                                  {section.content}
-                                </Box>
-                              )}
-                              {section.type === 'steps' && (
-                                <Box>
-                                  {section.content.map((step, j) => (
-                                    <Typography key={j} sx={{ mb: 0.5, pl: 2 }}>{step}</Typography>
-                                  ))}
-                                </Box>
-                              )}
-                              {section.type === 'text' && (
-                                <Typography sx={{ mb: 1, lineHeight: 1.6 }}>{section.content}</Typography>
-                              )}
-                            </Box>
-                          ))
-                        ) : (
-                          <Box sx={{ '& p': { mb: 1.5, lineHeight: 1.7 }, '& ol, & ul': { pl: 3, mb: 1.5 }, '& li': { mb: 0.5 }, '& strong': { fontWeight: 600 }, '& code': { bgcolor: '#F5F5F5', px: 0.5, borderRadius: 0.5, fontFamily: 'monospace', fontSize: '0.85em' }, '& pre': { bgcolor: '#F5F5F5', p: 2, borderRadius: 1, fontFamily: 'monospace', whiteSpace: 'pre-wrap', overflowX: 'auto', my: 1.5 } }}>
-                            <ReactMarkdown>
-                              {String(msg.data.answer || msg.data.explanation || msg.data.message || '')}
-                            </ReactMarkdown>
-                          </Box>
-                        )}
+                        <Box sx={{ '& p': { mb: 1.5, lineHeight: 1.7 }, '& ol, & ul': { pl: 3, mb: 1.5 }, '& li': { mb: 0.5 }, '& strong': { fontWeight: 600 }, '& code': { bgcolor: '#F5F5F5', px: 0.5, borderRadius: 0.5, fontFamily: 'monospace', fontSize: '0.85em' }, '& pre': { bgcolor: '#F5F5F5', p: 2, borderRadius: 1, fontFamily: 'monospace', whiteSpace: 'pre-wrap', overflowX: 'auto', my: 1.5 } }}>
+                          <ReactMarkdown>
+                            {String(msg.data.answer || msg.data.explanation || msg.data.message || '')}
+                          </ReactMarkdown>
+                        </Box>
                         {msg.data.sources && msg.data.sources.length > 0 && (
                           <Box sx={{ mt: 2, p: 1.5, bgcolor: '#F0F0F0', borderRadius: 1 }}>
                             <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', mb: 1, color: '#1976D2' }}>📚 Sources:</Typography>
