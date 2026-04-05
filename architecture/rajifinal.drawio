@@ -73,25 +73,25 @@
                 <mxCell id="37" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="abox" source="13" target="14" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="Stage 3 : Context Retrieval&lt;div&gt;(FAISS Top - 5 Chunks, Cosine Similarity)&lt;/div&gt;" style="rounded=1;html=1" parent="abox" vertex="1">
+                <mxCell id="13" value="Stage 3 : Context Retrieval&lt;div&gt;(FAISS Top - 3 Chunks, L2 Distance)&lt;/div&gt;" style="rounded=1;html=1" parent="abox" vertex="1">
                     <mxGeometry x="20" y="70" width="280" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="38" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="abox" source="14" target="15" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="Answer Generation&amp;nbsp;&lt;div&gt;&lt;span style=&quot;color: rgb(63, 63, 63);&quot;&gt;(Ollama Llama 3.2 3B + RAG)&lt;/span&gt;&lt;/div&gt;" style="rounded=1;html=1" parent="abox" vertex="1">
+                <mxCell id="14" value="Answer Generation&amp;nbsp;&lt;div&gt;&lt;span style=&quot;color: rgb(63, 63, 63);&quot;&gt;(Ollama Llama 3.1 8B + RAG)&lt;/span&gt;&lt;/div&gt;" style="rounded=1;html=1" parent="abox" vertex="1">
                     <mxGeometry x="20" y="140" width="280" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="Evaluation&lt;div&gt;&lt;span style=&quot;color: rgb(63, 63, 63);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;(Confidence Scoring)&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=1;html=1" parent="abox" vertex="1">
+                <mxCell id="15" value="Evaluation&lt;div&gt;&lt;span style=&quot;color: rgb(63, 63, 63);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;(Confidence Scoring: 0-100%)&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(63, 63, 63);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Green ≥80% | Orange ≥40% | Red &amp;lt;40%&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=1;html=1" parent="abox" vertex="1">
                     <mxGeometry x="20" y="230" width="280" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="56" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Top 5 Relevant chunks&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="abox" vertex="1">
+                <mxCell id="56" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Top 3 Relevant chunks&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="abox" vertex="1">
                     <mxGeometry x="160" y="110" width="110" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="57" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Grounded Answer&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="abox" vertex="1">
                     <mxGeometry x="160" y="190" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="58" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Answer &amp;amp; Confidence Score&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="abox" vertex="1">
+                <mxCell id="58" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Answer &amp;amp; Confidence Score &amp;amp; Sources&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="abox" vertex="1">
                     <mxGeometry x="150" y="280" width="140" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="152" value="&lt;font style=&quot;&quot;&gt;&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;MODULE&lt;/font&gt;&lt;/b&gt;&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&amp;nbsp;6&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="abox">
@@ -127,7 +127,7 @@
                 <mxCell id="49" value="&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;Valid&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="820" y="290" width="40" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="59" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Top 5 Semantic Matches&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                <mxCell id="59" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Top 3 Semantic Matches&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="1045" y="700" width="120" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="61" value="Chunks for training&amp;nbsp;&lt;div&gt;Data Generation&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=0;" parent="1" vertex="1">
@@ -141,7 +141,7 @@
                         <mxPoint x="660" y="280" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="16" value="Final Answer + Confidence Score&amp;nbsp;" style="rounded=1;html=1" parent="1" vertex="1">
+                <mxCell id="16" value="Final Answer + Confidence Score&amp;nbsp;&lt;div&gt;+ Source Page Citations&lt;/div&gt;" style="rounded=1;html=1" parent="1" vertex="1">
                     <mxGeometry x="905" y="610" width="280" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="39" value="" style="edgeStyle=none;html=1;" parent="1" source="15" target="16" edge="1">
