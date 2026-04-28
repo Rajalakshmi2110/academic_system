@@ -1,0 +1,72 @@
+<mxfile host="65bd71144e">
+    <diagram name="Module 5: Metrics &amp; Multi-Subject Management" id="module5">
+        <mxGraphModel dx="760" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="MODULE 5: METRICS &amp; MULTI-SUBJECT MANAGEMENT" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="30" width="550" height="40" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="sub1" value="A. MULTI-SUBJECT MANAGEMENT" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="85" width="230" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="sub2" value="B. METRICS &amp; DASHBOARD" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="85" width="200" height="25" as="geometry"/>
+                </mxCell>
+
+                <!-- Subject Management -->
+                <mxCell id="a1" value="Admin Subject Creation" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="125" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a2" value="Syllabus &amp; Document Upload" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="195" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a3" value="Automated Training Pipeline" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="265" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a4" value="Per-Subject Data Isolation" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="335" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a5" value="Subject Registry" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="405" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a6" value="Admin Document Controls" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="490" width="200" height="35" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="aa1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a1" target="a2" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a2" target="a3" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a3" target="a4" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a4" target="a5" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a5" target="a6" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+                <!-- Metrics -->
+                <mxCell id="b1" value="Per-Layer Usage Tracking" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="125" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2" value="Model Evaluation Metrics" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="195" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b3" value="Latency &amp; Confidence Tracking" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="265" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4" value="Student Feedback Collection" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="335" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b5" value="Metrics Storage (JSON)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="405" width="160" height="50" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ba1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="b1" target="b2" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="ba2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="b2" target="b3" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="ba3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="b3" target="b4" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="ba4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="b4" target="b5" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+                <mxCell id="tools" value="Tools: Flask, React, Material-UI, JSON Storage | Files: subject_manager.py, metrics_tracker.py, routes.py, subject_routes.py" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="560" width="650" height="25" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

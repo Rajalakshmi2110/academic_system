@@ -79,8 +79,8 @@ class MetricsTracker:
         else:
             metrics['layer1_fail'] += 1
         
-        # Track Layer 2
-        layer2_status = result.get('layer2_result') or result.get('final_status')
+        # Track Layer 2 (only if question passed Layer 1)
+        layer2_status = result.get('layer2_result') or (result.get('final_status') if l1 in ('PASS', 'IN_SYLLABUS') else None)
         if layer2_status in ('VALID', 'IN_SYLLABUS'):
             metrics['layer2_valid'] += 1
         elif layer2_status == 'WARNING':
@@ -199,6 +199,7 @@ class MetricsTracker:
             },
             'daily_stats': metrics['daily_stats'],
             'hourly_stats': metrics.get('hourly_stats', {}),
+            'confidence_scores': metrics.get('confidence_scores', []),
             'last_updated': metrics['last_updated']
         }
     

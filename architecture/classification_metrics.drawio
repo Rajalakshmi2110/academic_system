@@ -1,0 +1,118 @@
+<mxfile host="65bd71144e">
+    <diagram name="Stage 1 Classification Metrics" id="metrics">
+        <mxGraphModel dx="1017" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="cm_title" value="Confusion Matrices (2×2)" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=12;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="240" width="760" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm1_title" value="Data Structures (268 samples)" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="280" width="240" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm1_ph" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="305" width="80" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm1_h1" value="Pred: Out" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="305" width="80" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm1_h2" value="Pred: In" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="305" width="80" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm1_r1" value="Actual: Out" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="330" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm1_tn" value="132 (TN)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="330" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm1_fp" value="2 (FP)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="330" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm1_r2" value="Actual: In" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="380" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm1_fn" value="0 (FN)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="380" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm1_tp" value="134 (TP)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="380" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm2_title" value="Operating Systems (269 samples)" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="280" width="240" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm2_ph" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="305" width="80" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm2_h1" value="Pred: Out" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="305" width="80" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm2_h2" value="Pred: In" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="305" width="80" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm2_r1" value="Actual: Out" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="330" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm2_tn" value="143 (TN)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="330" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm2_fp" value="4 (FP)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="330" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm2_r2" value="Actual: In" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="380" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm2_fn" value="0 (FN)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="380" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm2_tp" value="122 (TP)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="380" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm3_title" value="Computer Networks (204 samples)" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="280" width="240" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm3_ph" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="305" width="80" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm3_h1" value="Pred: Out" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="305" width="80" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm3_h2" value="Pred: In" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="305" width="80" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm3_r1" value="Actual: Out" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="330" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm3_tn" value="31 (TN)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="330" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm3_fp" value="1 (FP)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="330" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm3_r2" value="Actual: In" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="380" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm3_fn" value="0 (FN)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="380" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="cm3_tp" value="172 (TP)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="380" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="leg_title" value="Legend:" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="450" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="leg_green" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="180" y="455" width="20" height="15" as="geometry"/>
+                </mxCell>
+                <mxCell id="leg_green_t" value="Correct (TN, TP, FN=0)" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="205" y="450" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="leg_red" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="455" width="20" height="15" as="geometry"/>
+                </mxCell>
+                <mxCell id="leg_red_t" value="Misclassified (FP)" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="385" y="450" width="120" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

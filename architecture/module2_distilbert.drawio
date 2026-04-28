@@ -1,0 +1,89 @@
+<mxfile host="65bd71144e">
+    <diagram name="Module 2: DistilBERT Training" id="module2">
+        <mxGraphModel dx="760" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="MODULE 2: DISTILBERT TRAINING &amp; CLASSIFICATION" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="30" width="550" height="40" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="sub1" value="A. MODEL TRAINING" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="85" width="200" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="sub2" value="B. REAL-TIME INFERENCE" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="85" width="200" height="25" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="a1" value="Labeled Dataset from Module 1" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="125" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a2" value="Data Split (80% Train / 20% Val)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="195" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a3" value="DistilBERT Tokenization" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="265" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a4" value="Fine-Tuning (AdamW, 2 Epochs)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="335" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a5" value="Model Evaluation (99%+ Accuracy)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="405" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a6" value="DistilBERT Model Artifact" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="475" width="160" height="50" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="aa1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a1" target="a2" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a2" target="a3" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a3" target="a4" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a4" target="a5" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a5" target="a6" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+                <mxCell id="b1" value="Student Question" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="125" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2" value="Load DistilBERT Classifier" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="195" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b3" value="DistilBERT Tokenization" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="265" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4" value="Binary Classification (~18ms)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="335" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b5a" value="Relevant (Label=1)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="405" width="120" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b5b" value="Irrelevant (Label=0)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="405" width="120" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b5a_dest" value="→ Module 3 (Validation)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="445" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="b5b_dest" value="→ Rejected" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="445" width="70" height="30" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ba1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="b1" target="b2" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="ba2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="b2" target="b3" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="ba3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="b3" target="b4" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="ba4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="b4" target="b5a" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="ba5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="b4" target="b5b" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+                <mxCell id="cross" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="1" source="a6" target="b2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="400" y="500"/>
+                            <mxPoint x="400" y="212"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+
+                <mxCell id="tools" value="Tools: PyTorch, Transformers, scikit-learn | Files: train_script.py, inference.py" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="530" width="550" height="25" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

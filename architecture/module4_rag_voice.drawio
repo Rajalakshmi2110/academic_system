@@ -1,0 +1,91 @@
+<mxfile host="65bd71144e">
+    <diagram name="Module 4: RAG Answer Generation &amp; Voice Assistant" id="module4">
+        <mxGraphModel dx="760" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="MODULE 4: RAG ANSWER GENERATION &amp; VOICE ASSISTANT" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="30" width="550" height="40" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="sub1" value="A. RAG ANSWER GENERATION" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="85" width="220" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="sub2" value="B. VOICE ASSISTANT" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="85" width="200" height="25" as="geometry"/>
+                </mxCell>
+
+                <!-- RAG pipeline -->
+                <mxCell id="a1" value="Validated Question from Module 3" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="125" width="220" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a2" value="Question Embedding (384-dim)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="195" width="220" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a3" value="FAISS Semantic Search (Top-3)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="265" width="220" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a4" value="Prompt Template Selection" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="335" width="220" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a5" value="Ollama Llama 3.1 8B Generation" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="405" width="220" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a6" value="Confidence Scoring" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="475" width="220" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="a7" value="Answer + Sources + Confidence" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="545" width="220" height="35" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="aa1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a1" target="a2" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a2" target="a3" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a3" target="a4" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a4" target="a5" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a5" target="a6" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="aa6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="a6" target="a7" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+                <!-- Voice - STT -->
+                <mxCell id="stt_label" value="Speech-to-Text" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="125" width="110" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="b1" value="Microphone Input" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="160" width="110" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2" value="Web Speech API" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="225" width="110" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="b3" value="Transcribed Text" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="290" width="110" height="35" as="geometry"/>
+                </mxCell>
+
+                <!-- Voice - TTS -->
+                <mxCell id="tts_label" value="Text-to-Speech" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="125" width="110" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="c1" value="Generated Answer" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="160" width="110" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="c2" value="Ollama Explanation" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="225" width="110" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="c3" value="Edge-TTS Synthesis" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="290" width="110" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="c4" value="Audio Playback" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="355" width="110" height="35" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="va1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="b1" target="b2" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="va2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="b2" target="b3" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="va3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="c1" target="c2" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="va4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="c2" target="c3" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="va5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="c3" target="c4" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+                <mxCell id="tools" value="Tools: FAISS, Sentence-Transformers, Ollama, Edge-TTS, Web Speech API | Files: rag_pipeline.py, tts_service.py" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="610" width="650" height="25" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

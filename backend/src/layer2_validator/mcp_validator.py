@@ -219,8 +219,64 @@ Respond with JSON only: {{"status": "VALID/WARNING/OUT_OF_SYLLABUS/REJECTED", "r
                 }
                 
         except Exception as e:
-            # Fallback: if Groq fails (rate limit, network), use basic keyword check
+            # Fallback: if Groq fails (rate limit, network), use basic keyword + fact check
+            print(f"[WARN] Groq API failed, using fallback: {type(e).__name__}: {e}")
             inference_time = (time.time() - start_time) * 1000
+
+            # Detect incorrect facts via known-facts lookup
+            import re
+            q_lower = question.lower()
+
+            # 1. Wrong complexity claims: (topic_regex, correct_answer, explanation)
+            complexity_facts = [
+                (r'binary search', r'O\([^)]+\)', 'O(log n)', 'Binary search is O(log n)'),
+                (r'linear search', r'O\([^)]+\)', 'O(n)', 'Linear search is O(n)'),
+                (r'bubble sort', r'O\([^)]+\)', 'O(n²)', 'Bubble sort is O(n²)'),
+                (r'insertion sort', r'O\([^)]+\)', 'O(n²)', 'Insertion sort is O(n²)'),
+                (r'selection sort', r'O\([^)]+\)', 'O(n²)', 'Selection sort is O(n²)'),
+                (r'merge sort', r'O\([^)]+\)', 'O(n log n)', 'Merge sort is O(n log n)'),
+                (r'quick sort', r'O\([^)]+\)', 'O(n log n)', 'Quick sort average is O(n log n)'),
+                (r'heap sort', r'O\([^)]+\)', 'O(n log n)', 'Heap sort is O(n log n)'),
+            ]
+            for topic_pat, claim_pat, correct, explanation in complexity_facts:
+                if re.search(topic_pat, q_lower):
+                    claim_match = re.search(claim_pat, question, re.IGNORECASE)
+                    if claim_match:
+                        claimed = claim_match.group(0).replace(' ', '')
+                        correct_normalized = correct.replace(' ', '').replace('²', '^2')
+                        claimed_normalized = claimed.replace(' ', '').replace('²', '^2')
+                        if claimed_normalized.lower() != correct_normalized.lower():
+                            return {
+                                'question': question,
+                                'status': 'WARNING',
+                                'explanation': f'Contains incorrect fact: {explanation}, not {claimed}',
+                                'confidence': 0.85,
+                                'inference_time_ms': inference_time
+                            }
+
+            # 2. Wrong property claims
+            property_facts = [
+                (r'(?:stack|stacks).*FIFO', 'Stack is LIFO, not FIFO'),
+                (r'(?:queue|queues).*LIFO', 'Queue is FIFO, not LIFO'),
+                (r'balance factor.*(?:of|is|=)\s*(\d+)', None),  # handled below
+            ]
+            for pattern, reason in property_facts:
+                match = re.search(pattern, question, re.IGNORECASE)
+                if match:
+                    if reason is None:
+                        val = int(match.group(1))
+                        if val > 1:
+                            reason = 'AVL tree balance factor can only be -1, 0, or +1'
+                        else:
+                            continue
+                    return {
+                        'question': question,
+                        'status': 'WARNING',
+                        'explanation': f'Contains incorrect fact: {reason}',
+                        'confidence': 0.85,
+                        'inference_time_ms': inference_time
+                    }
+
             if found_in_syllabus:
                 return {
                     'question': question,

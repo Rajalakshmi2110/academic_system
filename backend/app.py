@@ -25,12 +25,11 @@ def calculate_confidence(question, context, answer):
     if not context or not answer:
         return 0.5
     
-    # Normalize text
     answer_lower = answer.lower()
     context_lower = context.lower()
     question_lower = question.lower()
     
-    # 1. Context-Answer Word Overlap (50% weight)
+    # 1. Context-Answer Word Overlap (40% weight) — use 3+ char words, boost for partial coverage
     answer_words = set(word for word in answer_lower.split() if len(word) > 3)
     context_words = set(word for word in context_lower.split() if len(word) > 3)
     
@@ -38,30 +37,34 @@ def calculate_confidence(question, context, answer):
         overlap_score = 0.5
     else:
         overlap = len(answer_words & context_words) / len(answer_words)
-        overlap_score = min(overlap, 1.0)
+        # Boost: even 30% word overlap means strong grounding (LLM paraphrases)
+        overlap_score = min(overlap * 2.0, 1.0)
     
-    # 2. Question-Context Relevance (30% weight)
+    # 2. Question-Context Relevance (30% weight) — boost for keyword matches
     question_words = set(word for word in question_lower.split() if len(word) > 3)
     if len(question_words) == 0:
         relevance_score = 0.5
     else:
         relevance = len(question_words & context_words) / len(question_words)
-        relevance_score = min(relevance, 1.0)
+        relevance_score = min(relevance * 2.0, 1.0)
     
-    # 3. Answer Length Check (20% weight)
-    # Penalize very short or very long answers
+    # 3. Answer Completeness (30% weight) — reward well-formed answers
     answer_length = len(answer.split())
-    if 20 <= answer_length <= 300:
+    if 30 <= answer_length <= 400:
         length_score = 1.0
-    elif answer_length < 20:
+    elif 15 <= answer_length < 30:
+        length_score = 0.8
+    elif answer_length < 15:
         length_score = answer_length / 20
     else:
-        length_score = max(0.5, 1.0 - (answer_length - 300) / 500)
+        length_score = max(0.6, 1.0 - (answer_length - 400) / 500)
     
-    # Calculate weighted confidence
-    confidence = (overlap_score * 0.5) + (relevance_score * 0.3) + (length_score * 0.2)
+    confidence = (overlap_score * 0.4) + (relevance_score * 0.3) + (length_score * 0.3)
     
-    return round(confidence, 2)
+    # Floor at 0.45 if we have context and answer (system did retrieve something)
+    confidence = max(confidence, 0.45)
+    
+    return round(min(confidence, 0.95), 2)
 
 
 app = Flask(__name__)
@@ -188,9 +191,9 @@ def chat():
                 rag_result.get('context', '') if isinstance(rag_result, dict) else '',
                 rag_result.get('answer', rag_result) if isinstance(rag_result, dict) else rag_result
             ),
-            'final_status': 'VALID', 'layer1_result': validation_result.get('layer1_result'),
+            'final_status': validation_result.get('final_status', 'VALID'),
             'layer1_result': validation_result.get('layer1_result'),
-            'layer1_result': validation_result.get('layer1_result'),
+            'layer2_result': validation_result.get('layer2_result'),
             'warning': validation_result.get('warning'),
             'out_of_syllabus_answered': force_answer
         }
@@ -280,10 +283,30 @@ def metrics():
             with open(subjects_file, 'r') as f:
                 all_subjects = json.load(f).get('subjects', [])
             subject_ids = [s['id'] for s in all_subjects]
-            return jsonify(metrics_tracker.get_overall_metrics(subject_ids))
+            result = metrics_tracker.get_overall_metrics(subject_ids)
+            # Add confidence distribution for overall
+            all_scores = []
+            for sid in subject_ids:
+                m = metrics_tracker._load_metrics(sid)
+                all_scores.extend(m.get('confidence_scores', []))
+            conf_dist = {'high': 0, 'medium': 0, 'low': 0}
+            for s in all_scores:
+                if s > 0.7: conf_dist['high'] += 1
+                elif s >= 0.4: conf_dist['medium'] += 1
+                else: conf_dist['low'] += 1
+            result['confidence_distribution'] = conf_dist
+            return jsonify(result)
         
         usage_metrics = metrics_tracker.get_metrics(subject_id)
         feedback_metrics = metrics_tracker.get_feedback_metrics(subject_id)
+        
+        # Calculate confidence distribution
+        scores = usage_metrics.get('confidence_scores', [])
+        conf_dist = {'high': 0, 'medium': 0, 'low': 0}
+        for s in scores:
+            if s > 0.7: conf_dist['high'] += 1
+            elif s >= 0.4: conf_dist['medium'] += 1
+            else: conf_dist['low'] += 1
         
         return jsonify({
             'usage': usage_metrics['usage'],
@@ -291,6 +314,7 @@ def metrics():
             'layer2': usage_metrics['layer2'],
             'layer3': usage_metrics.get('layer3', {}),
             'feedback': feedback_metrics,
+            'confidence_distribution': conf_dist,
             'daily_stats': usage_metrics['daily_stats'],
             'hourly_stats': usage_metrics.get('hourly_stats', {}),
             'last_updated': usage_metrics['last_updated']

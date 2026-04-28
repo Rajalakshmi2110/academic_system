@@ -624,15 +624,15 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                                 {getStepIcon(msg.data.intermediate_steps.layer1.status)}
                                 <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
-                                  Layer 1 - {msg.data.intermediate_steps.layer1.name || 'DS Classifier'}
+                                  Step 1 — Subject Check
                                 </Typography>
                               </Box>
                               <Typography variant="caption" sx={{ display: 'block', color: '#666' }}>
-                                {msg.data.intermediate_steps.layer1.description}
+                                Verified: Your question is related to the selected subject
                               </Typography>
                               <Typography variant="caption" sx={{ display: 'block', mt: 0.5 }}>
-                                Status: {msg.data.intermediate_steps.layer1.status || 'N/A'} | 
-                                Latency: {msg.data.intermediate_steps.layer1.latency_ms?.toFixed(2)}ms
+                                Status: {msg.data.intermediate_steps.layer1.status === 'PASS' ? 'Passed ✓' : 'Failed ✗'} | 
+                                Time: {msg.data.intermediate_steps.layer1.latency_ms < 1000 ? '< 1 second' : (msg.data.intermediate_steps.layer1.latency_ms / 1000).toFixed(1) + 's'}
                               </Typography>
                             </Box>
                           )}
@@ -642,15 +642,21 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                                 {getStepIcon(msg.data.intermediate_steps.layer2.status)}
                                 <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
-                                  Layer 2 - {msg.data.intermediate_steps.layer2.name || 'Syllabus Checker'}
+                                  Step 2 — Syllabus Check
                                 </Typography>
                               </Box>
                               <Typography variant="caption" sx={{ display: 'block', color: '#666' }}>
-                                {msg.data.intermediate_steps.layer2.description}
+                                {msg.data.intermediate_steps.layer2.status === 'IN_SYLLABUS' ? 'Verified: This topic is covered in your syllabus' :
+                                 msg.data.intermediate_steps.layer2.status === 'WARNING' ? 'Your question contains incorrect facts — corrections applied' :
+                                 msg.data.intermediate_steps.layer2.status === 'OUT_OF_SYLLABUS' ? 'This topic is not in your current syllabus' :
+                                 'Question could not be validated'}
                               </Typography>
                               <Typography variant="caption" sx={{ display: 'block', mt: 0.5 }}>
-                                Status: {msg.data.intermediate_steps.layer2.status} | 
-                                Latency: {msg.data.intermediate_steps.layer2.latency_ms?.toFixed(2)}ms
+                                Status: {msg.data.intermediate_steps.layer2.status === 'IN_SYLLABUS' ? 'In Syllabus ✓' :
+                                         msg.data.intermediate_steps.layer2.status === 'WARNING' ? 'Warning ⚠️' :
+                                         msg.data.intermediate_steps.layer2.status === 'OUT_OF_SYLLABUS' ? 'Out of Syllabus' :
+                                         msg.data.intermediate_steps.layer2.status} | 
+                                Time: {msg.data.intermediate_steps.layer2.latency_ms < 1000 ? '< 1 second' : '~' + (msg.data.intermediate_steps.layer2.latency_ms / 1000).toFixed(0) + ' seconds'}
                               </Typography>
                             </Box>
                           )}
@@ -660,7 +666,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                                 {getStepIcon(msg.data.intermediate_steps.layer3.status)}
                                 <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
-                                  Layer 3 - {msg.data.intermediate_steps.layer3.name || 'RAG Pipeline'}
+                                  Step 3 — Answer Generation
                                 </Typography>
                                 {msg.data.confidence_score !== undefined && (
                                   <Box sx={{ ml: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 0.5 }}>
@@ -695,11 +701,11 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                                 )}
                               </Box>
                               <Typography variant="caption" sx={{ display: 'block', color: '#666' }}>
-                                {msg.data.intermediate_steps.layer3.description}
+                                Generating answer from your course materials...
                               </Typography>
                               <Typography variant="caption" sx={{ display: 'block', mt: 0.5 }}>
-                                Status: {msg.data.intermediate_steps.layer3.status} | 
-                                Latency: {msg.data.intermediate_steps.layer3.latency_ms?.toFixed(2)}ms
+                                Status: {msg.data.intermediate_steps.layer3.status === 'SUCCESS' ? 'Generated ✓' : 'Failed ✗'} | 
+                                Time: ~{(msg.data.intermediate_steps.layer3.latency_ms / 1000).toFixed(0)} seconds
                               </Typography>
                               {msg.data.confidence_score !== undefined && msg.data.confidence_score < 0.4 && (
                                 <Box sx={{ mt: 1, p: 1, bgcolor: '#FFEBEE', borderRadius: 1, border: '1px solid #F44336' }}>
@@ -729,7 +735,7 @@ const ChatInterface = ({ onBackToHome, openSubjectModal = false }) => {
                           
                           {msg.data.total_latency_ms && (
                             <Typography variant="caption" sx={{ display: 'block', mt: 2, fontWeight: 'bold', textAlign: 'right' }}>
-                              Total: {msg.data.total_latency_ms.toFixed(2)}ms
+                              Total time: ~{(msg.data.total_latency_ms / 1000).toFixed(0)} seconds
                             </Typography>
                           )}
                         </AccordionDetails>

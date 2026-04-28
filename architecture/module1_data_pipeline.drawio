@@ -1,0 +1,106 @@
+<mxfile host="65bd71144e">
+    <diagram name="Module 1: Content Ingestion, Vector Database &amp; Training Data" id="module1">
+        <mxGraphModel dx="751" dy="637" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="MODULE 1: CONTENT INGESTION, VECTOR DATABASE &amp; TRAINING DATA" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="30" width="650" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="sub1" value="A. CONTENT INGESTION &amp; VECTOR DB" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="85" width="240" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="sub2" value="B. TRAINING DATA GENERATION" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="85" width="240" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="l1" value="PDF Upload (Admin Dashboard)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="125" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="l2" value="PyPDF2 Page-by-Page Extraction" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="190" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="l3" value="Character Chunking (1500c / 200c Overlap)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="255" width="220" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="l4" value="Sentence-BERT Embedding (384-dim)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="320" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="l5" value="FAISS IndexFlatL2 (1300+ chunks)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="385" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="l6" value="Subject Vector Database" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="450" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="l6_files" value="faiss_index.bin | chunks.pkl | metadata.json" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="105" y="505" width="230" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ld" value="→ Module 4 (RAG Retrieval)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="145" y="530" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="la1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="l1" target="l2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="la2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="l2" target="l3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="la3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="l3" target="l4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="la4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="l4" target="l5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="la5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="l5" target="l6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r1" value="Subject Syllabus (JSON)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="125" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="r2" value="Groq Llama 3.3 70B Generation" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="190" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="r3a" value="Valid Questions (60%)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="255" width="140" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="r3b" value="Invalid Questions (40%)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="645" y="255" width="140" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="r4" value="Batch Processing (25 per API call)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="320" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="r5" value="LLM Quality Verification (10% Sample)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="385" width="220" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="r6" value="Labeled Training Dataset (2000+)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;" parent="1" vertex="1">
+                    <mxGeometry x="545" y="450" width="170" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="rd" value="→ Module 2 (DistilBERT Training)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="545" y="505" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ra1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="r1" target="r2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ra2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="r2" target="r3a" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ra3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="r2" target="r3b" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ra4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="r3a" target="r4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ra5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="r3b" target="r4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ra6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="r4" target="r5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ra7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="r5" target="r6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="iso" value="Directory Isolation: subjects/{subject_id}/" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=10;fontStyle=2;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="560" width="250" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
